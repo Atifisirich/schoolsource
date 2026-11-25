@@ -1,0 +1,5 @@
+[
+  { "check": "phone-number", "target": "+91 96760 38523", "reason": "The brief and lib/site.ts give this as the client's real phone and WhatsApp number; showing it is the point of the page." },
+  { "check": "card-layout", "target": "div.grid.kits", "reason": "Four kit tiles are one row of one product family (the goods recipe); each shows a different kit photograph and contents." },
+  { "check": "copy-headings", "target": "h3.kit__name", "reason": "Kit names are the client's real product names from data/catalogue.ts; step titles are verb plus object as copy.md asks." }
+]

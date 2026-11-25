@@ -25,7 +25,7 @@
 <link rel="stylesheet" href="assets/icons/icon.css">
 <style>
 :root {
-  --p-bg: #ffffff; --p-surface: #f3f5f9; --p-ink: #0e1f3d; --p-muted: #55607a;
+  --p-bg: #ffffff; --p-surface: #f3f5f9; --p-ink: #0e1f3d; --p-muted: #465069;
   --p-accent: #1f4fb5; --p-accent-ink: #ffffff; --p-action: #1f4fb5; --p-action-ink: #ffffff;
   --p-inv-bg: #0e1f3d; --p-inv-surface: #1c2d49; --p-inv-ink: #ffffff; --p-inv-muted: #9aa3b1;
   --p-inv-accent: #ffffff; --p-inv-accent-ink: #0e1f3d; --p-inv-action: #ffffff; --p-inv-action-ink: #0e1f3d;
@@ -55,16 +55,9 @@
 .chip { background: var(--blue-soft); }
 .qbar__open { border: 1px solid #cdd5e3; }
 .notice-short { display: none; }
-@media (max-width: 639px) {
-  header.nav:not(.is-open) .nav__actions { display: none; }
-  header.nav:not(.is-open) .nav__actions + .nav__toggle { margin-left: auto; }
-  .qsearch kbd { display: none; }
-  .qres__list { flex: none; height: max(250px, calc(100svh - 580px)); }
-  .logo svg, .nav__logo.logo svg { height: 22px; width: 146px; }
-  .notice-long { display: none; } .notice-short { display: inline; }
-  .desk__find .hero__lead { font-size: 17px; }
-}
+
 .footer--dark .logo, .ground-inverse .logo { color: #fff; --logo-s: #ffffff; }
+footer .logo { min-height: 44px; }
 
 /* ---------------------------------------------------------------- hero: the desk */
 .desk { height: 100%; align-items: stretch; }
@@ -75,15 +68,18 @@
 .hero-notice .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--orange); flex: none; }
 
 .qsearch { margin-top: var(--s-6); position: relative; }
-.qsearch__box { position: relative; display: flex; align-items: center; height: 60px; border: 1.5px solid var(--ink); border-radius: 14px; background: #fff;
-  box-shadow: 0 1px 0 rgba(14,31,61,.04), 0 8px 24px -16px rgba(14,31,61,.35); }
-.qsearch__box:focus-within { border-color: var(--action); box-shadow: 0 0 0 4px rgba(31,79,181,.14); }
-.qsearch__box > svg { width: 20px; height: 20px; margin: 0 12px 0 18px; flex: none; color: var(--ink); }
-.qsearch input { flex: 1; min-width: 0; height: 100%; border: 0; background: none; font: 400 19px/1 var(--font-text); color: var(--ink); outline: none; padding: 0; }
+.qsearch__label { display: block; font: 500 14px/1.2 var(--font-text); color: var(--ink); margin-bottom: 8px; }
+.qsearch__box { position: relative; }
+.qsearch__box > svg { position: absolute; left: 18px; top: 20px; width: 20px; height: 20px; color: var(--ink); pointer-events: none; }
+.qsearch input { display: block; width: 100%; height: 60px; border: 1.5px solid var(--ink); border-radius: 14px; background: #fff; padding: 0 64px 0 50px;
+  font: 400 19px/1 var(--font-text); color: var(--ink); box-shadow: 0 1px 0 rgba(14,31,61,.04), 0 8px 24px -16px rgba(14,31,61,.35); -webkit-appearance: none; appearance: none; }
+.qsearch input:focus { outline: none; border-color: var(--action); box-shadow: 0 0 0 4px rgba(31,79,181,.18); }
+.qsearch kbd, .qsearch__clear { position: absolute; top: 50%; right: 8px; transform: translateY(-50%); }
+.qsearch kbd { right: 16px; }
 .qsearch input::placeholder { color: #6b7590; }
 .qsearch input::-webkit-search-cancel-button { display: none; }
-.qsearch kbd { margin-right: 14px; font: 500 13px/1 var(--font-text); color: var(--muted); border: 1px solid var(--rule); border-radius: 6px; padding: 5px 8px; background: var(--p-surface); }
-.qsearch__clear { margin-right: 8px; width: 44px; height: 44px; border-radius: 10px; display: none; place-items: center; color: var(--muted); }
+.qsearch kbd { font: 500 13px/1 var(--font-text); color: var(--muted); border: 1px solid var(--rule); border-radius: 6px; padding: 5px 8px; background: var(--p-surface); }
+.qsearch__clear { width: 44px; height: 44px; border-radius: 10px; display: none; place-items: center; color: var(--muted); }
 .qsearch__clear:hover { background: var(--p-surface); color: var(--ink); }
 .qsearch.has-q .qsearch__clear { display: grid; }
 .qsearch.has-q kbd { display: none; }
@@ -95,10 +91,20 @@
 .chip { display: inline-flex; align-items: center; gap: 6px; height: 32px; padding: 0 10px 0 12px; border-radius: 999px; background: var(--blue-soft); color: var(--action); font: 500 14px/1 var(--font-text); }
 .chip svg { width: 14px; height: 14px; }
 .chip:hover { background: #d9e3f8; }
-.qres__list { list-style: none; margin: 4px 0 0; padding: 0; overflow-y: auto; min-height: 0; flex: 1; border-top: 1px solid var(--rule);
-  scrollbar-width: thin; scrollbar-color: #c6cfdf transparent; overscroll-behavior: contain;
-  -webkit-mask-image: linear-gradient(#000 calc(100% - 28px), transparent); mask-image: linear-gradient(#000 calc(100% - 28px), transparent); }
-.qrow { display: grid; grid-template-columns: 44px minmax(0, 1fr) auto; align-items: center; gap: 14px; padding: 8px 4px; border-bottom: 1px solid var(--rule); min-height: 60px; }
+.qres__list { list-style: none; margin: 4px 0 0; padding: 0; overflow: hidden; min-height: 0; flex: 1; border-top: 1px solid var(--rule); }
+.pager { display: flex; align-items: center; gap: 4px; font: 500 14px/1 var(--font-text); color: var(--muted); }
+.pager span { margin-right: 6px; font-variant-numeric: tabular-nums; }
+.pager button { width: 40px; height: 40px; border: 1px solid var(--rule); border-radius: 999px; background: #fff; display: grid; place-items: center; color: var(--ink); }
+.pager button:hover:not([disabled]) { border-color: var(--action); color: var(--action); }
+.pager button[disabled] { opacity: .35; cursor: default; }
+.pager svg { width: 14px; height: 14px; }
+.qres__head-r { display: flex; align-items: center; gap: 10px; }
+.desk__foot { display: flex; align-items: center; gap: 16px; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--rule); }
+.desk__foot p { font: 400 16px/1.4 var(--font-text); color: var(--ink); }
+.photo-btn { gap: 10px; }
+.photo-btn img { width: 20px; height: 20px; }
+.qres__hint { display: none; }
+.qrow { display: grid; grid-template-columns: 44px minmax(0, 1fr) auto; align-items: center; gap: 14px; padding: 8px 0; border-bottom: 1px solid var(--rule); height: 61px; }
 .qrow__img { width: 44px; height: 44px; border-radius: 10px; object-fit: cover; background: var(--p-surface); display: block; }
 .qrow__tile { width: 44px; height: 44px; border-radius: 10px; background: var(--p-surface); display: grid; place-items: center; color: var(--action); font: 500 13px/1 var(--font-text); }
 .qrow__name { font: 500 16px/1.25 var(--font-text); color: var(--ink); display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
@@ -115,7 +121,8 @@
 .add[aria-pressed="true"] { background: var(--action); border-color: var(--action); color: #fff; }
 .add[aria-pressed="true"] .i-plus { display: none; }
 .add[aria-pressed="true"] .i-check { display: block; }
-.qres__hint { font: 400 14px/1.4 var(--font-text); color: var(--muted); padding: 10px 4px 0; }
+.qres__hint { font: 400 15px/1.4 var(--font-text); color: var(--ink); padding: 12px 0 0; }
+.qres__head { padding: 0; }
 .qres__hint kbd { font: 500 12px/1 var(--font-text); border: 1px solid var(--rule); border-radius: 5px; padding: 3px 6px; background: var(--p-surface); color: var(--ink); }
 
 /* the list: a quotation slip */
@@ -213,9 +220,9 @@
 .steps { align-items: stretch; }
 .step { display: flex; flex-direction: column; gap: 10px; }
 .step__n { display: inline-grid; place-items: center; width: 32px; height: 32px; border-radius: 999px; background: var(--orange); color: var(--p-inv-accent-ink); font: 600 15px/1 var(--font-text); }
-.step h3 { font: 500 20px/1.3 var(--font-text); margin-top: 6px; }
+.step h3 { font: 500 20px/1.3 var(--font-text); display: flex; flex-direction: column; align-items: flex-start; gap: 16px; }
 .step p { font-size: 16px; line-height: 1.55; color: var(--ink); opacity: .86; }
-.step__ui { margin-top: auto; height: 250px; border-radius: 16px; background: #fff; color: #0e1f3d; padding: 16px; overflow: hidden; position: relative; }
+.step__ui { margin-top: auto; height: 330px; border-radius: 16px; background: #fff; color: #0e1f3d; padding: 16px; overflow: hidden; position: relative; }
 .chat { background: #efe7dc; display: flex; flex-direction: column; justify-content: flex-end; gap: 8px; }
 .bubble { align-self: flex-end; max-width: 92%; background: #d9fdd3; border-radius: 12px 4px 12px 12px; padding: 10px 12px 6px; font: 400 15px/1.45 var(--font-text); color: #111b21; box-shadow: 0 1px 0 rgba(0,0,0,.08); }
 .bubble small { display: block; text-align: right; font-size: 12px; color: #667781; margin-top: 2px; }
@@ -235,23 +242,29 @@
 
 /* ---------------------------------------------------------------- kits */
 .kits { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
-.kit { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 16px; align-items: center; padding: 14px 0; border-bottom: 1px solid var(--line); cursor: default; }
+.kit { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px 16px; align-items: center; padding: 11px 0; border-bottom: 1px solid var(--line); cursor: default; }
 .kit__name { font: 500 18px/1.25 var(--font-text); display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; }
 .kit__basis { font: 500 13px/1 var(--font-text); color: var(--muted); padding: 4px 8px; border-radius: 6px; background: var(--p-surface); }
 .kit__contents { grid-column: 1; font: 400 15px/1.4 var(--font-text); color: var(--muted); }
-.kit .add { grid-column: 2; grid-row: 1 / span 2; min-width: 112px; }
+.kit .add { grid-column: 2; grid-row: 1 / span 2; min-width: 112px; height: 44px; }
 .kit.is-peek .kit__name { color: var(--action); }
 .kitpic { position: relative; height: 100%; min-height: 0; }
-.kitpic img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .3s var(--ease); }
-.kitpic img.is-on { opacity: 1; }
-@media (prefers-reduced-motion: reduce) { .kitpic img { transition: none; } }
+.kitpic { border-radius: var(--r-lg); overflow: hidden; align-self: stretch; min-height: 0; height: auto; }
+.kitpic { min-width: 0; }
+.kitgrid { align-items: stretch; }
+.kitgrid > .kitpic { aspect-ratio: auto; height: auto; }
+.grid > .kitpic > img { position: absolute; inset: 0; max-width: none; width: 100%; height: 100%; object-fit: cover; animation: kitfade .3s var(--ease); }
+@keyframes kitfade { from { opacity: .4; } to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .kitpic img { animation: none; } }
+@media (max-width: 1023px) { .kitpic { min-height: 0; height: auto; aspect-ratio: 4 / 3; width: 100%; } }
 
 /* ---------------------------------------------------------------- details */
-.facts { display: grid; grid-template-columns: 1fr 1fr; gap: 28px 32px; align-content: start; }
+.facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px 24px; align-content: start; }
 .fact h3 { font: 500 18px/1.3 var(--font-text); display: flex; gap: 10px; align-items: center; }
 .fact h3 svg { width: 20px; height: 20px; color: var(--action); flex: none; }
 .fact p { margin-top: 6px; font-size: 16px; line-height: 1.55; }
-.detailpic { border-radius: var(--r-lg); overflow: hidden; height: 100%; min-height: 0; }
+.detailpic { border-radius: var(--r-lg); overflow: hidden; height: 260px; margin-top: 24px; }
+@media (max-width: 1023px) { .facts { grid-template-columns: 1fr 1fr; } }
 .detailpic img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
 /* footer */
@@ -266,6 +279,31 @@
   .cat__name { font-size: 16px; }
   .kit { grid-template-columns: minmax(0, 1fr); }
   .kit .add { grid-column: 1; grid-row: auto; justify-self: start; margin-top: 6px; }
+}
+@media (max-width: 639px) {
+  header.nav:not(.is-open) .nav__actions { display: none; }
+  header.nav:not(.is-open) .nav__actions + .nav__toggle { margin-left: auto; }
+  .qsearch kbd { display: none; }
+  .qres__list { flex: none; height: max(183px, calc(100svh - 640px)); }
+  .desk__foot { border-top: 0; padding-top: 0; margin-top: 12px; }
+  .desk__foot p { display: none; }
+  .photo-btn { display: flex; width: 100%; }
+  .pager button { width: 44px; height: 44px; }
+  .logo svg, .nav__logo.logo svg { height: 22px; width: 146px; }
+  .notice-long { display: none; } .notice-short { display: inline; }
+  .desk__find .hero__lead { font-size: 17px; }
+}
+@media (max-width: 639px) {
+  .cats { grid-row-gap: 0; }
+  .grid > .cat.card { grid-column: 1 / -1; display: grid; grid-template-columns: 72px minmax(0, 1fr); align-items: center; border: 0; border-bottom: 1px solid var(--line); border-radius: 0; background: none; padding: 8px 0; min-height: 68px; }
+  .cats > .cat:first-child { border-top: 1px solid var(--line); }
+  .cat .frame { aspect-ratio: 4 / 3; width: 72px; border-radius: 8px; }
+  .cat__text { flex-direction: row; align-items: baseline; padding: 0 0 0 14px; }
+  .step__ui { height: 190px; }
+  .step:nth-child(3) .step__ui { display: none; }
+  .facts { grid-template-columns: 1fr; gap: 20px; }
+  .detailpic { height: 280px; }
+  .grid > .kitpic { aspect-ratio: 4 / 3; }
 }
 </style>
 </head>
@@ -299,31 +337,34 @@
     <div class="wrap">
       <div class="hero-text grid desk">
         <div class="desk__find span-7">
-          <p class="hero-notice"><span class="dot" aria-hidden="true"></span><span class="notice-long"><b>343 school supplies</b> in 15 categories, delivered from Hyderabad</span><span class="notice-short"><b>343 school supplies</b>, delivered from Hyderabad</span></p>
+          <p class="hero-notice"><span class="notice-long"><b>343 school supplies</b> in 15 categories, delivered from Hyderabad</span><span class="notice-short"><b>343 school supplies</b>, delivered from Hyderabad</span></p>
           <h1 id="hero-h">What does your school need?</h1>
           <p class="hero__lead">Search the catalogue and add items to your list. Send the list on WhatsApp and we reply with an itemised quotation.</p>
           <div class="qsearch" role="search">
-            <label class="vh" for="q">Search 343 school supplies</label>
+            <label class="qsearch__label" for="q">Search the catalogue</label>
             <div class="qsearch__box">
               <svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.5" cy="8.5" r="6" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m13 13 4.5 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
               <input id="q" type="search" autocomplete="off" spellcheck="false" placeholder="Try notebooks, dual desks or microscopes" aria-describedby="q-hint" aria-controls="results">
-              <kbd aria-hidden="true">/</kbd>
               <button class="qsearch__clear" type="button" aria-label="Clear the search"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M3 3l8 8M11 3l-8 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
             </div>
           </div>
-          <div class="qres">
+          <div class="qres ui ui-results">
             <div class="qres__head">
               <p class="qres__status" id="results-status" aria-live="polite">Often on school lists</p>
-              <span id="results-filter"></span>
+              <span class="qres__head-r"><span id="results-filter"></span><span class="pager" data-pager hidden><span data-range></span><button type="button" data-prev aria-label="Previous results"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M8.5 3 4.5 7l4 4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button type="button" data-next aria-label="Next results"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M5.5 3l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button></span></span>
             </div>
             <ul class="qres__list" id="results" aria-labelledby="results-status"></ul>
             <p class="qres__hint" id="q-hint">Not in the catalogue? Type it and add it as written. We quote that too.</p>
           </div>
+          <div class="desk__foot">
+            <p>Have the list on paper already?</p>
+            <a class="btn btn--secondary photo-btn" href="https://wa.me/919676038523?text=Hello%20SchoolSource%2C%20here%20is%20a%20photo%20of%20our%20school%27s%20list." target="_blank" rel="noopener"><img src="assets/icons/whatsapp.svg" alt="" width="20" height="20">Send a photo of your list</a>
+          </div>
         </div>
         <div class="desk__list span-5 start-8">
-          <aside class="slip" id="list" aria-labelledby="list-h" tabindex="-1">
+          <aside class="slip ui ui-list" id="list" aria-labelledby="list-h" tabindex="-1">
             <div class="slip__head">
-              <h2 class="slip__title" id="list-h">Your list <span class="count is-zero tnum" data-count aria-hidden="true">0</span></h2>
+              <p class="slip__title" id="list-h">Your list <span class="count is-zero tnum" data-count aria-hidden="true">0</span></p>
               <span class="slip__meta" data-meta>No items yet</span>
               <button class="slip__close" type="button" aria-label="Close the list" data-close-list><svg width="16" height="16" viewBox="0 0 14 14" aria-hidden="true"><path d="M3 3l8 8M11 3l-8 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
             </div>
@@ -356,7 +397,7 @@
     <div class="wrap">
       <div class="group">
         <div class="section-head">
-          <h2 id="cat-h">Fifteen categories, one supplier. <span class="muted">Pick one to list everything in it.</span></h2>
+          <h2 id="cat-h">School supplies in 15 categories. <span class="muted">Pick one to see every item in it.</span></h2>
         </div>
         <div class="grid cats" data-cats="0,8"></div>
       </div>
@@ -364,23 +405,21 @@
     </div>
   </section>
 
-  <section class="section ground-inverse" id="how" aria-labelledby="how-h">
+  <section class="section ground-inverse" id="how" style="--hm: 2" aria-labelledby="how-h">
     <div class="wrap">
       <div class="section-head">
-        <h2 id="how-h">How an order works. <span class="muted">Four steps, from your list to a GST invoice.</span></h2>
+        <h2 id="how-h">The order process in four steps. <span class="muted">From your list to a GST invoice.</span></h2>
       </div>
       <ol class="grid steps" style="list-style:none;margin:0;padding:0">
         <li class="step span-3">
-          <span class="step__n">1</span>
-          <h3>Send your list</h3>
+          <h3><span class="step__n">1</span>Your list, in any format</h3>
           <p>Typed, in a spreadsheet, or a photo of a handwritten page on WhatsApp.</p>
           <div class="step__ui chat" role="img" aria-label="A WhatsApp message listing notebooks, chalk, dusters and chart paper">
             <div class="bubble">Class 6 notebooks, 240<br>White chalk, 20 boxes<br>Board dusters, 30<br>Chart paper, 100 sheets<small>10:42</small></div>
           </div>
         </li>
         <li class="step span-3">
-          <span class="step__n">2</span>
-          <h3>Get an itemised quotation</h3>
+          <h3><span class="step__n">2</span>An itemised quotation</h3>
           <p>Every line of your list, with the size, brand and quantity we can supply.</p>
           <div class="step__ui" role="img" aria-label="A quotation with four lines, three in stock and one to order">
             <div class="doc__head">Quotation <span>4 lines</span></div>
@@ -391,8 +430,7 @@
           </div>
         </li>
         <li class="step span-3">
-          <span class="step__n">3</span>
-          <h3>Approve it</h3>
+          <h3><span class="step__n">3</span>Your approval</h3>
           <p>Change quantities or remove lines first. Printed items wait for your proof approval.</p>
           <div class="step__ui" role="img" aria-label="The quotation with an approve button">
             <div class="doc__head">Quotation <span>Revised</span></div>
@@ -403,8 +441,7 @@
           </div>
         </li>
         <li class="step span-3">
-          <span class="step__n">4</span>
-          <h3>Receive it, checked</h3>
+          <h3><span class="step__n">4</span>A checked delivery</h3>
           <p>Each order is checked before dispatch. In-stock items arrive within a week.</p>
           <div class="step__ui" role="img" aria-label="A tax invoice with the order checked line by line">
             <div class="doc__head">Tax invoice <span>GST</span></div>
@@ -420,12 +457,12 @@
     </div>
   </section>
 
-  <section class="section" id="kits" aria-labelledby="kits-h">
+  <section class="section" id="kits" style="--hm: 2" aria-labelledby="kits-h">
     <div class="wrap">
       <div class="section-head">
-        <h2 id="kits-h">Seven ready-made kits. <span class="muted">Add a whole kit to your list in one go.</span></h2>
+        <h2 id="kits-h">Seven kits for regular school orders. <span class="muted">Add a whole kit to your list in one go.</span></h2>
       </div>
-      <div class="grid grid--top fill">
+      <div class="grid fill kitgrid">
         <ul class="kits span-7" data-kits></ul>
         <div class="kitpic frame frame--photo span-5 start-8" data-kitpics></div>
       </div>
@@ -439,21 +476,21 @@
     </div>
   </section>
 
-  <section class="section ground-surface" id="delivery" aria-labelledby="del-h">
+  <section class="section ground-surface" id="delivery" style="--hm: 2" aria-labelledby="del-h">
     <div class="wrap">
       <div class="section-head">
-        <h2 id="del-h">Delivery, invoices and the rest. <span class="muted">What schools ask before a first order.</span></h2>
+        <h2 id="del-h">Delivery, invoices and support. <span class="muted">What schools ask before a first order.</span></h2>
       </div>
       <div class="grid grid--top fill">
-        <div class="facts span-7">
+        <div class="facts span-12">
           <div class="fact"><h3><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="4" y="2.5" width="12" height="15" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M7 7h6M7 10h6M7 13h3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>A GST invoice with every order</h3><p>Billed by Arkhan Group Pvt. Ltd., GSTIN 36ABFCA8886K1ZX.</p></div>
-          <div class="fact"><h3><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M2 5h10v8H2zM12 8h3.5l2.5 3v2h-6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="5.5" cy="14.5" r="1.8" fill="#fff" stroke="currentColor" stroke-width="1.6"/><circle cx="14.5" cy="14.5" r="1.8" fill="#fff" stroke="currentColor" stroke-width="1.6"/></svg>In-stock items within a week</h3><p>Counted from your confirmation. Stock is held in our own warehouse.</p></div>
+          <div class="fact"><h3><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M2 5h10v8H2zM12 8h3.5l2.5 3v2h-6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="5.5" cy="14.5" r="1.8" fill="#fff" stroke="currentColor" stroke-width="1.6"/><circle cx="14.5" cy="14.5" r="1.8" fill="#fff" stroke="currentColor" stroke-width="1.6"/></svg>In-stock supplies within a week</h3><p>Counted from your confirmation. Stock is held in our own warehouse.</p></div>
           <div class="fact"><h3><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 18s6-5.2 6-10A6 6 0 0 0 4 8c0 4.8 6 10 6 10z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="10" cy="8" r="2" fill="currentColor"/></svg>Hyderabad and other states</h3><p>Our own team delivers, or a transporter for schools further away.</p></div>
-          <div class="fact"><h3><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 7h12l-1 10H5zM7 7V5a3 3 0 0 1 6 0v2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>Kits packed per student</h3><p>One labelled bag for each student, sorted by class, when you ask.</p></div>
+          <div class="fact"><h3><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 7h12l-1 10H5zM7 7V5a3 3 0 0 1 6 0v2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>School kits packed per student</h3><p>One labelled bag for each student, sorted by class, when you ask.</p></div>
           <div class="fact"><h3><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 4h12v9H8l-4 3z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>Order updates on WhatsApp</h3><p>You hear from us when the order is confirmed, packed and on its way.</p></div>
-          <div class="fact"><h3><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M16 10a6 6 0 1 1-2-4.5M16 3v3.5h-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Last year's order, quoted again</h3><p>Send last year's list and we quote it for this year. Branches can order together.</p></div>
+          <div class="fact"><h3><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M16 10a6 6 0 1 1-2-4.5M16 3v3.5h-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Last year's school order, quoted again</h3><p>Send last year's list and we quote it for this year. Branches can order together.</p></div>
         </div>
-        <div class="detailpic span-5 start-8"><img src="/images/photos/page-about.jpg" alt="Cartons stacked on tall warehouse racks" loading="lazy" data-source="stand-in" data-subject="warehouse racks"></div>
+        <div class="detailpic span-12"><img src="/images/photos/page-about.jpg" alt="Cartons stacked on tall warehouse racks" loading="lazy" data-source="stand-in" data-subject="warehouse racks"></div>
       </div>
     </div>
   </section>
@@ -463,7 +500,7 @@
   <div class="wrap">
     <div class="closing__cta close--type">
       <div class="section-head">
-        <h2 id="close-h">Send your list today</h2>
+        <h2 id="close-h">Send your list for a quotation</h2>
         <p>Any format is fine, even a photo of a handwritten page. We reply with an itemised quotation.</p>
       </div>
       <a class="btn btn--primary btn--xl btn--wide" href="#list" data-open-list>Send your list<svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a>
@@ -560,7 +597,9 @@
       `<span><span class="qrow__name">${hl(it.name, query)}</span><span class="qrow__path">${esc(it.path)}</span></span>` +
       `<button class="add" type="button" data-add="${it.id}" aria-pressed="${on}" aria-label="${on ? 'Remove' : 'Add'} ${esc(it.name)} ${on ? 'from' : 'to'} your list">${ICON_ADD}<span>${on ? 'Added' : 'Add'}</span></button></li>`;
   }
-  function render() {
+  let page = 0;
+  function perPage() { const h = resultsEl.clientHeight; return Math.max(3, Math.floor((h + 1) / 61)); }
+  function render(keepPage) {
     const query = q.value.trim();
     qWrap.classList.toggle('has-q', !!query);
     let res, status;
@@ -571,15 +610,20 @@
       status = res.length ? `<b>${res.length}</b> ${res.length === 1 ? 'match' : 'matches'}` : 'No match in the catalogue';
     } else { res = POPULAR; status = 'Often on school lists'; }
     filterEl.innerHTML = filterCat ? `<button class="chip" type="button" data-unfilter aria-label="Show all categories">${esc(CAT[filterCat].name)}<svg viewBox="0 0 14 14" aria-hidden="true"><path d="M3.5 3.5l7 7M10.5 3.5l-7 7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>` : '';
-    let html = res.slice(0, 60).map(it => rowHTML(it, query)).join('');
+    const rows = res.map(it => rowHTML(it, query));
     if (query && !byName.has(norm(query))) {
       const key = 'free:' + norm(query), on = inList(key);
-      html += `<li class="qrow qrow--free" data-key="${esc(key)}"><span class="qrow__tile" aria-hidden="true">+</span><span><span class="qrow__name">${esc(query)}</span><span class="qrow__path">Add it as written. We quote this too.</span></span>` +
-        `<button class="add" type="button" data-free="${esc(query)}" aria-pressed="${on}" aria-label="${on ? 'Remove' : 'Add'} ${esc(query)} ${on ? 'from' : 'to'} your list as written">${ICON_ADD}<span>${on ? 'Added' : 'Add'}</span></button></li>`;
+      rows.push(`<li class="qrow qrow--free" data-key="${esc(key)}"><span class="qrow__tile" aria-hidden="true">+</span><span><span class="qrow__name">${esc(query)}</span><span class="qrow__path">Add it as written. We quote this too.</span></span>` +
+        `<button class="add" type="button" data-free="${esc(query)}" aria-pressed="${on}" aria-label="${on ? 'Remove' : 'Add'} ${esc(query)} ${on ? 'from' : 'to'} your list as written">${ICON_ADD}<span>${on ? 'Added' : 'Add'}</span></button></li>`);
     }
-    resultsEl.innerHTML = html;
+    const per = perPage(), pages = Math.max(1, Math.ceil(rows.length / per));
+    if (keepPage !== true) page = 0;
+    page = Math.min(page, pages - 1);
+    resultsEl.innerHTML = rows.slice(page * per, page * per + per).join('');
+    const pg = $('[data-pager]'); pg.hidden = pages < 2;
+    $('[data-range]').textContent = `Page ${page + 1} of ${pages}`;
+    $('[data-prev]').disabled = page === 0; $('[data-next]').disabled = page >= pages - 1;
     statusEl.innerHTML = status;
-    resultsEl.scrollTop = 0;
   }
 
   function lineHTML(l) {
@@ -668,7 +712,10 @@
     else { const t = b.dataset.free; toggle({ key: 'free:' + norm(t), name: t, sub: 'Added as written', img: '' }, b, src); }
   });
   filterEl.addEventListener('click', e => { if (e.target.closest('[data-unfilter]')) { filterCat = null; render(); q.focus(); } });
-  q.addEventListener('input', render);
+  q.addEventListener('input', () => render());
+  $('[data-prev]').addEventListener('click', () => { page--; render(true); });
+  $('[data-next]').addEventListener('click', () => { page++; render(true); });
+  let rz; addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(() => render(true), 120); });
   q.addEventListener('keydown', e => {
     if (e.key === 'Enter') { e.preventDefault(); const b = resultsEl.querySelector('button.add[aria-pressed="false"]'); if (b) b.click(); }
     else if (e.key === 'ArrowDown') { e.preventDefault(); resultsEl.querySelector('button.add')?.focus(); }
@@ -750,9 +797,9 @@
   // kits
   const kitsEl = $('[data-kits]'), pics = $('[data-kitpics]');
   kitsEl.innerHTML = D.kits.map((k, i) => `<li class="kit${i === 0 ? ' is-peek' : ''}" data-peek="${i}" data-name="${esc(k.name)}"><span class="kit__name">${esc(k.name)} <span class="kit__basis">${esc(k.basis)}</span></span><span class="kit__contents">${esc(k.contents.join(', '))}</span><button class="add" type="button" data-kit-add="kit:${k.slug}" aria-pressed="${inList('kit:' + k.slug)}" aria-label="Add ${esc(k.name)} to your list">${ICON_ADD}<span>${inList('kit:' + k.slug) ? 'Added' : 'Add kit'}</span></button></li>`).join('');
-  pics.innerHTML = D.kits.map((k, i) => `<img src="${k.img}" alt="${i === 0 ? '' : ''}" class="${i === 0 ? 'is-on' : ''}" loading="lazy" data-source="library" data-subject="${esc(k.name)}">`).join('');
+  pics.innerHTML = D.kits.map((k, i) => `<img src="${k.img}" alt="${i === 0 ? '' : ''}" ${i === 0 ? '' : ' hidden'} loading="lazy" data-source="library" data-subject="${esc(k.name)}">`).join('');
   $$('img', pics).forEach((im, i) => im.alt = ['Notebooks and coloured paper', 'Ring binders on office shelves', 'An answer sheet and a pencil', 'Notebook, scissors and a set square', 'Gold medals with red ribbons', 'A mop and a bucket', 'A gift basket'][i] || '');
-  const peek = i => { $$('.kit', kitsEl).forEach((k, j) => k.classList.toggle('is-peek', j === +i)); $$('img', pics).forEach((im, j) => im.classList.toggle('is-on', j === +i)); };
+  const peek = i => { $$('.kit', kitsEl).forEach((k, j) => k.classList.toggle('is-peek', j === +i)); $$('img', pics).forEach((im, j) => { im.hidden = j !== +i; }); };
   kitsEl.addEventListener('pointerover', e => { const k = e.target.closest('.kit'); if (k) peek(k.dataset.peek); });
   kitsEl.addEventListener('focusin', e => { const k = e.target.closest('.kit'); if (k) peek(k.dataset.peek); });
   kitsEl.addEventListener('click', e => {

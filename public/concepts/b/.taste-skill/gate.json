@@ -1,0 +1,658 @@
+{
+ "start": "2026-11-25T10:49:51.915Z",
+ "round": 2,
+ "idle": 0,
+ "errors": 0,
+ "status": "fail",
+ "history": [
+  {
+   "at": "2026-11-25T11:05:35.413Z",
+   "mode": "manual",
+   "status": "fail",
+   "fails": 14,
+   "round": 1,
+   "reused": false,
+   "stopHookActive": false
+  },
+  {
+   "at": "2026-11-25T11:08:48.010Z",
+   "mode": "manual",
+   "status": "fail",
+   "fails": 4,
+   "round": 2,
+   "reused": false,
+   "stopHookActive": false
+  }
+ ],
+ "max": 3,
+ "marker": {
+  "page": "index.html",
+  "url": null,
+  "root": "../..",
+  "kind": "product",
+  "category": "school supplies for schools",
+  "primary": "Request a quote",
+  "rounds": 3,
+  "start": "2026-11-25T10:49:51.915Z",
+  "by": "gate.mjs --start"
+ },
+ "manual": true,
+ "roundKey": "e7a5daf8829d3708:79319bf4",
+ "roundFree": false,
+ "idleFree": false,
+ "blockKey": null,
+ "fp": "e7a5daf8829d3708",
+ "page": "index.html",
+ "found": {
+  "fails": [
+   {
+    "check": "card-layout",
+    "where": "section#kits > div.wrap > div.grid.kits \"Per classroom Term Start Classroom Kit C\"",
+    "msg": "4 of 4 cards drawn one way (one panel, ground, placement and fragment): copies of one card",
+    "fix": "a card layout at most twice on a page: build the other sections another way",
+    "widths": [
+     1440,
+     390
+    ],
+    "from": "consistency",
+    "ids": [
+     "card-layout"
+    ],
+    "wheres": [
+     "section#kits > div.wrap > div.grid.kits \"Per classroom Term Start Classroom Kit C\""
+    ]
+   },
+   {
+    "check": "copy-headings",
+    "where": "div.grid.kits > a.tile.span-3:nth-of-type(2) > div.kit__meta > h3.kit__name \"New Admission Student Kit\"",
+    "msg": "\"New Admission Student Kit\" names no product, part, place or section (10 headings like it; at most one brand line per page) (and 9 more like it: \"Annual Day Kit\", \"Labs and canteens, set u\", \"Send your list\", \"Get one quote\", ...)",
+    "fix": "name the thing in every heading: the product, a part, the place or a section noun",
+    "widths": [
+     1440
+    ],
+    "from": "consistency",
+    "ids": [
+     "copy-headings"
+    ],
+    "wheres": [
+     "div.grid.kits > a.tile.span-3:nth-of-type(2) > div.kit__meta > h3.kit__name \"New Admission Student Kit\""
+    ]
+   },
+   {
+    "check": "phone-number",
+    "where": "div.grid > div.span-3.footer__col > ul > li:nth-of-type(1) \"+91 96760 38523\"",
+    "msg": "a phone number in international format: \"+91 96760 38523\"; a visitor can dial it and reach a stranger (and 4 more like it: header.nav > div.wrap.nav__bar > div.nav__actions > a.nav__link, div.hero-text.hero__in > div.hero__head > div.btn-row > a.btn.btn--secondary, div.span-3.footer__col > ul > li:nth-of-type(1) > a, ...)",
+    "fix": "drop the number and its tel: link (a \"Request a call\" form may stand in), unless the brief gives the number",
+    "widths": [
+     1440
+    ],
+    "from": "consistency",
+    "ids": [
+     "phone-number"
+    ],
+    "wheres": [
+     "div.grid > div.span-3.footer__col > ul > li:nth-of-type(1) \"+91 96760 38523\""
+    ]
+   },
+   {
+    "check": "split-pair",
+    "where": "section#setups > div.wrap > div.grid.setups__head \"Labs and canteens, set up as one project\"",
+    "msg": "the split's columns are off the page's one pair of lines: its right column starts at x 841, the first split's at 949 (SR-8)",
+    "fix": "start every split's right column on one shared line (wrap.left + k x (width + 24) / 12, k 5, 6 or 7; 6 on a place page) and end the left one 24px before it",
+    "widths": [
+     1440
+    ],
+    "from": "consistency",
+    "ids": [
+     "split-pair"
+    ],
+    "wheres": [
+     "section#setups > div.wrap > div.grid.setups__head \"Labs and canteens, set up as one project\""
+    ]
+   },
+   {
+    "check": "split-pair",
+    "where": "section#about > div.wrap > div.grid.about \"15 categories, one number to callOne quo\"",
+    "msg": "the split's columns are off the page's one pair of lines: its right column starts at x 841, the first split's at 949 (SR-8)",
+    "fix": "start every split's right column on one shared line (wrap.left + k x (width + 24) / 12, k 5, 6 or 7; 6 on a place page) and end the left one 24px before it",
+    "widths": [
+     1440
+    ],
+    "from": "consistency",
+    "ids": [
+     "split-pair"
+    ],
+    "wheres": [
+     "section#about > div.wrap > div.grid.about \"15 categories, one number to callOne quo\""
+    ]
+   },
+   {
+    "check": "contrast",
+    "where": "div.span-3.footer__col > ul > li:nth-of-type(2) > a \"info@schoolsource.in\"",
+    "msg": "body text over a effect reads at 1.0:1 at its worst tenth (needs 4.5:1), on a busy ground",
+    "fix": "put the text on a calm part of the picture, or on a solid panel",
+    "widths": [
+     390
+    ],
+    "from": "consistency",
+    "ids": [
+     "contrast"
+    ],
+    "wheres": [
+     "div.span-3.footer__col > ul > li:nth-of-type(2) > a \"info@schoolsource.in\""
+    ]
+   },
+   {
+    "check": "section-gaps",
+    "where": "section#ordering / section#about",
+    "msg": "385px between these sections, +91% against the median 202px",
+    "fix": "use one gap between sections (all within 25% of each other)",
+    "widths": [
+     390
+    ],
+    "from": "consistency",
+    "ids": [
+     "section-gaps"
+    ],
+    "wheres": [
+     "section#ordering / section#about"
+    ]
+   }
+  ],
+  "warns": [
+   {
+    "check": "scroll-reveal",
+    "where": "div.wrap > div.grid.packing > div.span-7 > p.mo-wh__text \"For new admissions or a whole school, we\"",
+    "msg": "starts \"color\" (0.2 s) the moment it is scrolled into view (an IntersectionObserver) on span.mo-w:nth-of-type(1) (inside a dealt moment's section, [data-moment]: an enter moment is expected on every kind; its still is judged under reduced motion)",
+    "fix": "show it at rest: no fade, rise or unmask when it is scrolled into view",
+    "widths": [
+     1440,
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "scroll-reveal",
+    "where": "section#calendar \"The school year, term by term What schoo\"",
+    "msg": "starts \"opacity\" (0.4 s) the moment it is scrolled into view (an IntersectionObserver) on div.mo-ph__words (inside a dealt moment's section, [data-moment]: an enter moment is expected on every kind; its still is judged under reduced motion)",
+    "fix": "show it at rest: no fade, rise or unmask when it is scrolled into view",
+    "widths": [
+     1440,
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "pinned",
+    "where": "section#calendar > div.wrap.mo-ph \"The school year, term by term What schoo\"",
+    "msg": "held on screen for 3 screens of scroll (position: sticky) while the page moves on (inside a dealt moment's section, [data-moment]: expected on every kind, two moments at most, house rule; its still is judged under reduced motion)",
+    "fix": "let the section scroll with the page",
+    "widths": [
+     1440,
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "cta",
+    "where": "section#calendar \"The school year, term by term\"",
+    "msg": "a section over 1.5 screens long with no link or button in it",
+    "fix": "add the action: a button in the hero, one on every priced item, one in the closing section",
+    "widths": [
+     1440,
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "col-edge",
+    "where": "section#setups > div.wrap > div.grid.setups__pair > a.frame.frame--photo:nth-of-type(2)",
+    "msg": "the second column starts at 3 places: 732px (section#setups), 841px (section#about), 949px (section#packing)",
+    "fix": "start the second column of every split on the same one or two grid columns",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "section-gaps",
+    "where": "main#top > section.hero.hero--product / section#products",
+    "msg": "122px between these sections, -55% against the median 269px",
+    "fix": "use one gap between sections (all within 25% of each other)",
+    "widths": [
+     1440,
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "section-gaps",
+    "where": "section#kits / section#setups",
+    "msg": "uneven space at the edge of a band: 199px outside its edge, 121px inside it (the space on either side of a change of ground reads as one gap only when the two match)",
+    "fix": "use one gap between sections (all within 25% of each other)",
+    "widths": [
+     1440,
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "links",
+    "where": "div.nav__item:nth-of-type(1) > div.nav__menu > div.wrap.grid > a.menu-card.span-4:nth-of-type(1) \"Everyday needs Stationery, textbooks, un\"",
+    "msg": "\"Everyday needs Stationery, textbooks, un\" goes to /products, which does not exist here",
+    "fix": "point every link at a real section, page or file",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "links",
+    "where": "header.nav > div.wrap.nav__bar > div.nav__actions > a.btn.btn--primary \"Request a quote\"",
+    "msg": "\"Request a quote\" goes to /quote, which does not exist here",
+    "fix": "point every link at a real section, page or file",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "links",
+    "where": "div.idx__band.span-4:nth-of-type(1) > ol > li:nth-of-type(1) > a \"01 Stationery 45 items\"",
+    "msg": "\"01 Stationery 45 items\" goes to /products/stationery, which does not exist here",
+    "fix": "point every link at a real section, page or file",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "links",
+    "where": "div.idx__band.span-4:nth-of-type(1) > ol > li:nth-of-type(2) > a \"02 Textbooks 17 items\"",
+    "msg": "\"02 Textbooks 17 items\" goes to /products/textbooks, which does not exist here",
+    "fix": "point every link at a real section, page or file",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "links",
+    "where": "div.idx__band.span-4:nth-of-type(1) > ol > li:nth-of-type(3) > a \"03 Printing & ID cards 27 items\"",
+    "msg": "\"03 Printing & ID cards 27 items\" goes to /products/printing-id-cards, which does not exist here",
+    "fix": "point every link at a real section, page or file",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "links",
+    "where": "div.idx__band.span-4:nth-of-type(1) > ol > li:nth-of-type(4) > a \"04 Teaching aids 22 items\"",
+    "msg": "\"04 Teaching aids 22 items\" goes to /products/teaching-aids, which does not exist here",
+    "fix": "point every link at a real section, page or file",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "links",
+    "where": "div.idx__band.span-4:nth-of-type(1) > ol > li:nth-of-type(5) > a \"05 Uniforms & bags 21 items\"",
+    "msg": "\"05 Uniforms & bags 21 items\" goes to /products/uniforms-bags, which does not exist here",
+    "fix": "point every link at a real section, page or file",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "links",
+    "where": "div.idx__band.span-4:nth-of-type(1) > ol > li:nth-of-type(6) > a \"06 Housekeeping 21 items\"",
+    "msg": "\"06 Housekeeping 21 items\" goes to /products/housekeeping, which does not exist here",
+    "fix": "point every link at a real section, page or file",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "photo-set",
+    "where": "div.grid.kits > a.tile.span-3:nth-of-type(4) > div.tile__media > img \"trophies-1.jpg\"",
+    "msg": "13 photographs in more than one look: lightness from 0.32 to 0.80; saturation from 0.15 to 0.60; warm and cool photographs mixed (b* -17 to +23); the odd one out is trophies-1.jpg",
+    "fix": "grade the photographs to one look (light, colour, warmth), or replace the odd one out",
+    "widths": [
+     1440,
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "photo-credit",
+    "where": "(the page text)",
+    "msg": "2 library sources (unsplash, pexels): the page credits unsplash, the page credits pexels; confirm each shows the client's own product, place or people",
+    "fix": "confirm the library photograph shows the client's own product, place or people; otherwise replace it",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "nav-labels",
+    "where": "div.wrap.nav__bar > nav.nav__links > div.nav__item:nth-of-type(1) > a.nav__link \"Products\"",
+    "msg": "\"Products\" opens a section headed \"15 categories on one quote. From chalk to a comple\"",
+    "fix": "name each nav link after the heading of the section it opens",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "nav-labels",
+    "where": "div.wrap.nav__bar > nav.nav__links > div.nav__item:nth-of-type(2) > a.nav__link \"Calendar\"",
+    "msg": "\"Calendar\" opens a section headed \"The school year, term by term\"",
+    "fix": "name each nav link after the heading of the section it opens",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "nav-labels",
+    "where": "div.wrap.nav__bar > nav.nav__links > div.nav__item:nth-of-type(5) > a.nav__link \"Ordering\"",
+    "msg": "\"Ordering\" opens a section headed \"How an order works, in 4 steps\"",
+    "fix": "name each nav link after the heading of the section it opens",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "link-styles",
+    "where": "div.group > div.range__foot > div.range__links > a.link:nth-of-type(1) \"See all 343 items\"",
+    "msg": "text links in 3 looks: border 1px, regular (15, like \"01 Stationery 45 ite\"); underline, regular (5, like \"See all 343 items\"); no line, regular (14, like \"Stationery\")",
+    "fix": "give text links one look wherever they sit: one underline, one weight",
+    "widths": [
+     1440,
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "label-centre",
+    "where": "header.nav > div.wrap.nav__bar > div.nav__actions > a.btn.btn--primary \"Request a quote\"",
+    "msg": "its label sits 18px off-centre (25px of room at the left, 43px at the right)",
+    "fix": "centre the label in its button, or fill the empty side with an icon",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "nav-current",
+    "where": "header.nav",
+    "msg": "the nav stays on screen with 5 links to the page's sections, but never marks the one you are in (no link changes as the page scrolls)",
+    "fix": "mark the link of the section on screen (a colour, a weight or a line under it) as the visitor scrolls",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "action-repeat",
+    "where": "header.nav > div.wrap.nav__bar > div.nav__actions > a.btn.btn--primary:nth-of-type(2) \"request a quote\"",
+    "msg": "\"request a quote\" shows 2 times on the first screen at 1440px (nav, hero): the nav's button and the hero's; nothing else on the screen may repeat it",
+    "fix": "show the action once a screen besides the nav's button: the hero's, the close's or the phone bar's, never all at once",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "split-pair",
+    "where": "section#packing > div.wrap > div.grid.packing \"Per-student kit packing For new admissio\"",
+    "msg": "the split's columns are off the page's one pair of lines: its right column starts at x 949, on none of the split lines 623 (k=5), 732 (k=6), 841 (k=7) (it is in a scroll scene: told as a WARN) (SR-8)",
+    "fix": "start every split's right column on one shared line (wrap.left + k x (width + 24) / 12, k 5, 6 or 7; 6 on a place page) and end the left one 24px before it",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "nav",
+    "where": "header.nav > div.wrap.nav__bar > button.nav__toggle",
+    "msg": "the nav is lopsided: its last item ends 13px inside the content's edge (366px), while its first starts on the other edge",
+    "fix": "start the nav's first item and end its last on the content's two edges",
+    "widths": [
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "no-visual",
+    "where": "section#kits \"Seven ready-made kits. Ordered per class\"",
+    "msg": "pictures, effects and mocks cover 23% of this section; a feature section needs a visual (about 25% or more)",
+    "fix": "give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits",
+    "widths": [
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "heading-scale",
+    "where": "div.grid.kits > a.tile.span-3:nth-of-type(1) > div.kit__meta > h3.kit__name \"Term Start Classroom Kit\"",
+    "msg": "the h3s (24px) are only 1.25x smaller than the h2s (30px): one level a clear step (1.3x or more) below the other",
+    "fix": "size headings by level: the h1 largest, one size per level, each level below the one above",
+    "widths": [
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "section-gaps",
+    "where": "section#setups / section#ordering",
+    "msg": "328px between these sections, -36% against the median 511px of gaps at a change of ground",
+    "fix": "use one gap between sections (all within 25% of each other)",
+    "widths": [
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "section-gaps",
+    "where": "section#about / footer#contact",
+    "msg": "uneven space at the edge of a band: 414px outside its edge, 97px inside it (the space on either side of a change of ground reads as one gap only when the two match)",
+    "fix": "use one gap between sections (all within 25% of each other)",
+    "widths": [
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "proximity",
+    "where": "section#kits > div.wrap > div.grid.kits \"Per classroom Term Start Classroom Kit C\"",
+    "msg": "the rows sit 12px apart, about as close as a picture to its own caption (16px): a caption reads with the row below",
+    "fix": "set the gap between rows at twice the gap between a picture and its caption or more",
+    "widths": [
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "proximity",
+    "where": "section#about > div.wrap > div.grid.about > figure.span-5.start-8 \"15 categories, one number to call One qu\"",
+    "msg": "stacked at this width, the visual starts 15px under the text and buttons above it (\"15 categories, one number to c\"): it reads glued to them",
+    "fix": "give the stacked split the section's own gap between text and visual (40px or more on a phone)",
+    "widths": [
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "label-centre",
+    "where": "nav.actionbar > a.btn.btn--primary \"Request a quote\"",
+    "msg": "its label sits 18px off-centre (15px of room at the left, 33px at the right)",
+    "fix": "centre the label in its button, or fill the empty side with an icon",
+    "widths": [
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "photo-weight",
+    "where": "div.wrap.mo-ph > div.mo-ph__stage > figure.mo-ph__pic:nth-of-type(4) > img \"kit-annual-day.jpg\"",
+    "msg": "9 photographs are 3x or more wider than drawn on the phone, with no srcset: kit-annual-day.jpg is 1600px (427 KB) for a 342px frame; on a phone it arrives late and its frame shows only its ground until then",
+    "fix": "give each photograph srcset and sizes (a 800px and a 1600px file), or a smaller file: the frame never shows empty",
+    "widths": [
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "copy-stat-strip",
+    "msg": "stat strip x1",
+    "fix": "a strip only of figures the brief gives (a price, hours, a count); otherwise put each number in the sentence it proves, or leave it out (references/copy-tells.md)",
+    "widths": [],
+    "from": "copy",
+    "where": "copy x1: \"10 / 11 / 12 / 13 / 1...\"",
+    "exact": false
+   },
+   {
+    "check": "copy-numbered",
+    "msg": "9 step numbers",
+    "fix": "number only steps that happen in order (references/copy-tells.md)",
+    "widths": [],
+    "from": "copy",
+    "where": "(the copy)",
+    "exact": false
+   }
+  ],
+  "crashed": [],
+  "seconds": {
+   "consistency": 144,
+   "layout": 4
+  }
+ },
+ "open": [
+  {
+   "check": "split-pair",
+   "where": "section#setups > div.wrap > div.grid.setups__head \"Labs and canteens, set up as one project\"",
+   "msg": "the split's columns are off the page's one pair of lines: its right column starts at x 841, the first split's at 949 (SR-8)",
+   "fix": "start every split's right column on one shared line (wrap.left + k x (width + 24) / 12, k 5, 6 or 7; 6 on a place page) and end the left one 24px before it",
+   "widths": [
+    1440
+   ],
+   "from": "consistency",
+   "ids": [
+    "split-pair"
+   ],
+   "wheres": [
+    "section#setups > div.wrap > div.grid.setups__head \"Labs and canteens, set up as one project\""
+   ]
+  },
+  {
+   "check": "split-pair",
+   "where": "section#about > div.wrap > div.grid.about \"15 categories, one number to callOne quo\"",
+   "msg": "the split's columns are off the page's one pair of lines: its right column starts at x 841, the first split's at 949 (SR-8)",
+   "fix": "start every split's right column on one shared line (wrap.left + k x (width + 24) / 12, k 5, 6 or 7; 6 on a place page) and end the left one 24px before it",
+   "widths": [
+    1440
+   ],
+   "from": "consistency",
+   "ids": [
+    "split-pair"
+   ],
+   "wheres": [
+    "section#about > div.wrap > div.grid.about \"15 categories, one number to callOne quo\""
+   ]
+  },
+  {
+   "check": "contrast",
+   "where": "div.span-3.footer__col > ul > li:nth-of-type(2) > a \"info@schoolsource.in\"",
+   "msg": "body text over a effect reads at 1.0:1 at its worst tenth (needs 4.5:1), on a busy ground",
+   "fix": "put the text on a calm part of the picture, or on a solid panel",
+   "widths": [
+    390
+   ],
+   "from": "consistency",
+   "ids": [
+    "contrast"
+   ],
+   "wheres": [
+    "div.span-3.footer__col > ul > li:nth-of-type(2) > a \"info@schoolsource.in\""
+   ]
+  },
+  {
+   "check": "section-gaps",
+   "where": "section#ordering / section#about",
+   "msg": "385px between these sections, +91% against the median 202px",
+   "fix": "use one gap between sections (all within 25% of each other)",
+   "widths": [
+    390
+   ],
+   "from": "consistency",
+   "ids": [
+    "section-gaps"
+   ],
+   "wheres": [
+    "section#ordering / section#about"
+   ]
+  }
+ ],
+ "waived": [
+  {
+   "check": "card-layout",
+   "where": "section#kits > div.wrap > div.grid.kits \"Per classroom Term Start Classroom Kit C\"",
+   "msg": "4 of 4 cards drawn one way (one panel, ground, placement and fragment): copies of one card",
+   "fix": "a card layout at most twice on a page: build the other sections another way",
+   "widths": [
+    1440,
+    390
+   ],
+   "from": "consistency",
+   "ids": [
+    "card-layout"
+   ],
+   "wheres": [
+    "section#kits > div.wrap > div.grid.kits \"Per classroom Term Start Classroom Kit C\""
+   ],
+   "reason": "Four kit tiles are one row of one product family (the goods recipe); each shows a different kit photograph and contents."
+  },
+  {
+   "check": "copy-headings",
+   "where": "div.grid.kits > a.tile.span-3:nth-of-type(2) > div.kit__meta > h3.kit__name \"New Admission Student Kit\"",
+   "msg": "\"New Admission Student Kit\" names no product, part, place or section (10 headings like it; at most one brand line per page) (and 9 more like it: \"Annual Day Kit\", \"Labs and canteens, set u\", \"Send your list\", \"Get one quote\", ...)",
+   "fix": "name the thing in every heading: the product, a part, the place or a section noun",
+   "widths": [
+    1440
+   ],
+   "from": "consistency",
+   "ids": [
+    "copy-headings"
+   ],
+   "wheres": [
+    "div.grid.kits > a.tile.span-3:nth-of-type(2) > div.kit__meta > h3.kit__name \"New Admission Student Kit\""
+   ],
+   "reason": "Kit names are the client's real product names from data/catalogue.ts; step titles are verb plus object as copy.md asks."
+  },
+  {
+   "check": "phone-number",
+   "where": "div.grid > div.span-3.footer__col > ul > li:nth-of-type(1) \"+91 96760 38523\"",
+   "msg": "a phone number in international format: \"+91 96760 38523\"; a visitor can dial it and reach a stranger (and 4 more like it: header.nav > div.wrap.nav__bar > div.nav__actions > a.nav__link, div.hero-text.hero__in > div.hero__head > div.btn-row > a.btn.btn--secondary, div.span-3.footer__col > ul > li:nth-of-type(1) > a, ...)",
+   "fix": "drop the number and its tel: link (a \"Request a call\" form may stand in), unless the brief gives the number",
+   "widths": [
+    1440
+   ],
+   "from": "consistency",
+   "ids": [
+    "phone-number"
+   ],
+   "wheres": [
+    "div.grid > div.span-3.footer__col > ul > li:nth-of-type(1) \"+91 96760 38523\""
+   ],
+   "reason": "The brief and lib/site.ts give this as the client's real phone and WhatsApp number; showing it is the point of the page."
+  }
+ ],
+ "warnCount": 36,
+ "at": "2026-11-25T11:08:48.010Z"
+}

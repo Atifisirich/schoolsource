@@ -68,7 +68,7 @@
   @media (min-width: 1024px) {
     .hero--product .hero__head > .hero__months { grid-column: 1 / -1; grid-row: 3; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gutter); list-style: none; margin: var(--s-4) 0 0; padding: 0; }
     .hero__months li { border-top: 1px solid var(--p-ink); padding-top: var(--s-2); font-size: var(--t-label); font-weight: 500; color: var(--p-ink); }
-    .hero__months li:first-child::before { content: ""; display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--orange); margin-right: 8px; vertical-align: 1px; }
+    .hero__months li:first-child::after { content: ""; display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--orange); margin-left: 8px; vertical-align: 1px; }
   }
   .range__foot { margin: var(--s-7) 0 0; }
   @media (max-width: 639px) {
@@ -80,13 +80,16 @@
     .trio .r45 { aspect-ratio: 16 / 10; }
     .range__links { gap: var(--s-2) var(--s-6); }
   }
-  .range__foot { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: var(--s-4); }
+  .range__foot { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gutter); row-gap: var(--s-4); align-items: baseline; }
+  .range__foot > p { grid-column: 1 / span 6; }
+  .range__foot > .range__links { grid-column: 8 / -1; justify-content: flex-end; }
+  @media (max-width: 1023px) { .range__foot > * { grid-column: 1 / -1 !important; justify-content: flex-start !important; } }
   .range__foot p { margin: 0; max-width: 46ch; }
   .range__links { display: flex; gap: var(--s-6); flex-wrap: wrap; }
   .trio { align-items: start; }
   .trio .frame { margin: 0; }
   .trio .frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .trio .r45 { aspect-ratio: 4 / 5; } .trio .r11 { aspect-ratio: 1; } .trio .r43 { aspect-ratio: 4 / 3; }
+  @media (min-width: 1024px) { .trio > .frame { height: min(560px, 62svh); } }
   @media (max-width: 639px) {
     .idx__band + .idx__band { margin-top: var(--s-6); }
     .idx li a { padding: 12px 0 11px; }
@@ -107,18 +110,22 @@
     .idx__name { font-size: 20px; }
     .range__foot { margin-top: var(--s-6); }
   }
+  .packing { align-items: start; }
+  .packing__photo { aspect-ratio: 4 / 5; margin: 0; }
+  .packing__photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  @media (max-width: 1023px) { .packing > * { grid-column: 1 / -1; } .packing__photo { aspect-ratio: 16 / 10; } }
   /* kits */
   .kit__meta { display: grid; gap: var(--s-1); }
   .kit__name { font: var(--display-weight) 24px/1.15 var(--font-display); letter-spacing: -0.01em; margin: 0; }
   .kits .tile > p { margin: 0; }
-  .kits__foot { display: flex; justify-content: space-between; align-items: baseline; gap: var(--s-5); flex-wrap: wrap; margin-top: var(--s-7); padding-top: var(--s-4); border-top: 1px solid var(--rule); }
+  .kits__foot { display: flex; justify-content: space-between; align-items: baseline; gap: var(--s-5); flex-wrap: wrap; margin-top: var(--s-7); }
   .kits__foot p { margin: 0; }
   /* setups, on the brand band */
-  .setups__head { align-items: end; margin-bottom: var(--s-7); }
+  .setups__head { align-items: start; margin-bottom: var(--s-7); }
   .setups__head h2 { margin: 0; }
   .setups__head p { margin: 0; }
   .setups__links { display: flex; gap: var(--s-6); flex-wrap: wrap; }
-  .setups__pair .frame { aspect-ratio: 3 / 2; margin: 0; }
+  .setups__pair .frame { aspect-ratio: 4 / 3; margin: 0; }
   .setups__pair .frame img, .steps__photo img, .about__photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
   /* steps: the orange source point carries the number, navy on orange */
   .steps { list-style: none; margin: 0; padding: 0; }
@@ -133,6 +140,9 @@
   .fact h3 { font: var(--display-weight) 22px/1.2 var(--font-display); margin: 0 0 var(--s-2); }
   .fact p { margin: 0; }
   .about__photo { aspect-ratio: 1; margin: 0; }
+  .packing__photo, .steps__photo, .about__photo { display: block; overflow: hidden; border-radius: var(--r-lg); }
+  .ground-brand { --bg: #1b47a6; }
+  .legal__links { display: flex; flex-wrap: wrap; gap: var(--s-2) var(--s-5); }
   /* footer contact */
   .footer__contact address { font-style: normal; line-height: 1.5; margin-bottom: var(--s-3); }
   .footer__gst { font-size: var(--t-small); color: var(--muted); margin: var(--s-3) 0 0; }
@@ -142,9 +152,10 @@
   }
   @media (max-width: 639px) {
     .facts { grid-template-columns: 1fr; gap: var(--s-5); }
-    .steps__photo { height: 200px; }
+    .steps__photo { height: 600px; }
+    .kits .tile__media { --tile-ratio: 4 / 3; }
+    .closing__links .grid > .footer__col.footer__contact { grid-column: 1 / -1; }
     .setups__pair > :last-child { display: none; }
-    .kits .tile__media { --tile-ratio: 16 / 10; }
   }
 </style>
 </head>
@@ -300,8 +311,13 @@
   <!-- word-highlight: per-student packing, in one statement -->
   <section class="section statement" id="packing" data-moment="word-highlight" aria-label="Per-student packing">
     <div class="wrap">
-      <p class="t-label"><span class="dot" aria-hidden="true"></span>Per-student kit packing</p>
-      <p class="mo-wh__text">For new admissions or a whole school, we pack each student's books and stationery into <strong>one labelled bag</strong>, sorted by class, so every class receives its bags ready to hand out.</p>
+      <div class="grid packing">
+        <div class="span-7">
+          <p class="t-label"><span class="dot" aria-hidden="true"></span>Per-student kit packing</p>
+          <p class="mo-wh__text">For new admissions or a whole school, we pack each student's books and stationery into <strong>one labelled bag</strong>, sorted by class, so every class receives its bags ready to hand out.</p>
+        </div>
+        <a class="pl-photo span-4 start-9 packing__photo" href="/kits"><img src="/images/products/uniforms-bags/lunch-boxes-2.jpg" alt="A blue and white enamel tiffin carrier on a blue ground" loading="lazy" data-source="stand-in" data-subject="lunch box"></a>
+      </div>
     </div>
   </section>
 
@@ -342,8 +358,8 @@
   <section class="section ground-brand" id="setups" aria-labelledby="setups-h">
     <div class="wrap">
       <div class="grid setups__head">
-        <h2 id="setups-h" class="span-7">Labs and canteens, set up as one project</h2>
-        <div class="span-4 start-9 stack-4">
+        <h2 id="setups-h" class="span-6">Labs and canteens, set up as one project</h2>
+        <div class="span-5 start-8 stack-4">
           <p>A science or composite skill lab, a tinkering lab, or a school kitchen. We plan it with you, then supply and install it as one project.</p>
           <div class="setups__links"><a class="link" href="/labs">See lab setups</a><a class="link" href="/quote?category=canteen-kitchen">Plan a canteen</a></div>
         </div>
@@ -366,7 +382,7 @@
         <li class="step span-3"><span class="step-num">3</span><h3>Approve the proofs</h3><p>ID cards, diaries and anything printed is made only after you approve the proof.</p></li>
         <li class="step span-3"><span class="step-num">4</span><h3>Receive it checked</h3><p>Each order is checked before dispatch, with order updates on WhatsApp.</p></li>
       </ol>
-      <div class="frame frame--photo steps__photo"><img src="/images/photos/page-about.jpg" alt="Cartons stacked on tall warehouse racks" loading="lazy" data-source="stand-in" data-subject="warehouse"></div>
+      <div class="steps__photo"><img src="/images/photos/page-about.jpg" alt="Cartons stacked on tall warehouse racks" loading="lazy" data-source="stand-in" data-subject="warehouse"></div>
     </div>
   </section>
 
@@ -384,7 +400,7 @@
           <div class="fact"><h3>Single schools and school groups</h3><p>We supply single schools and multi-branch school groups.</p></div>
           <div class="fact"><h3>Part of Arkhan Group</h3><p>The school supplies division of Arkhan Group Pvt. Ltd., founded by Aijaz Khan.</p></div>
         </div>
-        <div class="frame frame--photo span-5 start-8 about__photo"><img src="/images/photos/cat-teaching-aids.jpg" alt="A primary classroom wall with charts, shelves and coloured storage baskets" loading="lazy" data-source="stand-in" data-subject="classroom"></div>
+        <figure class="span-5 start-8 about__photo"><img src="/images/photos/cat-teaching-aids.jpg" alt="A primary classroom wall with charts, shelves and coloured storage baskets" loading="lazy" data-source="stand-in" data-subject="classroom"></figure>
       </div>
     </div>
   </section>
@@ -415,7 +431,7 @@
         </div>
       </div>
       <div class="footer__legal">
-        <span>&copy; 2026 Arkhan Group Pvt. Ltd. &nbsp; <a href="/privacy">Privacy</a> &nbsp; <a href="/terms">Terms</a></span>
+        <span class="legal__links"><span>&copy; 2026 Arkhan Group Pvt. Ltd.</span><a href="/privacy">Privacy</a><a href="/terms">Terms</a></span>
         <div class="socials"></div>
         <a class="credits" href="credits.html">Photographs via Unsplash and Pexels</a>
       </div>
