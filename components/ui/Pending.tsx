@@ -17,7 +17,7 @@ type PendingProps = {
 
 /**
  * A missing fact, e.g. <Pending label="PAYMENT TERMS" /> renders [PAYMENT TERMS]
- * on a light orange background. Renders nothing once placeholders are switched off.
+ * on a peach tag. Renders nothing once placeholders are switched off.
  */
 export function Pending({ label, className }: PendingProps) {
   if (!showPending) return null;
@@ -25,7 +25,9 @@ export function Pending({ label, className }: PendingProps) {
   return (
     <span
       className={cn(
-        "inline-block rounded-[4px] bg-pencil-soft px-1 font-sans text-[0.85em] font-semibold leading-normal tracking-normal text-ink normal-case",
+        // Peach tag with navy text; on dark fields a translucent orange with light text
+        "inline-block rounded-[6px] bg-pencil-soft px-1.5 font-sans text-[0.85em] font-semibold leading-normal tracking-normal text-ink normal-case",
+        "[.on-dark_&]:bg-orange/25 [.on-dark_&]:text-[#ffd2a8] [.on-orange_&]:bg-white/60",
         className,
       )}
     >

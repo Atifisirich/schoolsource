@@ -24,7 +24,7 @@ export function flyToCounter(from: Element, label: string): Promise<void> {
   chip.setAttribute("aria-hidden", "true");
   chip.textContent = label;
   chip.className =
-    "pointer-events-none fixed left-0 top-0 z-[60] max-w-56 truncate rounded-sm bg-board px-3 py-1.5 text-sm font-semibold text-white shadow-[0_2px_0_rgb(27_36_51/0.3)]";
+    "pointer-events-none fixed left-0 top-0 z-[60] max-w-56 truncate rounded-full bg-orange px-3.5 py-2 text-sm font-bold text-ink shadow-[0_6px_16px_-6px_rgb(14_31_61/0.45)]";
   document.body.appendChild(chip);
 
   const at = (x: number, y: number, s: number) => `translate(${x}px, ${y}px) translate(-50%, -50%) scale(${s})`;

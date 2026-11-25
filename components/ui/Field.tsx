@@ -1,12 +1,12 @@
 import { useId } from "react";
 import { cn } from "@/lib/cn";
 
-// The field border (#7d8899) is 3.6:1 on white and 3.3:1 on paper-deep, so the
-// edge meets the 3:1 non-text contrast rule; the rule hairline is too faint.
+// Fields: white wells on paper or cream, 52px tall, 14px corners. The border
+// (#7d8899) is 3.5:1 on paper, meeting the 3:1 non-text contrast rule.
 const control =
-  "block w-full rounded-sm border border-[#7d8899] bg-white px-3.5 text-base text-ink placeholder:text-ink-soft/80 " +
+  "block w-full rounded-md border-2 border-[#7d8899] bg-white px-4 text-[1.0625rem] text-ink placeholder:text-ink-soft/70 " +
   "transition-[border-color,box-shadow] duration-150 hover:border-ink " +
-  "focus:border-board focus:outline-none focus:ring-2 focus:ring-board/30 " +
+  "focus:border-blue focus:outline-none focus:ring-4 focus:ring-blue/20 " +
   "aria-[invalid=true]:border-red";
 
 type FieldProps = {
@@ -26,8 +26,8 @@ export function Field({ label, required, hint, error, className, children }: Fie
   const describedBy = [hintId, errorId].filter(Boolean).join(" ") || undefined;
 
   return (
-    <div className={cn("grid gap-1.5", className)}>
-      <label htmlFor={id} className="text-sm font-semibold text-ink">
+    <div className={cn("grid gap-2", className)}>
+      <label htmlFor={id} className="text-base font-semibold text-ink">
         {label}
         {required ? (
           <span className="text-red" aria-hidden="true">
@@ -39,12 +39,12 @@ export function Field({ label, required, hint, error, className, children }: Fie
       </label>
       {children({ id, "aria-describedby": describedBy, "aria-invalid": error ? true : undefined, required })}
       {hint ? (
-        <p id={hintId} className="text-[0.8125rem] text-ink-soft">
+        <p id={hintId} className="text-[0.9375rem] text-ink-soft">
           {hint}
         </p>
       ) : null}
       {error ? (
-        <p id={errorId} className="text-[0.8125rem] font-medium text-red">
+        <p id={errorId} className="text-[0.9375rem] font-semibold text-red">
           {error}
         </p>
       ) : null}
@@ -53,19 +53,19 @@ export function Field({ label, required, hint, error, className, children }: Fie
 }
 
 export function Input({ className, ...props }: React.InputHTMLAttributes<HTMLInputElement>) {
-  return <input className={cn(control, "h-11", className)} {...props} />;
+  return <input className={cn(control, "h-13", className)} {...props} />;
 }
 
 export function Textarea({ className, ...props }: React.TextareaHTMLAttributes<HTMLTextAreaElement>) {
-  return <textarea className={cn(control, "min-h-28 py-3 leading-relaxed", className)} {...props} />;
+  return <textarea className={cn(control, "min-h-32 py-3.5 leading-relaxed", className)} {...props} />;
 }
 
 export function Select({ className, children, ...props }: React.SelectHTMLAttributes<HTMLSelectElement>) {
   return (
-    <select className={cn(control, "h-11 appearance-none bg-[length:16px] bg-[right_0.875rem_center] bg-no-repeat pr-10", className)}
+    <select className={cn(control, "h-13 appearance-none bg-[length:16px] bg-[right_1rem_center] bg-no-repeat pr-11", className)}
       style={{
         backgroundImage:
-          "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%230F1B2D' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 6l4 4 4-4'/%3E%3C/svg%3E\")",
+          "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%230E1F3D' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 6l4 4 4-4'/%3E%3C/svg%3E\")",
       }}
       {...props}
     >

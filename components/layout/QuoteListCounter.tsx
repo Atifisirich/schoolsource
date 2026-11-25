@@ -6,8 +6,9 @@ import { cn } from "@/lib/cn";
 import { useQuoteCount } from "@/lib/quote-list";
 
 /**
- * Header link to the Quote List. The element id is the landing target for
- * the "add to quote list" fly animation.
+ * Header link to the Quote List, like a cart. The badge turns orange once
+ * something is in the list and bumps each time an item lands. The element id
+ * is the landing target for the "add to quote" fly animation.
  */
 export function QuoteListCounter({ className }: { className?: string }) {
   const count = useQuoteCount();
@@ -19,12 +20,13 @@ export function QuoteListCounter({ className }: { className?: string }) {
     mountedAt.current = performance.now();
   }, []);
 
-  // Tick the badge when an item lands, not when the saved list loads after hydration
+  // Bump on every change made on this page, not when the saved list loads after hydration
   useEffect(() => {
-    if (count > previous.current && performance.now() - mountedAt.current > 800) setBump((b) => b + 1);
+    if (count !== previous.current && performance.now() - mountedAt.current > 800) setBump((b) => b + 1);
     previous.current = count;
   }, [count]);
-  const label = `Quote List, ${count} ${count === 1 ? "item" : "items"}`;
+
+  const label = `Quote list, ${count} ${count === 1 ? "item" : "items"}`;
 
   return (
     <Link
@@ -32,8 +34,8 @@ export function QuoteListCounter({ className }: { className?: string }) {
       id="quote-list-counter"
       aria-label={label}
       className={cn(
-        "group relative inline-flex h-11 items-center gap-2 rounded-sm px-2.5 text-ink",
-        "transition-colors duration-150 hover:bg-paper-deep",
+        "inline-flex h-12 items-center gap-2 rounded-full pl-3 pr-2.5 text-ink",
+        "transition-[background-color,transform] duration-150 ease-[var(--ease-out)] hover:bg-cream active:scale-95",
         className,
       )}
     >
@@ -42,23 +44,24 @@ export function QuoteListCounter({ className }: { className?: string }) {
         className="size-6"
         fill="none"
         stroke="currentColor"
-        strokeWidth="1.5"
+        strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
         aria-hidden="true"
       >
-        <rect x="4.5" y="4" width="15" height="17.5" rx="1.5" />
-        <rect x="8.5" y="2.5" width="7" height="3.5" rx="1" />
-        <path d="M8 11 l1.5 1.5 L12 10 M14 11.5 H16.5 M8 16 l1.5 1.5 L12 15 M14 16.5 H16.5" />
+        <rect x="4.5" y="4" width="15" height="17.5" rx="2.5" />
+        <path d="M9 2.75h6v3H9z" />
+        <path d="M8.5 11.5l1.5 1.5 2.5-2.5M14.5 12h2M8.5 16.5l1.5 1.5 2.5-2.5M14.5 17h2" />
       </svg>
-      <span className="hidden text-[0.9375rem] font-medium 2xl:inline">Quote list</span>
+      <span className="hidden text-base font-semibold 2xl:inline">Quote list</span>
       <span
         key={bump}
         aria-hidden="true"
         className={cn(
-          "inline-flex h-5 min-w-5 items-center justify-center rounded-full px-1.5 text-xs font-semibold tabular-nums",
+          "inline-flex h-6 min-w-6 items-center justify-center rounded-full px-1.5 text-sm font-bold tabular-nums",
+          "transition-colors duration-200",
           bump > 0 && "animate-bump",
-          count > 0 ? "bg-board text-white" : "bg-paper-deep text-ink-soft",
+          count > 0 ? "bg-orange text-ink" : "bg-sand text-ink-soft",
         )}
       >
         {count}

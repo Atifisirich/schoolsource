@@ -1,72 +1,89 @@
 @import "tailwindcss";
 
 /* ------------------------------------------------------------------
-   Design tokens: "a supplier you can hand a purchase order to"
-   Calm and catalogue-like. White paper, navy ink, one blue, a little
-   orange. Token names are kept from v1 so existing classes still work.
-   See docs/REDESIGN.md section 3.
+   SchoolSource v3: "Bold Product" (docs/REDESIGN-V3.md)
+   Real school products as cut-outs on solid colour fields, chunky
+   display type, pill buttons. Paper is the ground; at most 2-3 colour
+   fields per screen.
+
+   v2 token names (board, pencil, paper-deep, rule ...) still resolve,
+   so pages that have not been rebuilt keep compiling and look close.
    ------------------------------------------------------------------ */
 @theme {
-  /* Colour */
-  --color-paper: #ffffff; /* page background */
-  --color-paper-deep: #f4f5f7; /* alternate band, image wells, inputs */
-  --color-ink: #0f1b2d; /* text and the one dark band: 17.1:1 on paper */
-  --color-ink-soft: #4d5a6c; /* secondary text: 7.0:1 on paper, 6.4:1 on paper-deep */
-  --color-board: #1f4fb5; /* primary blue: white text 7.4:1 */
-  --color-board-deep: #173f93; /* hover */
-  --color-pencil: #f5872a; /* orange accent, small doses. Navy text only, never white */
-  --color-pencil-soft: #fff1e3; /* pending-placeholder background */
-  --color-red: #c2410c; /* small details only (ticks): 5.2:1 on white */
-  --color-rule: #e3e7ee; /* hairlines and borders */
+  /* Colour: the v3 palette */
+  --color-blue: #1f4fb5; /* brand blue: white text 7.4:1 */
+  --color-blue-deep: #163b8a;
+  --color-ink: #0e1f3d; /* text: 15.9:1 on paper */
+  --color-ink-logo: #0f1b2d; /* footer and the dark band */
+  --color-ink-soft: #2f3b55; /* secondary text: 10.6:1 on paper, 9.3:1 on cream */
+  --color-orange: #f5872a; /* navy text only, never white */
+  --color-sky: #dbe7fb;
+  --color-sky-2: #c7d9f7;
+  --color-cream: #f4ead9;
+  --color-paper: #fbf7f0; /* page background */
+  --color-sand: #ead9bf;
+  --color-peach: #f8d9b5;
+  --color-wa: #1fa855; /* WhatsApp icon only */
   --color-white: #ffffff;
+  --color-red: #b23a0b; /* errors and required marks: 5.9:1 on paper */
 
-  /* Type families (variables are set by next/font in app/layout.tsx).
-     IBM Plex Mono is gone: font-mono now resolves to Public Sans with
-     tabular figures, so old classes stay quiet until pages drop them. */
-  --font-display: var(--font-source-serif), Georgia, "Times New Roman", serif;
-  --font-sans: var(--font-public-sans), system-ui, sans-serif;
-  --font-mono: var(--font-public-sans), system-ui, sans-serif;
-  --font-hand: var(--font-kalam), "Segoe Print", cursive; /* hero list only */
+  /* v2 names, mapped onto the v3 palette */
+  --color-board: #1f4fb5;
+  --color-board-deep: #163b8a;
+  --color-pencil: #f5872a;
+  --color-pencil-soft: #fde3c8;
+  --color-paper-deep: #f4ead9; /* = cream */
+  --color-rule: #e4d8c4; /* warm hairline */
 
-  /* Type scale, fluid between 360px and 1280px */
-  --text-display: clamp(2.5rem, 1.75rem + 3.2vw, 4.25rem);
+  /* Type (variables come from next/font in app/layout.tsx) */
+  --font-display: var(--font-dela), "Arial Black", sans-serif;
+  --font-sans: var(--font-schibsted), "Helvetica Neue", Arial, sans-serif;
+  --font-mono: var(--font-schibsted), "Helvetica Neue", Arial, sans-serif;
+  --font-hand: var(--font-schibsted), "Helvetica Neue", Arial, sans-serif; /* v2 name, unused */
+
+  /* Type scale, fluid between 360px and 1440px */
+  --text-display: clamp(2.625rem, 1.4rem + 4.1vw, 4.75rem); /* 42 → 76 */
   --text-display--line-height: 1.06;
-  --text-display--letter-spacing: -0.015em;
-  --text-h1: clamp(2.125rem, 1.6rem + 2.2vw, 3.375rem);
-  --text-h1--line-height: 1.1;
+  --text-display--letter-spacing: -0.01em;
+  --text-h1: clamp(2.25rem, 1.5rem + 3vw, 4rem); /* 36 → 64 */
+  --text-h1--line-height: 1.06;
   --text-h1--letter-spacing: -0.01em;
-  --text-h2: clamp(1.75rem, 1.4rem + 1.4vw, 2.5rem);
-  --text-h2--line-height: 1.15;
+  --text-h2: clamp(2rem, 1.35rem + 2.6vw, 3.5rem); /* 32 → 56 */
+  --text-h2--line-height: 1.06;
   --text-h2--letter-spacing: -0.01em;
-  --text-h3: clamp(1.25rem, 1.12rem + 0.5vw, 1.5rem);
-  --text-h3--line-height: 1.25;
-  --text-lead: clamp(1.0625rem, 1rem + 0.3vw, 1.25rem);
-  --text-lead--line-height: 1.55;
-  /* Small label. Pages still pair it with "uppercase"; letter-spacing is
-     kept low so that reads as quiet until page agents remove it. */
-  --text-label: 0.8125rem;
+  --text-h3: clamp(1.3125rem, 1.15rem + 0.6vw, 1.75rem); /* 21 → 28 */
+  --text-h3--line-height: 1.1;
+  --text-lead: clamp(1.1875rem, 1.1rem + 0.35vw, 1.375rem); /* 19 → 22 */
+  --text-lead--line-height: 1.5;
+  --text-label: 0.9375rem;
   --text-label--line-height: 1.3;
-  --text-label--letter-spacing: 0.02em;
+
+  /* Breakpoints: "nav" is where the full desktop navigation fits */
+  --breakpoint-nav: 73.75rem; /* 1180px */
+  --breakpoint-wide: 85rem; /* 1360px */
 
   /* Spacing */
-  --spacing-gutter: clamp(1rem, 0.6rem + 2vw, 2.5rem);
-  --spacing-section: clamp(4rem, 2.8rem + 5vw, 8rem);
+  --spacing-gutter: clamp(1rem, 3.9vw, 3.5rem);
+  --spacing-section: clamp(4.5rem, 2.5rem + 7vw, 8rem);
   --spacing-rule: 2rem;
+  --spacing-nav: 5rem; /* header height, desktop */
 
-  /* Shape */
-  --radius-sm: 6px; /* buttons, inputs */
-  --radius-md: 10px; /* cards */
-  --radius-lg: 14px; /* large images */
+  /* Shape: 14 / 22 / 32 */
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --radius-xl: 32px;
 
-  /* Depth: borders do the work; shadows are for hover and overlays only */
-  --shadow-card: 0 1px 2px rgb(15 27 45 / 0.04);
-  --shadow-lift: 0 1px 2px rgb(15 27 45 / 0.04), 0 12px 28px -14px rgb(15 27 45 / 0.22);
+  /* Depth */
+  --shadow-card: 0 1px 0 rgb(14 31 61 / 0.04);
+  --shadow-lift: 0 14px 30px -18px rgb(14 31 61 / 0.45);
 
   /* Motion */
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
-  --ease-out-quart: cubic-bezier(0.23, 1, 0.32, 1); /* v1 name, same curve */
+  --ease-out-quart: cubic-bezier(0.23, 1, 0.32, 1);
   --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
-  --ease-stamp: cubic-bezier(0.34, 1.56, 0.64, 1); /* hero stamp only */
+  --ease-pop: cubic-bezier(0.34, 1.4, 0.5, 1);
+  --ease-stamp: cubic-bezier(0.34, 1.4, 0.5, 1); /* v2 name */
 }
 
 /* ------------------------------------------------------------------
@@ -74,32 +91,37 @@
    ------------------------------------------------------------------ */
 @layer base {
   :root {
-    --focus: var(--color-board);
-    --action-bar-h: 0px;
+    --focus: var(--color-blue);
+    --nav-h: 4.25rem;
     color-scheme: light;
+  }
+  @media (width >= 48rem) {
+    :root {
+      --nav-h: 5rem;
+    }
   }
 
   html {
     -webkit-text-size-adjust: 100%;
-    scroll-padding-top: 5.5rem;
+    scroll-padding-top: calc(var(--nav-h) + 1rem);
+    font-synthesis-weight: none; /* Dela Gothic has one weight: never fake a bold */
   }
 
   body {
     background: var(--color-paper);
     color: var(--color-ink);
     font-family: var(--font-sans);
-    font-size: 1rem;
-    line-height: 1.6;
+    font-size: 1.125rem;
+    line-height: 1.55;
     -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
+    overflow-x: clip;
   }
 
   h1,
   h2,
   h3 {
     font-family: var(--font-display);
-    font-weight: 600;
-    font-optical-sizing: auto;
+    font-weight: 400;
     letter-spacing: -0.01em;
     text-wrap: balance;
   }
@@ -113,20 +135,25 @@
   }
 
   ::selection {
-    background: var(--color-pencil-soft);
+    background: var(--color-peach);
     color: var(--color-ink);
   }
 
   :focus-visible {
-    outline: 2px solid var(--focus);
+    outline: 3px solid var(--focus);
     outline-offset: 3px;
-    border-radius: var(--radius-sm);
+    border-radius: 6px;
   }
 
-  /* Dark bands: light text, orange focus ring */
+  /* Dark fields: white text and a white focus ring */
   .on-dark {
-    --focus: var(--color-pencil);
-    color: var(--color-paper);
+    --focus: #ffffff;
+    color: #ffffff;
+  }
+  /* Orange fields: navy everything */
+  .on-orange {
+    --focus: var(--color-ink);
+    color: var(--color-ink);
   }
 }
 
@@ -134,162 +161,504 @@
    Components
    ------------------------------------------------------------------ */
 @layer components {
-  /* Static card: white, hairline border, no shadow at rest */
-  .card {
-    background: var(--color-white);
-    border: 1px solid var(--color-rule);
-    border-radius: var(--radius-md);
+  /* Page width: 1328px of content plus gutters */
+  .wrap {
+    width: 100%;
+    max-width: calc(83rem + 2 * var(--spacing-gutter));
+    margin-inline: auto;
+    padding-inline: var(--spacing-gutter);
+  }
+  .wrap-text {
+    width: 100%;
+    max-width: calc(46rem + 2 * var(--spacing-gutter));
+    margin-inline: auto;
+    padding-inline: var(--spacing-gutter);
   }
 
-  /* Linked card: whole card is the link. Lifts 2px on hover; a photo in a
-     .card-media frame (or a <figure>, e.g. <Photo>) zooms within its frame. */
-  .card-link {
-    display: block;
-    background: var(--color-white);
-    border: 1px solid var(--color-rule);
-    border-radius: var(--radius-md);
+  /* ---------- Buttons: pills, 56px (48px small). Press scales to 0.97 ---------- */
+  .btn {
+    --bg: var(--color-ink);
+    --fg: #fff;
+    --bd: var(--bg);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-height: 56px;
+    padding: 0 26px;
+    border-radius: 999px;
+    border: 2px solid var(--bd);
+    background: var(--bg);
+    color: var(--fg);
+    font: 600 1.0625rem/1 var(--font-sans);
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+    user-select: none;
+    transition:
+      transform 160ms var(--ease-out),
+      background-color 200ms ease,
+      border-color 200ms ease,
+      color 200ms ease,
+      box-shadow 200ms ease;
+  }
+  .btn svg {
+    width: 20px;
+    height: 20px;
+    flex: none;
+  }
+  .btn:active {
+    transform: scale(0.97);
+  }
+  .btn:disabled,
+  .btn[aria-disabled="true"] {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+  .btn-sm {
+    min-height: 48px;
+    padding: 0 20px;
+    font-size: 1rem;
+  }
+  .btn-primary {
+    --bg: var(--color-ink);
+    --fg: #fff;
+  }
+  .btn-wa {
+    --bg: #fff;
+    --fg: var(--color-ink);
+    --bd: var(--color-ink);
+  }
+  .btn-wa svg {
+    color: var(--color-wa);
+  }
+  .btn-ghost {
+    --bg: transparent;
+    --fg: var(--color-ink);
+    --bd: var(--color-ink);
+  }
+  .btn-light {
+    --bg: #fff;
+    --fg: var(--color-ink);
+  }
+  /* On dark fields the outline buttons turn white */
+  .on-dark .btn-ghost {
+    --fg: #fff;
+    --bd: #fff;
+  }
+  .on-dark .btn-primary {
+    --bg: #fff;
+    --fg: var(--color-ink);
+  }
+  /* On orange, WhatsApp becomes the solid navy button */
+  .on-orange .btn-wa {
+    --bg: var(--color-ink);
+    --fg: #fff;
+  }
+  .on-orange .btn-wa svg {
+    color: #5fe08f;
+  }
+
+  /* Text action: bold, underlined, arrow nudges on hover */
+  .tlink {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 44px;
+    font-weight: 700;
+    text-decoration: none;
+    background: linear-gradient(currentColor, currentColor) 0 calc(100% - 6px) / 100% 2px no-repeat;
+    transition: background-size 260ms var(--ease-out);
+  }
+  .tlink svg {
+    width: 18px;
+    height: 18px;
+    flex: none;
+    transition: transform 200ms var(--ease-out);
+  }
+
+  /* Small label pill, e.g. "School supplies, Hyderabad" */
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 16px;
+    border-radius: 999px;
+    background: var(--color-cream);
+    font-weight: 600;
+    font-size: 0.9375rem;
+    line-height: 1.2;
+  }
+  .pill-dot::before {
+    content: "";
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--color-orange);
+    margin-left: -4px;
+  }
+  /* Outline chip for short lists of tags */
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 15px;
+    border-radius: 999px;
+    border: 1.5px solid color-mix(in srgb, currentColor 30%, transparent);
+    font-size: 0.9375rem;
+    font-weight: 600;
+  }
+
+  /* ---------- Colour-field tiles (ColorTile) ---------- */
+  .tile {
+    --tb: var(--color-cream);
+    --tf: var(--color-ink);
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 300px;
+    padding: 22px 22px 0;
+    border-radius: var(--radius-lg);
+    background: var(--tb);
+    color: var(--tf);
+    text-decoration: none;
+    overflow: hidden;
     transition:
       transform 220ms var(--ease-out),
-      box-shadow 220ms var(--ease-out),
-      border-color 220ms var(--ease-out);
+      box-shadow 220ms var(--ease-out);
+  }
+  .tile-orange {
+    --tb: var(--color-orange);
+    --focus: var(--color-ink);
+  }
+  .tile-cream {
+    --tb: var(--color-cream);
+  }
+  .tile-sky {
+    --tb: var(--color-sky);
+  }
+  .tile-peach {
+    --tb: var(--color-peach);
+  }
+  .tile-paper {
+    --tb: #fff;
+  }
+  .tile-blue {
+    --tb: var(--color-blue);
+    --tf: #fff;
+    --focus: #fff;
+  }
+  .tile-ink {
+    --tb: var(--color-ink);
+    --tf: #fff;
+    --focus: #fff;
+  }
+  .tile:focus-visible {
+    outline-offset: 4px;
+    border-radius: var(--radius-lg);
+  }
+  .tile:active {
+    transform: scale(0.985);
+  }
+  .tile-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.25rem, 1.1rem + 0.5vw, 1.5rem);
+    line-height: 1.08;
+  }
+  .tile-text {
+    margin-top: 8px;
+    font-size: 1rem;
+    line-height: 1.4;
+    opacity: 0.85;
+    max-width: 18em;
+  }
+  /* The product: a cut-out standing on the bottom edge ... */
+  .tile-media {
+    position: relative;
+    flex: 1;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    min-height: 150px;
+    margin-top: 12px;
+  }
+  .tile-media img {
+    max-height: 170px;
+    width: auto;
+    max-width: 86%;
+    object-fit: contain;
+    filter: drop-shadow(0 14px 14px rgb(14 31 61 / 0.18));
+    transition: transform 380ms var(--ease-out);
+  }
+  /* ... or wide objects (books, utensils) that bleed to the edges ... */
+  .tile-media-wide {
+    margin-inline: -22px;
+  }
+  .tile-media-wide img {
+    width: 100%;
+    max-width: 100%;
+    max-height: none;
+    margin-bottom: 6px;
+  }
+  /* ... or a framed photo inset in the field */
+  .tile-media-frame {
+    align-items: stretch;
+    margin: 12px -8px 14px;
+  }
+  .tile-media-frame img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    max-height: none;
+    object-fit: cover;
+    border-radius: 12px;
+    filter: none;
+  }
+  .tile-go {
+    position: absolute;
+    right: 14px;
+    bottom: 14px;
+    z-index: 2;
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--color-ink);
+    color: #fff;
+    opacity: 0;
+    transform: scale(0.85);
+    transition:
+      opacity 180ms ease,
+      transform 220ms var(--ease-out);
+  }
+  .tile-go svg {
+    width: 16px;
+    height: 16px;
+  }
+  .tile-blue .tile-go,
+  .tile-ink .tile-go {
+    background: #fff;
+    color: var(--color-ink);
+  }
+
+  /* ---------- Cards ---------- */
+  /* Static card: a quiet white plate on paper or cream */
+  .card {
+    background: #fff;
+    border-radius: var(--radius-lg);
+  }
+  /* Linked card: the whole card is the link; lifts 2px, media zooms 1.03 */
+  .card-link {
+    display: block;
+    background: #fff;
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    transition:
+      transform 220ms var(--ease-out),
+      box-shadow 220ms var(--ease-out);
+  }
+  .card-link:active {
+    transform: scale(0.985);
   }
   .card-media {
     position: relative;
     overflow: hidden;
-    background: var(--color-paper-deep);
+    background: var(--color-cream);
   }
   .card-link :is(.card-media, figure) img {
     transition: transform 400ms var(--ease-out);
   }
   .card-link:focus-visible {
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-lg);
   }
 
-  /* Text link: underline thickens and turns blue on hover */
+  /* Inline text link: underline thickens on hover */
   .link {
     text-decoration-line: underline;
-    text-decoration-color: color-mix(in srgb, currentColor 35%, transparent);
-    text-decoration-thickness: 1px;
+    text-decoration-color: color-mix(in srgb, currentColor 40%, transparent);
+    text-decoration-thickness: 1.5px;
     text-underline-offset: 0.2em;
-    transition:
-      text-decoration-color 160ms ease,
-      color 160ms ease;
+    transition: text-decoration-color 160ms ease;
   }
   .link:hover {
-    text-decoration-color: var(--color-board);
+    text-decoration-color: currentColor;
     text-decoration-thickness: 2px;
   }
-  .on-dark .link:hover {
-    text-decoration-color: var(--color-pencil);
-  }
 
-  /* Underline that draws in from the left on hover (nav, footer, "View all") */
+  /* Underline that draws in from the left on hover (nav, footer) */
   .link-draw {
     background-image: linear-gradient(currentColor, currentColor);
     background-repeat: no-repeat;
     background-position: 0 100%;
-    background-size: 0% 1px;
+    background-size: 0% 2px;
     transition: background-size 240ms var(--ease-out);
   }
   .link-draw:hover,
   .link-draw:focus-visible {
-    background-size: 100% 1px;
+    background-size: 100% 2px;
   }
 
-  /* Pressable: buttons step up on hover and press down on click */
-  .btn {
-    transition:
-      background-color 160ms ease,
-      border-color 160ms ease,
-      color 160ms ease,
-      transform 160ms var(--ease-out);
-  }
-  .btn:active {
-    transform: translateY(1px);
-    transition-duration: 80ms;
-  }
-
-  /* Photo placeholders */
   .photo-placeholder {
-    background-color: var(--color-paper-deep);
+    background-color: var(--color-cream);
   }
 }
 
 /* Hover motion only on devices that really hover */
 @media (hover: hover) and (pointer: fine) {
-  .btn:not(.btn-text):hover {
-    transform: translateY(-1px);
+  .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 0 rgb(14 31 61 / 0.18);
   }
-  .btn:not(.btn-text):active {
-    transform: translateY(1px);
+  .btn:active {
+    transform: translateY(0) scale(0.97);
+    box-shadow: none;
   }
+  .btn-primary:hover {
+    --bg: var(--color-blue);
+  }
+  .btn-wa:hover {
+    --bg: var(--color-ink);
+    --fg: #fff;
+  }
+  .btn-wa:hover svg {
+    color: #5fe08f;
+  }
+  .btn-ghost:hover {
+    --bg: var(--color-ink);
+    --fg: #fff;
+  }
+  .btn-light:hover {
+    --bg: var(--color-sky);
+  }
+  .on-dark .btn-ghost:hover,
+  .on-dark .btn-primary:hover {
+    --bg: #fff;
+    --fg: var(--color-ink);
+    --bd: #fff;
+  }
+  .on-dark .btn-primary:hover {
+    --bg: var(--color-sky);
+    --bd: var(--color-sky);
+  }
+  .on-orange .btn-wa:hover {
+    --bg: var(--color-blue);
+    --bd: var(--color-blue);
+  }
+  .tlink:hover svg {
+    transform: translateX(4px);
+  }
+  .tile:hover,
   .card-link:hover {
     transform: translateY(-2px);
-    border-color: color-mix(in srgb, var(--color-ink) 22%, transparent);
     box-shadow: var(--shadow-lift);
   }
+  .tile:hover .tile-media img {
+    transform: translateY(-6px) scale(1.03);
+  }
+  .tile:hover .tile-media-frame img,
   .card-link:hover :is(.card-media, figure) img {
     transform: scale(1.03);
   }
-}
-
-/* ------------------------------------------------------------------
-   Keyframes (transform and opacity only)
-   ------------------------------------------------------------------ */
-@keyframes rise-in {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
+  .tile:hover .tile-go {
     opacity: 1;
     transform: none;
   }
 }
 
+/* ------------------------------------------------------------------
+   Motion layer. Only two kinds of motion on this site:
+   1. the page's one entrance (hero / page header), once on load
+   2. answers to the user: hover, press, menus, the quote counter
+   Nothing fades in on scroll.
+   ------------------------------------------------------------------ */
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+}
+@keyframes field-in {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+}
+@keyframes object-in {
+  from {
+    opacity: 0;
+    transform: translateY(38%) rotate(var(--r-from, 0deg));
+  }
+  60% {
+    opacity: 1;
+  }
+}
 @keyframes fade-in {
   from {
     opacity: 0;
   }
 }
-
-/* Draw-in wipe used by PencilUnderline: clip slides right while the glyph counter-slides */
+@keyframes sheet-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+@keyframes bump {
+  0% {
+    transform: scale(1);
+  }
+  35% {
+    transform: scale(1.35);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+/* v2 keyframes kept for pages that still use them */
 @keyframes wipe-clip {
   from {
     transform: translateX(-100%);
-  }
-  to {
-    transform: none;
   }
 }
 @keyframes wipe-glyph {
   from {
     transform: translateX(100%);
   }
-  to {
-    transform: none;
-  }
-}
-
-@keyframes bump {
-  0% {
-    transform: scale(1);
-  }
-  40% {
-    transform: scale(1.25);
-  }
-  100% {
-    transform: scale(1);
-  }
 }
 
 @layer utilities {
-  /* Entrance: page headers and the hero only. Nothing animates on scroll. */
+  /* Entrance: .enter on each part, stagger with .enter-1 ... .enter-4 */
+  .enter,
   .animate-rise-in {
-    animation: rise-in 0.5s var(--ease-out) both;
+    animation: rise-in 760ms var(--ease-out) both;
+  }
+  .enter-1 {
+    animation-delay: 70ms;
+  }
+  .enter-2 {
+    animation-delay: 130ms;
+  }
+  .enter-3 {
+    animation-delay: 180ms;
+  }
+  .enter-4 {
+    animation-delay: 230ms;
+  }
+  .enter-field {
+    animation: field-in 900ms var(--ease-out) both 60ms;
   }
   .animate-fade-in {
-    animation: fade-in 0.2s var(--ease-out) both;
+    animation: fade-in 200ms var(--ease-out) both;
+  }
+  .animate-sheet-in {
+    animation: sheet-in 260ms var(--ease-out) both;
+  }
+  .animate-bump {
+    animation: bump 420ms var(--ease-pop);
   }
   .animate-wipe-clip {
     animation: wipe-clip 0.7s var(--ease-out) both;
@@ -297,15 +666,12 @@
   .animate-wipe-glyph {
     animation: wipe-glyph 0.7s var(--ease-out) both;
   }
-  .animate-bump {
-    animation: bump 0.4s var(--ease-out);
-  }
   .tabular {
     font-variant-numeric: tabular-nums;
   }
   /* Space under the page for the fixed mobile action bar */
   .pb-action-bar {
-    padding-bottom: calc(4.25rem + env(safe-area-inset-bottom));
+    padding-bottom: calc(4.75rem + env(safe-area-inset-bottom));
   }
   @media (width >= 48rem) {
     .pb-action-bar {
@@ -314,7 +680,7 @@
   }
 }
 
-/* Route change: a short opacity fade only (the page header carries the rise) */
+/* Route change: a short opacity fade only */
 .page-enter {
   animation: fade-in 0.2s ease both;
 }
@@ -327,15 +693,21 @@
   *::before,
   *::after {
     animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
   }
   .btn,
   .btn:hover,
   .btn:active,
+  .tile,
+  .tile:hover,
+  .tile:active,
+  .tile img,
   .card-link,
   .card-link:hover,
-  .card-link :is(.card-media, figure) img {
+  .card-link img,
+  .tlink svg {
     transform: none !important;
   }
 }
@@ -353,6 +725,8 @@
     padding-bottom: 0 !important;
   }
   .page-enter,
+  .enter,
+  .enter-field,
   .animate-rise-in {
     animation: none !important;
   }

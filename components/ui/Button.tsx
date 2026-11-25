@@ -1,23 +1,32 @@
 import Link from "next/link";
+import { isValidElement } from "react";
+import { WhatsAppIcon } from "@/components/layout/WhatsAppFloat";
 import { cn } from "@/lib/cn";
 
 /**
- * primary    solid blue, the one main action per screen
- * secondary  white with a hairline border, for the second action
- * accent     orange with navy text, only on the dark ink band
- * inverse    outline for the dark ink band
- * text       inline link-style action with an underline
+ * Pill buttons (56px, 48px small). Classes live in app/globals.css (.btn-*).
+ *
+ * primary    ink, hovers to blue. The one main action ("Request a quote").
+ *            On a dark field (.on-dark) it turns white.
+ * whatsapp   white with an ink border and a green WhatsApp icon, hovers to ink.
+ *            On an orange field (.on-orange) it is solid ink.
+ * ghost      transparent with an ink border (white on .on-dark).
+ * light      white, for blue and ink fields.
+ * text       bold underlined text with an arrow, for "See all ..." links.
+ *
+ * v2 names still work: secondary → ghost (→ whatsapp when its icon is
+ * <WhatsAppIcon />), accent → light, inverse → ghost.
  */
-type Variant = "primary" | "secondary" | "accent" | "inverse" | "text";
-/** sm 40px, md 44px, lg 52px */
-type Size = "md" | "lg" | "sm";
+export type ButtonVariant = "primary" | "whatsapp" | "ghost" | "light" | "text" | "secondary" | "accent" | "inverse";
+/** sm 48px; md and lg 56px */
+type Size = "sm" | "md" | "lg";
 
 type CommonProps = {
-  variant?: Variant;
+  variant?: ButtonVariant;
   size?: Size;
   className?: string;
   children: React.ReactNode;
-  /** Optional icon placed before the label */
+  /** Icon before the label. With variant "whatsapp" it defaults to the WhatsApp glyph. */
   icon?: React.ReactNode;
 };
 
@@ -31,40 +40,65 @@ type ButtonAsButton = CommonProps & {
 
 export type ButtonProps = ButtonAsLink | ButtonAsButton;
 
-// .btn (globals.css) adds the hover step and press, gated to real hover devices
-const base =
-  "btn inline-flex items-center justify-center gap-2 font-sans font-semibold leading-none whitespace-nowrap " +
-  "rounded-sm select-none disabled:pointer-events-none disabled:opacity-50";
-
-const variants: Record<Variant, string> = {
-  primary: "bg-board text-white hover:bg-board-deep",
-  secondary: "border border-ink/15 bg-white text-ink hover:border-ink/40 hover:bg-paper-deep",
-  // Orange takes navy text only, never white
-  accent: "bg-pencil text-ink hover:bg-[#f79a4b]",
-  inverse: "border border-paper/40 text-paper hover:border-paper hover:bg-paper/10",
-  text:
-    "btn-text !h-auto !px-0 text-board underline decoration-board/35 decoration-1 underline-offset-[5px] " +
-    "hover:decoration-board hover:decoration-2 [.on-dark_&]:text-paper [.on-dark_&]:decoration-paper/40 [.on-dark_&]:hover:decoration-pencil",
+const variantClass: Record<Exclude<ButtonVariant, "text" | "secondary" | "accent" | "inverse">, string> = {
+  primary: "btn btn-primary",
+  whatsapp: "btn btn-wa",
+  ghost: "btn btn-ghost",
+  light: "btn btn-light",
 };
 
-const sizes: Record<Size, string> = {
-  sm: "h-10 px-4 text-sm",
-  md: "h-11 px-5 text-[0.9375rem]",
-  lg: "h-13 px-6 text-base",
-};
+function resolve(variant: ButtonVariant, icon: React.ReactNode) {
+  if (variant === "secondary") {
+    return isValidElement(icon) && icon.type === WhatsAppIcon ? "whatsapp" : "ghost";
+  }
+  if (variant === "accent") return "light";
+  if (variant === "inverse") return "ghost";
+  return variant;
+}
+
+export function ArrowIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      className={className}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <path d="M5 12h14M13 6l6 6-6 6" />
+    </svg>
+  );
+}
 
 function isInternal(href: string) {
   return href.startsWith("/") || href.startsWith("#");
 }
 
 export function Button({ variant = "primary", size = "md", className, children, icon, ...rest }: ButtonProps) {
-  const classes = cn(base, variants[variant], sizes[size], className);
-  const content = (
-    <>
-      {icon ? <span className="shrink-0 [&>svg]:size-[1.15em]" aria-hidden="true">{icon}</span> : null}
-      <span>{children}</span>
-    </>
-  );
+  const v = resolve(variant, icon);
+  const leading = icon ?? (v === "whatsapp" ? <WhatsAppIcon /> : null);
+
+  const classes =
+    v === "text"
+      ? cn("tlink", className)
+      : cn(variantClass[v], size === "sm" && "btn-sm", className);
+
+  const content =
+    v === "text" ? (
+      <>
+        <span>{children}</span>
+        <ArrowIcon />
+      </>
+    ) : (
+      <>
+        {leading}
+        <span>{children}</span>
+      </>
+    );
 
   if (rest.href !== undefined) {
     const { href, ...anchorProps } = rest as Omit<ButtonAsLink, keyof CommonProps>;

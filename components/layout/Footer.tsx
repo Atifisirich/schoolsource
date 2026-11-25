@@ -1,109 +1,105 @@
 import Link from "next/link";
-import { Container } from "@/components/ui/Container";
-import { categories } from "@/data/catalogue";
-import { footerPages, site } from "@/lib/site";
-import { Logo } from "./Logo";
+import { Pending, showPending } from "@/components/ui/Pending";
+import { site } from "@/lib/site";
+import { LogoLockup } from "./Logo";
 
-const linkClass = "link-draw text-paper/75 transition-colors duration-150 hover:text-white";
-const headingClass = "font-sans text-sm font-semibold tracking-normal text-paper";
+const linkClass = "inline-flex min-h-11 items-center link-draw";
+const headingClass = "mb-3 font-sans text-[0.9375rem] font-bold tracking-normal text-white";
 
-const companyPages = footerPages.filter((p) => !["/products", "/privacy", "/terms"].includes(p.href));
+const productLinks = [
+  { href: "/products", label: "All 15 categories" },
+  { href: "/kits", label: "Kits" },
+  { href: "/labs", label: "Lab setups" },
+  { href: "/catalogue", label: "Printable catalogue" },
+];
+
+const companyLinks = [
+  { href: "/how-it-works", label: "How it works" },
+  { href: "/about", label: "About" },
+  { href: "/contact", label: "Contact" },
+  { href: "/quote", label: "Request a quote" },
+];
 
 export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="on-dark bg-ink text-paper print:hidden">
-      <Container className="grid gap-12 py-16 sm:grid-cols-2 lg:grid-cols-12 lg:gap-8 lg:py-20">
-        {/* Brand */}
-        <div className="lg:col-span-3">
-          <Logo tone="paper" />
-          <p className="mt-5 max-w-xs text-[0.9375rem] leading-relaxed text-paper/75">
-            School supplies for schools in {site.city} and other states, quoted from your list and delivered with a GST
-            invoice.
+    <footer className="on-dark bg-ink-logo text-[#dfe6f3] print:hidden">
+      <div className="wrap grid gap-10 pb-10 pt-16 text-[1.0625rem] sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1.3fr] lg:pt-20">
+        <div className="sm:col-span-2 lg:col-span-1">
+          <Link href="/" aria-label="SchoolSource home" className="inline-block">
+            <LogoLockup tone="paper" className="w-[200px]" />
+          </Link>
+          <p className="mt-5 max-w-[24em] text-[#b6c2d9]">
+            Everything your school buys, from one supplier. SchoolSource is a division of {site.parent}, founded by{" "}
+            {site.founder}.
           </p>
-          <p className="mt-4 text-sm text-paper/60">{site.divisionLine}</p>
         </div>
 
-        {/* Categories: names only, two columns */}
-        <nav aria-labelledby="footer-categories" className="sm:col-span-2 lg:col-span-4">
-          <h2 id="footer-categories" className={headingClass}>
-            <Link href="/products" className="link-draw">
-              Categories
-            </Link>
+        <nav aria-labelledby="footer-products">
+          <h2 id="footer-products" className={headingClass}>
+            Products
           </h2>
-          <ul className="mt-4 grid gap-x-8 sm:grid-cols-2">
-            {categories.map((c) => (
-              <li key={c.slug}>
-                <Link href={`/products/${c.slug}`} className={`inline-block py-1.5 text-[0.9375rem] ${linkClass}`}>
-                  {c.name}
+          <ul>
+            {productLinks.map((l) => (
+              <li key={l.href}>
+                <Link href={l.href} className={linkClass}>
+                  {l.label}
                 </Link>
               </li>
             ))}
           </ul>
         </nav>
 
-        <nav aria-labelledby="footer-pages" className="lg:col-span-2">
-          <h2 id="footer-pages" className={headingClass}>
+        <nav aria-labelledby="footer-company">
+          <h2 id="footer-company" className={headingClass}>
             Company
           </h2>
-          <ul className="mt-4 grid">
-            {companyPages.map((p) => (
-              <li key={p.href}>
-                <Link href={p.href} className={`inline-block py-1.5 text-[0.9375rem] ${linkClass}`}>
-                  {p.label}
+          <ul>
+            {companyLinks.map((l) => (
+              <li key={l.href}>
+                <Link href={l.href} className={linkClass}>
+                  {l.label}
                 </Link>
               </li>
             ))}
           </ul>
         </nav>
 
-        {/* Contact */}
-        <div className="lg:col-span-3">
-          <h2 className={headingClass}>Contact</h2>
-          <dl className="mt-4 grid gap-3.5 text-[0.9375rem]">
-            <div>
-              <dt className="sr-only">Phone</dt>
-              <dd>
-                <a href={site.phoneHref} className={`tabular-nums ${linkClass}`}>
-                  {site.phoneDisplay}
-                </a>
-              </dd>
-            </div>
-            <div>
-              <dt className="sr-only">WhatsApp</dt>
-              <dd>
-                <a href={site.whatsappHref} target="_blank" rel="noopener noreferrer" className={linkClass}>
-                  Message us on WhatsApp
-                </a>
-              </dd>
-            </div>
-            <div>
-              <dt className="sr-only">Email</dt>
-              <dd>
-                <a href={site.emailHref} className={linkClass}>
-                  {site.email}
-                </a>
-              </dd>
-            </div>
-            <div>
-              <dt className="text-sm text-paper/60">Address</dt>
-              <dd className="mt-0.5 max-w-[17rem] not-italic leading-relaxed text-paper/75">{site.address}</dd>
-            </div>
-            <div>
-              <dt className="text-sm text-paper/60">GSTIN</dt>
-              <dd className="mt-0.5 text-paper/75 tabular-nums">{site.gstin}</dd>
-            </div>
-          </dl>
+        <div>
+          <h2 className={headingClass}>Talk to us</h2>
+          <ul>
+            <li>
+              <a href={site.phoneHref} className={`${linkClass} tabular-nums`}>
+                {site.phoneDisplay}
+              </a>
+            </li>
+            <li>
+              <a href={site.whatsappHref} target="_blank" rel="noopener noreferrer" className={linkClass}>
+                WhatsApp
+              </a>
+            </li>
+            <li>
+              <a href={site.emailHref} className={linkClass}>
+                {site.email}
+              </a>
+            </li>
+          </ul>
+          <address className="mt-4 max-w-[20rem] not-italic leading-relaxed text-[#b6c2d9]">{site.address}</address>
+          {showPending ? (
+            <p className="mt-3 text-[#b6c2d9]">
+              Hours: <Pending label={site.hours} />
+            </p>
+          ) : null}
         </div>
-      </Container>
+      </div>
 
-      <div className="border-t border-paper/10">
-        <Container className="flex flex-col gap-3 py-6 text-sm text-paper/60 sm:flex-row sm:items-center sm:justify-between">
+      <div className="wrap">
+        <div className="flex flex-col gap-3 border-t border-white/15 py-6 text-[0.9375rem] text-[#a9b6cd] md:flex-row md:items-center md:justify-between">
           <p>
-            &copy; {year} {site.name}. {site.divisionLine}
+            &copy; {year} {site.parent}. GSTIN <span className="tabular-nums">{site.gstin}</span>
           </p>
-          <ul className="flex gap-6">
+          <ul className="flex flex-wrap gap-x-6">
             <li>
               <Link href="/privacy" className={linkClass}>
                 Privacy
@@ -115,7 +111,7 @@ export function Footer() {
               </Link>
             </li>
           </ul>
-        </Container>
+        </div>
       </div>
     </footer>
   );

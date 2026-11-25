@@ -1,9 +1,8 @@
 import type { Metadata, Viewport } from "next";
-import { Kalam, Public_Sans, Source_Serif_4 } from "next/font/google";
+import { Dela_Gothic_One, Schibsted_Grotesk } from "next/font/google";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { MobileActionBar } from "@/components/layout/MobileActionBar";
-import { WhatsAppFloat } from "@/components/layout/WhatsAppFloat";
 import { Analytics } from "@/components/seo/Analytics";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { bands, categories, countItems } from "@/data/catalogue";
@@ -11,25 +10,18 @@ import type { NavCategory } from "@/lib/bands";
 import { site } from "@/lib/site";
 import "./globals.css";
 
-// Headings: variable weight with optical sizing
-const sourceSerif = Source_Serif_4({
-  variable: "--font-source-serif",
-  subsets: ["latin"],
-  axes: ["opsz"],
-  display: "swap",
-});
-
-const publicSans = Public_Sans({
-  variable: "--font-public-sans",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-// Handwriting for the requirement list in the hero only
-const kalam = Kalam({
-  variable: "--font-kalam",
+// Display: h1, h2 and big statements. One weight only.
+const dela = Dela_Gothic_One({
+  variable: "--font-dela",
   subsets: ["latin"],
   weight: "400",
+  display: "swap",
+});
+
+// Text: everything else, 400-700
+const schibsted = Schibsted_Grotesk({
+  variable: "--font-schibsted",
+  subsets: ["latin"],
   display: "swap",
 });
 
@@ -53,7 +45,7 @@ const navCategories: NavCategory[] = categories.map((c) => ({
 }));
 
 export const viewport: Viewport = {
-  themeColor: "#ffffff",
+  themeColor: "#fbf7f0",
 };
 
 export default function RootLayout({
@@ -64,7 +56,7 @@ export default function RootLayout({
   return (
     <html
       lang="en-IN"
-      className={`${sourceSerif.variable} ${publicSans.variable} ${kalam.variable}`}
+      className={`${dela.variable} ${schibsted.variable}`}
       suppressHydrationWarning
     >
       <head>
@@ -74,7 +66,7 @@ export default function RootLayout({
       <body className="pb-action-bar flex min-h-dvh flex-col">
         <a
           href="#main"
-          className="sr-only z-50 rounded-sm bg-ink px-4 py-3 text-paper focus:not-sr-only focus:fixed focus:left-4 focus:top-4"
+          className="sr-only z-[70] rounded-full bg-ink px-5 py-3 font-semibold text-white focus:not-sr-only focus:fixed focus:left-4 focus:top-4"
         >
           Skip to content
         </a>
@@ -83,7 +75,6 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
-        <WhatsAppFloat />
         <MobileActionBar />
         <JsonLd />
         <Analytics />

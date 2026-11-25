@@ -20,7 +20,7 @@ type PhotoProps = {
 export function Photo({ src, alt, className, sizes = "(min-width: 1024px) 50vw, 100vw", priority, ...rest }: PhotoProps) {
   return (
     <figure
-      className={cn("relative overflow-hidden rounded-md bg-paper-deep", className)}
+      className={cn("relative overflow-hidden rounded-lg bg-cream", className)}
       data-reveal={rest["data-reveal"] || undefined}
     >
       <Image src={src} alt={alt} fill sizes={sizes} priority={priority} className="object-cover" />

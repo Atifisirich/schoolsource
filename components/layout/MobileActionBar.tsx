@@ -1,26 +1,24 @@
 import { Button } from "@/components/ui/Button";
 import { site } from "@/lib/site";
-import { WhatsAppIcon } from "./WhatsAppFloat";
 
 /**
- * Fixed bar at the bottom of small screens (below md) with the site's two
- * actions. <body> carries .pb-action-bar so it never covers content.
+ * Fixed bar at the bottom of phones (below md) with the site's two actions.
+ * <body> carries .pb-action-bar so it never covers content.
  */
 export function MobileActionBar() {
   return (
-    <div
-      role="region"
-      aria-label="Quick contact"
-      className="fixed inset-x-0 bottom-0 z-30 border-t border-rule bg-white/95 px-4 pb-[calc(0.75rem+env(safe-area-inset-bottom))] pt-3 backdrop-blur-sm md:hidden print:hidden"
+    <nav
+      aria-label="Quick actions"
+      className="fixed inset-x-0 bottom-0 z-30 border-t border-rule bg-paper/95 px-3 pb-[calc(0.625rem+env(safe-area-inset-bottom))] pt-2.5 backdrop-blur-md md:hidden print:hidden"
     >
-      <div className="mx-auto grid max-w-md grid-cols-2 gap-3">
-        <Button href={site.whatsappHref} variant="secondary" icon={<WhatsAppIcon />} className="w-full px-3">
+      <div className="mx-auto grid max-w-md grid-cols-2 gap-2">
+        <Button href={site.whatsappHref} variant="whatsapp" className="!min-h-[52px] w-full !px-3 !text-base">
           WhatsApp us
         </Button>
-        <Button href="/quote" className="w-full px-3">
+        <Button href="/quote" className="!min-h-[52px] w-full !px-3 !text-base">
           Request a quote
         </Button>
       </div>
-    </div>
+    </nav>
   );
 }

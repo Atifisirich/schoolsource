@@ -46,18 +46,19 @@ export function AddToQuoteButton({
       aria-pressed={added}
       onClick={onClick}
       className={cn(
-        // .btn (globals.css) adds the hover step and press, gated to real hover devices
-        "btn inline-flex shrink-0 select-none items-center justify-center gap-2 rounded-sm border font-semibold leading-none",
-        size === "md" ? "h-11 px-4 text-[0.9375rem]" : "h-10 px-3.5 text-sm",
+        // A pill like the site's buttons (globals.css .btn gives hover lift and press)
+        "btn btn-sm shrink-0 !gap-2",
+        size === "md" ? "" : "!min-h-11 !px-4 !text-[0.9375rem]",
         added
-          ? "border-pencil/60 bg-pencil-soft text-ink hover:border-pencil"
+          ? // In the list: orange, like a filled cart
+            "!border-orange [--bg:var(--color-orange)] [--fg:var(--color-ink)] hover:[--bg:#f79a4b]"
           : variant === "solid"
-            ? "border-board bg-board text-white hover:border-board-deep hover:bg-board-deep"
-            : "border-ink/15 bg-white text-board hover:border-board/50 hover:bg-paper-deep",
+            ? "btn-primary"
+            : "btn-ghost",
         className,
       )}
     >
-      <svg viewBox="0 0 16 16" className="size-4 shrink-0" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <svg viewBox="0 0 16 16" className="!size-4 shrink-0" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         {added ? <path d="M3 8.5 L6.5 12 L13 4.5" /> : <path d="M8 3 V13 M3 8 H13" />}
       </svg>
       <span>{added ? "In quote list" : label}</span>
