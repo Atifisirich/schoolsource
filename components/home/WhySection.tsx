@@ -70,7 +70,7 @@ export function WhySection() {
         }
       />
       <div className="grid gap-3.5 sm:grid-cols-2 lg:grid-cols-4">
-        <div className="relative min-h-64 overflow-hidden rounded-lg sm:col-span-2 lg:col-span-1 lg:row-span-2">
+        <div className="relative min-h-52 overflow-hidden rounded-lg sm:min-h-64 sm:col-span-2 lg:col-span-1 lg:row-span-2">
           <Image
             src={cutouts.warehouse.src}
             alt={cutouts.warehouse.alt}
@@ -80,8 +80,8 @@ export function WhySection() {
           />
         </div>
         {reasons.map((r) => (
-          <div key={r.title} className="flex min-h-52 flex-col justify-between gap-6 rounded-lg bg-paper p-6">
-            <span className="grid size-12 place-items-center rounded-full bg-ink text-white">
+          <div key={r.title} className="flex gap-5 rounded-lg bg-paper p-5 sm:min-h-52 sm:flex-col sm:justify-between sm:gap-6 sm:p-6">
+            <span className="grid size-12 shrink-0 place-items-center rounded-full bg-ink text-white">
               <svg
                 viewBox="0 0 24 24"
                 className="size-[22px]"

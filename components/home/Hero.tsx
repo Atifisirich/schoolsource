@@ -19,7 +19,7 @@ const group = [
   // Back left: the trophy, the tallest thing
   {
     art: cutouts.trophy,
-    className: "left-[6%] bottom-[13%] h-[60%] w-auto",
+    className: "left-[7%] bottom-[13%] h-[56%] w-auto",
     sizes: "(min-width: 900px) 19vw, 40vw",
     delay: 200,
     rotate: "-4deg",
@@ -27,7 +27,7 @@ const group = [
   // Back right: the open lunch box, just overlapping the trophy
   {
     art: cutouts.lunchbox,
-    className: "right-[4%] bottom-[11%] h-[52%] w-auto",
+    className: "right-[5%] bottom-[11%] h-[48%] w-auto",
     sizes: "(min-width: 900px) 16vw, 34vw",
     delay: 280,
     rotate: "4deg",
