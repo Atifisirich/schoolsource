@@ -171,7 +171,7 @@ export function ProductsExplorer({
                   <h2 id={`band-${b.id}`} className="text-h3">
                     {b.name}
                   </h2>
-                  <ul className="mt-6 grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 nav:grid-cols-5">
+                  <ul className={cn("mt-6 grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3", cards.length === 4 ? "nav:grid-cols-4" : cards.length === 5 ? "nav:grid-cols-5" : "nav:grid-cols-3")}>
                     {cards.map((c) => (
                       <li key={c.slug}>
                         <CategoryTile

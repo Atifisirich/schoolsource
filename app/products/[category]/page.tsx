@@ -171,7 +171,7 @@ function ItemCard({ item, category, order }: { item: Item; category: Category; o
   return (
     <article className="card flex h-full flex-col overflow-hidden">
       {hasPhoto ? (
-        <div className="relative aspect-[4/3] overflow-hidden bg-cream">
+        <div className="relative aspect-[16/10] overflow-hidden bg-cream">
           <ItemPhotos
             images={item.images}
             name={item.name}
@@ -181,7 +181,7 @@ function ItemCard({ item, category, order }: { item: Item; category: Category; o
         </div>
       ) : (
         // No photo yet: the name on a calm cream plate
-        <div className="flex aspect-[4/3] items-center justify-center bg-cream p-4 text-center">
+        <div className="flex aspect-[16/10] items-center justify-center bg-cream p-4 text-center">
           <h3 className="font-display text-[1.125rem] leading-tight text-ink sm:text-xl">{item.name}</h3>
         </div>
       )}
