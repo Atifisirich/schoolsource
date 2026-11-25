@@ -32,7 +32,13 @@ const bandGrid: Record<BandId, { grid: string; item?: (i: number) => string; siz
   setup: {
     grid: "sm:grid-cols-2 lg:grid-cols-6",
     // The two wide tiles take a letterbox crop so the row stays in proportion
-    item: (i) => (i < 2 ? "lg:col-span-3 lg:[&_.card-media]:aspect-[2/1]" : "lg:col-span-2"),
+    // The last of five spans the row below lg, so no cell is left empty.
+    item: (i) =>
+      i < 2
+        ? "lg:col-span-3 lg:[&_.card-media]:aspect-[2/1]"
+        : i === 4
+          ? "col-span-2 max-lg:[&_.card-media]:aspect-[2/1]"
+          : "lg:col-span-2",
     sizes: "(min-width: 1024px) 50vw, (min-width: 640px) 50vw, 100vw",
   },
 };
@@ -106,7 +112,7 @@ export default function HomePage() {
               className="animate-rise-in font-display text-display font-semibold"
             >
               Everything your school needs, from{" "}
-              <PencilUnderline delay={520} animate>
+              <PencilUnderline delay={520} animate className="motion-reduce:[&_*]:!transition-none">
                 one source
               </PencilUnderline>
               .
@@ -138,7 +144,7 @@ export default function HomePage() {
           </div>
 
           <div className="lg:col-span-7 lg:pl-6">
-            <ListToQuotation className="mx-auto max-w-[40rem] lg:mr-0" />
+            <ListToQuotation className="max-w-[40rem] lg:ml-auto" />
           </div>
         </div>
 

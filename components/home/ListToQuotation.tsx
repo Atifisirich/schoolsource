@@ -72,7 +72,7 @@ export function ListToQuotation({ className }: { className?: string }) {
           aria-label="Example: a school's handwritten requirement list"
         >
           <figcaption className="font-hand text-[1.0625rem] leading-7 text-ink-soft">For next term</figcaption>
-          <ul className="mt-2 font-hand text-[1.1875rem] leading-[1.9] text-ink sm:text-[1.25rem]">
+          <ul className="mt-1 font-hand text-[1.1875rem] leading-[1.75] text-ink sm:mt-2 sm:text-[1.25rem] sm:leading-[1.9]">
             {lines.map((line, i) => (
               <li key={line.hand} className="flex items-center gap-3">
                 <svg

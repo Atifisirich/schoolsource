@@ -8,12 +8,12 @@ type Mode = "many" | "one";
 
 // An example school's separate suppliers, placed around the school (in % of the stage)
 const vendors = [
-  { name: "Book seller", slug: "textbooks", x: 20, y: 16 },
-  { name: "Uniform tailor", slug: "uniforms-bags", x: 50, y: 10 },
-  { name: "Stationery shop", slug: "stationery", x: 80, y: 16 },
-  { name: "Furniture dealer", slug: "furniture", x: 20, y: 86 },
-  { name: "Lab supplier", slug: "labs", x: 50, y: 91 },
-  { name: "Electrician", slug: "electricals", x: 80, y: 86 },
+  { name: "Book seller", slug: "textbooks", x: 17, y: 15 },
+  { name: "Uniform tailor", slug: "uniforms-bags", x: 50, y: 15 },
+  { name: "Stationery shop", slug: "stationery", x: 83, y: 15 },
+  { name: "Furniture dealer", slug: "furniture", x: 17, y: 87 },
+  { name: "Lab supplier", slug: "labs", x: 50, y: 87 },
+  { name: "Electrician", slug: "electricals", x: 83, y: 87 },
 ];
 const school = { x: 50, y: 52 };
 const merged = { x: 50, y: 15 };
@@ -98,7 +98,7 @@ export function OneSourceCompare() {
           {vendors.map((v, i) => (
             <span
               key={v.name}
-              className="absolute flex -translate-x-1/2 -translate-y-1/2 items-center gap-1.5 whitespace-nowrap rounded-sm border border-rule bg-white px-2 py-1.5 text-[0.75rem] font-semibold leading-none transition-[left,top,opacity,scale] duration-500 ease-out motion-reduce:transition-opacity sm:text-[0.8125rem]"
+              className="absolute flex w-max max-w-[6.25rem] -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-1 text-center rounded-sm sm:max-w-none sm:flex-row sm:gap-1.5 sm:whitespace-nowrap border border-rule bg-white px-2 py-1.5 text-[0.75rem] font-semibold leading-tight sm:leading-none transition-[left,top,opacity,scale] duration-500 ease-out motion-reduce:transition-opacity sm:text-[0.8125rem]"
               style={{
                 left: `${one ? merged.x : v.x}%`,
                 top: `${one ? merged.y : v.y}%`,
