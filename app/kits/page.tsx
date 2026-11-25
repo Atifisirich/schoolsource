@@ -76,7 +76,7 @@ export default function KitsPage() {
       </PageHeader>
 
       {/* The seven kits */}
-      <Section aria-labelledby="kits-title">
+      <Section spacing="none" aria-labelledby="kits-title" className="pb-section pt-10 lg:pt-14">
         <h2 id="kits-title" className="sr-only">
           Seven school kits
         </h2>
@@ -92,7 +92,7 @@ export default function KitsPage() {
                   <Photo
                     src={kit.image ?? `/images/photos/kit-${kit.slug}.jpg`}
                     alt=""
-                    className="aspect-[3/2] rounded-none"
+                    className="aspect-[16/9] rounded-none sm:aspect-[3/2]"
                     sizes="(min-width: 1280px) 300px, (min-width: 640px) 50vw, 100vw"
                   />
                   <div className="flex flex-1 flex-col p-5">
@@ -105,7 +105,7 @@ export default function KitsPage() {
                     </p>
                     <ul className="mt-4 border-t border-rule text-[0.9375rem]">
                       {kit.contents.map((line) => (
-                        <li key={line} className="border-b border-rule py-1.5">
+                        <li key={line} className="border-b border-rule py-1.5 leading-snug">
                           {line}
                         </li>
                       ))}

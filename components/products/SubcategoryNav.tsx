@@ -26,20 +26,36 @@ export function SubcategoryNav({
   const [active, setActive] = useState(items[0]?.slug);
   const listRef = useRef<HTMLUListElement>(null);
 
-  // Track which section is in the reading zone
+  // The active group is the last one whose top has passed a line a third of
+  // the way down the screen (the first group until then). Hidden groups
+  // (filtered out) are skipped.
   useEffect(() => {
     const sections = items
       .map((i) => document.getElementById(i.slug))
       .filter((el): el is HTMLElement => Boolean(el));
-    const io = new IntersectionObserver(
-      (entries) => {
-        const visible = entries.filter((e) => e.isIntersecting);
-        if (visible.length) setActive(visible[0].target.id);
-      },
-      { rootMargin: "-30% 0px -65% 0px" },
-    );
-    sections.forEach((s) => io.observe(s));
-    return () => io.disconnect();
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const line = window.innerHeight * 0.33;
+      const shown = sections.filter((s) => !s.hidden);
+      let current = shown[0]?.id;
+      for (const s of shown) {
+        if (s.getBoundingClientRect().top <= line) current = s.id;
+        else break;
+      }
+      if (current) setActive(current);
+    };
+    const onScroll = () => {
+      if (!frame) frame = window.requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      if (frame) window.cancelAnimationFrame(frame);
+    };
   }, [items]);
 
   // Mobile: keep the active link visible inside the row without moving the page

@@ -52,12 +52,13 @@ export function BuyingCalendar({ months }: { months: CalendarMonthView[] }) {
 
             <div className="mt-auto pt-5">
               <p className="text-sm text-ink-soft">Usually ordered</p>
-              <ul className="mt-1 flex flex-wrap gap-x-3 gap-y-1 text-[0.9375rem]">
-                {m.categories.map((c) => (
+              <ul className="mt-1 flex flex-wrap gap-x-1 gap-y-0.5 text-[0.9375rem]">
+                {m.categories.map((c, j) => (
                   <li key={c.slug}>
-                    <Link href={`/products/${c.slug}`} className="link text-ink">
+                    <Link href={`/products/${c.slug}`} className="link-draw text-ink transition-colors duration-150 hover:text-board">
                       {c.name}
                     </Link>
+                    {j < m.categories.length - 1 ? <span aria-hidden="true">,</span> : null}
                   </li>
                 ))}
               </ul>

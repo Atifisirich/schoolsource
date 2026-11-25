@@ -137,7 +137,7 @@ export default async function CategoryPage({ params }: { params: Promise<Params>
               id={sub.slug}
               data-item-section
               aria-labelledby={`${sub.slug}-title`}
-              className={si > 0 ? "mt-14 scroll-mt-12 border-t border-rule pt-10 lg:scroll-mt-4" : "scroll-mt-12 lg:scroll-mt-4"}
+              className={si > 0 ? "mt-12 scroll-mt-12 border-t border-rule pt-10 lg:scroll-mt-4" : "scroll-mt-12 lg:scroll-mt-4"}
             >
               <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
                 <h2 id={`${sub.slug}-title`} className="text-h3">

@@ -218,27 +218,25 @@ export default function HowItWorksPage() {
 
       {/* Logistics */}
       <Section tone="muted" aria-labelledby="logistics-title">
-        <div className="grid gap-10 lg:grid-cols-12 lg:gap-12">
-          <div className="lg:col-span-4">
-            <h2 id="logistics-title" className="text-h2">
-              From our warehouse to your school
-            </h2>
-            <p className="mt-4 max-w-md text-ink-soft">
-              What happens between your confirmation and the delivery at your school.
-            </p>
-          </div>
-          <ul className="grid gap-x-10 sm:grid-cols-2 lg:col-span-8">
-            {logistics.map((l) => (
-              <li key={l.title} className="flex gap-4 border-t border-ink/10 py-6">
-                <span className="mt-0.5 shrink-0 text-board [&_svg]:size-6">{l.icon}</span>
-                <div>
-                  <h3 className="font-sans text-[1.0625rem] font-semibold tracking-normal">{l.title}</h3>
-                  <p className="mt-1.5 text-ink-soft">{l.text}</p>
-                </div>
-              </li>
-            ))}
-          </ul>
+        <div className="grid gap-4 lg:grid-cols-12 lg:items-end lg:gap-12">
+          <h2 id="logistics-title" className="text-h2 lg:col-span-7">
+            From our warehouse to your school
+          </h2>
+          <p className="max-w-xl text-ink-soft lg:col-span-5">
+            What happens between your confirmation and the delivery at your school.
+          </p>
         </div>
+        <ul className="mt-12 grid gap-x-12 md:grid-cols-2">
+          {logistics.map((l) => (
+            <li key={l.title} className="flex gap-4 border-t border-ink/10 py-6">
+              <span className="mt-0.5 shrink-0 text-board [&_svg]:size-6">{l.icon}</span>
+              <div>
+                <h3 className="font-sans text-[1.0625rem] font-semibold tracking-normal">{l.title}</h3>
+                <p className="mt-1.5 max-w-lg text-ink-soft">{l.text}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
       </Section>
 
       {/* Printing proofs */}
@@ -312,7 +310,7 @@ export default function HowItWorksPage() {
       {/* FAQ */}
       <Section aria-labelledby="faq-title">
         <div className="grid gap-10 lg:grid-cols-12 lg:gap-12">
-          <div className="lg:col-span-4">
+          <div className="lg:col-span-4 lg:sticky lg:top-28 lg:self-start">
             <h2 id="faq-title" className="text-h2">
               Questions schools ask
             </h2>

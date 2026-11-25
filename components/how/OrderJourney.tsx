@@ -189,19 +189,23 @@ export function OrderJourney() {
           </button>
         </div>
 
-        <ol className="relative">
-          {/* Track, filled as the order moves */}
-          <span aria-hidden="true" className="absolute bottom-7 left-[0.4375rem] top-7 w-px bg-rule" />
-          <span
-            aria-hidden="true"
-            className="absolute bottom-7 left-[0.4375rem] top-7 w-px origin-top bg-board transition-transform duration-500 ease-out"
-            style={{ transform: `scaleY(${active / last})` }}
-          />
+        <ol>
           {stages.map((s, i) => {
             const done = i < active;
             const current = i === active;
             return (
               <li key={s.title} className="relative border-b border-rule last:border-b-0">
+                {/* Track to the next stage, filled once this stage is done */}
+                {i < last ? (
+                  <span aria-hidden="true" className="absolute left-[0.4375rem] top-[1.75rem] -bottom-[1.75rem] w-px bg-rule">
+                    <span
+                      className={cn(
+                        "block h-full w-full origin-top bg-board transition-transform duration-300 ease-out",
+                        done ? "scale-y-100" : "scale-y-0",
+                      )}
+                    />
+                  </span>
+                ) : null}
                 <button
                   type="button"
                   onClick={() => pick(i)}

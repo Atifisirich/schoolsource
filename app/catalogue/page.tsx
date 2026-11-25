@@ -104,9 +104,9 @@ export default function CataloguePage() {
                 key={c.slug}
                 id={c.slug}
                 aria-labelledby={`${c.slug}-name`}
-                className="scroll-mt-8 border-b border-rule py-10 last:border-b-0 print:py-4"
+                className="scroll-mt-8 border-b border-rule py-10 last:border-b-0 print:break-inside-avoid print:py-4"
               >
-                <header className="flex items-center gap-5 print:break-after-avoid">
+                <header className="flex items-center gap-5">
                   {c.image ? (
                     <div className="relative hidden aspect-[3/2] w-28 shrink-0 overflow-hidden rounded-sm bg-paper-deep sm:block print:hidden">
                       <Image src={c.image} alt="" fill sizes="112px" className="object-cover" />

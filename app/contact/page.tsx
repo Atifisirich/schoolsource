@@ -126,7 +126,7 @@ export default function ContactPage() {
             <div className="relative aspect-[4/3] overflow-hidden rounded-lg border border-rule bg-white sm:aspect-[16/9]">
               {/* Shows only if the map cannot load; the iframe covers it otherwise */}
               <p className="absolute inset-0 flex items-center justify-center p-6 text-center text-[0.9375rem] text-ink-soft">
-                The map could not load here. Use &ldquo;Open in Google Maps&rdquo; for directions.
+                Loading the map… If it does not appear, use &ldquo;Open in Google Maps&rdquo;.
               </p>
               <iframe
                 title={`Map showing the ${site.name} office: ${site.address}`}

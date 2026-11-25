@@ -33,8 +33,8 @@ export function QuoteListEditor() {
         <caption className="sr-only">Items in your quote list</caption>
         <thead>
           <tr className="border-b border-rule bg-paper-deep text-sm text-ink-soft">
-            <th scope="col" className="hidden w-12 py-2.5 pl-4 font-medium sm:table-cell">
-              Line
+            <th scope="col" className="hidden w-16 py-2.5 pl-4 font-medium sm:table-cell">
+              No.
             </th>
             <th scope="col" className="py-2.5 pl-4 font-medium sm:pl-0">
               Item

@@ -12,7 +12,7 @@ export default function TermsPage() {
   return (
     <LegalPage
       title="Terms"
-      intro={`Basic terms for quotations, orders, delivery and payment with ${site.name}, a division of ${site.parent}.`}
+      intro={`Basic terms for quotations, orders, delivery and payment with ${site.name}, a division of ${site.parent}`}
       updated="[CONFIRM]"
       sections={[
         {
@@ -42,7 +42,10 @@ export default function TermsPage() {
         },
         {
           title: "Returns and replacements",
-          body: ["Returns and replacements follow our [RETURN POLICY]. Custom and printed items may not be returnable [CONFIRM]."],
+          body: [
+            "Items that arrive damaged, short or wrong are replaced.",
+            "Other returns follow our [RETURN POLICY]. Custom and printed items may not be returnable [CONFIRM].",
+          ],
         },
         {
           title: "Contact",

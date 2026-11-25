@@ -45,19 +45,19 @@ export default function ProductsPage() {
         crumbs={[{ href: "/", label: "Home" }, { label: "Products" }]}
         title="Everything we supply, by category"
         intro={
-          <p>
-            {itemTotal} items across fifteen categories, each one quoted on request. Search for an item, or open a
-            category to see everything in it, then add what you need to your quote list.
-          </p>
-        }
-        aside={
-          <p className="max-w-xs text-[0.9375rem] text-ink-soft lg:text-right">
-            Prefer paper?{" "}
-            <Link href="/catalogue" className="link font-semibold text-ink">
-              Print the full catalogue
-            </Link>{" "}
-            or save it as a PDF for your purchase committee.
-          </p>
+          <>
+            <p>
+              {itemTotal} items across fifteen categories, each one quoted on request. Search for an item, or open a
+              category to see everything in it, then add what you need to your quote list.
+            </p>
+            <p className="mt-3 text-base">
+              Prefer paper?{" "}
+              <Link href="/catalogue" className="link font-semibold text-ink">
+                Print the full catalogue
+              </Link>{" "}
+              or save it as a PDF for your purchase committee.
+            </p>
+          </>
         }
       />
 

@@ -176,7 +176,7 @@ export function ProductsExplorer({
               </button>
             ) : null}
           </div>
-          <p className="mt-2.5 text-sm text-ink-soft">
+          <p className={cn("mt-2.5 text-sm text-ink-soft", query ? "invisible" : null)}>
             Try{" "}
             {suggestions.map((s, i) => (
               <span key={s}>
@@ -347,7 +347,7 @@ function SearchResults({
                       {item.note ? <>, {item.note}</> : null}
                     </p>
                   </div>
-                  <AddToQuoteButton size="sm" item={{ id: item.id, name: item.name, category: item.cat }} />
+                  <AddToQuoteButton size="sm" label="Add to quote" item={{ id: item.id, name: item.name, category: item.cat }} />
                 </li>
               ))}
             </ul>
