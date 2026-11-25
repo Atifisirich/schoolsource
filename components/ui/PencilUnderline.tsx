@@ -51,7 +51,7 @@ export function PencilUnderline({
         aria-hidden="true"
         className={cn(
           "pointer-events-none absolute inset-x-[-0.06em] bottom-[-0.12em] block h-[0.32em] overflow-hidden",
-          "transition-transform duration-700 ease-out-quart",
+          "transition-transform duration-700 ease-out-quart motion-reduce:transition-none",
           drawn ? "translate-x-0" : "-translate-x-full",
         )}
         style={{ transitionDelay: `${delay}ms` }}

@@ -25,7 +25,7 @@ export function Pending({ label, className }: PendingProps) {
   return (
     <span
       className={cn(
-        "inline-block rounded-[4px] bg-pencil-soft px-1.5 font-sans text-[0.85em] font-semibold leading-normal tracking-normal text-ink normal-case",
+        "inline-block rounded-[4px] bg-pencil-soft px-1 font-sans text-[0.85em] font-semibold leading-normal tracking-normal text-ink normal-case",
         className,
       )}
     >
