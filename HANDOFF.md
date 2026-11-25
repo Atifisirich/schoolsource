@@ -18,7 +18,7 @@ The whole site was redesigned. The plan, with the reasons, is in [docs/REDESIGN.
 - **Header:** one sticky row with the products mega menu, the phone number, the quote counter and "Request a quote". Phones get a fixed bottom bar with "WhatsApp us" and "Request a quote".
 - **Logo:** new. A single blue S line from an orange source point. Files and usage rules are in `public/brand/`, including the rejected routes in `explorations.png`. The favicon and apple icon were replaced.
 - **Pages:** every page was rebuilt. The home hero animates the handwritten list turning into a quotation, using CSS only and showing the finished state under reduced motion.
-- **Product photos:** 55 photos now cover 36 items across Uniforms & Bags, Stationery, Sports, Gifts, Music, Labs, Housekeeping, Furniture, Canteen and Tech. Credits are in `public/images/photos/PHOTOS.md`. Items without a photo show a plain grey name plate.
+- **Product photos:** 55 photos now cover 37 items across Uniforms & Bags, Stationery, Sports, Gifts, Music, Labs, Housekeeping, Furniture, Canteen and Tech. Credits are in `public/images/photos/PHOTOS.md`. Items without a photo show a plain grey name plate.
 - **SEO:**
   - `sitemap.xml` and `robots.txt`.
   - A generated Open Graph image.
