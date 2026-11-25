@@ -2,7 +2,88 @@
 
 This is everything the next person, or the next Claude session, needs to pick this project up and finish it. Read it all before changing code. The original brief is kept in [docs/ORIGINAL-SPEC.md](docs/ORIGINAL-SPEC.md); where the two differ, this file is current.
 
-## 0. Latest: redesign v2 (November 2026)
+## 00. LATEST STATUS (read first): redesign v3 "Bold Product", paused mid-way
+
+**Where things stand (November 2026)**
+
+- **The owner rejected redesign v2** (section 0 below) as generic, clumsy and unclear.
+- **Four home-page concepts were built** as static pages and are live for review:
+  - `public/concepts/a/index.html`: The Order Book
+  - `public/concepts/b/index.html`: The Supply Room
+  - `public/concepts/c/index.html`: The Quote Desk, a search-first quote list
+  - `public/concepts/d/index.html`: Bold Product
+  - Live at `https://schoolsource.vercel.app/concepts/<a|b|c|d>/index.html`. Open the `index.html` URL; the short `/concepts/a` URL breaks the relative CSS paths.
+- **The owner chose D, "Bold Product"**, with two further instructions:
+  - "Make it more better."
+  - "Clean, minimalistic, simpler for school owners and principals to understand."
+  - The plan is in [docs/REDESIGN-V3.md](docs/REDESIGN-V3.md). Section 3a holds the "clean, minimal, simple" rules.
+- **Work was stopped by the owner** partway through v3. Everything is committed on `claude/cool-wozniak-0g0ie1`.
+
+**Done in v3** (phase 1, about 85%)
+
+- Design system in `app/globals.css`:
+  - colours: blue, orange, ink, paper, cream, sky, peach
+  - pill buttons, colour tiles
+  - fonts: Dela Gothic One for display and Schibsted Grotesk for text, set in `app/layout.tsx`
+  - old token names still work
+- Layout: new `Header` with a simple mega menu, `Footer`, `MobileMenu`, `MobileActionBar`, and a `QuoteListCounter` that bumps when an item is added.
+- Shared UI:
+  - `Button`, with variants primary, whatsapp, ghost and light; the old names are mapped
+  - `ColorTile`, a new colour-field tile with a cut-out
+  - `PageHeader`, a colour-field header
+  - `Section`, restyled with tones
+  - `Field`, `Pending`, `CategoryTile`
+  - `lib/category-art.ts` maps each category to its cut-out or photo
+- Product cut-outs are in `public/images/cutouts/`, copied from concept D.
+- **Home page**, rebuilt in `components/home/`: Hero (headline plus a composed cut-out group on orange), CategoryGrid, HowOrdering, KitsSection, WhySection, CloseSection.
+  - Open issues from the last critique round:
+    - "Housekeeping" overflows its tile at 390px.
+    - The why-us cards are too tall on phones.
+    - The category tiles waste height on phones.
+    - In the hero group, the trophy is too dominant.
+
+**Not done in v3** (phase 2 was started and stopped almost immediately)
+
+- These pages still have the v2 layouts. They pick up the new fonts and colours through the shared tokens, so they render, but they are not yet redesigned:
+  - `/products` and the 15 `/products/[category]` pages
+  - `/kits`, `/catalogue`, `/labs`, `/how-it-works`
+  - `/about`, `/contact`, `/quote`, `/privacy`, `/terms`
+- **The live site** (`schoolsource.vercel.app`) still shows v2. The last production deploy was before the v3 work, and v3 has not been deployed.
+
+**Next steps, in order**
+
+1. Fix the four open home-page issues above.
+2. Rebuild the inner pages in the v3 style, following docs/REDESIGN-V3.md §3a and concept D. Four groups can run in parallel:
+   - products and the category pages
+   - kits and catalogue
+   - labs and how it works
+   - about, contact, quote and legal
+3. Run the full check pass (below). Take screenshots at 360, 390, 768, 1024 and 1440. Deploy to Vercel.
+4. Remove `public/concepts/` and the `/concepts` rewrite in `next.config.ts` once the owner no longer needs the concepts.
+
+**Checks at pause**
+
+- `npx tsc --noEmit`, `npx eslint .` and `npm run build` all pass (36 pages).
+- ESLint ignores `.claude/**` and `public/concepts/**`.
+
+**Deploying**
+
+- The Vercel project is `schoolsource` (team "atif60002-9526's projects").
+- Deploy this branch as production with the Vercel MCP `create_deployment`, using a `gitSource` of `Atifisirich/schoolsource` with ref `claude/cool-wozniak-0g0ie1`.
+- The `.vercel.app` hosts are blocked from this sandbox. Check a deploy with `web_fetch_vercel_url`.
+
+**Environment**
+
+- The cloud environment "schoolsource" allows the Unsplash, Pexels and Wikimedia hosts for photos.
+
+**Still needed from the owner** (unchanged)
+
+- Hours, payment terms, minimum order, return policy and the delivery-area wording.
+- Whether labs are installed or only supplied.
+- Whether each branch gets its own delivery.
+- Own photos for the items listed in section 0.
+
+## 0. Earlier: redesign v2 (November 2026)
 
 The whole site was redesigned. The plan, with the reasons, is in [docs/REDESIGN.md](docs/REDESIGN.md). Where this file disagrees with that plan, the plan and this section are current.
 
