@@ -12,7 +12,7 @@ export function BigSteps({ steps, className }: { steps: BigStep[]; className?: s
       {steps.map((s, i) => (
         <li
           key={s.title}
-          className="grid grid-cols-[3.5rem_1fr] gap-x-5 border-b border-ink/15 py-8 sm:grid-cols-[6rem_1fr] sm:gap-x-8 md:py-10 lg:grid-cols-[8rem_minmax(0,1fr)_minmax(0,1.1fr)] lg:items-baseline"
+          className="grid grid-cols-[3.5rem_1fr] gap-x-5 border-b border-ink/15 py-8 sm:grid-cols-[6rem_1fr] sm:gap-x-8 md:py-10 lg:grid-cols-[6.5rem_minmax(0,1fr)_minmax(0,1.1fr)] lg:items-baseline"
         >
           <span
             aria-hidden="true"
