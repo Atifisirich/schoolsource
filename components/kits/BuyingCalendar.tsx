@@ -50,7 +50,7 @@ export function BuyingCalendar({ months }: { months: CalendarMonthView[] }) {
             <p className="mt-1 font-semibold">{m.title}</p>
             <p className="mt-2 text-[0.9375rem] text-ink-soft">{m.text}</p>
 
-            <div className="mt-auto pt-5">
+            <div className="mt-5">
               <p className="text-sm text-ink-soft">Usually ordered</p>
               <ul className="mt-1 flex flex-wrap gap-x-1 gap-y-0.5 text-[0.9375rem]">
                 {m.categories.map((c, j) => (
