@@ -1,9 +1,9 @@
 {
  "start": "2026-11-25T10:49:53.921Z",
- "round": 2,
+ "round": 3,
  "idle": 0,
  "errors": 0,
- "status": "fail",
+ "status": "open",
  "history": [
   {
    "at": "2026-11-25T11:11:00.495Z",
@@ -22,6 +22,15 @@
    "round": 2,
    "reused": false,
    "stopHookActive": false
+  },
+  {
+   "at": "2026-11-25T11:18:44.862Z",
+   "mode": "manual",
+   "status": "open",
+   "fails": 1,
+   "round": 3,
+   "reused": false,
+   "stopHookActive": false
   }
  ],
  "max": 3,
@@ -37,11 +46,11 @@
   "by": "gate.mjs --start"
  },
  "manual": true,
- "roundKey": "662416888ae0d364:bc09ecec",
+ "roundKey": "b447b616aba2ed33:bc09ecec",
  "roundFree": false,
  "idleFree": false,
  "blockKey": null,
- "fp": "662416888ae0d364",
+ "fp": "b447b616aba2ed33",
  "page": "index.html",
  "found": {
   "fails": [
@@ -126,19 +135,19 @@
     ]
    },
    {
-    "check": "collide",
-    "where": "div.wrap > div.grid.grid--top > div.detailpic.span-12 > img \"img: Cartons stacked on tall warehouse r\"",
-    "msg": "the words \"Send your list for a quotation\" and the picture div.detailpic.span-12 > img of another section lie in one place: the picture runs out of its section, which is shorter than what it holds",
-    "fix": "on a phone nothing lies on anything else: let the section grow with its content (min-height for its screens, never a fixed height; --hm: 2 when it needs two) or cut what it holds; keep pictures and cards off the buttons; pad the page under a fixed bar by the bar's height (top: the first section; end: the footer)",
+    "check": "no-visual",
+    "where": "section#kits \"Seven kits for regular school orders. Ad\"",
+    "msg": "pictures, effects and mocks cover 13% of this section; a feature section needs a visual (about 25% or more)",
+    "fix": "give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits",
     "widths": [
-     320
+     390
     ],
     "from": "consistency",
     "ids": [
-     "collide"
+     "no-visual"
     ],
     "wheres": [
-     "div.wrap > div.grid.grid--top > div.detailpic.span-12 > img \"img: Cartons stacked on tall warehouse r\""
+     "section#kits \"Seven kits for regular school orders. Ad\""
     ]
    }
   ],
@@ -279,19 +288,9 @@
     "from": "consistency"
    },
    {
-    "check": "no-visual",
-    "where": "section#kits \"Seven kits for regular school orders. Ad\"",
-    "msg": "pictures, effects and mocks cover 20% of this section; a feature section needs a visual (about 25% or more)",
-    "fix": "give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits",
-    "widths": [
-     390
-    ],
-    "from": "consistency"
-   },
-   {
     "check": "section-gaps",
     "where": "section#search / section#categories",
-    "msg": "118px between these sections, -56% against the median 268px",
+    "msg": "118px between these sections, -60% against the median 292px",
     "fix": "use one gap between sections (all within 25% of each other)",
     "widths": [
      390
@@ -301,8 +300,18 @@
    {
     "check": "section-gaps",
     "where": "section#how / section#kits",
-    "msg": "385px between these sections, +42% against the median 272px of gaps at a change of ground",
+    "msg": "uneven space at the edge of a band: 94px outside its edge, 291px inside it (the space on either side of a change of ground reads as one gap only when the two match)",
     "fix": "use one gap between sections (all within 25% of each other)",
+    "widths": [
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "hole",
+    "where": "section#kits \"Seven kits for regular school orders. Ad\"",
+    "msg": "an empty hole 392x240px inside the section (28% of the screen's height), with content above and below it",
+    "fix": "close the empty space: move the content together, or give the space the visual it lacks",
     "widths": [
      390
     ],
@@ -337,19 +346,19 @@
  },
  "open": [
   {
-   "check": "collide",
-   "where": "div.wrap > div.grid.grid--top > div.detailpic.span-12 > img \"img: Cartons stacked on tall warehouse r\"",
-   "msg": "the words \"Send your list for a quotation\" and the picture div.detailpic.span-12 > img of another section lie in one place: the picture runs out of its section, which is shorter than what it holds",
-   "fix": "on a phone nothing lies on anything else: let the section grow with its content (min-height for its screens, never a fixed height; --hm: 2 when it needs two) or cut what it holds; keep pictures and cards off the buttons; pad the page under a fixed bar by the bar's height (top: the first section; end: the footer)",
+   "check": "no-visual",
+   "where": "section#kits \"Seven kits for regular school orders. Ad\"",
+   "msg": "pictures, effects and mocks cover 13% of this section; a feature section needs a visual (about 25% or more)",
+   "fix": "give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits",
    "widths": [
-    320
+    390
    ],
    "from": "consistency",
    "ids": [
-    "collide"
+    "no-visual"
    ],
    "wheres": [
-    "div.wrap > div.grid.grid--top > div.detailpic.span-12 > img \"img: Cartons stacked on tall warehouse r\""
+    "section#kits \"Seven kits for regular school orders. Ad\""
    ]
   }
  ],
@@ -441,5 +450,6 @@
   }
  ],
  "warnCount": 18,
- "at": "2026-11-25T11:16:39.229Z"
+ "at": "2026-11-25T11:18:44.863Z",
+ "openTold": true
 }

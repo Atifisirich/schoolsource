@@ -232,3 +232,21 @@ html[data-buttons="pill"] .btn--secondary:hover, .hero__box .btn--secondary:hove
   #catalogue .group .index__frame { display: none; }
   .service__band { height: 160px; }
 }
+
+/* round 5 (gate round 1) */
+.hero__over > .hero__tag { position: absolute; right: var(--s-6); bottom: var(--s-6); }
+.section-head p .link { white-space: nowrap; }
+@media (min-width: 1024px) {
+  .index--lg a { padding: 15px 0 13px; }
+  .index:not(.index--lg) a { padding: 15px 0 13px; }
+}
+.kitrow { grid-template-columns: minmax(0, 1fr) auto 96px; }
+.legal__row { display: inline-flex; flex-wrap: wrap; gap: 4px 16px; }
+@media (max-width: 639px) {
+  .kitrow { grid-template-columns: minmax(0, 1fr) 72px; }
+  .kit-lead__pic { height: 300px; }
+  .legal__row { flex-direction: column; align-items: flex-start; }
+  #ordering .mo-pc__visual img { aspect-ratio: 2 / 1; object-fit: cover; width: 100%; height: auto; }
+  .index__thumb { width: 64px; height: 44px; }
+  .index a { grid-template-columns: 22px 64px minmax(0, 1fr) auto; }
+}

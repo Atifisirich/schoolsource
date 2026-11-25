@@ -1,7 +1,7 @@
 {
  "page": "/home/user/schoolsource/public/concepts/c/index.html",
- "url": "http://127.0.0.1:5201/concepts/c/index.html",
- "at": "2026-11-25T11:14:48.865Z",
+ "url": "http://127.0.0.1:5202/concepts/c/index.html",
+ "at": "2026-11-25T11:16:54.187Z",
  "out": "/home/user/schoolsource/public/concepts/c/.taste-skill/gate/consistency",
  "widths": [
   {
@@ -181,6 +181,16 @@
      "fix": "give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits"
     },
     {
+     "check": "no-visual",
+     "sev": "FAIL",
+     "sel": "section#kits",
+     "text": "Seven kits for regular school orders. Add a whol",
+     "msg": "pictures, effects and mocks cover 13% of this section; a feature section needs a visual (about 25% or more)",
+     "stop": 7,
+     "crop": "390-10-no-visual.jpg",
+     "fix": "give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits"
+    },
+    {
      "check": "nav",
      "sev": "WARN",
      "sel": "header.nav.nav--split > div.wrap.nav__bar > button.nav__toggle",
@@ -211,16 +221,6 @@
      "fix": "show it at rest: no fade, rise or unmask when it is scrolled into view"
     },
     {
-     "check": "no-visual",
-     "sev": "WARN",
-     "sel": "section#kits",
-     "text": "Seven kits for regular school orders. Add a whol",
-     "msg": "pictures, effects and mocks cover 20% of this section; a feature section needs a visual (about 25% or more)",
-     "stop": 7,
-     "crop": "390-11-no-visual.jpg",
-     "fix": "give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits"
-    },
-    {
      "check": "text-contrast",
      "sev": "WARN",
      "sel": "li.step.span-3:nth-of-type(1) > div.step__ui.chat > div.bubble > small",
@@ -236,18 +236,8 @@
      "sel": "section#search / section#categories",
      "text": "",
      "stop": 1,
-     "msg": "118px between these sections, -56% against the median 268px",
+     "msg": "118px between these sections, -60% against the median 292px",
      "crop": "390-04-section-gaps.jpg",
-     "fix": "use one gap between sections (all within 25% of each other)"
-    },
-    {
-     "check": "section-gaps",
-     "sev": "WARN",
-     "sel": "section#how / section#kits",
-     "text": "",
-     "stop": 5,
-     "msg": "385px between these sections, +42% against the median 272px of gaps at a change of ground",
-     "crop": "390-09-section-gaps.jpg",
      "fix": "use one gap between sections (all within 25% of each other)"
     },
     {
@@ -267,8 +257,18 @@
      "text": "",
      "stop": 5,
      "msg": "uneven space at the edge of a band: 94px outside its edge, 291px inside it (the space on either side of a change of ground reads as one gap only when the two match)",
-     "crop": "390-10-section-gaps.jpg",
+     "crop": "390-09-section-gaps.jpg",
      "fix": "use one gap between sections (all within 25% of each other)"
+    },
+    {
+     "check": "hole",
+     "sev": "WARN",
+     "sel": "section#kits",
+     "text": "Seven kits for regular school orders. Add a whol",
+     "msg": "an empty hole 392x240px inside the section (28% of the screen's height), with content above and below it",
+     "stop": 7,
+     "crop": "390-11-hole.jpg",
+     "fix": "close the empty space: move the content together, or give the space the visual it lacks"
     },
     {
      "check": "orphan",
@@ -345,22 +345,12 @@
     "crop": "narrow-320-01-collide.jpg",
     "width": 320,
     "fix": "on a phone nothing lies on anything else: let the section grow with its content (min-height for its screens, never a fixed height; --hm: 2 when it needs two) or cut what it holds; keep pictures and cards off the buttons; pad the page under a fixed bar by the bar's height (top: the first section; end: the footer)"
-   },
-   {
-    "check": "collide",
-    "sev": "FAIL",
-    "sel": "div.wrap > div.grid.grid--top > div.detailpic.span-12 > img",
-    "text": "img: Cartons stacked on tall warehouse racks",
-    "msg": "the words \"Send your list for a quotation\" and the picture div.detailpic.span-12 > img of another section lie in one place: the picture runs out of its section, which is shorter than what it holds",
-    "crop": "narrow-320-02-collide.jpg",
-    "width": 320,
-    "fix": "on a phone nothing lies on anything else: let the section grow with its content (min-height for its screens, never a fixed height; --hm: 2 when it needs two) or cut what it holds; keep pictures and cards off the buttons; pad the page under a fixed bar by the bar's height (top: the first section; end: the footer)"
    }
   ]
  },
  "counts": {
   "FAIL": 6,
-  "WARN": 24
+  "WARN": 23
  },
  "checks": {
   "assets": "PASS",
@@ -380,7 +370,7 @@
   "fold-card": "PASS",
   "hover-spill": "not checked",
   "overlap-text": "PASS",
-  "collide": "FAIL",
+  "collide": "WARN",
   "tap-size": "PASS",
   "row-gap": "PASS",
   "cut-text": "WARN",
@@ -429,7 +419,7 @@
   "busy-ground": "PASS",
   "section-gaps": "WARN",
   "proximity": "PASS",
-  "hole": "PASS",
+  "hole": "WARN",
   "links": "PASS",
   "forms": "not checked",
   "photo-upscale": "PASS",

@@ -1,0 +1,740 @@
+{
+ "start": "2026-11-25T10:50:05.218Z",
+ "round": 1,
+ "idle": 0,
+ "errors": 0,
+ "status": "fail",
+ "history": [
+  {
+   "at": "2026-11-25T11:18:45.495Z",
+   "mode": "manual",
+   "status": "fail",
+   "fails": 10,
+   "round": 1,
+   "reused": false,
+   "stopHookActive": false
+  }
+ ],
+ "max": 3,
+ "marker": {
+  "page": "index.html",
+  "url": null,
+  "root": "../..",
+  "kind": "product",
+  "category": "school supplies for schools",
+  "primary": "Request a quote",
+  "rounds": 3,
+  "start": "2026-11-25T10:50:05.218Z",
+  "by": "gate.mjs --start"
+ },
+ "manual": true,
+ "roundKey": "307ec82c8002b0f5:aa8efee8",
+ "roundFree": false,
+ "idleFree": false,
+ "blockKey": null,
+ "fp": "307ec82c8002b0f5",
+ "page": "index.html",
+ "found": {
+  "fails": [
+   {
+    "check": "row-gap",
+    "where": "div.hero-text.hero__in > div.hero__media.hero__fill > div.hero__over > dl.hero__tag \"Categories 15 Items 343 Ready kits 7\"",
+    "msg": "fills 28% of its grid row and leaves 72% of it empty on the left",
+    "fix": "fill the row at this width: span the columns, or stack the split",
+    "widths": [
+     1440
+    ],
+    "from": "consistency",
+    "ids": [
+     "row-gap"
+    ],
+    "wheres": [
+     "div.hero-text.hero__in > div.hero__media.hero__fill > div.hero__over > dl.hero__tag \"Categories 15 Items 343 Ready kits 7\""
+    ]
+   },
+   {
+    "check": "section-gaps",
+    "where": "section#catalogue / section#ordering",
+    "msg": "323px between these sections, +64% against the median 197px",
+    "fix": "use one gap between sections (all within 25% of each other)",
+    "widths": [
+     1440,
+     390
+    ],
+    "from": "consistency",
+    "ids": [
+     "section-gaps"
+    ],
+    "wheres": [
+     "section#catalogue / section#ordering"
+    ]
+   },
+   {
+    "check": "phone-number",
+    "where": "div.closing__cta.close--word > div.section-head--split > div:nth-of-type(1) > p.t-lead \"+91 96760 38523\"",
+    "msg": "a phone number in international format: \"+91 96760 38523\"; a visitor can dial it and reach a stranger (and 7 more like it: div.grid > div.span-2.footer__col:nth-of-type(4) > ul > li:nth-of-type(1), header.nav.nav--split > div.wrap.nav__bar > div.nav__actions > a.nav__link.nav__wa, div.hero__over > div.hero__box > div.btn-row > a.btn.btn--secondary, ...)",
+    "fix": "drop the number and its tel: link (a \"Request a call\" form may stand in), unless the brief gives the number",
+    "widths": [
+     1440
+    ],
+    "from": "consistency",
+    "ids": [
+     "phone-number"
+    ],
+    "wheres": [
+     "div.closing__cta.close--word > div.section-head--split > div:nth-of-type(1) > p.t-lead \"+91 96760 38523\""
+    ]
+   },
+   {
+    "check": "split-pair",
+    "where": "section#kits > div.wrap > div.grid.grid--top \"Term start classroom kitMarkers, dusters\"",
+    "msg": "the split's left column starts with a picture or a box, not text: text left, the visual right, on every split (SR-8)",
+    "fix": "put the text in the left column and the visual in the right, on every split",
+    "widths": [
+     1440
+    ],
+    "from": "consistency",
+    "ids": [
+     "split-pair"
+    ],
+    "wheres": [
+     "section#kits > div.wrap > div.grid.grid--top \"Term start classroom kitMarkers, dusters\""
+    ]
+   },
+   {
+    "check": "no-visual",
+    "where": "section#catalogue \"The catalogue, in 15 categories\"",
+    "msg": "pictures, effects and mocks cover 9% of this section; a feature section needs a visual (about 25% or more)",
+    "fix": "give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits",
+    "widths": [
+     390
+    ],
+    "from": "consistency",
+    "ids": [
+     "no-visual"
+    ],
+    "wheres": [
+     "section#catalogue \"The catalogue, in 15 categories\""
+    ]
+   },
+   {
+    "check": "off-grid",
+    "where": "div.closing__links > div.footer__legal > span > a:nth-of-type(1) \"Privacy\"",
+    "msg": "left edge at 208px, 7px off a common edge of its section at 201px (7 elements)",
+    "fix": "move it onto the page margin, or the column edge its section uses",
+    "widths": [
+     390
+    ],
+    "from": "consistency",
+    "ids": [
+     "off-grid"
+    ],
+    "wheres": [
+     "div.closing__links > div.footer__legal > span > a:nth-of-type(1) \"Privacy\""
+    ]
+   },
+   {
+    "check": "section-gaps",
+    "where": "section#kits / section#labs",
+    "msg": "579px between these sections, +93% against the median 300px of gaps at a change of ground",
+    "fix": "use one gap between sections (all within 25% of each other)",
+    "widths": [
+     390
+    ],
+    "from": "consistency",
+    "ids": [
+     "section-gaps"
+    ],
+    "wheres": [
+     "section#kits / section#labs"
+    ]
+   },
+   {
+    "check": "edge-left",
+    "where": "#catalogue p \"Bought every term, bought for oc\"",
+    "msg": "starts at x 970.4; the lines are 80 and the column starts",
+    "fix": "start it on the .wrap left line",
+    "widths": [
+     1440
+    ],
+    "from": "layout",
+    "ids": [
+     "edge-left"
+    ],
+    "wheres": [
+     "#catalogue p \"Bought every term, bought for oc\""
+    ]
+   },
+   {
+    "check": "edge-left",
+    "where": "#kits p \"One list for one job, quoted per\"",
+    "msg": "starts at x 772; the lines are 80 and the column starts",
+    "fix": "start it on the .wrap left line",
+    "widths": [
+     1440
+    ],
+    "from": "layout",
+    "ids": [
+     "edge-left"
+    ],
+    "wheres": [
+     "#kits p \"One list for one job, quoted per\""
+    ]
+   },
+   {
+    "check": "lines",
+    "where": "page",
+    "msg": "headings and leads start on 3 lines (x 80, 970.4, 772); the page has 80 and one split line",
+    "fix": "put the block on the .wrap lines or the grid columns",
+    "widths": [
+     1440
+    ],
+    "from": "layout",
+    "ids": [
+     "lines"
+    ],
+    "wheres": [
+     "page"
+    ]
+   },
+   {
+    "check": "screen-height",
+    "where": "#ordering section.section \"An order in four steps 1Send us \"",
+    "msg": "1714px, 2.03 screens; a section is exactly one or two (--h), or on a phone at least one that its content fills",
+    "fix": "make the section exactly one or two screens (--h: 1 or 2)",
+    "widths": [
+     390
+    ],
+    "from": "layout",
+    "ids": [
+     "screen-height"
+    ],
+    "wheres": [
+     "#ordering section.section \"An order in four steps 1Send us \""
+    ]
+   }
+  ],
+  "warns": [
+   {
+    "check": "scroll-reveal",
+    "where": "section#labs > div.wrap.grid > figure.develop.span-5",
+    "msg": "starts an animation (1.6 s) the moment it is scrolled into view (an IntersectionObserver) on img (inside a dealt moment's section, [data-moment]: an enter moment is expected on every kind; its still is judged under reduced motion)",
+    "fix": "show it at rest: no fade, rise or unmask when it is scrolled into view",
+    "widths": [
+     1440,
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "scroll-reveal",
+    "where": "section#ordering \"An order in four steps 1Send us your lis\"",
+    "msg": "starts \"border-left-color\" (0.3 s) the moment it is scrolled into view (an IntersectionObserver) on li.mo-pc__step:nth-of-type(1) (inside a dealt moment's section, [data-moment]: an enter moment is expected on every kind; its still is judged under reduced motion)",
+    "fix": "show it at rest: no fade, rise or unmask when it is scrolled into view",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "pinned",
+    "where": "section#ordering > div.wrap.mo-pc__grid \"An order in four steps 1Send us your lis\"",
+    "msg": "held on screen for 1 screen of scroll (position: sticky) while the page moves on (inside a dealt moment's section, [data-moment]: expected on every kind, two moments at most, house rule; its still is judged under reduced motion)",
+    "fix": "let the section scroll with the page",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "no-visual",
+    "where": "section#kits \"Seven ready-made kits\"",
+    "msg": "pictures, effects and mocks cover 24% of this section; a feature section needs a visual (about 25% or more)",
+    "fix": "give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits",
+    "widths": [
+     1440,
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "no-visual",
+    "where": "section#service \"What comes with every school order\"",
+    "msg": "pictures, effects and mocks cover 21% of this section; a feature section needs a visual (about 25% or more)",
+    "fix": "give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits",
+    "widths": [
+     1440,
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "copy-headings",
+    "where": "div.wrap > ol.terms.grid > li.span-4:nth-of-type(2) > h3 \"Diary and ID card proofs, approved first\"",
+    "msg": "\"Diary and ID card proofs, approved first\" names no product, part, place or section (the one brand line a page may have)",
+    "fix": "name the thing in every heading: the product, a part, the place or a section noun",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "copy-buttons",
+    "where": "div.hero__over > div.hero__box > div.btn-row > a.btn.btn--secondary \"WhatsApp us\"",
+    "msg": "\"WhatsApp us\" does not start with a verb (book, buy, try, start, get, see...)",
+    "fix": "label buttons with a verb and what the visitor gets (\"Book a room\", \"Start free trial\")",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "links",
+    "where": "div.nav__menu > div.wrap.grid > div.menu-col.span-3:nth-of-type(1) > a:nth-of-type(1) \"Stationery45 items\"",
+    "msg": "\"Stationery45 items\" goes to /products/stationery, which does not exist here",
+    "fix": "point every link at a real section, page or file",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "links",
+    "where": "div.nav__menu > div.wrap.grid > div.menu-col.span-3:nth-of-type(1) > a:nth-of-type(2) \"Textbooks17 items\"",
+    "msg": "\"Textbooks17 items\" goes to /products/textbooks, which does not exist here",
+    "fix": "point every link at a real section, page or file",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "links",
+    "where": "div.nav__menu > div.wrap.grid > div.menu-col.span-3:nth-of-type(1) > a:nth-of-type(3) \"Printing and ID cards27 items\"",
+    "msg": "\"Printing and ID cards27 items\" goes to /products/printing-id-cards, which does not exist here",
+    "fix": "point every link at a real section, page or file",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "links",
+    "where": "div.nav__menu > div.wrap.grid > div.menu-col.span-3:nth-of-type(1) > a:nth-of-type(4) \"Teaching aids22 items\"",
+    "msg": "\"Teaching aids22 items\" goes to /products/teaching-aids, which does not exist here",
+    "fix": "point every link at a real section, page or file",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "links",
+    "where": "div.nav__menu > div.wrap.grid > div.menu-col.span-3:nth-of-type(1) > a:nth-of-type(5) \"Uniforms and bags21 items\"",
+    "msg": "\"Uniforms and bags21 items\" goes to /products/uniforms-bags, which does not exist here",
+    "fix": "point every link at a real section, page or file",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "links",
+    "where": "div.nav__menu > div.wrap.grid > div.menu-col.span-3:nth-of-type(2) > a:nth-of-type(1) \"Housekeeping21 items\"",
+    "msg": "\"Housekeeping21 items\" goes to /products/housekeeping, which does not exist here",
+    "fix": "point every link at a real section, page or file",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "links",
+    "where": "div.nav__menu > div.wrap.grid > div.menu-col.span-3:nth-of-type(2) > a:nth-of-type(2) \"Sports30 items\"",
+    "msg": "\"Sports30 items\" goes to /products/sports, which does not exist here",
+    "fix": "point every link at a real section, page or file",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "links",
+    "where": "div.nav__menu > div.wrap.grid > div.menu-col.span-3:nth-of-type(2) > a:nth-of-type(3) \"Gifts and awards23 items\"",
+    "msg": "\"Gifts and awards23 items\" goes to /products/gifts-awards, which does not exist here",
+    "fix": "point every link at a real section, page or file",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "photo-set",
+    "where": "div.wrap > div.hero-text.hero__in > div.hero__media.hero__fill > img \"colour-pencils-2.jpg\"",
+    "msg": "6 photographs in more than one look: lightness from 0.35 to 0.88; saturation from 0.07 to 0.65; warm and cool photographs mixed (b* -19 to +20); the odd one out is colour-pencils-2.jpg",
+    "fix": "grade the photographs to one look (light, colour, warmth), or replace the odd one out",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "photo-credit",
+    "where": "(the page text)",
+    "msg": "2 library sources (unsplash, pexels): the page credits unsplash, the page credits pexels; confirm each shows the client's own product, place or people",
+    "fix": "confirm the library photograph shows the client's own product, place or people; otherwise replace it",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "nav-labels",
+    "where": "div.wrap.nav__bar > nav.nav__links > div.nav__item:nth-of-type(2) > a.nav__link \"Ordering\"",
+    "msg": "\"Ordering\" opens a section headed \"An order in four steps\"",
+    "fix": "name each nav link after the heading of the section it opens",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "label-centre",
+    "where": "header.nav.nav--split > div.wrap.nav__bar > div.nav__actions > a.btn.btn--primary \"Request a quote\"",
+    "msg": "its label sits 18px off-centre (25px of room at the left, 43px at the right) (and 2 more like it: \"Request a quote\", \"Request a quote\")",
+    "fix": "centre the label in its button, or fill the empty side with an icon",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "nav-current",
+    "where": "header.nav.nav--split",
+    "msg": "the nav stays on screen with 4 links to the page's sections, but never marks the one you are in (no link changes as the page scrolls)",
+    "fix": "mark the link of the section on screen (a colour, a weight or a line under it) as the visitor scrolls",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "action-repeat",
+    "where": "header.nav.nav--split > div.wrap.nav__bar > div.nav__actions > a.btn.btn--primary:nth-of-type(2) \"request a quote\"",
+    "msg": "\"request a quote\" shows 2 times on the first screen at 1440px (nav, hero): the nav's button and the hero's; nothing else on the screen may repeat it",
+    "fix": "show the action once a screen besides the nav's button: the hero's, the close's or the phone bar's, never all at once",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "container-edges",
+    "where": "div.wrap.mo-pc__grid > div.mo-pc__text > ol.mo-pc__steps > li.mo-pc__step:nth-of-type(1) \"1Send us your list On WhatsApp, by email\"",
+    "msg": "4 text blocks start on a left line at x 106, 26px from the container's left: text starts on the container's left, or on one split line (x 623, 732, 841) (also \"2Get one quotation Every categor\", \"3We check and pack Every order i\", \"4Delivered to your school In-sto\") (it is in a scroll scene: told as a WARN) (SR-6)",
+    "fix": "start the text on the container's left, or on the one split line every split shares",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "split-pair",
+    "where": "section#ordering > div.wrap.mo-pc__grid \"An order in four steps 1Send us your lis\"",
+    "msg": "the split's columns are off the page's one pair of lines: its right column starts at x 732, the first split's at 841 (it is in a scroll scene: told as a WARN) (SR-8)",
+    "fix": "start every split's right column on one shared line (wrap.left + k x (width + 24) / 12, k 5, 6 or 7; 6 on a place page) and end the left one 24px before it",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "nav",
+    "where": "header.nav.nav--split > div.wrap.nav__bar > button.nav__toggle",
+    "msg": "the nav is lopsided: its last item ends 13px inside the content's edge (366px), while its first starts on the other edge",
+    "fix": "start the nav's first item and end its last on the content's two edges",
+    "widths": [
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "off-grid",
+    "where": "div.group > div.section-head.section-head--row > p > a.link \"See all 343 items\"",
+    "msg": "left edge at 120px, 2px off a common edge of its section at 122px (15 elements, like span.index__name); 3 more in this section off the grid too (p.index__band at 60px, p.index__band:nth-of-type(1) at 60px, p.index__band:nth-of-type(2) at 60px)",
+    "fix": "move it onto the page margin, or the column edge its section uses",
+    "widths": [
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "section-gaps",
+    "where": "main#top > section.hero.hero--film / section#catalogue",
+    "msg": "120px between these sections, -48% against the median 232px",
+    "fix": "use one gap between sections (all within 25% of each other)",
+    "widths": [
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "section-gaps",
+    "where": "section#ordering / section#kits",
+    "msg": "208px between these sections, -31% against the median 300px of gaps at a change of ground",
+    "fix": "use one gap between sections (all within 25% of each other)",
+    "widths": [
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "section-gaps",
+    "where": "section#labs / section#service",
+    "msg": "uneven space at the edge of a band: 96px outside its edge, 204px inside it (the space on either side of a change of ground reads as one gap only when the two match)",
+    "fix": "use one gap between sections (all within 25% of each other)",
+    "widths": [
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "photo-set",
+    "where": "ol.mo-pc__steps > li.mo-pc__step:nth-of-type(2) > figure.mo-pc__visual > img \"cat-printing-id-cards.jpg\"",
+    "msg": "8 photographs in more than one look: lightness from 0.29 to 0.88; saturation from 0.07 to 0.65; warm and cool photographs mixed (b* -11 to +26); the odd one out is cat-printing-id-cards.jpg",
+    "fix": "grade the photographs to one look (light, colour, warmth), or replace the odd one out",
+    "widths": [
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "label-centre",
+    "where": "div.hero__over > div.hero__box > div.btn-row > a.btn.btn--primary \"Request a quote\"",
+    "msg": "its label sits 18px off-centre (67px of room at the left, 85px at the right) (and 1 more like it: \"Request a quote\")",
+    "fix": "centre the label in its button, or fill the empty side with an icon",
+    "widths": [
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "photo-weight",
+    "where": "ol.mo-pc__steps > li.mo-pc__step:nth-of-type(4) > figure.mo-pc__visual > img \"page-about.jpg\"",
+    "msg": "4 photographs are 3x or more wider than drawn on the phone, with no srcset: page-about.jpg is 1600px (310 KB) for a 316px frame; on a phone it arrives late and its frame shows only its ground until then",
+    "fix": "give each photograph srcset and sizes (a 800px and a 1600px file), or a smaller file: the frame never shows empty",
+    "widths": [
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "copy-stat-strip",
+    "msg": "stat strip x1",
+    "fix": "a strip only of figures the brief gives (a price, hours, a count); otherwise put each number in the sentence it proves, or leave it out (references/copy-tells.md)",
+    "widths": [],
+    "from": "copy",
+    "where": "copy x1: \"15 / 343 / 7 / 45 / 1...\"",
+    "exact": false
+   },
+   {
+    "check": "copy-numbered",
+    "msg": "9 step numbers",
+    "fix": "number only steps that happen in order (references/copy-tells.md)",
+    "widths": [],
+    "from": "copy",
+    "where": "(the copy)",
+    "exact": false
+   }
+  ],
+  "crashed": [],
+  "seconds": {
+   "consistency": 118,
+   "layout": 4
+  }
+ },
+ "open": [
+  {
+   "check": "row-gap",
+   "where": "div.hero-text.hero__in > div.hero__media.hero__fill > div.hero__over > dl.hero__tag \"Categories 15 Items 343 Ready kits 7\"",
+   "msg": "fills 28% of its grid row and leaves 72% of it empty on the left",
+   "fix": "fill the row at this width: span the columns, or stack the split",
+   "widths": [
+    1440
+   ],
+   "from": "consistency",
+   "ids": [
+    "row-gap"
+   ],
+   "wheres": [
+    "div.hero-text.hero__in > div.hero__media.hero__fill > div.hero__over > dl.hero__tag \"Categories 15 Items 343 Ready kits 7\""
+   ]
+  },
+  {
+   "check": "section-gaps",
+   "where": "section#catalogue / section#ordering",
+   "msg": "323px between these sections, +64% against the median 197px",
+   "fix": "use one gap between sections (all within 25% of each other)",
+   "widths": [
+    1440,
+    390
+   ],
+   "from": "consistency",
+   "ids": [
+    "section-gaps"
+   ],
+   "wheres": [
+    "section#catalogue / section#ordering"
+   ]
+  },
+  {
+   "check": "split-pair",
+   "where": "section#kits > div.wrap > div.grid.grid--top \"Term start classroom kitMarkers, dusters\"",
+   "msg": "the split's left column starts with a picture or a box, not text: text left, the visual right, on every split (SR-8)",
+   "fix": "put the text in the left column and the visual in the right, on every split",
+   "widths": [
+    1440
+   ],
+   "from": "consistency",
+   "ids": [
+    "split-pair"
+   ],
+   "wheres": [
+    "section#kits > div.wrap > div.grid.grid--top \"Term start classroom kitMarkers, dusters\""
+   ]
+  },
+  {
+   "check": "no-visual",
+   "where": "section#catalogue \"The catalogue, in 15 categories\"",
+   "msg": "pictures, effects and mocks cover 9% of this section; a feature section needs a visual (about 25% or more)",
+   "fix": "give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits",
+   "widths": [
+    390
+   ],
+   "from": "consistency",
+   "ids": [
+    "no-visual"
+   ],
+   "wheres": [
+    "section#catalogue \"The catalogue, in 15 categories\""
+   ]
+  },
+  {
+   "check": "off-grid",
+   "where": "div.closing__links > div.footer__legal > span > a:nth-of-type(1) \"Privacy\"",
+   "msg": "left edge at 208px, 7px off a common edge of its section at 201px (7 elements)",
+   "fix": "move it onto the page margin, or the column edge its section uses",
+   "widths": [
+    390
+   ],
+   "from": "consistency",
+   "ids": [
+    "off-grid"
+   ],
+   "wheres": [
+    "div.closing__links > div.footer__legal > span > a:nth-of-type(1) \"Privacy\""
+   ]
+  },
+  {
+   "check": "section-gaps",
+   "where": "section#kits / section#labs",
+   "msg": "579px between these sections, +93% against the median 300px of gaps at a change of ground",
+   "fix": "use one gap between sections (all within 25% of each other)",
+   "widths": [
+    390
+   ],
+   "from": "consistency",
+   "ids": [
+    "section-gaps"
+   ],
+   "wheres": [
+    "section#kits / section#labs"
+   ]
+  },
+  {
+   "check": "edge-left",
+   "where": "#catalogue p \"Bought every term, bought for oc\"",
+   "msg": "starts at x 970.4; the lines are 80 and the column starts",
+   "fix": "start it on the .wrap left line",
+   "widths": [
+    1440
+   ],
+   "from": "layout",
+   "ids": [
+    "edge-left"
+   ],
+   "wheres": [
+    "#catalogue p \"Bought every term, bought for oc\""
+   ]
+  },
+  {
+   "check": "edge-left",
+   "where": "#kits p \"One list for one job, quoted per\"",
+   "msg": "starts at x 772; the lines are 80 and the column starts",
+   "fix": "start it on the .wrap left line",
+   "widths": [
+    1440
+   ],
+   "from": "layout",
+   "ids": [
+    "edge-left"
+   ],
+   "wheres": [
+    "#kits p \"One list for one job, quoted per\""
+   ]
+  },
+  {
+   "check": "lines",
+   "where": "page",
+   "msg": "headings and leads start on 3 lines (x 80, 970.4, 772); the page has 80 and one split line",
+   "fix": "put the block on the .wrap lines or the grid columns",
+   "widths": [
+    1440
+   ],
+   "from": "layout",
+   "ids": [
+    "lines"
+   ],
+   "wheres": [
+    "page"
+   ]
+  },
+  {
+   "check": "screen-height",
+   "where": "#ordering section.section \"An order in four steps 1Send us \"",
+   "msg": "1714px, 2.03 screens; a section is exactly one or two (--h), or on a phone at least one that its content fills",
+   "fix": "make the section exactly one or two screens (--h: 1 or 2)",
+   "widths": [
+    390
+   ],
+   "from": "layout",
+   "ids": [
+    "screen-height"
+   ],
+   "wheres": [
+    "#ordering section.section \"An order in four steps 1Send us \""
+   ]
+  }
+ ],
+ "waived": [
+  {
+   "check": "phone-number",
+   "where": "div.closing__cta.close--word > div.section-head--split > div:nth-of-type(1) > p.t-lead \"+91 96760 38523\"",
+   "msg": "a phone number in international format: \"+91 96760 38523\"; a visitor can dial it and reach a stranger (and 7 more like it: div.grid > div.span-2.footer__col:nth-of-type(4) > ul > li:nth-of-type(1), header.nav.nav--split > div.wrap.nav__bar > div.nav__actions > a.nav__link.nav__wa, div.hero__over > div.hero__box > div.btn-row > a.btn.btn--secondary, ...)",
+   "fix": "drop the number and its tel: link (a \"Request a call\" form may stand in), unless the brief gives the number",
+   "widths": [
+    1440
+   ],
+   "from": "consistency",
+   "ids": [
+    "phone-number"
+   ],
+   "wheres": [
+    "div.closing__cta.close--word > div.section-head--split > div:nth-of-type(1) > p.t-lead \"+91 96760 38523\""
+   ],
+   "reason": "The client's real phone and WhatsApp number, confirmed in lib/site.ts; the brief requires the real contact details."
+  }
+ ],
+ "warnCount": 33,
+ "at": "2026-11-25T11:18:45.495Z"
+}
