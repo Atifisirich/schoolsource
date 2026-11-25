@@ -30,26 +30,36 @@ export function CategoryFilter({ categoryName }: { categoryName: string }) {
   }, [query]);
 
   return (
-    <div className="relative w-full lg:w-64">
+    <div>
       <label htmlFor="category-filter" className="sr-only">
         Filter items in {categoryName}
       </label>
-      <svg viewBox="0 0 20 20" className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-ink-soft" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" aria-hidden="true">
-        <circle cx="8.5" cy="8.5" r="5.5" />
-        <path d="M13 13 L17 17" />
-      </svg>
-      <input
-        id="category-filter"
-        type="search"
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-        placeholder={`Filter ${categoryName.toLowerCase()}`}
-        autoComplete="off"
-        className="h-10 w-full rounded-full border border-ink/25 bg-white pl-9 pr-16 text-sm placeholder:text-ink-soft/80 focus:border-board focus:outline-none focus:ring-2 focus:ring-board/30 [&::-webkit-search-cancel-button]:hidden"
-      />
-      <span aria-live="polite" className="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 font-mono text-[0.6875rem] text-ink-soft">
-        {shown !== null ? `${shown} found` : ""}
-      </span>
+      <div className="relative">
+        <svg
+          viewBox="0 0 20 20"
+          className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-ink-soft"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          aria-hidden="true"
+        >
+          <circle cx="8.5" cy="8.5" r="5.5" />
+          <path d="M13 13 L17 17" />
+        </svg>
+        <input
+          id="category-filter"
+          type="search"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder="Filter items"
+          autoComplete="off"
+          className="h-11 w-full rounded-sm border border-ink/20 bg-white pl-9 pr-3 text-[0.9375rem] placeholder:text-ink-soft/80 transition-[border-color,box-shadow] duration-150 hover:border-ink/40 focus:border-board focus:outline-none focus:ring-[3px] focus:ring-board/15 [&::-webkit-search-cancel-button]:hidden"
+        />
+      </div>
+      <p aria-live="polite" className="tabular mt-1.5 text-sm text-ink-soft empty:hidden">
+        {shown !== null ? `${shown} ${shown === 1 ? "item" : "items"} shown` : ""}
+      </p>
     </div>
   );
 }

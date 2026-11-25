@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { Field, Input, Textarea } from "@/components/ui/Field";
+import { whatsappLink } from "@/lib/site";
 import { isValidPhone, submitForm } from "@/lib/submit-form";
 import { SendProblem, SentPanel } from "./FormMessages";
 
@@ -24,6 +25,7 @@ export function QuickQuoteForm({
   const [status, setStatus] = useState<Status>("idle");
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [school, setSchool] = useState("");
+  const [draft, setDraft] = useState<Record<string, string>>({});
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -43,6 +45,7 @@ export function QuickQuoteForm({
     }
 
     setSchool(data.school);
+    setDraft(data);
     setStatus("sending");
     const result = await submitForm(`Quote request from ${data.school}${about ? ` (${about})` : ""}`, {
       name: data.name,
@@ -56,13 +59,23 @@ export function QuickQuoteForm({
     if (result.ok) form.reset();
   }
 
+  // Fallback when the form cannot send: open WhatsApp with what was typed
+  function sendOnWhatsApp() {
+    const lines = [
+      `Hello SchoolSource, enquiry from ${draft.school}${about ? ` (${about})` : ""}.`,
+      `Contact: ${[draft.name, draft.phone].filter(Boolean).join(", ")}`,
+      draft.message?.trim() ? `\n${draft.message.trim()}` : "",
+    ].filter(Boolean);
+    window.open(whatsappLink(lines.join("\n")), "_blank", "noopener,noreferrer");
+  }
+
   if (status === "sent") return <SentPanel school={school} />;
 
   return (
     <form
       noValidate
       onSubmit={onSubmit}
-      className="grid gap-5 rounded-sm border border-ink/10 bg-white shadow-card p-6 sm:p-8"
+      className="card grid gap-5 p-5 sm:p-8"
       aria-describedby="quick-form-note"
     >
       <div className="grid gap-5 sm:grid-cols-2">
@@ -84,8 +97,8 @@ export function QuickQuoteForm({
       <input type="checkbox" name="botcheck" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
 
       <div className="flex flex-wrap items-center gap-x-5 gap-y-3">
-        <Button type="submit" size="lg" disabled={status === "sending"}>
-          {status === "sending" ? "Sending..." : "Send my list"}
+        <Button type="submit" size="lg" disabled={status === "sending"} className="w-full sm:w-auto">
+          {status === "sending" ? "Sending…" : "Send my list"}
         </Button>
         <p id="quick-form-note" className="text-sm text-ink-soft">
           You review the itemised quotation before you order.
@@ -93,7 +106,7 @@ export function QuickQuoteForm({
       </div>
 
       <div aria-live="polite">
-        {status === "error" || status === "not-configured" ? <SendProblem kind={status} /> : null}
+        {status === "error" || status === "not-configured" ? <SendProblem kind={status} onWhatsApp={sendOnWhatsApp} /> : null}
       </div>
     </form>
   );

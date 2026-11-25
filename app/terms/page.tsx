@@ -5,6 +5,7 @@ import { site } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Terms",
   description: "Basic terms for SchoolSource quotations, orders, delivery and payment.",
+  alternates: { canonical: "/terms" },
 };
 
 export default function TermsPage() {
@@ -45,7 +46,7 @@ export default function TermsPage() {
         },
         {
           title: "Contact",
-          body: [`For questions about these terms, email ${site.email} or call ${site.phoneDisplay}. Address: [ADDRESS].`],
+          body: [`For questions about these terms, email ${site.email} or call ${site.phoneDisplay}. Address: ${site.address}.`],
         },
       ]}
     />

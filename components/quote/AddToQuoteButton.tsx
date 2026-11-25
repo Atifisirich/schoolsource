@@ -46,13 +46,14 @@ export function AddToQuoteButton({
       aria-pressed={added}
       onClick={onClick}
       className={cn(
-        "inline-flex shrink-0 items-center justify-center gap-2 rounded-sm font-semibold transition-[color,background-color,box-shadow,transform] duration-200 active:translate-y-px",
-        size === "md" ? "h-11 px-4 text-[0.9375rem]" : "h-9 px-3 text-sm",
+        // .btn (globals.css) adds the hover step and press, gated to real hover devices
+        "btn inline-flex shrink-0 select-none items-center justify-center gap-2 rounded-sm border font-semibold leading-none",
+        size === "md" ? "h-11 px-4 text-[0.9375rem]" : "h-10 px-3.5 text-sm",
         added
-          ? "border-[1.5px] border-pencil bg-pencil-soft text-ink"
+          ? "border-pencil/60 bg-pencil-soft text-ink hover:border-pencil"
           : variant === "solid"
-            ? "ink-fill bg-board text-white shadow-button hover:-translate-y-0.5 [--fill:var(--color-board-deep)]"
-            : "ink-fill border-[1.5px] border-board/30 bg-white text-board shadow-card hover:-translate-y-0.5 hover:border-board hover:text-white [--fill:var(--color-board)]",
+            ? "border-board bg-board text-white hover:border-board-deep hover:bg-board-deep"
+            : "border-ink/15 bg-white text-board hover:border-board/50 hover:bg-paper-deep",
         className,
       )}
     >

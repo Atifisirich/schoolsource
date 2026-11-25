@@ -1,20 +1,23 @@
 import { WhatsAppIcon } from "@/components/layout/WhatsAppFloat";
 import { Button } from "@/components/ui/Button";
-import { Placeholder } from "@/components/ui/Placeholder";
+import { Pending } from "@/components/ui/Pending";
 import { site, whatsappLink } from "@/lib/site";
 
 /** Thank-you state shown after a form is sent. */
 export function SentPanel({ school, fileToSend = false }: { school: string; fileToSend?: boolean }) {
   return (
-    <div role="status" className="animate-rise-in rounded-sm border border-ink/10 bg-white shadow-card p-6 sm:p-8">
-      <p className="font-mono text-label uppercase text-board">Request received</p>
-      <h3 className="mt-3 text-h3">Thank you. We have your request.</h3>
-      <p className="mt-3 text-ink-soft">
-        We&apos;ll reply within one working day <Placeholder>[CONFIRM]</Placeholder> with an itemised quotation. If it
-        is urgent, message us on WhatsApp.
+    <div role="status" className="animate-rise-in card p-6 sm:p-8">
+      <svg viewBox="0 0 24 24" className="size-8 text-board" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <circle cx="12" cy="12" r="10" />
+        <path d="M7.5 12.5 L10.5 15.5 L16.5 9" />
+      </svg>
+      <h3 className="mt-4 text-h3">Thank you. We have your request.</h3>
+      <p className="mt-3 max-w-[56ch] text-ink-soft">
+        We&apos;ll reply within one working day <Pending label="CONFIRM" /> with an itemised quotation. If it is
+        urgent, message us on WhatsApp.
       </p>
       {fileToSend ? (
-        <p className="mt-4 border-l-[3px] border-pencil bg-paper px-4 py-3 text-[0.9375rem]">
+        <p className="mt-5 rounded-sm border border-pencil/50 bg-pencil-soft px-4 py-3 text-[0.9375rem]">
           Please send the photo or PDF of your list on WhatsApp, so we can match it to this request.
         </p>
       ) : null}
@@ -34,20 +37,38 @@ export function SentPanel({ school, fileToSend = false }: { school: string; file
   );
 }
 
-/** Shown when sending fails or the form is not connected yet. */
-export function SendProblem({ kind }: { kind: "error" | "not-configured" }) {
+/**
+ * Shown when sending fails or the form is not connected yet. With
+ * `onWhatsApp`, offers a button that opens WhatsApp with the request typed.
+ */
+export function SendProblem({ kind, onWhatsApp }: { kind: "error" | "not-configured"; onWhatsApp?: () => void }) {
   return (
-    <p className="rounded-sm border-l-[3px] border-red bg-paper px-4 py-3 text-sm">
-      {kind === "error" ? "Your request could not be sent. Please try again, or send it " : "The online form is not connected yet. Please send your request "}
-      on{" "}
-      <a href={site.whatsappHref} className="font-semibold underline" target="_blank" rel="noopener noreferrer">
-        WhatsApp
-      </a>{" "}
-      or to{" "}
-      <a href={site.emailHref} className="font-semibold underline">
-        {site.email}
-      </a>
-      .
-    </p>
+    <div className="rounded-sm border border-red/40 bg-[#fff6f2] p-4 sm:p-5">
+      <p className="font-semibold">
+        {kind === "error" ? "Your request could not be sent." : "The online form is not connected yet."}
+      </p>
+      <p className="mt-1 text-[0.9375rem] text-ink-soft">
+        {kind === "error" ? "Please try again, or send it " : "Please send your request "}
+        on WhatsApp or by email to{" "}
+        <a href={site.emailHref} className="link font-semibold text-ink">
+          {site.email}
+        </a>
+        . Nothing you typed has been lost.
+      </p>
+      <div className="mt-4 flex flex-wrap gap-3">
+        {onWhatsApp ? (
+          <Button type="button" onClick={onWhatsApp} icon={<WhatsAppIcon />}>
+            Send on WhatsApp
+          </Button>
+        ) : (
+          <Button href={site.whatsappHref} icon={<WhatsAppIcon />}>
+            Open WhatsApp
+          </Button>
+        )}
+        <Button href={site.emailHref} variant="secondary">
+          Email us
+        </Button>
+      </div>
+    </div>
   );
 }

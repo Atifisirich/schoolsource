@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { cn } from "@/lib/cn";
 import { quoteList, useQuoteList, type QuoteItem } from "@/lib/quote-list";
 
 /** Review and edit the Quote List: quantities, remove, clear. */
@@ -11,51 +10,59 @@ export function QuoteListEditor() {
 
   if (items.length === 0) {
     return (
-      <div className="rounded-sm border border-dashed border-ink/30 bg-paper px-5 py-6">
+      <div className="rounded-md border border-dashed border-ink/25 bg-paper-deep px-5 py-5">
         <p className="font-semibold">Your quote list is empty.</p>
-        <p className="mt-1 text-[0.9375rem] text-ink-soft">
+        <p className="mt-1 max-w-[60ch] text-[0.9375rem] text-ink-soft">
           Add items from{" "}
-          <Link href="/products" className="font-semibold text-ink underline decoration-rule underline-offset-4 hover:decoration-board">
+          <Link href="/products" className="link font-semibold text-ink">
             the product categories
           </Link>{" "}
           or{" "}
-          <Link href="/kits" className="font-semibold text-ink underline decoration-rule underline-offset-4 hover:decoration-board">
+          <Link href="/kits" className="link font-semibold text-ink">
             school kits
           </Link>
-          , or simply type your list in the message below.
+          , or type your list in the message box below.
         </p>
       </div>
     );
   }
 
   return (
-    <div>
+    <div className="rounded-md border border-rule">
       <table className="w-full text-left text-[0.9375rem]">
         <caption className="sr-only">Items in your quote list</caption>
         <thead>
-          <tr className="border-b-2 border-ink font-mono text-label uppercase text-ink-soft">
-            <th scope="col" className="w-8 py-2 font-medium">No.</th>
-            <th scope="col" className="py-2 font-medium">Item</th>
-            <th scope="col" className="py-2 text-right font-medium">Qty</th>
-            <th scope="col" className="w-10 py-2"><span className="sr-only">Remove</span></th>
+          <tr className="border-b border-rule bg-paper-deep text-sm text-ink-soft">
+            <th scope="col" className="hidden w-12 py-2.5 pl-4 font-medium sm:table-cell">
+              Line
+            </th>
+            <th scope="col" className="py-2.5 pl-4 font-medium sm:pl-0">
+              Item
+            </th>
+            <th scope="col" className="py-2.5 pr-2 text-right font-medium">
+              Quantity
+            </th>
+            <th scope="col" className="w-12 py-2.5 pr-2">
+              <span className="sr-only">Remove</span>
+            </th>
           </tr>
         </thead>
         <tbody>
           {items.map((item, i) => (
-            <tr key={item.id} className="border-b border-rule align-middle">
-              <td className="py-3 font-mono text-[0.75rem] text-ink-soft">{String(i + 1).padStart(2, "0")}</td>
-              <td className="py-3 pr-3">
-                <span className="font-semibold">{item.name}</span>
+            <tr key={item.id} className="border-b border-rule align-middle last:border-b-0">
+              <td className="tabular hidden py-3 pl-4 text-sm text-ink-soft sm:table-cell">{i + 1}</td>
+              <td className="min-w-0 py-3 pl-4 pr-3 sm:pl-0">
+                <span className="block break-words font-semibold leading-snug">{item.name}</span>
                 {item.category ? <span className="block text-sm text-ink-soft">{item.category}</span> : null}
               </td>
-              <td className="py-3 text-right">
+              <td className="py-3 pr-2 text-right">
                 <QuantityInput item={item} />
               </td>
-              <td className="py-3 text-right">
+              <td className="py-3 pr-2 text-right">
                 <button
                   type="button"
                   onClick={() => quoteList.remove(item.id)}
-                  className="inline-flex size-9 items-center justify-center rounded-sm text-ink-soft transition-colors hover:bg-paper-deep hover:text-red"
+                  className="inline-flex size-11 items-center justify-center rounded-sm text-ink-soft transition-colors duration-150 hover:bg-paper-deep hover:text-red active:bg-rule"
                 >
                   <span className="sr-only">Remove {item.name}</span>
                   <svg viewBox="0 0 16 16" className="size-4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" aria-hidden="true">
@@ -67,15 +74,15 @@ export function QuoteListEditor() {
           ))}
         </tbody>
       </table>
-      <div className="mt-3 flex flex-wrap items-center justify-between gap-3 text-sm">
-        <p className="text-ink-soft">
-          {items.length} {items.length === 1 ? "item" : "items"}. Quantities are a starting point; we will confirm them
-          with you.
+      <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-1 border-t border-rule px-4 py-2 text-sm">
+        <p className="py-2 text-ink-soft" aria-live="polite">
+          <span className="tabular">{items.length}</span> {items.length === 1 ? "item" : "items"}. Quantities are a
+          starting point; we confirm them with you.
         </p>
         <button
           type="button"
           onClick={() => quoteList.clear()}
-          className="font-semibold text-ink-soft underline decoration-rule underline-offset-4 hover:text-red hover:decoration-red"
+          className="-mx-2 min-h-11 rounded-sm px-2 font-semibold text-ink-soft underline decoration-ink/25 underline-offset-4 transition-colors duration-150 hover:text-red hover:decoration-red"
         >
           Clear list
         </button>
@@ -92,10 +99,10 @@ function QuantityInput({ item }: { item: QuoteItem }) {
 
   const commit = (value: number) => quoteList.setQuantity(item.id, Math.max(1, Math.min(99999, value)));
   const stepBtn =
-    "inline-flex size-9 items-center justify-center text-ink transition-colors hover:bg-paper-deep disabled:opacity-40";
+    "inline-flex h-11 w-10 items-center justify-center text-lg text-ink transition-colors duration-150 hover:bg-paper-deep active:bg-rule disabled:text-ink/30 disabled:hover:bg-transparent";
 
   return (
-    <div className="inline-flex items-center rounded-sm border border-ink-soft bg-white">
+    <div className="inline-flex items-center overflow-hidden rounded-sm border border-[#7d8899] bg-white focus-within:border-board focus-within:ring-2 focus-within:ring-board/30">
       <button type="button" className={stepBtn} onClick={() => commit(item.quantity - 1)} disabled={item.quantity <= 1}>
         <span className="sr-only">Decrease quantity of {item.name}</span>
         <span aria-hidden="true">&minus;</span>
@@ -113,7 +120,7 @@ function QuantityInput({ item }: { item: QuoteItem }) {
           if (n > 0) commit(n);
         }}
         onBlur={() => setText(String(item.quantity))}
-        className={cn("h-9 w-14 border-x border-ink/15 text-center font-mono text-sm tabular-nums focus:outline-none focus:ring-2 focus:ring-board/30")}
+        className="tabular h-11 w-14 border-x border-rule text-center text-[0.9375rem] focus:outline-none"
       />
       <button type="button" className={stepBtn} onClick={() => commit(item.quantity + 1)}>
         <span className="sr-only">Increase quantity of {item.name}</span>

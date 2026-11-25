@@ -1,28 +1,26 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { CategoryIcon } from "@/components/icons/CategoryIcon";
 import { WhatsAppIcon } from "@/components/layout/WhatsAppFloat";
 import { Button } from "@/components/ui/Button";
-import { Container } from "@/components/ui/Container";
-import { IndexTab } from "@/components/ui/IndexTab";
 import { PageHeader } from "@/components/ui/PageHeader";
-import { PencilUnderline } from "@/components/ui/PencilUnderline";
+import { Pending, showPending } from "@/components/ui/Pending";
 import { Photo } from "@/components/ui/Photo";
-import { withPlaceholders } from "@/components/ui/Placeholder";
 import { RouteSteps } from "@/components/ui/RouteSteps";
-import { Eyebrow, Section } from "@/components/ui/Section";
+import { Section } from "@/components/ui/Section";
 import { whatsappLink } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Labs & STEM Setups",
   description:
-    "Science, maths and STEM labs, CBSE Composite Skill Labs and tinkering labs for schools: equipment sourcing, layout planning and installation.",
+    "Equipment for science, maths, STEM and tinkering labs, with lab furniture and safety gear on the same itemised quotation. Complete lab setups planned, supplied and installed.",
 };
 
 const consultHref = "/quote?topic=lab";
 
+type LabType = { name: string; text: React.ReactNode; link: string; pending?: boolean };
+
 // Contents are drawn from the Labs, Furniture and Electricals categories in data/catalogue.ts
-const labTypes = [
+const labTypes: LabType[] = [
   {
     name: "Science labs",
     text: "Physics, chemistry and biology: apparatus, glassware, microscopes, specimens and models. Chemicals on request, where permitted.",
@@ -39,176 +37,209 @@ const labTypes = [
     link: "/products/labs#stem-and-robotics",
   },
   {
-    name: "CBSE Composite Skill Lab",
-    text: "Planned to the CBSE guidelines for composite skill labs [CONFIRM].",
-    link: "/products/labs#complete-lab-setups",
-  },
-  {
     name: "Tinkering lab",
     text: "3D printers, laser engravers and hand tools, with work tables and storage.",
     link: "/products/labs#tinkering-and-maker",
   },
-];
-
-const schoolGets = [
   {
-    title: "Equipment sourcing",
-    text: "Every item on one itemised quotation, from apparatus to safety goggles.",
-    slug: "labs",
-  },
-  {
-    title: "Layout planning",
-    text: "Bench, storage and power positions planned for your room and class size.",
-    slug: "furniture",
-  },
-  {
-    title: "Installation",
-    text: "Furniture, fittings and equipment installed and set out, ready for the first class.",
-    slug: "electricals",
+    name: "CBSE Composite Skill Lab",
+    text: (
+      <>
+        Set up to the CBSE guidelines for composite skill labs <Pending label="CONFIRM" />
+      </>
+    ),
+    link: "/products/labs#complete-lab-setups",
+    pending: true,
   },
 ];
 
-const process = [
+const oneQuotation = [
+  { label: "Apparatus, glassware and models", href: "/products/labs" },
+  { label: "Lab tables and stools", href: "/products/furniture#lab-furniture" },
+  { label: "Safety goggles, aprons and gloves", href: "/products/labs#lab-safety" },
+  { label: "Switches, wiring and extension boards", href: "/products/electricals#electrical-fittings" },
+];
+
+const steps = [
   { title: "Consultation", text: "We discuss the lab you need, your room, class size and timeline." },
   { title: "Layout and list", text: "We plan the layout and prepare a full equipment list." },
   { title: "Itemised quotation", text: "Every item quoted line by line, for you to review and approve." },
-  { title: "Supply and installation", text: "Delivered and installed on the agreed date, with GST invoices." },
+  { title: "Supply and installation", text: "Checked before dispatch, delivered and installed, with a GST invoice." },
 ];
 
+function Arrow({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 16 16"
+      className={className}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.75"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M2 8 H13 M9 4 L13 8 L9 12" />
+    </svg>
+  );
+}
+
 export default function LabsPage() {
+  const shownLabs = labTypes.filter((l) => !l.pending || showPending);
+
   return (
     <>
       <PageHeader
-        crumbs={[{ href: "/", label: "Home" }, { label: "Labs & STEM" }]}
-        title={
-          <>
-            Labs &amp; STEM setups, <PencilUnderline delay={300}>planned and installed</PencilUnderline>
-          </>
-        }
+        crumbs={[{ href: "/", label: "Home" }, { label: "Labs" }]}
+        title="Labs for science, maths and STEM"
         intro={
           <p>
-            Science, maths and STEM labs, CBSE Composite Skill Labs and tinkering labs. We source the equipment, plan
-            the layout and handle installation, so a new lab arrives as one project.
+            Equipment for a new lab or an upgrade, with benches, storage and safety gear on the same quotation.
+            Complete lab setups are planned, supplied and installed as one project.
           </p>
         }
         aside={
-          <div className="flex flex-col items-start gap-3 lg:items-end">
-            <Button href={consultHref} size="lg">Request a lab consultation</Button>
-            <Link href="/products/labs" className="text-sm font-semibold underline decoration-rule underline-offset-4 hover:decoration-board">
-              Browse lab equipment
-            </Link>
-          </div>
+          <Photo
+            src="/images/photos/page-labs.jpg"
+            alt="Electronics components, sensors, tools and a project book laid out on a table"
+            className="aspect-[3/2] w-full rounded-lg lg:w-[22rem] xl:w-[30rem]"
+            sizes="(min-width: 1280px) 480px, (min-width: 1024px) 352px, 100vw"
+            priority
+          />
         }
-      />
+      >
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-6">
+          <Button href={consultHref} size="lg" className="w-full sm:w-auto">
+            Request a lab consultation
+          </Button>
+          <Button href="/products/labs" variant="text" className="self-start sm:self-auto">
+            Browse lab equipment
+          </Button>
+        </div>
+      </PageHeader>
 
-      {/* What we set up */}
+      {/* Lab types */}
       <Section aria-labelledby="types-title">
-        <div className="grid gap-10 lg:grid-cols-12">
-          <div className="lg:col-span-4" data-reveal>
-            <Eyebrow>What we set up</Eyebrow>
-            <h2 id="types-title" className="mt-3 text-h2">Five kinds of lab, one supplier</h2>
-            <p className="mt-4 text-ink-soft">
-              Start a new lab from an empty room, or upgrade the equipment in an existing one.
-            </p>
-            <Photo
-              src="/images/photos/page-labs.jpg"
-              alt="Electronics components, sensors and a project book laid out on a table"
-              className="mt-8 hidden aspect-[3/2] shadow-lift lg:block"
-              sizes="30vw"
-            />
+        <div className="grid gap-10 lg:grid-cols-12 lg:gap-12">
+          <div className="lg:col-span-5">
+            <div className="lg:sticky lg:top-28">
+              <h2 id="types-title" className="text-h2">
+                The labs we equip
+              </h2>
+              <p className="mt-4 max-w-md text-ink-soft">
+                Start a new lab from an empty room, or upgrade the equipment in an existing one.
+              </p>
+              <Photo
+                src="/images/photos/cat-labs.jpg"
+                alt="Glassware and apparatus on the shelves of a school science lab"
+                className="mt-8 aspect-[3/2] rounded-lg"
+                sizes="(min-width: 1024px) 40vw, 100vw"
+              />
+            </div>
           </div>
-          <ol className="grid gap-4 sm:grid-cols-2 lg:col-span-8">
-            {labTypes.map((lab, i) => (
-              <li key={lab.name} data-reveal className={i === 0 ? "sm:col-span-2" : undefined}>
+          <ul className="border-t border-rule lg:col-span-7">
+            {shownLabs.map((lab) => (
+              <li key={lab.name} className="border-b border-rule">
                 <Link
                   href={lab.link}
-                  className="group relative flex h-full flex-col rounded-sm border border-ink/10 bg-white shadow-card p-6 pt-8 transition-colors duration-150 hover:border-ink/45"
+                  className="group grid gap-2 py-6 transition-colors duration-150 focus-visible:outline-offset-0 sm:grid-cols-[1fr_auto] sm:items-baseline sm:gap-8"
                 >
-                  <IndexTab tone={i === 0 ? "board" : "paper"} className="absolute -top-px left-5 h-6 min-w-12 text-[0.75rem]">
-                    {String(i + 1).padStart(2, "0")}
-                  </IndexTab>
-                  <h3 className="text-h3">{lab.name}</h3>
-                  <p className="mt-2 text-ink-soft">{withPlaceholders(lab.text)}</p>
-                  <span className="mt-auto flex items-center gap-2 pt-5 font-mono text-label uppercase text-board">
+                  <span>
+                    <span className="block font-display text-h3 font-semibold transition-colors duration-150 group-hover:text-board">
+                      {lab.name}
+                    </span>
+                    <span className="mt-1.5 block max-w-xl text-ink-soft">{lab.text}</span>
+                  </span>
+                  <span className="flex items-center gap-2 text-sm font-semibold text-board">
                     See equipment
-                    <svg viewBox="0 0 16 16" className="size-3.5 transition-transform duration-200 group-hover:translate-x-1" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                      <path d="M2 8 H13 M9 4 L13 8 L9 12" />
-                    </svg>
+                    <Arrow className="size-3.5 transition-transform duration-200 ease-out group-hover:translate-x-1" />
                   </span>
                 </Link>
               </li>
             ))}
-          </ol>
+          </ul>
         </div>
       </Section>
 
-      {/* What the school gets */}
-      <Section tone="ink" aria-labelledby="gets-title">
-        <div data-reveal>
-          <Eyebrow>What your school gets</Eyebrow>
-          <h2 id="gets-title" className="mt-3 max-w-2xl text-h2 text-white">
-            Equipment, furniture and power, planned together
-          </h2>
+      {/* One quotation */}
+      <Section tone="ink" aria-labelledby="quote-title">
+        <div className="grid gap-10 lg:grid-cols-12 lg:items-center lg:gap-12">
+          <Photo
+            src="/images/photos/page-home-labs.jpg"
+            alt="A small robot built from a microcontroller board, sensors and wheels"
+            className="aspect-[3/2] rounded-lg lg:col-span-6"
+            sizes="(min-width: 1024px) 50vw, 100vw"
+          />
+          <div className="lg:col-span-6">
+            <h2 id="quote-title" className="text-h2 text-white">
+              Equipment, furniture and safety gear on one quotation
+            </h2>
+            <p className="mt-4 max-w-xl text-paper/80">
+              A lab needs more than apparatus. We list everything the room needs, from our lab, furniture and
+              electricals ranges, so you approve one quotation instead of several.
+            </p>
+            <ul className="mt-8 border-t border-paper/15">
+              {oneQuotation.map((q) => (
+                <li key={q.label} className="border-b border-paper/15">
+                  <Link
+                    href={q.href}
+                    className="group flex items-center justify-between gap-4 py-3.5 text-paper transition-colors duration-150 hover:text-white focus-visible:outline-offset-0"
+                  >
+                    {q.label}
+                    <Arrow className="size-3.5 shrink-0 text-pencil transition-transform duration-200 ease-out group-hover:translate-x-1" />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
-        <ul className="mt-12 grid gap-px overflow-hidden rounded-sm bg-paper/15 md:grid-cols-3">
-          {schoolGets.map((g) => (
-            <li key={g.title} data-reveal className="bg-ink p-6 md:p-8">
-              <CategoryIcon slug={g.slug} className="size-10 text-pencil" />
-              <h3 className="mt-5 font-sans text-lg font-semibold text-white">{g.title}</h3>
-              <p className="mt-2 text-paper/80">{g.text}</p>
-            </li>
-          ))}
-        </ul>
-        <p className="mt-8 max-w-2xl text-paper/80" data-reveal>
-          Lab tables and stools come from our{" "}
-          <Link href="/products/furniture#lab-furniture" className="font-semibold text-white underline decoration-pencil underline-offset-4">
-            furniture range
-          </Link>
-          , and goggles, aprons and gloves from{" "}
-          <Link href="/products/labs#lab-safety" className="font-semibold text-white underline decoration-pencil underline-offset-4">
-            lab safety
-          </Link>
-          , all on the same quotation.
-        </p>
       </Section>
 
       {/* Process */}
       <Section aria-labelledby="process-title">
-        <div className="flex flex-wrap items-end justify-between gap-4" data-reveal>
-          <div>
-            <Eyebrow>How a lab project runs</Eyebrow>
-            <h2 id="process-title" className="mt-3 text-h2">From consultation to first class</h2>
-          </div>
+        <div className="grid gap-4 lg:grid-cols-12 lg:items-end lg:gap-12">
+          <h2 id="process-title" className="text-h2 lg:col-span-7">
+            How a lab project runs
+          </h2>
+          <p className="max-w-xl text-ink-soft lg:col-span-5">
+            From the first conversation to the first class in the room.
+          </p>
         </div>
-        <RouteSteps steps={process} className="mt-12" />
-        <p className="mt-12 max-w-2xl border-l-[3px] border-pencil bg-white px-4 py-3 text-[0.9375rem]" data-reveal>
-          {withPlaceholders(
-            "Lab specifications and board requirements are confirmed with your school during the consultation [CONFIRM].",
-          )}
-        </p>
+        <RouteSteps steps={steps} className="mt-12" />
+        {showPending ? (
+          <p className="mt-12 max-w-2xl text-[0.9375rem] text-ink-soft">
+            Lab specifications and board requirements are confirmed with your school during the consultation{" "}
+            <Pending label="CONFIRM" />.
+          </p>
+        ) : null}
       </Section>
 
-      {/* CTA */}
-      <section aria-labelledby="labs-cta" className="on-dark bg-board py-14 lg:py-16">
-        <Container className="grid gap-6 lg:grid-cols-12 lg:items-center">
-          <div className="lg:col-span-7" data-reveal>
-            <h2 id="labs-cta" className="text-h2 text-white">Planning a new lab?</h2>
-            <p className="mt-3 max-w-xl text-paper/90">
+      {/* Closing */}
+      <Section tone="muted" spacing="tight" aria-labelledby="labs-cta">
+        <div className="grid gap-6 lg:grid-cols-12 lg:items-center lg:gap-12">
+          <div className="lg:col-span-7">
+            <h2 id="labs-cta" className="text-h2">
+              Planning a new lab?
+            </h2>
+            <p className="mt-3 max-w-xl text-ink-soft">
               Tell us the lab, the room and when you need it ready. We will arrange a consultation.
             </p>
           </div>
-          <div className="flex flex-wrap gap-3 lg:col-span-5 lg:justify-end" data-reveal>
-            <Button href={consultHref} variant="accent">Request a lab consultation</Button>
+          <div className="flex flex-col gap-3 sm:flex-row lg:col-span-5 lg:justify-end">
+            <Button href={consultHref} size="lg">
+              Request a lab consultation
+            </Button>
             <Button
               href={whatsappLink("Hello SchoolSource, we would like a consultation for setting up a lab.")}
-              variant="inverse"
+              variant="secondary"
+              size="lg"
               icon={<WhatsAppIcon />}
             >
               WhatsApp us
             </Button>
           </div>
-        </Container>
-      </section>
+        </div>
+      </Section>
     </>
   );
 }

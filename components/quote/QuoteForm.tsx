@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { CategoryIcon } from "@/components/icons/CategoryIcon";
 import { WhatsAppIcon } from "@/components/layout/WhatsAppFloat";
 import { Button } from "@/components/ui/Button";
 import { Field, Input, Select, Textarea } from "@/components/ui/Field";
@@ -169,10 +168,15 @@ export function QuoteForm({ categories }: { categories: CategoryOption[] }) {
       {status === "sent" && sent ? (
         <SentPanel school={sent.school} fileToSend={sent.fileToSend} />
       ) : (
-        <form ref={formRef} noValidate onSubmit={onSubmit} className="grid gap-10">
-          {/* 01 School */}
+        <form ref={formRef} noValidate onSubmit={onSubmit} className="grid gap-12" aria-describedby="quote-required-note">
+          <p id="quote-required-note" className="-mb-6 text-sm text-ink-soft">
+            Fields marked <span className="text-red" aria-hidden="true">*</span>
+            <span className="sr-only">with an asterisk</span> are required.
+          </p>
+
+          {/* Your school */}
           <fieldset className="grid gap-5">
-            <Legend number="01">Your school</Legend>
+            <Legend>Your school</Legend>
             <div className="grid gap-5 sm:grid-cols-2">
               <Field label="School name" required error={errors.school} className="sm:col-span-2">
                 {(p) => <Input {...p} name="school" autoComplete="organization" />}
@@ -194,54 +198,25 @@ export function QuoteForm({ categories }: { categories: CategoryOption[] }) {
                 {(p) => <Input {...p} name="phone" type="tel" inputMode="tel" autoComplete="tel" />}
               </Field>
               <Field label="Email" error={errors.email}>
-                {(p) => <Input {...p} name="email" type="email" autoComplete="email" />}
+                {(p) => <Input {...p} name="email" type="email" autoComplete="email" spellCheck={false} />}
               </Field>
               <Field label="City / area" required error={errors.city} className="sm:col-span-2">
                 {(p) => <Input {...p} name="city" autoComplete="address-level2" placeholder="For example: Kukatpally, Hyderabad" />}
               </Field>
             </div>
           </fieldset>
-    
-          {/* 02 Requirement */}
-          <fieldset className="grid gap-6">
-            <Legend number="02">What you need</Legend>
-    
-            <fieldset>
-              <legend className="text-sm font-semibold">
-                Categories needed <span className="font-normal text-ink-soft">(optional)</span>
-              </legend>
-              <ul className="mt-3 grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3">
-                {categories.map((c) => {
-                  const on = picked.includes(c.slug);
-                  return (
-                    <li key={c.slug}>
-                      <label
-                        className={cn(
-                          "flex h-12 cursor-pointer items-center gap-3 rounded-sm border px-3 text-[0.9375rem] transition-colors duration-150",
-                          "has-[:focus-visible]:outline-3 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-ink",
-                          on ? "border-board bg-board text-white" : "border-ink/20 bg-white hover:border-board",
-                        )}
-                      >
-                        <input type="checkbox" className="sr-only" checked={on} onChange={() => toggle(c.slug)} />
-                        <CategoryIcon slug={c.slug} className="size-6" />
-                        <span className="flex-1 leading-tight">{c.name}</span>
-                        <span aria-hidden="true" className={cn("font-mono text-[0.6875rem]", on ? "text-pencil-soft" : "text-ink-soft")}>
-                          {on ? "✓" : c.number}
-                        </span>
-                      </label>
-                    </li>
-                  );
-                })}
-              </ul>
-            </fieldset>
-    
+
+          {/* What you need */}
+          <fieldset className="grid gap-8">
+            <Legend>What you need</Legend>
+
             <div id="quote-list" className="scroll-mt-32">
               <h3 className="font-sans text-sm font-semibold">Your quote list</h3>
-              <div className="mt-3">
+              <div className="mt-2">
                 <QuoteListEditor />
               </div>
             </div>
-    
+
             <Field
               label="Message or requirement list"
               hint="Type or paste your list in any format. Quantities, brands and sizes help us quote accurately."
@@ -251,7 +226,7 @@ export function QuoteForm({ categories }: { categories: CategoryOption[] }) {
                 <Textarea {...p} name="message" rows={6} value={message} onChange={(e) => setMessage(e.target.value)} />
               )}
             </Field>
-    
+
             <Field
               label="Attach your list"
               hint={
@@ -267,36 +242,69 @@ export function QuoteForm({ categories }: { categories: CategoryOption[] }) {
                   name="file"
                   type="file"
                   accept="image/*,application/pdf"
-                  className="block w-full text-sm text-ink-soft file:mr-4 file:h-11 file:cursor-pointer file:rounded-sm file:border-[1.5px] file:border-ink file:bg-white file:px-4 file:font-semibold file:text-ink hover:file:bg-paper-deep"
+                  className={cn(
+                    "block w-full rounded-sm text-sm text-ink-soft",
+                    "file:mr-4 file:h-11 file:cursor-pointer file:rounded-sm file:border file:border-[#7d8899] file:bg-white file:px-4 file:text-[0.9375rem] file:font-semibold file:text-ink",
+                    "file:transition-colors file:duration-150 hover:file:border-ink hover:file:bg-paper-deep active:file:bg-rule",
+                  )}
                 />
               )}
             </Field>
+
+            <fieldset>
+              <legend className="text-sm font-semibold">
+                Categories needed <span className="font-normal text-ink-soft">(optional)</span>
+              </legend>
+              <ul className="mt-3 grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3">
+                {categories.map((c) => {
+                  const on = picked.includes(c.slug);
+                  return (
+                    <li key={c.slug}>
+                      <label
+                        className={cn(
+                          "flex min-h-11 cursor-pointer select-none items-center gap-3 rounded-sm border px-3 py-2 text-[0.9375rem] leading-tight",
+                          "transition-[border-color,background-color] duration-150 active:bg-rule",
+                          "has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-board",
+                          on ? "border-board bg-[#eef3fc]" : "border-ink/20 bg-white hover:border-ink/50",
+                        )}
+                      >
+                        <input type="checkbox" className="sr-only" checked={on} onChange={() => toggle(c.slug)} />
+                        <Tick on={on} />
+                        <span className={cn("flex-1", on ? "font-semibold" : null)}>{c.name}</span>
+                      </label>
+                    </li>
+                  );
+                })}
+              </ul>
+            </fieldset>
           </fieldset>
-    
-          {/* 03 Delivery */}
-          <fieldset className="grid gap-5">
-            <Legend number="03">Delivery and visit</Legend>
+
+          {/* Delivery and visit */}
+          <fieldset className="grid gap-6">
+            <Legend>Delivery and visit</Legend>
             <Field label="Preferred delivery date" hint="Before term starts, an exam or an event. We will confirm a date with you.">
               {(p) => <Input {...p} name="date" type="date" min={today} className="sm:max-w-xs" />}
             </Field>
 
-            <div id="visit" className="scroll-mt-32 rounded-sm border border-ink/10 bg-white shadow-card">
-              <label className="flex cursor-pointer items-start gap-3 p-4 has-[:focus-visible]:outline-3 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-ink">
-                <input
-                  type="checkbox"
-                  checked={visit}
-                  onChange={(e) => setVisit(e.target.checked)}
-                  className="mt-1 size-5 shrink-0 accent-[var(--color-board)]"
-                />
+            <div
+              id="visit"
+              className={cn(
+                "scroll-mt-32 rounded-md border transition-colors duration-150",
+                visit ? "border-board" : "border-ink/20",
+              )}
+            >
+              <label className="flex cursor-pointer items-start gap-3 rounded-md p-4 has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-board sm:p-5">
+                <input type="checkbox" checked={visit} onChange={(e) => setVisit(e.target.checked)} className="sr-only" />
+                <Tick on={visit} className="mt-0.5" />
                 <span>
                   <span className="block font-semibold">Visit our school with samples</span>
-                  <span className="mt-0.5 block text-sm text-ink-soft">
+                  <span className="mt-0.5 block text-[0.9375rem] text-ink-soft">
                     We bring samples of the products you are considering, so you can check them before you order.
                   </span>
                 </span>
               </label>
               {visit ? (
-                <div className="animate-rise-in grid gap-5 border-t border-ink/10 p-4 sm:grid-cols-2 [animation-duration:0.3s]">
+                <div className="animate-fade-in grid gap-5 border-t border-rule p-4 sm:grid-cols-2 sm:p-5">
                   <Field label="Preferred day">
                     {(p) => <Input {...p} name="visit_day" type="date" min={today} />}
                   </Field>
@@ -314,25 +322,27 @@ export function QuoteForm({ categories }: { categories: CategoryOption[] }) {
               ) : null}
             </div>
           </fieldset>
-    
+
           {/* Spam trap, hidden from people */}
           <input type="checkbox" name="botcheck" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
-    
-          <div className="grid gap-4 border-t-2 border-ink pt-6">
-            <div className="flex flex-wrap items-center gap-3">
+
+          <div className="grid gap-4 border-t border-ink/15 pt-8">
+            <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
               <Button type="submit" size="lg" disabled={status === "sending"}>
-                {status === "sending" ? "Sending..." : "Send quote request"}
+                {status === "sending" ? "Sending…" : "Send quote request"}
               </Button>
               <Button type="button" variant="secondary" size="lg" icon={<WhatsAppIcon />} onClick={sendOnWhatsApp}>
                 Send on WhatsApp instead
               </Button>
             </div>
-            <p className="text-sm text-ink-soft">
+            <p className="max-w-[60ch] text-sm text-ink-soft">
               WhatsApp opens with your school name and quote list already typed. We use your details only to reply to
               this request.
             </p>
             <div aria-live="polite">
-              {status === "error" || status === "not-configured" ? <SendProblem kind={status} /> : null}
+              {status === "error" || status === "not-configured" ? (
+                <SendProblem kind={status} onWhatsApp={sendOnWhatsApp} />
+              ) : null}
             </div>
           </div>
         </form>
@@ -341,11 +351,26 @@ export function QuoteForm({ categories }: { categories: CategoryOption[] }) {
   );
 }
 
-function Legend({ number, children }: { number: string; children: React.ReactNode }) {
+function Legend({ children }: { children: React.ReactNode }) {
   return (
-    <legend className="mb-1 flex w-full items-baseline gap-3 border-b-2 border-ink pb-2">
-      <span className="font-mono text-sm font-semibold text-board">{number}</span>
-      <span className="font-display text-h3">{children}</span>
-    </legend>
+    <legend className="mb-1 w-full border-b border-ink/15 pb-3 font-display text-h3 font-semibold">{children}</legend>
+  );
+}
+
+/** Drawn checkbox for the visually hidden native input beside it. */
+function Tick({ on, className }: { on: boolean; className?: string }) {
+  return (
+    <span
+      aria-hidden="true"
+      className={cn(
+        "inline-flex size-5 shrink-0 items-center justify-center rounded-[4px] border transition-colors duration-150",
+        on ? "border-board bg-board text-white" : "border-[#7d8899] bg-white text-transparent",
+        className,
+      )}
+    >
+      <svg viewBox="0 0 16 16" className="size-3.5" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M3.5 8.5 L6.5 11.5 L12.5 5" />
+      </svg>
+    </span>
   );
 }

@@ -20,6 +20,7 @@ const INTERVAL = 2600;
  * crossfade in turn while the card is on screen, so a school sees at a glance
  * that more than one type is supplied. Pauses on hover, focus and with its
  * pause button; with reduced motion it stays still and the dots pick a photo.
+ * The "N styles" count is shown by the card, outside the photo.
  */
 export function ItemPhotos({ images, name, order = 0, sizes }: ItemPhotosProps) {
   const [index, setIndex] = useState(0);
@@ -66,52 +67,45 @@ export function ItemPhotos({ images, name, order = 0, sizes }: ItemPhotosProps) 
           fill
           sizes={sizes}
           className={cn(
-            "object-cover transition-[opacity,scale] ease-out-quart",
-            i === index ? "scale-100 opacity-100 duration-700" : "scale-105 opacity-0 duration-700",
+            "object-cover transition-[opacity,scale] duration-700 ease-out",
+            i === index ? "scale-100 opacity-100" : "scale-[1.03] opacity-0 motion-reduce:scale-100",
           )}
           aria-hidden={i === index ? undefined : true}
         />
       ))}
 
       {many ? (
-        <>
-          <span className="absolute right-3 top-3 rounded-full bg-ink/80 px-2 py-0.5 font-mono text-[0.6875rem] font-semibold text-white">
-            {images.length} styles
-          </span>
-          <div className="absolute inset-x-0 bottom-2 flex justify-center">
-            <div className="flex items-center gap-1 rounded-full bg-white/90 px-1.5 py-1 shadow-card">
-              {images.map((src, i) => (
-                <button
-                  key={src}
-                  type="button"
-                  onClick={() => setIndex(i)}
-                  aria-label={`Show ${name} style ${i + 1} of ${images.length}`}
-                  aria-pressed={i === index}
-                  className="flex size-5 items-center justify-center"
-                >
-                  <span
-                    className={cn(
-                      "block h-1.5 rounded-full transition-[width,background-color] duration-300",
-                      i === index ? "w-4 bg-board" : "w-1.5 bg-ink/30",
-                    )}
-                  />
-                </button>
-              ))}
-              {!still ? (
-                <button
-                  type="button"
-                  onClick={() => setStopped((s) => !s)}
-                  aria-label={stopped ? `Play ${name} photos` : `Pause ${name} photos`}
-                  className="flex size-5 items-center justify-center text-ink"
-                >
-                  <svg viewBox="0 0 12 12" className="size-2.5" fill="currentColor" aria-hidden="true">
-                    {stopped ? <path d="M3 2 L10 6 L3 10 Z" /> : <path d="M3 2 H5 V10 H3 Z M7 2 H9 V10 H7 Z" />}
-                  </svg>
-                </button>
-              ) : null}
-            </div>
-          </div>
-        </>
+        <div className="absolute bottom-2 left-2 flex items-center rounded-[6px] bg-white/92 px-0.5 shadow-[0_0_0_1px_rgb(15_27_45/0.08)] backdrop-blur-[2px]">
+          {images.map((src, i) => (
+            <button
+              key={src}
+              type="button"
+              onClick={() => setIndex(i)}
+              aria-label={`Show ${name} style ${i + 1} of ${images.length}`}
+              aria-pressed={i === index}
+              className="group/dot flex size-6 items-center justify-center rounded-[4px]"
+            >
+              <span
+                className={cn(
+                  "block h-1.5 rounded-full transition-[width,background-color] duration-200 ease-out",
+                  i === index ? "w-3.5 bg-ink" : "w-1.5 bg-ink/30 group-hover/dot:bg-ink/60",
+                )}
+              />
+            </button>
+          ))}
+          {!still ? (
+            <button
+              type="button"
+              onClick={() => setStopped((s) => !s)}
+              aria-label={stopped ? `Play ${name} photos` : `Pause ${name} photos`}
+              className="flex size-6 items-center justify-center rounded-[4px] text-ink/70 transition-colors duration-150 hover:text-ink active:scale-90"
+            >
+              <svg viewBox="0 0 12 12" className="size-2.5" fill="currentColor" aria-hidden="true">
+                {stopped ? <path d="M3 2 L10 6 L3 10 Z" /> : <path d="M3 2 H5 V10 H3 Z M7 2 H9 V10 H7 Z" />}
+              </svg>
+            </button>
+          ) : null}
+        </div>
       ) : null}
     </div>
   );

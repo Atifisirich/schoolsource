@@ -6,10 +6,23 @@ import { cn } from "@/lib/cn";
 type NavItem = { slug: string; name: string; count: number };
 
 /**
- * Sticky sub-category navigation under the header: underlined tabs on
- * desktop, scrollable chips on mobile. Highlights the section in view.
+ * The left column of a category page. Desktop: a sticky side list of the
+ * groups with the filter above it. Mobile: the filter, then a horizontal
+ * scroll row of the groups that sticks under the header. Highlights the
+ * group in view.
+ *
+ * Place it as a direct child of the page's grid: below `lg` its wrappers use
+ * `display: contents`, so the mobile row can stick for the whole item list.
  */
-export function SubcategoryNav({ items, aside }: { items: NavItem[]; aside?: React.ReactNode }) {
+export function SubcategoryNav({
+  items,
+  filter,
+  className,
+}: {
+  items: NavItem[];
+  filter?: React.ReactNode;
+  className?: string;
+}) {
   const [active, setActive] = useState(items[0]?.slug);
   const listRef = useRef<HTMLUListElement>(null);
 
@@ -23,65 +36,72 @@ export function SubcategoryNav({ items, aside }: { items: NavItem[]; aside?: Rea
         const visible = entries.filter((e) => e.isIntersecting);
         if (visible.length) setActive(visible[0].target.id);
       },
-      { rootMargin: "-35% 0px -60% 0px" },
+      { rootMargin: "-30% 0px -65% 0px" },
     );
     sections.forEach((s) => io.observe(s));
     return () => io.disconnect();
   }, [items]);
 
-  // Keep the active chip visible inside the bar without moving the page
+  // Mobile: keep the active link visible inside the row without moving the page
   useEffect(() => {
     const list = listRef.current;
-    const link = list?.querySelector<HTMLElement>(`[data-slug="${active}"]`);
-    if (!list || !link) return;
+    if (!list || list.scrollWidth <= list.clientWidth) return;
+    const link = list.querySelector<HTMLElement>(`[data-slug="${active}"]`);
+    if (!link) return;
     const left = link.offsetLeft - 16;
     const right = link.offsetLeft + link.offsetWidth + 16;
     if (left < list.scrollLeft || right > list.scrollLeft + list.clientWidth) {
-      list.scrollTo({ left: left - list.clientWidth / 4, behavior: "smooth" });
+      const smooth = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      list.scrollTo({ left: left - list.clientWidth / 4, behavior: smooth ? "smooth" : "auto" });
     }
   }, [active]);
 
   return (
-    <nav
-      aria-label="Sections in this category"
-      className="sticky top-16 z-30 border-b border-ink/12 bg-paper/95 backdrop-blur-[2px] lg:top-[4.5rem]"
-    >
-      <div className="mx-auto flex max-w-[80rem] flex-col gap-2 px-gutter py-2.5 lg:flex-row lg:items-center lg:gap-6 lg:py-0">
-        {aside ? <div className="lg:order-2 lg:shrink-0">{aside}</div> : null}
-        <ul
-          ref={listRef}
-          className="-mx-gutter flex min-w-0 flex-1 gap-1.5 overflow-x-auto px-gutter [scrollbar-width:none] lg:mx-0 lg:gap-0 lg:px-0 [&::-webkit-scrollbar]:hidden"
+    <div className={cn("contents lg:block", className)}>
+      <div className="contents lg:sticky lg:top-[6.5rem] lg:block">
+        {filter ? <div className="pb-4 lg:pb-6">{filter}</div> : null}
+
+        <nav
+          aria-label="Groups in this category"
+          className={cn(
+            // Mobile: full-bleed row that sticks under the header
+            "sticky top-16 z-20 -mx-gutter min-w-0 border-b border-rule bg-white/95 backdrop-blur-sm",
+            "lg:static lg:mx-0 lg:border-0 lg:bg-transparent lg:backdrop-blur-none",
+          )}
         >
-          {items.map((item) => {
-            const isActive = item.slug === active;
-            return (
-              <li key={item.slug} className="shrink-0">
-                <a
-                  href={`#${item.slug}`}
-                  data-slug={item.slug}
-                  aria-current={isActive ? "location" : undefined}
-                  onClick={() => setActive(item.slug)}
-                  className={cn(
-                    "relative flex items-center gap-2 whitespace-nowrap text-sm font-medium transition-colors duration-150",
-                    // Mobile: chips
-                    "h-9 rounded-sm border px-3",
-                    isActive ? "border-board bg-board text-white" : "border-ink/15 bg-white text-ink hover:border-board",
-                    // Desktop: underlined tabs
-                    "lg:h-12 lg:rounded-none lg:border-0 lg:bg-transparent lg:px-4",
-                    "lg:after:absolute lg:after:inset-x-4 lg:after:bottom-0 lg:after:h-[3px] lg:after:origin-left lg:after:bg-board lg:after:transition-transform lg:after:duration-200",
-                    isActive ? "lg:after:scale-x-100 lg:text-board" : "lg:after:scale-x-0 lg:text-ink lg:hover:text-board",
-                  )}
-                >
-                  {item.name}
-                  <span className={cn("font-mono text-[0.6875rem]", isActive ? "text-pencil-soft lg:text-board" : "text-ink-soft")}>
-                    {item.count}
-                  </span>
-                </a>
-              </li>
-            );
-          })}
-        </ul>
+          <p className="mb-2 hidden px-3 text-sm font-semibold text-ink-soft lg:block">In this category</p>
+          <ul
+            ref={listRef}
+            className="flex overflow-x-auto px-[calc(var(--spacing-gutter)-0.75rem)] [scrollbar-width:none] lg:flex-col lg:overflow-visible lg:px-0 [&::-webkit-scrollbar]:hidden"
+          >
+            {items.map((item) => {
+              const isActive = item.slug === active;
+              return (
+                <li key={item.slug} className="shrink-0">
+                  <a
+                    href={`#${item.slug}`}
+                    data-slug={item.slug}
+                    aria-current={isActive ? "location" : undefined}
+                    onClick={() => setActive(item.slug)}
+                    className={cn(
+                      "relative flex items-center gap-3 whitespace-nowrap text-[0.9375rem] transition-colors duration-150",
+                      // Mobile: text tabs with an underline for the group in view
+                      "h-12 px-3 after:absolute after:inset-x-3 after:bottom-0 after:h-0.5 after:origin-left after:bg-board after:transition-transform after:duration-200 after:ease-out",
+                      isActive ? "font-semibold text-ink after:scale-x-100" : "text-ink-soft after:scale-x-0 hover:text-ink",
+                      // Desktop: a quiet list, the group in view on a grey ground
+                      "lg:h-auto lg:justify-between lg:whitespace-normal lg:rounded-sm lg:py-2 lg:after:hidden",
+                      isActive ? "lg:bg-paper-deep" : "lg:hover:bg-paper-deep/60",
+                    )}
+                  >
+                    <span>{item.name}</span>
+                    <span className="tabular hidden text-sm font-normal text-ink-soft lg:inline">{item.count}</span>
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
       </div>
-    </nav>
+    </div>
   );
 }

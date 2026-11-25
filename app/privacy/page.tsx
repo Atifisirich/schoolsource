@@ -5,6 +5,7 @@ import { site } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Privacy",
   description: "What the SchoolSource quote form collects, why, and how we use it.",
+  alternates: { canonical: "/privacy" },
 };
 
 export default function PrivacyPage() {

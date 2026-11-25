@@ -2,112 +2,177 @@ import type { Metadata } from "next";
 import { WhatsAppIcon } from "@/components/layout/WhatsAppFloat";
 import { QuickQuoteForm } from "@/components/quote/QuickQuoteForm";
 import { Button } from "@/components/ui/Button";
-import { Container } from "@/components/ui/Container";
 import { PageHeader } from "@/components/ui/PageHeader";
-import { Placeholder } from "@/components/ui/Placeholder";
-import { Eyebrow } from "@/components/ui/Section";
+import { Pending } from "@/components/ui/Pending";
+import { Photo } from "@/components/ui/Photo";
+import { Section } from "@/components/ui/Section";
 import { site, whatsappLink } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: `Call or WhatsApp ${site.phoneDisplay}, or email ${site.email}. SchoolSource supplies schools in Hyderabad.`,
+  description: `Call or WhatsApp ${site.phoneDisplay}, or email ${site.email}. ${site.name}, ${site.addressShort}, supplies schools in Hyderabad and other states.`,
+  alternates: { canonical: "/contact" },
 };
 
-const linkClass = "font-semibold underline decoration-rule decoration-2 underline-offset-4 hover:decoration-board";
+const mapQuery = encodeURIComponent(site.address);
+const mapEmbed = `https://www.google.com/maps?q=${mapQuery}&output=embed`;
+const mapLink = `https://www.google.com/maps/search/?api=1&query=${mapQuery}`;
+
+const channels = [
+  {
+    label: "Phone",
+    value: site.phoneDisplay,
+    href: site.phoneHref,
+    note: "For orders, deliveries and quotations.",
+    external: false,
+  },
+  {
+    label: "WhatsApp",
+    value: site.phoneDisplay,
+    href: whatsappLink("Hello SchoolSource, "),
+    note: "Send your list as text, a photo or a PDF.",
+    external: true,
+  },
+  {
+    label: "Email",
+    value: site.email,
+    href: site.emailHref,
+    note: "Attach your requirement list or tender documents.",
+    external: false,
+  },
+];
 
 export default function ContactPage() {
   return (
     <>
       <PageHeader
         crumbs={[{ href: "/", label: "Home" }, { label: "Contact" }]}
-        title="Contact SchoolSource"
-        intro={<p>Call, message or email us. The quickest way to a quotation is to send your list on WhatsApp.</p>}
+        title="Contact us"
+        intro={
+          <p>
+            Call, message or email. The quickest way to a quotation is to send your list on WhatsApp, as a photo, a PDF
+            or typed out.
+          </p>
+        }
       />
 
-      <Container className="py-12 lg:py-16">
-        <ul className="grid gap-px overflow-hidden rounded-sm border border-ink/15 bg-ink/15 sm:grid-cols-2 lg:grid-cols-3">
-          <li className="bg-white p-6" data-reveal>
-            <Eyebrow>Phone</Eyebrow>
-            <p className="mt-3 text-xl">
-              <a href={site.phoneHref} className={linkClass}>{site.phoneDisplay}</a>
-            </p>
-            <p className="mt-2 text-sm text-ink-soft">For orders, deliveries and quotations.</p>
-          </li>
-          <li className="bg-white p-6" data-reveal>
-            <Eyebrow>WhatsApp</Eyebrow>
-            <p className="mt-3 text-xl">
-              <a href={site.whatsappHref} target="_blank" rel="noopener noreferrer" className={linkClass}>
-                {site.phoneDisplay}
+      <Section aria-label="Ways to reach us">
+        <div className="grid gap-x-16 gap-y-14 lg:grid-cols-12">
+          {/* Channels */}
+          <div className="lg:col-span-6">
+            <h2 className="text-h3">Call, message or email</h2>
+            <p className="mt-2 text-ink-soft">The same number works for calls and WhatsApp.</p>
+            <ul className="mt-6 border-t border-ink/15">
+              {channels.map((c) => (
+                <li key={c.label} className="border-b border-ink/15">
+                  <a
+                    href={c.href}
+                    {...(c.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                    className="group -mx-3 grid gap-1 rounded-sm px-3 py-5 transition-colors duration-150 hover:bg-paper-deep active:bg-rule sm:grid-cols-[7rem_1fr] sm:gap-6"
+                  >
+                    <span className="pt-1 text-sm text-ink-soft sm:pt-2">{c.label}</span>
+                    <span>
+                      <span className="block break-words font-display text-[clamp(1.5rem,1.25rem+1vw,2rem)] font-semibold leading-tight text-ink underline decoration-ink/20 decoration-1 underline-offset-[6px] transition-[text-decoration-color] duration-150 group-hover:decoration-board group-hover:decoration-2">
+                        {c.value}
+                      </span>
+                      <span className="mt-1.5 block text-[0.9375rem] text-ink-soft">{c.note}</span>
+                    </span>
+                  </a>
+                </li>
+              ))}
+              <li className="border-b border-ink/15">
+                <div className="grid gap-1 py-5 sm:grid-cols-[7rem_1fr] sm:gap-6">
+                  <span className="text-sm text-ink-soft sm:pt-0.5">Office hours</span>
+                  <span className="font-semibold">
+                    <Pending label="HOURS" />
+                  </span>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          {/* Enquiry form */}
+          <div className="lg:col-span-6" id="enquiry">
+            <h2 className="text-h3">Send us a short message</h2>
+            <p className="mt-2 max-w-[52ch] text-ink-soft">
+              A few lines are enough to start. For a full list with quantities or a file, use the{" "}
+              <a href="/quote" className="link font-semibold text-ink">
+                quote form
               </a>
+              .
             </p>
-            <p className="mt-2 text-sm text-ink-soft">Send your list as text, a photo or a PDF.</p>
-          </li>
-          <li className="bg-white p-6" data-reveal>
-            <Eyebrow>Email</Eyebrow>
-            <p className="mt-3 text-xl">
-              <a href={site.emailHref} className={linkClass}>{site.email}</a>
-            </p>
-            <p className="mt-2 text-sm text-ink-soft">Attach your requirement list or tender documents.</p>
-          </li>
-          <li className="bg-white p-6" data-reveal>
-            <Eyebrow>Address</Eyebrow>
-            <p className="mt-3 text-lg">
-              <Placeholder>{site.address}</Placeholder>
-              <br />
-              {site.city}
-            </p>
-          </li>
-          <li className="bg-white p-6" data-reveal>
-            <Eyebrow>Hours</Eyebrow>
-            <p className="mt-3 text-lg">
-              <Placeholder>{site.hours}</Placeholder>
-            </p>
-          </li>
-          <li className="flex flex-col justify-between gap-4 bg-board p-6 on-dark" data-reveal>
-            <p className="font-display text-xl text-white">Have your list ready?</p>
-            <Button href={whatsappLink("Hello SchoolSource, here is our school's requirement list:")} variant="accent" icon={<WhatsAppIcon />}>
-              Send on WhatsApp
-            </Button>
-          </li>
-        </ul>
-
-        {/* Map is added once the address is confirmed */}
-        <div
-          role="img"
-          aria-label="Map placeholder: the map will be added once the address is confirmed"
-          className="photo-placeholder mt-6 flex h-48 items-center sm:aspect-[16/7] sm:h-auto justify-center rounded-sm border border-ink/10 p-6 text-center"
-          data-reveal
-        >
-          <p className="font-mono text-label uppercase text-ink-soft">
-            Map &middot; added once <span className="text-ink">[ADDRESS]</span> is confirmed
-          </p>
-        </div>
-      </Container>
-
-      <section aria-labelledby="message-title" className="border-t border-ink/10 bg-white py-14 lg:py-20">
-        <Container className="grid gap-10 lg:grid-cols-12">
-          <div className="lg:col-span-5" data-reveal>
-            <Eyebrow>Send a message</Eyebrow>
-            <h2 id="message-title" className="mt-3 text-h2">Tell us what your school needs</h2>
-            <p className="mt-4 max-w-md text-ink-soft">
-              A short note is enough to start. For a full list with quantities or a file, use the{" "}
-              <a href="/quote" className={linkClass}>quote form</a>.
-            </p>
-            <div className="mt-8 rounded-md border border-pencil/50 bg-pencil-soft/40 p-5">
-              <p className="font-semibold">Want to see products first?</p>
-              <p className="mt-1 text-[0.9375rem] text-ink-soft">
-                We can visit your school with samples of what you are considering, at a time that suits you.
-              </p>
-              <div className="mt-4">
-                <Button href="/quote?topic=visit#visit" variant="secondary" size="sm">Book a visit with samples</Button>
-              </div>
+            <div className="mt-6">
+              <QuickQuoteForm source="Contact page" messageLabel="Your message" />
             </div>
           </div>
-          <div className="lg:col-span-7" data-reveal>
-            <QuickQuoteForm source="Contact page" />
+        </div>
+      </Section>
+
+      {/* Office and map */}
+      <Section tone="muted" aria-labelledby="office-title">
+        <div className="grid gap-x-16 gap-y-8 lg:grid-cols-12">
+          <div className="lg:col-span-4">
+            <h2 id="office-title" className="text-h2">
+              Our office
+            </h2>
+            <address className="mt-5 max-w-xs text-lead not-italic">{site.address}</address>
+            <div className="mt-6">
+              <Button href={mapLink} variant="secondary">
+                Open in Google Maps
+              </Button>
+            </div>
           </div>
-        </Container>
-      </section>
+          <div className="lg:col-span-8">
+            <div className="relative aspect-[4/3] overflow-hidden rounded-lg border border-rule bg-white sm:aspect-[16/9]">
+              {/* Shows only if the map cannot load; the iframe covers it otherwise */}
+              <p className="absolute inset-0 flex items-center justify-center p-6 text-center text-[0.9375rem] text-ink-soft">
+                The map could not load here. Use &ldquo;Open in Google Maps&rdquo; for directions.
+              </p>
+              <iframe
+                title={`Map showing the ${site.name} office: ${site.address}`}
+                src={mapEmbed}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="absolute inset-0 size-full border-0"
+              />
+            </div>
+          </div>
+        </div>
+      </Section>
+
+      {/* Book a visit with samples */}
+      <Section aria-labelledby="visit-title">
+        <div className="grid items-center gap-x-16 gap-y-10 lg:grid-cols-12">
+          <Photo
+            src="/images/photos/kit-term-start-classroom.jpg"
+            alt="Notebooks and coloured paper laid out on a table"
+            className="aspect-[3/2] rounded-lg lg:col-span-6"
+            sizes="(min-width: 1024px) 600px, 100vw"
+          />
+          <div className="lg:col-span-6">
+            <h2 id="visit-title" className="text-h2">
+              Book a visit with samples
+            </h2>
+            <p className="mt-4 max-w-[52ch] text-lead text-ink-soft">
+              Tell us what you are considering and we will bring samples to your school, at a time that suits you. You
+              can check quality and sizes before you order.
+            </p>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <Button href="/quote?topic=visit#visit" size="lg">
+                Book a visit
+              </Button>
+              <Button
+                href={whatsappLink("Hello SchoolSource, we would like a visit with product samples.")}
+                variant="secondary"
+                size="lg"
+                icon={<WhatsAppIcon />}
+              >
+                Ask on WhatsApp
+              </Button>
+            </div>
+          </div>
+        </div>
+      </Section>
     </>
   );
 }

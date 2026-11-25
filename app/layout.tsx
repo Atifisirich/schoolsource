@@ -4,6 +4,8 @@ import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { MobileActionBar } from "@/components/layout/MobileActionBar";
 import { WhatsAppFloat } from "@/components/layout/WhatsAppFloat";
+import { Analytics } from "@/components/seo/Analytics";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { bands, categories, countItems } from "@/data/catalogue";
 import type { NavCategory } from "@/lib/bands";
 import { site } from "@/lib/site";
@@ -83,6 +85,8 @@ export default function RootLayout({
         <Footer />
         <WhatsAppFloat />
         <MobileActionBar />
+        <JsonLd />
+        <Analytics />
       </body>
     </html>
   );

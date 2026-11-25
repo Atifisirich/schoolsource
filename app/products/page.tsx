@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { WhatsAppIcon } from "@/components/layout/WhatsAppFloat";
 import { ProductsExplorer, type ExplorerCard, type SearchItem } from "@/components/products/ProductsExplorer";
 import { Button } from "@/components/ui/Button";
-import { Container } from "@/components/ui/Container";
-import { Breadcrumb } from "@/components/ui/PageHeader";
-import { PencilUnderline } from "@/components/ui/PencilUnderline";
-import { bands, categories, countItems, kits } from "@/data/catalogue";
+import { PageHeader } from "@/components/ui/PageHeader";
+import { Section } from "@/components/ui/Section";
+import { bands, categories, countItems } from "@/data/catalogue";
+import { whatsappLink } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Products",
@@ -14,14 +15,11 @@ export const metadata: Metadata = {
 };
 
 const cards: ExplorerCard[] = categories.map((c) => ({
-  number: c.number,
   slug: c.slug,
   name: c.name,
   description: c.description,
   band: c.band,
-  itemCount: countItems(c),
   image: c.image,
-  subcategories: c.subcategories.map((s) => ({ slug: s.slug, name: s.name, count: s.items.length })),
 }));
 
 const searchItems: SearchItem[] = categories.flatMap((c) =>
@@ -38,58 +36,55 @@ const searchItems: SearchItem[] = categories.flatMap((c) =>
   ),
 );
 
-export default function ProductsPage() {
-  const stats = [
-    { value: categories.length, label: "categories" },
-    { value: searchItems.length, label: "items" },
-    { value: kits.length, label: "ready kits" },
-  ];
+const itemTotal = categories.reduce((n, c) => n + countItems(c), 0);
 
+export default function ProductsPage() {
   return (
     <>
-      <header className="hero-glow relative overflow-hidden border-b border-ink/10 bg-white">
-        <Container className="grid gap-8 pb-10 pt-8 sm:pt-10 lg:grid-cols-12 lg:items-end lg:pb-12">
-          <div className="lg:col-span-7">
-            <Breadcrumb items={[{ href: "/", label: "Home" }, { label: "Products" }]} className="animate-rise-in" />
-            <h1 className="animate-rise-in mt-6 text-h1" style={{ animationDelay: "60ms" }}>
-              Find anything your school <PencilUnderline delay={250}>buys</PencilUnderline>
-            </h1>
-            <p className="animate-rise-in mt-4 max-w-xl text-lead text-ink-soft" style={{ animationDelay: "120ms" }}>
-              Search by item, or open a category to see everything inside. Add what you need to your quote list and
-              send it in one go.
-            </p>
-            <p className="animate-rise-in mt-4 text-sm" style={{ animationDelay: "160ms" }}>
-              Prefer paper?{" "}
-              <Link href="/catalogue" className="font-semibold text-board underline decoration-rule underline-offset-4 hover:decoration-board">
-                Print the full catalogue or save it as a PDF
-              </Link>
-            </p>
-          </div>
-          <dl className="animate-rise-in grid grid-cols-3 divide-x divide-ink/12 rounded-md border border-ink/12 bg-paper lg:col-span-5" style={{ animationDelay: "180ms" }}>
-            {stats.map((s) => (
-              <div key={s.label} className="px-4 py-4 text-center sm:px-6">
-                <dd className="font-display text-[2rem] leading-none text-board sm:text-[2.5rem]">{s.value}</dd>
-                <dt className="mt-1.5 font-mono text-[0.6875rem] uppercase tracking-[0.08em] text-ink-soft">{s.label}</dt>
-              </div>
-            ))}
-          </dl>
-        </Container>
-      </header>
+      <PageHeader
+        crumbs={[{ href: "/", label: "Home" }, { label: "Products" }]}
+        title="Everything we supply, by category"
+        intro={
+          <p>
+            {itemTotal} items across fifteen categories, each one quoted on request. Search for an item, or open a
+            category to see everything in it, then add what you need to your quote list.
+          </p>
+        }
+        aside={
+          <p className="max-w-xs text-[0.9375rem] text-ink-soft lg:text-right">
+            Prefer paper?{" "}
+            <Link href="/catalogue" className="link font-semibold text-ink">
+              Print the full catalogue
+            </Link>{" "}
+            or save it as a PDF for your purchase committee.
+          </p>
+        }
+      />
 
       <ProductsExplorer bands={bands} categories={cards} items={searchItems} />
 
-      <section className="on-dark bg-board py-14" aria-labelledby="products-cta">
-        <Container className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-          <div>
-            <h2 id="products-cta" className="text-h3 text-white">Have a list already?</h2>
-            <p className="mt-2 text-paper/90">Send it as it is. We return an itemised quotation.</p>
+      <Section tone="muted" spacing="tight" aria-labelledby="products-cta">
+        <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+          <div className="max-w-xl">
+            <h2 id="products-cta" className="text-h3">
+              Have a list already?
+            </h2>
+            <p className="mt-2 text-ink-soft">
+              Send it as it is, typed or photographed. We return an itemised quotation.
+            </p>
           </div>
-          <div className="flex flex-wrap gap-3">
-            <Button href="/quote" variant="accent">Request a Quote</Button>
-            <Button href="/kits" variant="inverse">See school kits</Button>
+          <div className="flex flex-col gap-3 sm:flex-row">
+            <Button href="/quote">Request a quote</Button>
+            <Button
+              href={whatsappLink("Hello SchoolSource, here is our list for a quotation:")}
+              variant="secondary"
+              icon={<WhatsAppIcon />}
+            >
+              Send it on WhatsApp
+            </Button>
           </div>
-        </Container>
-      </section>
+        </div>
+      </Section>
     </>
   );
 }
