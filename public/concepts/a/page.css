@@ -246,7 +246,14 @@ html[data-buttons="pill"] .btn--secondary:hover, .hero__box .btn--secondary:hove
   .kitrow { grid-template-columns: minmax(0, 1fr) 72px; }
   .kit-lead__pic { height: 300px; }
   .legal__row { flex-direction: column; align-items: flex-start; }
-  #ordering .mo-pc__visual img { aspect-ratio: 2 / 1; object-fit: cover; width: 100%; height: auto; }
+
   .index__thumb { width: 64px; height: 44px; }
   .index a { grid-template-columns: 22px 64px minmax(0, 1fr) auto; }
 }
+@media (min-width: 1024px) { #catalogue .section-head, #service .section-head, #kits .section-head { max-width: none; } }
+/* gate round 2 */
+@media (min-width: 1024px) { .kit-lead__pic { height: 370px; } }
+@media (max-width: 639px) { #ordering { --hm: 2; } .kit-lead__pic { height: 420px; } }
+@media (max-width: 639px) { main > #ordering[data-moment]:not(.is-live) { min-height: calc(2 * 100lvh); } }
+@media (max-width: 639px) { #ordering:not(.is-live) .mo-pc__visual > img { max-height: 23svh; } }
+@media (max-width: 639px) { #ordering:not(.is-live) .mo-pc__visual > img { width: 100%; height: 168px; max-height: none; aspect-ratio: auto; object-fit: cover; } }

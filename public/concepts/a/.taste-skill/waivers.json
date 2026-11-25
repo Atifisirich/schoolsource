@@ -1,1 +1,0 @@
-[{ "check": "phone-number", "target": "p.t-lead", "reason": "The client's real phone and WhatsApp number, confirmed in lib/site.ts; the brief requires the real contact details." }]
