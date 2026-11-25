@@ -37,7 +37,7 @@ export function CategoryFilter({ categoryName }: { categoryName: string }) {
       <div className="relative">
         <svg
           viewBox="0 0 20 20"
-          className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-ink-soft"
+          className="pointer-events-none absolute left-4 top-1/2 size-4 -translate-y-1/2 text-ink-soft"
           fill="none"
           stroke="currentColor"
           strokeWidth="1.8"
@@ -54,10 +54,10 @@ export function CategoryFilter({ categoryName }: { categoryName: string }) {
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Filter items"
           autoComplete="off"
-          className="h-11 w-full rounded-sm border border-ink/20 bg-white pl-9 pr-3 text-[0.9375rem] placeholder:text-ink-soft/80 transition-[border-color,box-shadow] duration-150 hover:border-ink/40 focus:border-board focus:outline-none focus:ring-[3px] focus:ring-board/15 [&::-webkit-search-cancel-button]:hidden"
+          className="h-12 w-full rounded-full border-2 border-ink/20 bg-white pl-10 pr-4 text-base placeholder:text-ink-soft/80 transition-[border-color,box-shadow] duration-150 hover:border-ink/40 focus:border-board focus:outline-none focus:ring-4 focus:ring-board/15 [&::-webkit-search-cancel-button]:hidden"
         />
       </div>
-      <p aria-live="polite" className="tabular mt-1.5 text-sm text-ink-soft empty:hidden">
+      <p aria-live="polite" className="tabular mt-2 text-base text-ink-soft empty:hidden">
         {shown !== null ? `${shown} ${shown === 1 ? "item" : "items"} shown` : ""}
       </p>
     </div>

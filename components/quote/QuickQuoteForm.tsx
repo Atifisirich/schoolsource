@@ -75,19 +75,19 @@ export function QuickQuoteForm({
     <form
       noValidate
       onSubmit={onSubmit}
-      className="card grid gap-5 p-5 sm:p-8"
+      className="grid gap-6 rounded-xl bg-cream p-5 sm:p-8"
       aria-describedby="quick-form-note"
     >
-      <div className="grid gap-5 sm:grid-cols-2">
+      <div className="grid gap-6 sm:grid-cols-2">
         <Field label="Your name" required error={errors.name}>
-          {(p) => <Input {...p} name="name" autoComplete="name" />}
+          {(p) => <Input {...p} name="name" autoComplete="name" className="h-14" />}
         </Field>
         <Field label="Phone / WhatsApp" required error={errors.phone}>
-          {(p) => <Input {...p} name="phone" type="tel" inputMode="tel" autoComplete="tel" />}
+          {(p) => <Input {...p} name="phone" type="tel" inputMode="tel" autoComplete="tel" className="h-14" />}
         </Field>
       </div>
       <Field label="School" required error={errors.school}>
-        {(p) => <Input {...p} name="school" autoComplete="organization" />}
+        {(p) => <Input {...p} name="school" autoComplete="organization" className="h-14" />}
       </Field>
       <Field label={messageLabel} hint="Type your list, or describe it. We will follow up for details.">
         {(p) => <Textarea {...p} name="message" rows={4} />}
@@ -98,9 +98,9 @@ export function QuickQuoteForm({
 
       <div className="flex flex-wrap items-center gap-x-5 gap-y-3">
         <Button type="submit" size="lg" disabled={status === "sending"} className="w-full sm:w-auto">
-          {status === "sending" ? "Sending…" : "Send my list"}
+          {status === "sending" ? "Sending..." : "Send message"}
         </Button>
-        <p id="quick-form-note" className="text-sm text-ink-soft">
+        <p id="quick-form-note" className="text-[1rem] text-ink-soft">
           You review the itemised quotation before you order.
         </p>
       </div>

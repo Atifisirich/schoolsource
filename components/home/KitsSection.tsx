@@ -15,12 +15,9 @@ export function KitsSection({ kits }: { kits: Kit[] }) {
     <Section id="kits" aria-labelledby="kits-title">
       <div className="grid items-stretch gap-10 lg:grid-cols-2 lg:gap-16">
         <div className="relative isolate min-h-[26rem] overflow-hidden rounded-xl bg-sky sm:min-h-[32rem] lg:min-h-[36rem]">
-          <div className="absolute inset-x-6 top-6 z-10 flex flex-col items-start gap-3.5 sm:inset-x-7 sm:top-7 sm:flex-row sm:justify-between">
-            <span className="rounded-full bg-white px-4 py-2 text-[0.9375rem] font-bold">New Admission Student Kit</span>
-            <p className="max-w-[9em] font-display text-[clamp(1.5rem,1.1rem+1.4vw,2rem)] leading-[1.05] sm:text-right">
-              One bag per student.
-            </p>
-          </div>
+          <p className="absolute left-6 top-6 z-10 max-w-[9em] font-display text-[clamp(1.5rem,1.1rem+1.4vw,2rem)] leading-[1.05] sm:left-7 sm:top-7">
+            One bag per student.
+          </p>
           <Image
             src={cutouts.lunchbox.src}
             width={cutouts.lunchbox.width}

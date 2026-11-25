@@ -75,7 +75,7 @@ export function ItemPhotos({ images, name, order = 0, sizes }: ItemPhotosProps) 
       ))}
 
       {many ? (
-        <div className="absolute bottom-2 left-2 flex items-center rounded-[6px] bg-white/92 px-0.5 shadow-[0_0_0_1px_rgb(15_27_45/0.08)] backdrop-blur-[2px]">
+        <div className="absolute bottom-3 left-3 flex items-center rounded-full bg-white/92 px-1.5 shadow-[0_0_0_1px_rgb(15_27_45/0.08)] backdrop-blur-[2px]">
           {images.map((src, i) => (
             <button
               key={src}
@@ -83,7 +83,7 @@ export function ItemPhotos({ images, name, order = 0, sizes }: ItemPhotosProps) 
               onClick={() => setIndex(i)}
               aria-label={`Show ${name} style ${i + 1} of ${images.length}`}
               aria-pressed={i === index}
-              className="group/dot flex size-6 items-center justify-center rounded-[4px]"
+              className="group/dot relative flex size-7 items-center justify-center rounded-full after:absolute after:-inset-2 after:content-['']"
             >
               <span
                 className={cn(
@@ -98,7 +98,7 @@ export function ItemPhotos({ images, name, order = 0, sizes }: ItemPhotosProps) 
               type="button"
               onClick={() => setStopped((s) => !s)}
               aria-label={stopped ? `Play ${name} photos` : `Pause ${name} photos`}
-              className="flex size-6 items-center justify-center rounded-[4px] text-ink/70 transition-colors duration-150 hover:text-ink active:scale-90"
+              className="relative flex size-7 items-center justify-center rounded-full text-ink/70 after:absolute after:-inset-2 after:content-[''] transition-colors duration-150 hover:text-ink active:scale-90"
             >
               <svg viewBox="0 0 12 12" className="size-2.5" fill="currentColor" aria-hidden="true">
                 {stopped ? <path d="M3 2 L10 6 L3 10 Z" /> : <path d="M3 2 H5 V10 H3 Z M7 2 H9 V10 H7 Z" />}

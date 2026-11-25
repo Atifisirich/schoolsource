@@ -6,8 +6,8 @@ import { site, whatsappLink } from "@/lib/site";
 /** Thank-you state shown after a form is sent. */
 export function SentPanel({ school, fileToSend = false }: { school: string; fileToSend?: boolean }) {
   return (
-    <div role="status" className="animate-rise-in card p-6 sm:p-8">
-      <svg viewBox="0 0 24 24" className="size-8 text-board" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <div role="status" className="animate-rise-in rounded-xl bg-sky p-6 sm:p-8">
+      <svg viewBox="0 0 24 24" className="size-10 text-blue" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <circle cx="12" cy="12" r="10" />
         <path d="M7.5 12.5 L10.5 15.5 L16.5 9" />
       </svg>
@@ -17,7 +17,7 @@ export function SentPanel({ school, fileToSend = false }: { school: string; file
         urgent, message us on WhatsApp.
       </p>
       {fileToSend ? (
-        <p className="mt-5 rounded-sm border border-pencil/50 bg-pencil-soft px-4 py-3 text-[0.9375rem]">
+        <p className="mt-5 rounded-md bg-pencil-soft px-4 py-3 text-[1.0625rem]">
           Please send the photo or PDF of your list on WhatsApp, so we can match it to this request.
         </p>
       ) : null}
@@ -43,14 +43,14 @@ export function SentPanel({ school, fileToSend = false }: { school: string; file
  */
 export function SendProblem({ kind, onWhatsApp }: { kind: "error" | "not-configured"; onWhatsApp?: () => void }) {
   return (
-    <div className="rounded-sm border border-red/40 bg-[#fff6f2] p-4 sm:p-5">
+    <div className="rounded-lg border-2 border-red/50 bg-white p-4 sm:p-5">
       <p className="font-semibold">
         {kind === "error" ? "Your request could not be sent." : "The online form is not connected yet."}
       </p>
-      <p className="mt-1 text-[0.9375rem] text-ink-soft">
+      <p className="mt-1 text-[1.0625rem] text-ink-soft">
         {kind === "error" ? "Please try again, or send it " : "Please send your request "}
         on WhatsApp or by email to{" "}
-        <a href={site.emailHref} className="link font-semibold text-ink">
+        <a href={site.emailHref} className="font-semibold text-ink underline underline-offset-4">
           {site.email}
         </a>
         . Nothing you typed has been lost.
@@ -65,7 +65,7 @@ export function SendProblem({ kind, onWhatsApp }: { kind: "error" | "not-configu
             Open WhatsApp
           </Button>
         )}
-        <Button href={site.emailHref} variant="secondary">
+        <Button href={site.emailHref} variant="ghost">
           Email us
         </Button>
       </div>

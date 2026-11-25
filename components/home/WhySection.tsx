@@ -69,8 +69,8 @@ export function WhySection() {
           </Button>
         }
       />
-      <div className="grid gap-3.5 sm:grid-cols-2 lg:grid-cols-4">
-        <div className="relative min-h-52 overflow-hidden rounded-lg sm:min-h-64 sm:col-span-2 lg:col-span-1 lg:row-span-2">
+      <div className="grid gap-2.5 sm:gap-3.5 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="relative hidden min-h-52 overflow-hidden rounded-lg sm:block sm:min-h-64 sm:col-span-2 lg:col-span-1 lg:row-span-2">
           <Image
             src={cutouts.warehouse.src}
             alt={cutouts.warehouse.alt}
@@ -80,8 +80,8 @@ export function WhySection() {
           />
         </div>
         {reasons.map((r) => (
-          <div key={r.title} className="flex gap-5 rounded-lg bg-paper p-5 sm:min-h-52 sm:flex-col sm:justify-between sm:gap-6 sm:p-6">
-            <span className="grid size-12 shrink-0 place-items-center rounded-full bg-ink text-white">
+          <div key={r.title} className="flex items-start gap-4 rounded-lg bg-paper p-4 sm:min-h-52 sm:flex-col sm:items-stretch sm:justify-between sm:gap-6 sm:p-6">
+            <span className="grid size-10 shrink-0 sm:size-12 place-items-center rounded-full bg-ink text-white">
               <svg
                 viewBox="0 0 24 24"
                 className="size-[22px]"
@@ -96,8 +96,8 @@ export function WhySection() {
               </svg>
             </span>
             <div>
-              <h3 className="text-[clamp(1.3125rem,1.15rem+0.5vw,1.625rem)] leading-[1.1]">{r.title}</h3>
-              <p className="mt-2.5 text-[1.0625rem] text-ink-soft">{r.text}</p>
+              <h3 className="text-[1.125rem] leading-[1.2] sm:text-[clamp(1.3125rem,1.15rem+0.5vw,1.625rem)] sm:leading-[1.1]">{r.title}</h3>
+              <p className="mt-1.5 text-base text-ink-soft sm:mt-2.5 sm:text-[1.0625rem]">{r.text}</p>
             </div>
           </div>
         ))}

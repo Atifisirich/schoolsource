@@ -81,14 +81,14 @@ export function SubcategoryNav({
           aria-label="Groups in this category"
           className={cn(
             // Mobile: full-bleed row that sticks under the header
-            "sticky top-16 z-20 -mx-gutter min-w-0 border-b border-rule bg-white/95 backdrop-blur-sm",
+            "sticky top-16 z-20 -mx-gutter min-w-0 border-b border-rule bg-paper/95 backdrop-blur-sm",
             "lg:static lg:mx-0 lg:border-0 lg:bg-transparent lg:backdrop-blur-none",
           )}
         >
-          <p className="mb-2 hidden px-3 text-sm font-semibold text-ink-soft lg:block">In this category</p>
+          <p className="mb-2 hidden px-4 text-base font-semibold text-ink-soft lg:block">In this category</p>
           <ul
             ref={listRef}
-            className="flex overflow-x-auto px-[calc(var(--spacing-gutter)-0.75rem)] [scrollbar-width:none] lg:flex-col lg:overflow-visible lg:px-0 [&::-webkit-scrollbar]:hidden"
+            className="flex overflow-x-auto px-[calc(var(--spacing-gutter)-1rem)] [scrollbar-width:none] lg:flex-col lg:overflow-visible lg:px-0 [&::-webkit-scrollbar]:hidden"
           >
             {items.map((item) => {
               const isActive = item.slug === active;
@@ -100,17 +100,17 @@ export function SubcategoryNav({
                     aria-current={isActive ? "location" : undefined}
                     onClick={() => setActive(item.slug)}
                     className={cn(
-                      "relative flex items-center gap-3 whitespace-nowrap text-[0.9375rem] transition-colors duration-150",
+                      "relative flex items-center gap-3 whitespace-nowrap text-[1.0625rem] transition-colors duration-150",
                       // Mobile: text tabs with an underline for the group in view
-                      "h-12 px-3 after:absolute after:inset-x-3 after:bottom-0 after:h-0.5 after:origin-left after:bg-board after:transition-transform after:duration-200 after:ease-out",
+                      "h-12 px-4 after:absolute after:inset-x-4 after:bottom-0 after:h-[3px] after:origin-left after:bg-ink after:transition-transform after:duration-200 after:ease-out",
                       isActive ? "font-semibold text-ink after:scale-x-100" : "text-ink-soft after:scale-x-0 hover:text-ink",
                       // Desktop: a quiet list, the group in view on a grey ground
-                      "lg:h-auto lg:justify-between lg:whitespace-normal lg:rounded-sm lg:py-2 lg:after:hidden",
-                      isActive ? "lg:bg-paper-deep" : "lg:hover:bg-paper-deep/60",
+                      "lg:h-auto lg:justify-between lg:whitespace-normal lg:min-h-11 lg:rounded-full lg:px-4 lg:py-2 lg:after:hidden",
+                      isActive ? "lg:bg-cream" : "lg:hover:bg-cream/60",
                     )}
                   >
                     <span>{item.name}</span>
-                    <span className="tabular hidden text-sm font-normal text-ink-soft lg:inline">{item.count}</span>
+                    <span className="tabular hidden text-base font-normal text-ink-soft lg:inline">{item.count}</span>
                   </a>
                 </li>
               );

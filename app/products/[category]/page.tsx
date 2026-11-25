@@ -1,17 +1,15 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { WhatsAppIcon } from "@/components/layout/WhatsAppFloat";
 import { CategoryFilter } from "@/components/products/CategoryFilter";
 import { ItemPhotos } from "@/components/products/ItemPhotos";
 import { SubcategoryNav } from "@/components/products/SubcategoryNav";
 import { AddToQuoteButton } from "@/components/quote/AddToQuoteButton";
-import { QuickQuoteForm } from "@/components/quote/QuickQuoteForm";
-import { Button } from "@/components/ui/Button";
+import { ArrowIcon, Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
-import { Breadcrumb } from "@/components/ui/PageHeader";
+import { PageHeader, type PageHeaderTone } from "@/components/ui/PageHeader";
 import { categories, countItems, getCategory, type Category, type Item } from "@/data/catalogue";
+import { categoryArt } from "@/lib/category-art";
 import { whatsappLink } from "@/lib/site";
 
 type Params = { category: string };
@@ -33,6 +31,9 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
 
 const plural = (n: number, one: string, many: string) => `${n} ${n === 1 ? one : many}`;
 
+// One calm colour field per band, so the three bands read apart
+const bandTone: Record<string, PageHeaderTone> = { everyday: "sky", activities: "peach", setup: "cream" };
+
 export default async function CategoryPage({ params }: { params: Promise<Params> }) {
   const category = getCategory((await params).category);
   if (!category) notFound();
@@ -40,73 +41,35 @@ export default async function CategoryPage({ params }: { params: Promise<Params>
   const index = categories.indexOf(category);
   const prev = categories[index - 1];
   const next = categories[index + 1];
-  // Occasional and one-time purchases are usually specified per school
   const leanOnQuote = category.band !== "everyday";
   const quoteHref = `/quote?category=${category.slug}`;
   const total = countItems(category);
+  const art = categoryArt[category.slug];
+  const image = art ?? (category.image ? { src: category.image, width: 1600, height: 1067, fit: "frame" as const, alt: category.name } : undefined);
 
   return (
     <>
-      <header className="border-b border-rule bg-paper pb-12 pt-8 sm:pt-10 lg:pb-16">
-        <Container className="animate-rise-in">
-          <Breadcrumb
-            items={[{ href: "/", label: "Home" }, { href: "/products", label: "Products" }, { label: category.name }]}
-          />
-          <div className="mt-8 grid gap-8 lg:grid-cols-12 lg:items-center lg:gap-12">
-            <div className="lg:col-span-6">
-              <h1 className="text-h1">{category.name}</h1>
-              <p className="mt-5 max-w-xl text-lead text-ink-soft">
-                {category.description}. {plural(total, "item", "items")} in{" "}
-                {plural(category.subcategories.length, "group", "groups")}, each quoted on request.
-              </p>
+      <PageHeader
+        crumbs={[{ href: "/", label: "Home" }, { href: "/products", label: "Products" }, { label: category.name }]}
+        title={category.name}
+        tone={bandTone[category.band] ?? "cream"}
+        image={image}
+        intro={
+          <p>
+            {category.description}. {plural(total, "item", "items")} in {plural(category.subcategories.length, "group", "groups")}.
+          </p>
+        }
+        actions={
+          <>
+            <Button href={quoteHref}>Request a quote</Button>
+            <Button href={whatsappLink(`Hello SchoolSource, we need the following from ${category.name}:`)} variant="whatsapp">
+              WhatsApp us
+            </Button>
+          </>
+        }
+      />
 
-              {category.pageNote || category.seeAlso?.length ? (
-                <div className="mt-6 max-w-xl rounded-md border border-rule bg-paper-deep px-4 py-3.5 text-[0.9375rem] leading-relaxed">
-                  {category.pageNote ? <p>{category.pageNote}</p> : null}
-                  {category.seeAlso?.map((ref) => {
-                    const target = getCategory(ref.slug);
-                    const sub = target?.subcategories.find((s) => s.name === ref.subcategory);
-                    return (
-                      <p key={ref.label} className={category.pageNote ? "mt-1.5 text-ink-soft" : "text-ink-soft"}>
-                        {ref.label}:{" "}
-                        <Link href={`/products/${ref.slug}${sub ? `#${sub.slug}` : ""}`} className="link font-semibold text-ink">
-                          {sub?.name ?? target?.name}
-                        </Link>
-                      </p>
-                    );
-                  })}
-                </div>
-              ) : null}
-
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <Button href={quoteHref}>Request a quote</Button>
-                <Button
-                  href={whatsappLink(`Hello SchoolSource, we need the following from ${category.name}:`)}
-                  variant="secondary"
-                  icon={<WhatsAppIcon />}
-                >
-                  Ask on WhatsApp
-                </Button>
-              </div>
-            </div>
-
-            {category.image ? (
-              <figure className="relative aspect-[3/2] overflow-hidden rounded-lg bg-paper-deep lg:col-span-6">
-                <Image
-                  src={category.image}
-                  alt=""
-                  fill
-                  priority
-                  sizes="(min-width: 1280px) 600px, (min-width: 1024px) 48vw, 100vw"
-                  className="object-cover"
-                />
-              </figure>
-            ) : null}
-          </div>
-        </Container>
-      </header>
-
-      <Container className="grid grid-cols-1 pb-section pt-6 lg:grid-cols-12 lg:gap-10 lg:pt-14">
+      <Container className="grid grid-cols-1 pb-section pt-2 lg:grid-cols-12 lg:gap-12 lg:pt-6">
         <SubcategoryNav
           className="lg:col-span-3"
           items={category.subcategories.map((s) => ({ slug: s.slug, name: s.name, count: s.items.length }))}
@@ -114,20 +77,32 @@ export default async function CategoryPage({ params }: { params: Promise<Params>
         />
 
         <div className="pt-8 lg:col-span-9 lg:pt-0">
-          {leanOnQuote ? (
-            <p className="mb-10 max-w-2xl text-ink-soft">
-              These are usually specified per school: size, brand, quantity and installation. Add items to your quote
-              list, or send your requirements and we will advise.
-            </p>
+          {category.pageNote || category.seeAlso?.length || leanOnQuote ? (
+            <div className="mb-10 max-w-2xl space-y-2 text-lg leading-relaxed text-ink-soft">
+              {category.pageNote ? <p>{category.pageNote}</p> : null}
+              {category.seeAlso?.map((ref) => {
+                const target = getCategory(ref.slug);
+                const sub = target?.subcategories.find((s) => s.name === ref.subcategory);
+                return (
+                  <p key={ref.label}>
+                    {ref.label}:{" "}
+                    <Link href={`/products/${ref.slug}${sub ? `#${sub.slug}` : ""}`} className="link font-semibold text-ink">
+                      {sub?.name ?? target?.name}
+                    </Link>
+                  </p>
+                );
+              })}
+              {leanOnQuote ? (
+                <p>These are usually chosen school by school. Add items to your quote, or tell us what you need and we will advise.</p>
+              ) : null}
+            </div>
           ) : null}
 
-          <div id="category-no-match" hidden className="card px-6 py-10 text-center">
-            <h2 className="text-h3">No items match your filter</h2>
-            <p className="mx-auto mt-2 max-w-md text-ink-soft">
-              We source most things a school buys. Tell us what you are looking for.
-            </p>
+          <div id="category-no-match" hidden className="rounded-xl bg-cream px-6 py-10">
+            <h2 className="text-h3">No items match</h2>
+            <p className="mt-3 max-w-md text-lg text-ink-soft">We can still source it. Tell us what you are looking for.</p>
             <div className="mt-5">
-              <Button href={quoteHref}>Tell us what you need</Button>
+              <Button href={quoteHref}>Request a quote</Button>
             </div>
           </div>
 
@@ -137,21 +112,12 @@ export default async function CategoryPage({ params }: { params: Promise<Params>
               id={sub.slug}
               data-item-section
               aria-labelledby={`${sub.slug}-title`}
-              className={si > 0 ? "mt-12 scroll-mt-12 border-t border-rule pt-10 lg:scroll-mt-4" : "scroll-mt-12 lg:scroll-mt-4"}
+              className={si > 0 ? "mt-16 scroll-mt-32 lg:scroll-mt-28" : "scroll-mt-32 lg:scroll-mt-28"}
             >
-              <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
-                <h2 id={`${sub.slug}-title`} className="text-h3">
-                  {sub.name}
-                </h2>
-                {leanOnQuote ? (
-                  <Link href={`${quoteHref}&about=${encodeURIComponent(sub.name)}`} className="link text-sm font-semibold text-board">
-                    Ask for a quote on {sub.name.toLowerCase()}
-                  </Link>
-                ) : (
-                  <p className="tabular text-sm text-ink-soft">{plural(sub.items.length, "item", "items")}</p>
-                )}
-              </div>
-              {sub.note ? <p className="mt-1.5 max-w-2xl text-[0.9375rem] text-ink-soft">{sub.note}</p> : null}
+              <h2 id={`${sub.slug}-title`} className="text-h3">
+                {sub.name}
+              </h2>
+              {sub.note ? <p className="mt-2 max-w-2xl text-lg text-ink-soft">{sub.note}</p> : null}
 
               <ul className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 xl:grid-cols-4">
                 {sub.items.map((item, ii) => (
@@ -165,46 +131,30 @@ export default async function CategoryPage({ params }: { params: Promise<Params>
         </div>
       </Container>
 
-      {/* Enquiry for this category: the page's one dark band */}
-      <section aria-labelledby="cant-find" className="on-dark bg-ink py-section">
-        <Container className="grid gap-10 lg:grid-cols-12 lg:items-start lg:gap-12">
-          <div className="lg:col-span-5">
-            <h2 id="cant-find" className="text-h2 text-white">
-              Not finding an item?
-            </h2>
-            <p className="mt-4 max-w-md text-paper/85">
-              We source most things a school buys. Describe the item, brand, size or quantity and we will include it in
-              your quotation, each line priced separately for you to review.
-            </p>
-            <p className="mt-4 max-w-md text-paper/85">
-              If you would like to see products first, we can bring samples to your school.
-            </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-6">
-              <Button
-                href={whatsappLink(`Hello SchoolSource, we are looking for the following in ${category.name}:`)}
-                variant="inverse"
-                icon={<WhatsAppIcon />}
-              >
-                Ask on WhatsApp
-              </Button>
-              <Button href="/quote?topic=visit" variant="text">
-                Book a visit with samples
-              </Button>
+      <section aria-labelledby="cant-find" className="pb-section">
+        <Container>
+          <div className="grid gap-6 rounded-xl bg-cream p-6 sm:p-10 lg:grid-cols-[1fr_auto] lg:items-center lg:gap-12 lg:p-14">
+            <div>
+              <h2 id="cant-find" className="text-h2">
+                Can&rsquo;t find an item?
+              </h2>
+              <p className="mt-4 max-w-xl text-lead text-ink-soft">
+                We source most things a school buys. Message us the item and the quantity.
+              </p>
             </div>
-          </div>
-          <div className="text-ink lg:col-span-7">
-            <QuickQuoteForm
-              source={`${category.name} page`}
-              about={category.name}
-              messageLabel={`What do you need from ${category.name}?`}
-            />
+            <Button
+              href={whatsappLink(`Hello SchoolSource, we are looking for the following in ${category.name}:`)}
+              variant="whatsapp"
+              className="bg-white"
+            >
+              WhatsApp us
+            </Button>
           </div>
         </Container>
       </section>
 
-      {/* Previous / next category */}
-      <nav aria-label="Other categories" className="border-b border-rule">
-        <Container className="grid gap-4 py-10 sm:grid-cols-2 lg:py-12">
+      <nav aria-label="Other categories" className="pb-section">
+        <Container className="grid gap-4 sm:grid-cols-2">
           {prev ? <SiblingLink category={prev} direction="Previous" /> : null}
           {next ? <SiblingLink category={next} direction="Next" className="sm:col-start-2" /> : null}
         </Container>
@@ -217,42 +167,29 @@ function ItemCard({ item, category, order }: { item: Item; category: Category; o
   const hasPhoto = item.images.length > 0;
   const styles = item.images.length > 1 ? `${item.images.length} styles` : null;
   const detail = [item.note, styles].filter(Boolean).join(". ");
-  const name = (
-    <h3
-      className={
-        hasPhoto
-          ? "font-sans text-[0.9375rem] font-semibold leading-snug sm:text-base"
-          : "font-display text-base font-semibold leading-snug text-ink/80 sm:text-lg"
-      }
-    >
-      {item.name}
-    </h3>
-  );
 
   return (
     <article className="card flex h-full flex-col overflow-hidden">
-      <div className="relative aspect-[16/10] overflow-hidden border-b border-rule bg-paper-deep">
-        {hasPhoto ? (
+      {hasPhoto ? (
+        <div className="relative aspect-[4/3] overflow-hidden bg-cream">
           <ItemPhotos
             images={item.images}
             name={item.name}
             order={order}
-            sizes="(min-width: 1280px) 220px, (min-width: 1024px) 34vw, 50vw"
+            sizes="(min-width: 1280px) 240px, (min-width: 1024px) 28vw, (min-width: 640px) 30vw, 46vw"
           />
-        ) : (
-          // No photo yet: the name set on a plain plate, as in a printed catalogue
-          <div className="absolute inset-0 flex items-end p-3 sm:p-4">{name}</div>
-        )}
-      </div>
+        </div>
+      ) : (
+        // No photo yet: the name on a calm cream plate
+        <div className="flex aspect-[4/3] items-center justify-center bg-cream p-4 text-center">
+          <h3 className="font-display text-[1.125rem] leading-tight text-ink sm:text-xl">{item.name}</h3>
+        </div>
+      )}
 
-      <div className="flex flex-1 flex-col p-3 sm:p-4">
-        {hasPhoto ? name : null}
-        {detail ? (
-          <p className={hasPhoto ? "mt-1 text-sm leading-snug text-ink-soft" : "text-sm leading-snug text-ink-soft"}>
-            {detail}
-          </p>
-        ) : null}
-        <div className={hasPhoto || detail ? "mt-auto grid gap-2 pt-4" : "mt-auto grid gap-2"}>
+      <div className="flex flex-1 flex-col p-4">
+        {hasPhoto ? <h3 className="text-[1.0625rem] font-semibold leading-snug">{item.name}</h3> : null}
+        {detail ? <p className="mt-1 text-base leading-snug text-ink-soft">{detail}</p> : null}
+        <div className="mt-auto grid gap-1 pt-4">
           <AddToQuoteButton
             size="sm"
             className="w-full"
@@ -260,7 +197,7 @@ function ItemCard({ item, category, order }: { item: Item; category: Category; o
             item={{ id: item.id, name: item.name, category: category.name }}
           />
           {item.href ? (
-            <Link href={item.href} className="link py-1 text-center text-sm font-semibold text-board">
+            <Link href={item.href} className="link inline-flex min-h-11 items-center justify-center text-base font-semibold text-board">
               See details
             </Link>
           ) : null}
@@ -284,19 +221,14 @@ function SiblingLink({
     <Link
       href={`/products/${category.slug}`}
       rel={isNext ? "next" : "prev"}
-      className={`card-link group flex items-center gap-4 p-3 ${isNext ? "sm:flex-row-reverse sm:text-right" : ""} ${className ?? ""}`}
+      className={`group flex min-h-20 items-center gap-4 rounded-xl bg-cream px-6 py-5 transition-[transform,background-color] duration-150 hover:-translate-y-0.5 hover:bg-sand active:scale-[0.98] ${isNext ? "justify-between" : "justify-start"} ${className ?? ""}`}
     >
-      <div className="card-media aspect-[3/2] w-24 shrink-0 rounded-sm sm:w-32">
-        {category.image ? (
-          <Image src={category.image} alt="" fill sizes="128px" className="object-cover" />
-        ) : null}
+      {isNext ? null : <ArrowIcon className="size-6 shrink-0 rotate-180" />}
+      <div className={`min-w-0 ${isNext ? "" : "flex-1"}`}>
+        <p className="text-base text-ink-soft">{direction} category</p>
+        <p className="mt-0.5 font-display text-xl leading-snug">{category.name}</p>
       </div>
-      <div className="min-w-0">
-        <p className="text-sm text-ink-soft">{direction} category</p>
-        <p className="mt-0.5 font-display text-lg font-semibold leading-snug transition-colors duration-150 group-hover:text-board sm:text-xl">
-          {category.name}
-        </p>
-      </div>
+      {isNext ? <ArrowIcon className="size-6 shrink-0" /> : null}
     </Link>
   );
 }

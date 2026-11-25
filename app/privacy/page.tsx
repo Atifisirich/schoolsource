@@ -48,7 +48,7 @@ export default function PrivacyPage() {
         {
           title: "Questions or corrections",
           body: [
-            `To ask what we hold about you, or to have it corrected or deleted, email ${site.email} or call ${site.phoneDisplay}.`,
+            `To ask what we hold about you, or to have it corrected or deleted, email ${site.email} or call ${site.phoneDisplay}. Our address is ${site.address}.`,
           ],
         },
       ]}

@@ -16,19 +16,19 @@ const listMessage = "Hello SchoolSource, I would like a quote for our school. He
  * a 320px phone to a 600px desktop column.
  */
 const group = [
-  // Back left: the trophy, the tallest thing
+  // Left: the trophy, kept to the same height as the lunch box
   {
     art: cutouts.trophy,
-    className: "left-[7%] bottom-[13%] h-[56%] w-auto",
-    sizes: "(min-width: 900px) 19vw, 40vw",
+    className: "left-[5%] bottom-[24%] h-[46%] w-auto",
+    sizes: "(min-width: 900px) 15vw, 36vw",
     delay: 200,
     rotate: "-4deg",
   },
-  // Back right: the open lunch box, just overlapping the trophy
+  // Right: the open lunch box
   {
     art: cutouts.lunchbox,
-    className: "right-[5%] bottom-[11%] h-[48%] w-auto",
-    sizes: "(min-width: 900px) 16vw, 34vw",
+    className: "right-[5%] bottom-[26%] h-[44%] w-auto",
+    sizes: "(min-width: 900px) 15vw, 34vw",
     delay: 280,
     rotate: "4deg",
   },
@@ -43,7 +43,7 @@ const group = [
   // Front-most: the football, resting on the pencils
   {
     art: cutouts.football,
-    className: "left-[38%] bottom-[2%] w-[28%] h-auto",
+    className: "left-[37%] bottom-[11%] w-[27%] h-auto",
     sizes: "(min-width: 900px) 12vw, 28vw",
     delay: 470,
     rotate: "-14deg",
