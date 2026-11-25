@@ -99,7 +99,7 @@ function QuantityInput({ item }: { item: QuoteItem }) {
 
   const commit = (value: number) => quoteList.setQuantity(item.id, Math.max(1, Math.min(99999, value)));
   const stepBtn =
-    "inline-flex h-11 w-10 items-center justify-center text-lg text-ink transition-colors duration-150 hover:bg-paper-deep active:bg-rule disabled:text-ink/30 disabled:hover:bg-transparent";
+    "inline-flex h-11 w-9 sm:w-10 items-center justify-center text-lg text-ink transition-colors duration-150 hover:bg-paper-deep active:bg-rule disabled:text-ink/30 disabled:hover:bg-transparent";
 
   return (
     <div className="inline-flex items-center overflow-hidden rounded-sm border border-[#7d8899] bg-white focus-within:border-board focus-within:ring-2 focus-within:ring-board/30">
@@ -120,7 +120,7 @@ function QuantityInput({ item }: { item: QuoteItem }) {
           if (n > 0) commit(n);
         }}
         onBlur={() => setText(String(item.quantity))}
-        className="tabular h-11 w-14 border-x border-rule text-center text-[0.9375rem] focus:outline-none"
+        className="tabular h-11 w-12 border-x border-rule text-center text-[0.9375rem] focus:outline-none sm:w-14"
       />
       <button type="button" className={stepBtn} onClick={() => commit(item.quantity + 1)}>
         <span className="sr-only">Increase quantity of {item.name}</span>
