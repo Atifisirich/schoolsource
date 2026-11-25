@@ -16,11 +16,23 @@ export const site = {
   email: "info@schoolsource.in",
   emailHref: "mailto:info@schoolsource.in",
 
-  // Not yet confirmed - shown as visible placeholders
-  address: "[ADDRESS]",
-  gstin: "[GSTIN]",
+  // Confirmed by the owner, November 2026
+  address:
+    "Plot No. 802 & 803, 5th Floor, Nexus Business Centre, Ayyappa Society, Madhapur, Hyderabad 500081",
+  addressShort: "Madhapur, Hyderabad",
+  gstin: "36ABFCA8886K1ZX",
+  founder: "Aijaz Khan",
+
+  // Not yet confirmed - shown as a visible placeholder (see components/ui/Pending.tsx)
   hours: "[HOURS]",
 } as const;
+
+/**
+ * Whether unconfirmed facts ([ADDRESS], [GSTIN] ...) are shown as visible
+ * placeholders. Visible by default, as the owner's rules require; set
+ * NEXT_PUBLIC_SHOW_PENDING=false at launch to hide them. Read at build time.
+ */
+export const placeholderVisible = process.env.NEXT_PUBLIC_SHOW_PENDING !== "false";
 
 /** WhatsApp link with a prefilled message. */
 export function whatsappLink(text?: string) {
@@ -31,16 +43,16 @@ export function whatsappLink(text?: string) {
 
 export const mainNav = [
   { href: "/products", label: "Products" },
-  { href: "/kits", label: "School Kits" },
-  { href: "/labs", label: "Labs & STEM" },
-  { href: "/how-it-works", label: "How It Works" },
+  { href: "/kits", label: "Kits" },
+  { href: "/labs", label: "Labs" },
+  { href: "/how-it-works", label: "How it works" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
 ] as const;
 
 export const footerPages = [
   ...mainNav,
-  { href: "/quote", label: "Request a Quote" },
+  { href: "/quote", label: "Request a quote" },
   { href: "/catalogue", label: "Printable catalogue" },
   { href: "/privacy", label: "Privacy" },
   { href: "/terms", label: "Terms" },

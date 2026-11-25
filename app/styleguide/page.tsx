@@ -1,15 +1,15 @@
 import type { Metadata } from "next";
-import { CategoryIcon } from "@/components/icons/CategoryIcon";
+import Link from "next/link";
 import { WhatsAppIcon } from "@/components/layout/WhatsAppFloat";
 import { Button } from "@/components/ui/Button";
 import { CategoryTile } from "@/components/ui/CategoryTile";
-import { IndexTab } from "@/components/ui/IndexTab";
-import { PencilUnderline } from "@/components/ui/PencilUnderline";
-import { PhotoPlaceholder, Placeholder } from "@/components/ui/Placeholder";
-import { RuledPaper } from "@/components/ui/RuledPaper";
-import { Eyebrow, Section, type SectionTone } from "@/components/ui/Section";
-import { Stamp } from "@/components/ui/Stamp";
-import { bands, categories, categoriesInBand } from "@/data/catalogue";
+import { Field, Input, Select, Textarea } from "@/components/ui/Field";
+import { PageHeader } from "@/components/ui/PageHeader";
+import { Pending, showPending } from "@/components/ui/Pending";
+import { Photo } from "@/components/ui/Photo";
+import { RouteSteps } from "@/components/ui/RouteSteps";
+import { Eyebrow, Section } from "@/components/ui/Section";
+import { categories } from "@/data/catalogue";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -18,287 +18,217 @@ export const metadata: Metadata = {
 };
 
 const colours = [
-  { name: "Paper", token: "paper", hex: "#F5F8FD", role: "Page background", swatch: "bg-paper", note: "Ink 15.4:1" },
-  { name: "Navy (ink)", token: "ink", hex: "#0E1F3D", role: "Text, dark sections", swatch: "bg-ink", note: "On paper 15.4:1" },
-  { name: "Blue (board)", token: "board", hex: "#1F4FB5", role: "Primary: buttons, bands", swatch: "bg-board", note: "White 7.4:1" },
-  { name: "Orange (pencil)", token: "pencil", hex: "#F5872A", role: "Accent", swatch: "bg-pencil", note: "Navy text 6.5:1 - never white text" },
-  { name: "Dark orange (red)", token: "red", hex: "#C2410C", role: "Stamps, ticks, small text", swatch: "bg-red", note: "On white 5.2:1" },
-  { name: "Light blue (rule)", token: "rule", hex: "#BFD0EC", role: "Lines, borders, tints", swatch: "bg-rule", note: "Decorative only (1.6:1)" },
-  { name: "White", token: "white", hex: "#FFFFFF", role: "Cards on paper", swatch: "bg-white", note: "Ink 16:1" },
-  { name: "Ink soft", token: "ink-soft", hex: "#4B5873", role: "Secondary text", swatch: "bg-ink-soft", note: "On paper 6.7:1" },
-  { name: "Paper deep", token: "paper-deep", hex: "#E6EDF8", role: "Hover fills, wells", swatch: "bg-paper-deep", note: "Ink-soft 6.1:1" },
-  { name: "Light orange (pencil-soft)", token: "pencil-soft", hex: "#FFE3C7", role: "Placeholders, labels on dark", swatch: "bg-pencil-soft", note: "On blue 6.0:1" },
+  { token: "paper", hex: "#FFFFFF", role: "Page background", swatch: "bg-paper", note: "Ink 17.3:1" },
+  { token: "paper-deep", hex: "#F4F5F7", role: "Alternate band, image wells", swatch: "bg-paper-deep", note: "Ink-soft 6.4:1" },
+  { token: "ink", hex: "#0F1B2D", role: "Text, the dark band, footer", swatch: "bg-ink", note: "On paper 17.3:1" },
+  { token: "ink-soft", hex: "#4D5A6C", role: "Secondary text", swatch: "bg-ink-soft", note: "On paper 7.0:1" },
+  { token: "board", hex: "#1F4FB5", role: "Primary: buttons, links", swatch: "bg-board", note: "White text 7.4:1" },
+  { token: "board-deep", hex: "#173F93", role: "Hover", swatch: "bg-board-deep", note: "White text 9.4:1" },
+  { token: "pencil", hex: "#F5872A", role: "Accent in small doses", swatch: "bg-pencil", note: "Navy text 6.9:1. Never white text" },
+  { token: "pencil-soft", hex: "#FFF1E3", role: "Pending placeholders", swatch: "bg-pencil-soft", note: "Ink 15.6:1" },
+  { token: "red", hex: "#C2410C", role: "Small details (ticks)", swatch: "bg-red", note: "On white 5.2:1" },
+  { token: "rule", hex: "#E3E7EE", role: "Hairlines and borders", swatch: "bg-rule", note: "Decorative only" },
 ];
 
 const typeScale = [
   { token: "text-display", sample: "Everything your school needs", className: "font-display text-display" },
   { token: "text-h1", sample: "Request a quotation", className: "font-display text-h1" },
-  { token: "text-h2", sample: "How it works", className: "font-display text-h2" },
-  { token: "text-h3", sample: "Exam Season Kit", className: "font-display text-h3" },
+  { token: "text-h2", sample: "Fifteen categories, one order book", className: "font-display text-h2" },
+  { token: "text-h3", sample: "Exam season kit", className: "font-display text-h3" },
   { token: "text-lead", sample: "Share your requirement list on WhatsApp or by email. We return an itemised quotation.", className: "text-lead" },
-  { token: "text-base", sample: "Delivery is scheduled before term starts, with a GST invoice and delivery challan for every order.", className: "text-base" },
-  { token: "text-sm", sample: "Made to your school's specification. Usually ordered through the school for parents.", className: "text-sm text-ink-soft" },
-  { token: "text-label (mono)", sample: "01 / Stationery / Item SS-0142", className: "font-mono text-label uppercase" },
+  { token: "text-base", sample: "In-stock items are delivered within a week of confirmation, with a GST invoice and delivery challan.", className: "text-base" },
+  { token: "text-sm", sample: "Made to your school's specification.", className: "text-sm text-ink-soft" },
+  { token: "tabular-nums", sample: "Qty 40 · 500 · 1,250", className: "tabular-nums" },
 ];
 
-const spacing = [
-  { name: "1 (4px)", w: "w-1" },
-  { name: "2 (8px)", w: "w-2" },
-  { name: "4 (16px)", w: "w-4" },
-  { name: "6 (24px)", w: "w-6" },
-  { name: "8 (32px) - one rule", w: "w-8" },
-  { name: "12 (48px)", w: "w-12" },
-  { name: "16 (64px)", w: "w-16" },
-  { name: "gutter (16-40px fluid)", w: "w-gutter" },
-  { name: "section (64-128px fluid)", w: "w-section" },
+const steps = [
+  { title: "Share your list", text: "Send it on WhatsApp or by email, in any format." },
+  { title: "Receive an itemised quotation", text: "Every line priced for your quantities." },
+  { title: "Checked and delivered", text: "Every order is checked before dispatch." },
+  { title: "Pay on agreed terms", text: "[PAYMENT TERMS]" },
 ];
 
-const sectionTones: SectionTone[] = ["paper", "ruled", "white", "board", "ink"];
-
-function Block({
-  id,
-  number,
-  title,
-  children,
-  tone = "paper",
-}: {
-  id: string;
-  number: string;
-  title: string;
-  children: React.ReactNode;
-  tone?: SectionTone;
-}) {
+function Block({ id, title, children, note }: { id: string; title: string; note?: string; children: React.ReactNode }) {
   return (
-    <Section id={id} tone={tone} spacing="tight" aria-labelledby={`${id}-title`} className="border-t border-ink/10">
-      <div className="grid gap-8 lg:grid-cols-12">
+    <section id={id} aria-labelledby={`${id}-title`} className="border-t border-rule py-12 md:py-16">
+      <div className="mx-auto grid w-full max-w-[80rem] gap-8 px-gutter lg:grid-cols-12">
         <header className="lg:col-span-3">
-          <Eyebrow>{number}</Eyebrow>
-          <h2 id={`${id}-title`} className="mt-2 text-h3">{title}</h2>
+          <h2 id={`${id}-title`} className="text-h3">
+            {title}
+          </h2>
+          {note ? <p className="mt-2 text-sm text-ink-soft">{note}</p> : null}
         </header>
-        <div className="lg:col-span-9">{children}</div>
+        <div className="min-w-0 lg:col-span-9">{children}</div>
       </div>
-    </Section>
+    </section>
   );
 }
 
 export default function StyleguidePage() {
+  const sample = categories.slice(0, 3);
+
   return (
     <>
-      <Section spacing="tight" className="overflow-hidden">
-        <div className="grid items-end gap-8 md:grid-cols-12">
-          <div className="md:col-span-8">
-            <Eyebrow>Internal reference / not indexed</Eyebrow>
-            <h1 className="mt-4 text-display">
-              The supply room <PencilUnderline variant={2}>styleguide</PencilUnderline>
-            </h1>
-            <p className="mt-6 max-w-2xl text-lead text-ink-soft">
-              Tokens and base components for {site.name}. Ruled register paper, ledger columns, rubber
-              stamps and index tabs, used with restraint inside a clean grid.
-            </p>
+      <PageHeader
+        crumbs={[{ href: "/", label: "Home" }, { label: "Styleguide" }]}
+        title="Styleguide"
+        intro={
+          <p>
+            Tokens and base components for {site.name}. Internal and not indexed. Calm, catalogue-like, borders over
+            shadows, one blue and a little orange.
+          </p>
+        }
+        aside={
+          <div className="flex flex-wrap gap-3">
+            <Button href="/quote">Request a quote</Button>
+            <Button href={site.whatsappHref} variant="secondary" icon={<WhatsAppIcon />}>
+              WhatsApp us
+            </Button>
           </div>
-          <div className="md:col-span-4 md:justify-self-end">
-            <Stamp className="w-40 md:w-48" rotate={-9} label="SchoolSource Hyderabad stamp" />
-          </div>
-        </div>
-      </Section>
+        }
+      />
 
-      <Block id="colour" number="01" title="Colour">
-        <ul className="grid grid-cols-2 gap-px overflow-hidden rounded-sm border border-ink/15 bg-ink/15 sm:grid-cols-3 lg:grid-cols-5">
+      <Block id="colour" title="Colour" note="No gradients, glows or tinted backgrounds. One ink band per page at most, plus the footer.">
+        <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
           {colours.map((c) => (
-            <li key={c.token} className="bg-white">
-              <div className={`h-20 ${c.swatch} border-b border-ink/10`} />
+            <li key={c.token} className="card overflow-hidden">
+              <div className={`h-16 border-b border-rule ${c.swatch}`} />
               <div className="p-3">
-                <p className="text-sm font-semibold">{c.name}</p>
-                <p className="font-mono text-[0.75rem] text-ink-soft">{c.hex} / {c.token}</p>
+                <p className="text-sm font-semibold">{c.token}</p>
+                <p className="text-xs text-ink-soft tabular-nums">{c.hex}</p>
                 <p className="mt-1.5 text-[0.8125rem] leading-snug">{c.role}</p>
-                <p className="mt-1 text-[0.75rem] leading-snug text-ink-soft">{c.note}</p>
+                <p className="mt-1 text-xs leading-snug text-ink-soft">{c.note}</p>
               </div>
             </li>
           ))}
         </ul>
       </Block>
 
-      <Block id="type" number="02" title="Type">
-        <p className="mb-6 text-sm text-ink-soft">
-          Young Serif for headlines only. Public Sans for body and UI. IBM Plex Mono for numbers, codes and stamp
-          labels. Sizes are fluid from 360px to 1280px.
-        </p>
-        <dl className="divide-y divide-ink/10 border-y border-ink/10">
+      <Block id="type" title="Type" note="Source Serif 4 (600) for headings. Public Sans for everything else. Kalam only in the hero's handwritten list.">
+        <dl className="divide-y divide-rule border-y border-rule">
           {typeScale.map((t) => (
-            <div key={t.token} className="grid gap-2 py-5 md:grid-cols-[11rem_1fr] md:gap-6">
-              <dt className="font-mono text-[0.75rem] text-ink-soft md:pt-2">{t.token}</dt>
+            <div key={t.token} className="grid gap-2 py-5 md:grid-cols-[10rem_1fr] md:gap-6">
+              <dt className="text-sm text-ink-soft md:pt-2">{t.token}</dt>
               <dd className={t.className}>{t.sample}</dd>
             </div>
           ))}
         </dl>
+        <div className="mt-8">
+          <Eyebrow>Eyebrow: sentence case, at most one per page</Eyebrow>
+          <p className="mt-2 font-display text-h2">A heading that needs context</p>
+        </div>
       </Block>
 
-      <Block id="spacing" number="03" title="Spacing">
-        <p className="mb-6 text-sm text-ink-soft">
-          Tailwind&apos;s 4px scale, plus a 2rem rule height so text on ruled paper sits on the lines.
-        </p>
-        <ul className="grid gap-3">
-          {spacing.map((s) => (
-            <li key={s.name} className="flex items-center gap-4">
-              <span className={`block h-4 ${s.w} bg-board`} />
-              <span className="font-mono text-[0.75rem] text-ink-soft">{s.name}</span>
-            </li>
-          ))}
-        </ul>
+      <Block id="shape" title="Shape and depth" note="Radius sm 6px (buttons, inputs), md 10px (cards), lg 14px (large images). Cards have a hairline border and no shadow at rest.">
+        <div className="grid gap-4 sm:grid-cols-3">
+          <div className="flex h-24 items-end rounded-sm border border-rule p-3 text-sm">rounded-sm</div>
+          <div className="flex h-24 items-end rounded-md border border-rule p-3 text-sm">rounded-md</div>
+          <div className="flex h-24 items-end rounded-lg border border-rule p-3 text-sm">rounded-lg</div>
+          <div className="flex h-24 items-end rounded-md bg-white p-3 text-sm shadow-card">shadow-card</div>
+          <div className="flex h-24 items-end rounded-md bg-white p-3 text-sm shadow-lift">shadow-lift (hover only)</div>
+          <div className="card flex h-24 items-end p-3 text-sm">.card</div>
+        </div>
       </Block>
 
-      <Block id="buttons" number="04" title="Buttons">
+      <Block id="buttons" title="Buttons" note="Flat. Steps up 1px on hover, presses down on click. sm 40px, md 44px, lg 52px.">
         <div className="flex flex-wrap items-center gap-3">
-          <Button href="/quote">Request a Quote</Button>
-          <Button href="/products" variant="secondary">Browse Categories</Button>
-          <Button href={site.whatsappHref} variant="secondary" icon={<WhatsAppIcon />}>WhatsApp</Button>
+          <Button href="/quote">Primary</Button>
+          <Button href="/products" variant="secondary">
+            Secondary
+          </Button>
+          <Button href={site.whatsappHref} variant="secondary" icon={<WhatsAppIcon />}>
+            With icon
+          </Button>
           <Button variant="text">Text action</Button>
         </div>
         <div className="mt-4 flex flex-wrap items-center gap-3">
-          <Button size="lg">Large</Button>
-          <Button>Medium</Button>
-          <Button size="sm">Small</Button>
+          <Button size="lg">Large 52</Button>
+          <Button>Medium 44</Button>
+          <Button size="sm">Small 40</Button>
           <Button disabled>Disabled</Button>
         </div>
-        <div className="on-dark mt-6 flex flex-wrap items-center gap-3 rounded-sm bg-board p-6">
-          <Button variant="accent">Request a Quote</Button>
-          <Button variant="inverse">Send on WhatsApp</Button>
+        <div className="on-dark mt-6 flex flex-wrap items-center gap-3 rounded-md bg-ink p-6">
+          <Button variant="accent">Accent (ink band only)</Button>
+          <Button variant="inverse">Inverse</Button>
           <Button variant="text">Text on dark</Button>
         </div>
-        <p className="mt-4 text-sm text-ink-soft">
-          Primary and outline buttons fill with ink from the left on hover (200ms, transform only). Tab through to
-          check focus rings: ink on paper, pencil yellow on dark bands.
+      </Block>
+
+      <Block id="links" title="Links">
+        <p className="max-w-xl">
+          In running text use <Link href="/how-it-works" className="link">.link</Link>: the underline thickens and turns
+          blue on hover. For nav-style links use{" "}
+          <Link href="/products" className="link-draw font-semibold text-board">
+            .link-draw
+          </Link>
+          , where the underline draws in from the left.
         </p>
       </Block>
 
-      <Block id="tabs" number="05" title="Index tabs">
-        <div className="flex flex-wrap items-end gap-3">
-          <IndexTab>01</IndexTab>
-          <IndexTab tone="board">02</IndexTab>
-          <IndexTab tone="paper">03</IndexTab>
-          <IndexTab tone="white" className="border-x border-t border-ink/15">04</IndexTab>
-          <IndexTab tone="ink">05</IndexTab>
-          <IndexTab tone="pencil" className="px-5">Band 1</IndexTab>
-        </div>
-        <div className="mt-8 max-w-md">
-          <div className="flex gap-1">
-            <IndexTab tone="pencil">A-F</IndexTab>
-            <IndexTab tone="paper">G-L</IndexTab>
-            <IndexTab tone="paper">M-R</IndexTab>
-          </div>
-          <div className="rounded-sm rounded-tl-none border border-ink/10 bg-white shadow-card p-5 text-sm text-ink-soft">
-            Tabs sit on the top edge of a card, like the index of a register.
-          </div>
-        </div>
-      </Block>
-
-      <Block id="stamp" number="06" title="Rubber stamp">
-        <div className="flex flex-wrap items-center gap-10">
-          <Stamp className="w-36" />
-          <Stamp className="w-28" rotate={6} centre="QUOTED" />
-          <Stamp className="w-28" rotate={-3} tone="ink" centre="GST" text={"GST INVOICE · DELIVERY CHALLAN · SCHOOLSOURCE ·"} />
-          <div className="on-dark rounded-sm bg-board p-6 [--stamp-band:var(--color-board)]">
-            <Stamp className="w-28" tone="paper" rotate={-10} />
-          </div>
-        </div>
-        <p className="mt-6 text-sm text-ink-soft">
-          Use two or three times across the whole site. Always slightly rotated. Red on paper, paper on dark bands.
-        </p>
-      </Block>
-
-      <Block id="paper" number="07" title="Ruled paper">
-        <div className="grid gap-6 md:grid-cols-2">
-          <RuledPaper holes className="pb-8 pr-6 pt-8">
-            <p className="font-mono text-label uppercase leading-8 text-ink-soft">Requirement list</p>
-            <ul className="text-lg leading-8">
-              <li>40 registers</li>
-              <li>2 boxes chalk</li>
-              <li>10 dusters</li>
-              <li>Trophies for sports day</li>
-            </ul>
-          </RuledPaper>
-          <RuledPaper margin={false} className="ledger p-6">
-            <p className="text-sm leading-8 text-ink-soft">
-              Plain ruled sheet with ledger columns. Line height is 2rem, so text set at leading-8 sits on the rules.
-            </p>
-          </RuledPaper>
-        </div>
-      </Block>
-
-      <Block id="underline" number="08" title="Pencil underline">
-        <p className="text-h2">
-          <PencilUnderline>One supplier</PencilUnderline> for every{" "}
-          <PencilUnderline variant={1} tone="board" delay={150}>purchase</PencilUnderline>.
-        </p>
-        <p className="mt-6 text-h2">
-          Delivered <PencilUnderline variant={2} tone="red" delay={300}>before term</PencilUnderline> starts.
-        </p>
-        <p className="mt-6 text-sm text-ink-soft">
-          Draws in once when scrolled into view. With reduced motion it appears complete.
-        </p>
-      </Block>
-
-      <Block id="icons" number="09" title="Category icons">
-        <ul className="grid grid-cols-3 gap-px overflow-hidden rounded-sm border border-ink/15 bg-ink/15 sm:grid-cols-5 lg:grid-cols-7">
-          {categories.map((c) => (
-            <li key={c.slug} className="group flex flex-col items-center gap-3 bg-white p-4 text-center">
-              <CategoryIcon slug={c.slug} drawOnHover className="size-12" />
-              <span className="font-mono text-[0.6875rem] leading-tight text-ink-soft">
-                {c.number} {c.name}
-              </span>
-            </li>
-          ))}
-        </ul>
-        <p className="mt-4 text-sm text-ink-soft">48-unit grid, 1.75px stroke, round caps. Hover to see the draw-over.</p>
-      </Block>
-
-      <Block id="tiles" number="10" title="Category tiles">
-        <div className="grid gap-12">
-          {bands.map((band) => (
-            <div key={band.id}>
-              <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1 border-b border-ink/20 pb-3">
-                <h3 className="text-h3">{band.name}</h3>
-                <p className="font-mono text-label uppercase text-ink-soft">{band.note}</p>
-              </div>
-              <div className="mt-4 grid gap-x-5 gap-y-3 sm:grid-cols-2 xl:grid-cols-3">
-                {categoriesInBand(band.id).map((c) => (
-                  <CategoryTile key={c.slug} category={c} />
-                ))}
-              </div>
-            </div>
+      <Block id="cards" title="Cards" note="CategoryTile is the shared category card. Any linked card uses .card-link: it lifts 2px and its photo zooms to 1.03 inside the frame.">
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {sample.map((c) => (
+            <CategoryTile key={c.slug} category={c} sizes="(min-width: 1024px) 25vw, 50vw" />
           ))}
         </div>
+        <Link href="/kits" className="card-link mt-5 grid overflow-hidden sm:grid-cols-2">
+          <Photo src="/images/photos/kit-exam-season.jpg" alt="" className="aspect-[3/2] rounded-none" sizes="(min-width: 640px) 40vw, 100vw" />
+          <div className="p-6">
+            <h3 className="text-h3">A linked card with a Photo</h3>
+            <p className="mt-2 text-ink-soft">Photo frames inside .card-link zoom on hover.</p>
+          </div>
+        </Link>
       </Block>
 
-      <Block id="placeholders" number="11" title="Placeholders">
+      <Block
+        id="pending"
+        title="Pending facts"
+        note="Every missing fact goes through <Pending>. NEXT_PUBLIC_SHOW_PENDING=false hides them all at launch."
+      >
         <p className="leading-loose">
-          Missing information stays visible: <Placeholder>[ADDRESS]</Placeholder> <Placeholder>[GSTIN]</Placeholder>{" "}
-          <Placeholder>[DELIVERY AREA]</Placeholder> <Placeholder>[PAYMENT TERMS]</Placeholder>{" "}
-          <Placeholder>[MIN ORDER]</Placeholder> <Placeholder>[RETURN POLICY]</Placeholder>{" "}
-          <Placeholder>[HOURS]</Placeholder> <Placeholder>[CLIENT SCHOOLS]</Placeholder>{" "}
-          <Placeholder>[CONFIRM]</Placeholder>
+          Payment terms: <Pending label="PAYMENT TERMS" />. Address: <Pending label="ADDRESS" />. Minimum order:{" "}
+          <Pending label="MIN ORDER" />.
         </p>
-        <PhotoPlaceholder description="Delivery van unloading cartons at a school gate" className="mt-6 aspect-[16/7]" />
+        <p className="mt-3 text-sm text-ink-soft">
+          Currently {showPending ? "visible" : "hidden"}. Use <code className="text-ink">showPending</code> to hide a
+          whole sentence that depends on a fact.
+        </p>
       </Block>
 
-      <Block id="sections" number="12" title="Section tones">
-        <div className="grid gap-3 sm:grid-cols-5">
-          {sectionTones.map((tone) => (
-            <div
-              key={tone}
-              className={
-                {
-                  paper: "bg-paper text-ink border border-ink/15",
-                  ruled: "ruled text-ink border border-ink/15",
-                  white: "bg-white text-ink border border-ink/15",
-                  board: "on-dark bg-board",
-                  ink: "on-dark bg-ink",
-                }[tone] + " flex h-28 items-end rounded-sm p-3"
-              }
-            >
-              <span className="font-mono text-label uppercase">{tone}</span>
-            </div>
-          ))}
+      <Block id="steps" title="Steps">
+        <RouteSteps steps={steps} />
+      </Block>
+
+      <Block id="fields" title="Form fields" note="44px controls. Border meets 3:1 non-text contrast.">
+        <div className="grid max-w-xl gap-5">
+          <Field label="School name" required>
+            {(p) => <Input {...p} placeholder="e.g. your school's full name" />}
+          </Field>
+          <Field label="Category" hint="Pick the closest one.">
+            {(p) => (
+              <Select {...p} defaultValue="">
+                <option value="">Choose a category</option>
+                {sample.map((c) => (
+                  <option key={c.slug}>{c.name}</option>
+                ))}
+              </Select>
+            )}
+          </Field>
+          <Field label="Your list">{(p) => <Textarea {...p} />}</Field>
+        </div>
+      </Block>
+
+      <Block id="tones" title="Section tones" note="paper, muted, ink. white, ruled and board are deprecated aliases.">
+        <div className="overflow-hidden rounded-md border border-rule">
+          <Section tone="paper" spacing="none" className="p-6">
+            <p className="font-semibold">tone=&quot;paper&quot;</p>
+          </Section>
+          <Section tone="muted" spacing="none" className="p-6">
+            <p className="font-semibold">tone=&quot;muted&quot;</p>
+          </Section>
+          <Section tone="ink" spacing="none" className="p-6">
+            <p className="font-semibold">tone=&quot;ink&quot;</p>
+          </Section>
         </div>
       </Block>
     </>

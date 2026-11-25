@@ -1,7 +1,15 @@
 import Link from "next/link";
 import { cn } from "@/lib/cn";
 
+/**
+ * primary    solid blue, the one main action per screen
+ * secondary  white with a hairline border, for the second action
+ * accent     orange with navy text, only on the dark ink band
+ * inverse    outline for the dark ink band
+ * text       inline link-style action with an underline
+ */
 type Variant = "primary" | "secondary" | "accent" | "inverse" | "text";
+/** sm 40px, md 44px, lg 52px */
 type Size = "md" | "lg" | "sm";
 
 type CommonProps = {
@@ -23,32 +31,26 @@ type ButtonAsButton = CommonProps & {
 
 export type ButtonProps = ButtonAsLink | ButtonAsButton;
 
+// .btn (globals.css) adds the hover step and press, gated to real hover devices
 const base =
-  "inline-flex items-center justify-center gap-2.5 font-sans font-semibold leading-none whitespace-nowrap " +
-  "rounded-sm transition-[color,border-color,transform,box-shadow] duration-200 ease-out-quart " +
-  "active:translate-y-px disabled:pointer-events-none disabled:opacity-50";
+  "btn inline-flex items-center justify-center gap-2 font-sans font-semibold leading-none whitespace-nowrap " +
+  "rounded-sm select-none disabled:pointer-events-none disabled:opacity-50";
 
 const variants: Record<Variant, string> = {
-  // Primary blue, deepens from the left on hover
-  primary: "ink-fill bg-board text-white shadow-button hover:-translate-y-0.5 [--fill:var(--color-board-deep)]",
-  // White with a blue outline, fills with blue
-  secondary:
-    "ink-fill border-[1.5px] border-board/30 bg-white text-board shadow-card hover:-translate-y-0.5 hover:border-board hover:text-white focus-visible:text-white [--fill:var(--color-board)]",
-  // Orange, for use on dark bands
-  accent: "ink-fill bg-pencil text-ink shadow-[0_8px_18px_-8px_rgb(245_135_42/0.7)] hover:-translate-y-0.5 hover:text-ink [--fill:var(--color-white)]",
-  // Outline for dark bands
-  inverse:
-    "ink-fill border-[1.5px] border-paper text-paper hover:text-ink focus-visible:text-ink [--fill:var(--color-paper)]",
-  // Inline text action with an underline that shifts on hover
+  primary: "bg-board text-white hover:bg-board-deep",
+  secondary: "border border-ink/15 bg-white text-ink hover:border-ink/40 hover:bg-paper-deep",
+  // Orange takes navy text only, never white
+  accent: "bg-pencil text-ink hover:bg-[#f79a4b]",
+  inverse: "border border-paper/40 text-paper hover:border-paper hover:bg-paper/10",
   text:
-    "!px-0 !py-0 !h-auto text-ink underline decoration-rule decoration-2 underline-offset-[6px] " +
-    "hover:decoration-board transition-[text-decoration-color] [.on-dark_&]:text-paper [.on-dark_&]:hover:decoration-pencil",
+    "btn-text !h-auto !px-0 text-board underline decoration-board/35 decoration-1 underline-offset-[5px] " +
+    "hover:decoration-board hover:decoration-2 [.on-dark_&]:text-paper [.on-dark_&]:decoration-paper/40 [.on-dark_&]:hover:decoration-pencil",
 };
 
 const sizes: Record<Size, string> = {
-  sm: "h-9 px-3.5 text-sm",
-  md: "h-12 px-5 text-[0.9375rem]",
-  lg: "h-14 px-7 text-base",
+  sm: "h-10 px-4 text-sm",
+  md: "h-11 px-5 text-[0.9375rem]",
+  lg: "h-13 px-6 text-base",
 };
 
 function isInternal(href: string) {

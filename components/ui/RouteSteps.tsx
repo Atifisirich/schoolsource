@@ -10,30 +10,23 @@ const columns = {
 };
 
 /**
- * Numbered steps joined by a dotted route line: across on desktop, down on
- * mobile. The line draws in with the scroll (see ScrollReveal: data-route).
+ * Steps as plain text columns joined by a thin rule: across on desktop, down
+ * on mobile. Small "Step 1" text, no numbered circles.
  * Text may contain placeholders such as [PAYMENT TERMS].
  */
 export function RouteSteps({ steps, className }: { steps: RouteStep[]; className?: string }) {
   const cols = columns[steps.length as keyof typeof columns] ?? "lg:grid-cols-4";
   return (
-    <ol className={cn("grid gap-0 lg:gap-8", cols, className)} data-route-group>
+    <ol className={cn("grid gap-8 lg:gap-0 lg:border-t lg:border-rule", cols, className)}>
       {steps.map((s, i) => (
-        <li key={s.title} data-reveal className="relative grid grid-cols-[3rem_1fr] gap-x-4 pb-10 last:pb-0 lg:block lg:pb-0">
-          {i < steps.length - 1 ? (
-            <span
-              aria-hidden="true"
-              data-route
-              className="absolute bottom-0 left-[1.4rem] top-12 border-l-2 border-dotted border-board/60 lg:bottom-auto lg:left-12 lg:right-[-2rem] lg:top-6 lg:border-l-0 lg:border-t-2"
-            />
-          ) : null}
-          <span className="relative z-10 flex size-12 items-center justify-center rounded-full border-2 border-board bg-paper font-mono text-sm font-semibold text-board">
-            {String(i + 1).padStart(2, "0")}
-          </span>
-          <div className="lg:mt-6 lg:pr-4">
-            <h3 className="font-sans text-lg font-semibold">{s.title}</h3>
-            <p className="mt-1.5 text-ink-soft">{withPlaceholders(s.text)}</p>
-          </div>
+        <li key={s.title} className="relative border-l border-rule pl-5 lg:border-l-0 lg:pl-0 lg:pr-8 lg:pt-6">
+          <span
+            aria-hidden="true"
+            className="absolute -left-[3.5px] top-1.5 size-1.5 rounded-full bg-board lg:-top-[3.5px] lg:left-0"
+          />
+          <p className="text-sm font-semibold text-board [.on-dark_&]:text-pencil">Step {i + 1}</p>
+          <h3 className="mt-1.5 font-sans text-lg font-semibold tracking-normal">{s.title}</h3>
+          <p className="mt-1.5 text-ink-soft [.on-dark_&]:text-paper/75">{withPlaceholders(s.text)}</p>
         </li>
       ))}
     </ol>

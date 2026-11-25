@@ -1,27 +1,22 @@
 import { cn } from "@/lib/cn";
+import { Pending } from "./Pending";
 
 /**
- * Visible marker for information not yet confirmed, e.g. [ADDRESS].
- * Kept deliberately loud so nothing ships unnoticed.
+ * v1 name for a missing fact, e.g. <Placeholder>[ADDRESS]</Placeholder>.
+ * Now a thin wrapper around <Pending>, so it follows NEXT_PUBLIC_SHOW_PENDING.
+ * New code should use <Pending label="ADDRESS" />.
  */
 export function Placeholder({ children, className }: { children: string; className?: string }) {
-  return (
-    <span
-      className={cn(
-        "inline-block rounded-sm bg-pencil-soft px-1.5 font-mono text-[0.85em] font-medium text-ink",
-        className,
-      )}
-    >
-      {children}
-    </span>
-  );
+  // A fact that has since been confirmed (e.g. site.address) renders as plain text
+  if (!/^\[[A-Z ]+\]$/.test(children)) return <>{children}</>;
+  return <Pending label={children} className={className} />;
 }
 
-/** Turns "[PAYMENT TERMS]"-style markers inside a string into visible placeholders. */
+/** Turns "[PAYMENT TERMS]"-style markers inside a string into <Pending> tokens. */
 export function withPlaceholders(text: string) {
   return text
     .split(/(\[[A-Z ]+\])/)
-    .map((part, i) => (/^\[[A-Z ]+\]$/.test(part) ? <Placeholder key={i}>{part}</Placeholder> : part));
+    .map((part, i) => (/^\[[A-Z ]+\]$/.test(part) ? <Pending key={i} label={part} /> : part));
 }
 
 /** Neutral block standing in for a photograph, labelled with what it should show. */
@@ -36,12 +31,9 @@ export function PhotoPlaceholder({
     <div
       role="img"
       aria-label={`Photo placeholder: ${description}`}
-      className={cn(
-        "photo-placeholder flex items-end rounded-sm border border-ink/10 p-4 text-ink-soft",
-        className,
-      )}
+      className={cn("photo-placeholder flex items-end rounded-md border border-rule p-4 text-sm text-ink-soft", className)}
     >
-      <span className="font-mono text-label uppercase">[PHOTO: {description}]</span>
+      <span>Photo to come: {description}</span>
     </div>
   );
 }

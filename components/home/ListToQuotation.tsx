@@ -2,8 +2,6 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { LogoMark } from "@/components/layout/Logo";
-import { Hero3D } from "@/components/three/Hero3D";
-import { STAMP_CONTACT, waitFor3D } from "@/components/three/constants";
 import { Stamp } from "@/components/ui/Stamp";
 import { cn } from "@/lib/cn";
 
@@ -60,8 +58,6 @@ export function ListToQuotation({ className }: { className?: string }) {
     const box = el.getBoundingClientRect();
     const tl = gsap.timeline({ delay: 0.35, defaults: { ease: "power2.out" } });
     const step = 0.62;
-    // With the 3D layer running, a real stamp presses on and the objects get packed
-    const with3D = el.dataset.threeD === "on";
     const signal = (name: string) => {
       el.dispatchEvent(new Event(name));
     };
@@ -111,23 +107,14 @@ export function ListToQuotation({ className }: { className?: string }) {
     const end = lines.length * step + 0.35;
     tl.to(foot, { opacity: 1, duration: 0.3 }, end);
 
-    if (with3D) {
-      // The 3D stamp lands STAMP_CONTACT seconds after the signal and leaves its ink behind
-      const contact = end + 0.2 + STAMP_CONTACT;
-      tl.call(signal, ["l2q:stamp"], end + 0.2)
-        .set(stamp, { opacity: 1, scale: 1, rotate: 0, y: 0 }, contact)
-        .fromTo(sheet, { y: 0 }, { y: 3, duration: 0.07, yoyo: true, repeat: 1, ease: "power1.out" }, contact)
-        .call(signal, ["l2q:done"], contact + 0.55);
-    } else {
-      tl.fromTo(
-        stamp,
-        { opacity: 0, scale: 1.9, rotate: -24, y: -30 },
-        { opacity: 1, scale: 1, rotate: 0, y: 0, duration: 0.42, ease: "back.out(2.4)" },
-        end + 0.2,
-      )
-        // The sheet takes the weight of the stamp
-        .fromTo(sheet, { y: 0 }, { y: 3, duration: 0.07, yoyo: true, repeat: 1, ease: "power1.out" }, end + 0.48);
-    }
+    tl.fromTo(
+      stamp,
+      { opacity: 0, scale: 1.9, rotate: -24, y: -30 },
+      { opacity: 1, scale: 1, rotate: 0, y: 0, duration: 0.42, ease: "back.out(2.4)" },
+      end + 0.2,
+    )
+      // The sheet takes the weight of the stamp
+      .fromTo(sheet, { y: 0 }, { y: 3, duration: 0.07, yoyo: true, repeat: 1, ease: "power1.out" }, end + 0.48);
 
     tlRef.current = tl;
   }, []);
@@ -149,7 +136,7 @@ export function ListToQuotation({ className }: { className?: string }) {
         ([entry]) => {
           if (!entry.isIntersecting) return;
           io?.disconnect();
-          Promise.all([document.fonts.ready, waitFor3D(root.current!)]).then(() => !cancelled && build());
+          document.fonts.ready.then(() => !cancelled && build());
         },
         { threshold: 0.35 },
       );
@@ -165,7 +152,6 @@ export function ListToQuotation({ className }: { className?: string }) {
 
   return (
     <div ref={root} className={cn("l2q group/l2q relative", className)}>
-      <Hero3D container={root} />
       <div className="grid gap-5 sm:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] sm:items-start">
         {/* Requirement list, handwritten on ruled paper */}
         <figure

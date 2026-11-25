@@ -1,12 +1,20 @@
 import { cn } from "@/lib/cn";
 import { Container } from "./Container";
 
-export type SectionTone = "paper" | "ruled" | "white" | "board" | "ink";
+/**
+ * paper  white (default)
+ * muted  paper-deep grey band, to separate sections without shadows
+ * ink    the one dark band per page
+ *
+ * Deprecated aliases, kept so v1 pages compile; do not use in new code:
+ * white -> paper, ruled -> paper, board -> ink.
+ */
+export type SectionTone = "paper" | "muted" | "ink" | "white" | "ruled" | "board";
 
 type SectionProps = {
   children: React.ReactNode;
   tone?: SectionTone;
-  /** Red margin line - only applies to the ruled tone */
+  /** @deprecated No effect. The ruled paper background is gone. */
   margin?: boolean;
   /** Skip the inner Container when the section manages its own width */
   bleed?: boolean;
@@ -18,10 +26,12 @@ type SectionProps = {
 
 const toneClass: Record<SectionTone, string> = {
   paper: "bg-paper text-ink",
-  ruled: "ruled text-ink",
-  white: "bg-white text-ink",
-  board: "on-dark bg-board text-paper",
+  muted: "bg-paper-deep text-ink",
   ink: "on-dark bg-ink text-paper",
+  // Deprecated aliases
+  white: "bg-paper text-ink",
+  ruled: "bg-paper text-ink",
+  board: "on-dark bg-ink text-paper",
 };
 
 const spacingClass = {
@@ -33,7 +43,6 @@ const spacingClass = {
 export function Section({
   children,
   tone = "paper",
-  margin = false,
   bleed = false,
   spacing = "normal",
   className,
@@ -44,20 +53,17 @@ export function Section({
     <section
       id={id}
       aria-labelledby={rest["aria-labelledby"]}
-      className={cn(
-        "relative",
-        toneClass[tone],
-        tone === "ruled" && margin && "ruled-margin",
-        spacingClass[spacing],
-        className,
-      )}
+      className={cn("relative", toneClass[tone], spacingClass[spacing], className)}
     >
       {bleed ? children : <Container>{children}</Container>}
     </section>
   );
 }
 
-/** Small mono label above a section heading, e.g. "02 / How it works". */
+/**
+ * Short sentence-case line above a heading when the heading needs context.
+ * Use rarely: at most one per page. Most sections have none.
+ */
 export function Eyebrow({
   children,
   className,
@@ -66,12 +72,7 @@ export function Eyebrow({
   className?: string;
 }) {
   return (
-    <p
-      className={cn(
-        "font-mono text-label font-medium uppercase text-ink-soft [.on-dark_&]:text-pencil-soft",
-        className,
-      )}
-    >
+    <p className={cn("font-sans text-sm font-semibold text-board [.on-dark_&]:text-pencil", className)}>
       {children}
     </p>
   );

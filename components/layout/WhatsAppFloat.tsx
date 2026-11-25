@@ -1,3 +1,4 @@
+import { cn } from "@/lib/cn";
 import { site } from "@/lib/site";
 
 /** WhatsApp glyph drawn in the site's line style (speech bubble with a handset). */
@@ -19,17 +20,25 @@ export function WhatsAppIcon({ className }: { className?: string }) {
   );
 }
 
-export function WhatsAppFloat() {
+/**
+ * Small round WhatsApp button, bottom right, from md up. Below md the
+ * MobileActionBar takes its place.
+ */
+export function WhatsAppFloat({ className }: { className?: string }) {
   return (
     <a
       href={site.whatsappHref}
       target="_blank"
       rel="noopener noreferrer"
-      className="group fixed bottom-4 right-4 z-30 inline-flex print:hidden h-14 items-center gap-2.5 rounded-full bg-board pl-4 pr-4 text-white shadow-[0_2px_0_rgb(27_36_51/0.35)] transition-transform duration-200 ease-out-quart hover:-translate-y-0.5 sm:bottom-6 sm:right-6 sm:pr-5"
+      aria-label="Chat with us on WhatsApp (opens in a new tab)"
+      title="WhatsApp us"
+      className={cn(
+        "btn fixed bottom-6 right-6 z-30 hidden size-13 items-center justify-center rounded-full bg-board text-white",
+        "shadow-[0_6px_16px_-6px_rgb(15_27_45/0.45)] hover:bg-board-deep md:inline-flex print:hidden",
+        className,
+      )}
     >
-      <WhatsAppIcon className="size-6 shrink-0" />
-      <span className="sr-only sm:not-sr-only sm:text-[0.9375rem] sm:font-semibold">WhatsApp us</span>
-      <span className="sr-only"> (opens WhatsApp in a new tab)</span>
+      <WhatsAppIcon className="size-6" />
     </a>
   );
 }

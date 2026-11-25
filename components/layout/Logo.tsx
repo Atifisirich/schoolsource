@@ -28,7 +28,7 @@ export function Logo({ className, tone = "ink" }: { className?: string; tone?: "
       <LogoMark className="size-8 shrink-0" />
       <span
         className={cn(
-          "font-display text-[1.375rem] leading-none tracking-[-0.01em]",
+          "font-display text-[1.375rem] font-semibold leading-none tracking-[-0.015em]",
           tone === "ink" ? "text-ink" : "text-paper",
         )}
       >

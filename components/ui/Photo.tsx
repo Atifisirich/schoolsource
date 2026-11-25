@@ -13,7 +13,10 @@ type PhotoProps = {
   "data-reveal"?: boolean;
 };
 
-/** A cropped photo in a rounded frame. Files live in /public/images/photos. */
+/**
+ * A cropped photo in a rounded frame. Files live in /public/images/photos.
+ * Inside a .card-link it zooms to 1.03 on hover. Pass "rounded-lg" for large images.
+ */
 export function Photo({ src, alt, className, sizes = "(min-width: 1024px) 50vw, 100vw", priority, ...rest }: PhotoProps) {
   return (
     <figure

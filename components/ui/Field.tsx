@@ -1,10 +1,10 @@
 import { useId } from "react";
 import { cn } from "@/lib/cn";
 
-// Inputs use an ink-soft border (6.9:1 on paper) so the field edge meets
-// the 3:1 non-text contrast rule; rule blue is too faint for this.
+// The field border (#7d8899) is 3.6:1 on white and 3.3:1 on paper-deep, so the
+// edge meets the 3:1 non-text contrast rule; the rule hairline is too faint.
 const control =
-  "block w-full rounded-sm border border-ink-soft bg-white px-3.5 text-base text-ink placeholder:text-ink-soft/80 " +
+  "block w-full rounded-sm border border-[#7d8899] bg-white px-3.5 text-base text-ink placeholder:text-ink-soft/80 " +
   "transition-[border-color,box-shadow] duration-150 hover:border-ink " +
   "focus:border-board focus:outline-none focus:ring-2 focus:ring-board/30 " +
   "aria-[invalid=true]:border-red";
@@ -53,7 +53,7 @@ export function Field({ label, required, hint, error, className, children }: Fie
 }
 
 export function Input({ className, ...props }: React.InputHTMLAttributes<HTMLInputElement>) {
-  return <input className={cn(control, "h-12", className)} {...props} />;
+  return <input className={cn(control, "h-11", className)} {...props} />;
 }
 
 export function Textarea({ className, ...props }: React.TextareaHTMLAttributes<HTMLTextAreaElement>) {
@@ -62,10 +62,10 @@ export function Textarea({ className, ...props }: React.TextareaHTMLAttributes<H
 
 export function Select({ className, children, ...props }: React.SelectHTMLAttributes<HTMLSelectElement>) {
   return (
-    <select className={cn(control, "h-12 appearance-none bg-[length:16px] bg-[right_0.875rem_center] bg-no-repeat pr-10", className)}
+    <select className={cn(control, "h-11 appearance-none bg-[length:16px] bg-[right_0.875rem_center] bg-no-repeat pr-10", className)}
       style={{
         backgroundImage:
-          "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%231B2433' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 6l4 4 4-4'/%3E%3C/svg%3E\")",
+          "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%230F1B2D' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 6l4 4 4-4'/%3E%3C/svg%3E\")",
       }}
       {...props}
     >

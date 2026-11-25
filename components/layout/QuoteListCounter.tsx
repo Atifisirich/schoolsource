@@ -42,7 +42,7 @@ export function QuoteListCounter({ className }: { className?: string }) {
         className="size-6"
         fill="none"
         stroke="currentColor"
-        strokeWidth="1.6"
+        strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"
         aria-hidden="true"
@@ -51,14 +51,14 @@ export function QuoteListCounter({ className }: { className?: string }) {
         <rect x="8.5" y="2.5" width="7" height="3.5" rx="1" />
         <path d="M8 11 l1.5 1.5 L12 10 M14 11.5 H16.5 M8 16 l1.5 1.5 L12 15 M14 16.5 H16.5" />
       </svg>
-      <span className="hidden text-sm font-semibold 2xl:inline">Quote List</span>
+      <span className="hidden text-[0.9375rem] font-medium 2xl:inline">Quote list</span>
       <span
         key={bump}
         aria-hidden="true"
         className={cn(
-          "inline-flex h-5 min-w-5 items-center justify-center rounded-sm px-1 font-mono text-[0.75rem] font-semibold tabular-nums",
+          "inline-flex h-5 min-w-5 items-center justify-center rounded-full px-1.5 text-xs font-semibold tabular-nums",
           bump > 0 && "animate-bump",
-          count > 0 ? "bg-red text-white" : "bg-paper-deep text-ink",
+          count > 0 ? "bg-board text-white" : "bg-paper-deep text-ink-soft",
         )}
       >
         {count}
