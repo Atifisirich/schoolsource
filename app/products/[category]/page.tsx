@@ -194,6 +194,7 @@ function ItemCard({ item, category, order }: { item: Item; category: Category; o
             size="sm"
             className="w-full"
             label="Add to quote"
+            shortLabel="Add"
             item={{ id: item.id, name: item.name, category: category.name }}
           />
           {item.href ? (

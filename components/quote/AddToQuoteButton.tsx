@@ -8,6 +8,8 @@ import { quoteList, useQuoteList, type QuoteItem } from "@/lib/quote-list";
 type AddToQuoteButtonProps = {
   item: Omit<QuoteItem, "quantity">;
   label?: string;
+  /** Shown instead of the label below 420px, where a half-width card is too narrow for the full text */
+  shortLabel?: string;
   className?: string;
   variant?: "solid" | "outline";
   size?: "md" | "sm";
@@ -20,6 +22,7 @@ type AddToQuoteButtonProps = {
 export function AddToQuoteButton({
   item,
   label = "Add to quote list",
+  shortLabel,
   className,
   variant = "outline",
   size = "md",
@@ -47,7 +50,7 @@ export function AddToQuoteButton({
       onClick={onClick}
       className={cn(
         // A pill like the site's buttons (globals.css .btn gives hover lift and press)
-        "btn btn-sm shrink-0 !gap-2",
+        "btn btn-sm max-w-full min-w-0 !gap-2",
         size === "md" ? "" : "!min-h-11 !px-4 !text-[0.9375rem]",
         added
           ? // In the list: orange, like a filled cart
@@ -61,7 +64,14 @@ export function AddToQuoteButton({
       <svg viewBox="0 0 16 16" className="!size-4 shrink-0" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         {added ? <path d="M3 8.5 L6.5 12 L13 4.5" /> : <path d="M8 3 V13 M3 8 H13" />}
       </svg>
-      <span>{added ? "In quote list" : label}</span>
+      {shortLabel ? (
+        <>
+          <span className="min-[420px]:hidden">{added ? "Added" : shortLabel}</span>
+          <span className="hidden min-[420px]:inline">{added ? "In quote list" : label}</span>
+        </>
+      ) : (
+        <span>{added ? "In quote list" : label}</span>
+      )}
       <span className="sr-only">: {item.name}</span>
     </button>
   );
