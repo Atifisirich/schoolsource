@@ -1,0 +1,332 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------
+   Design tokens - "the school supply room"
+   ------------------------------------------------------------------ */
+@theme {
+  /* Palette: blue, orange and white.
+     Token names are roles, kept from the first palette:
+     board = primary blue, pencil = orange accent, red = dark orange detail. */
+  --color-paper: #f5f8fd; /* page background, a cool near-white */
+  --color-paper-deep: #e6edf8;
+  --color-ink: #0e1f3d; /* navy text, 15.4:1 on paper */
+  --color-ink-soft: #4b5873; /* secondary text, 6.7:1 on paper */
+  --color-board: #1f4fb5; /* primary blue: white text 7.4:1 */
+  --color-board-deep: #163b8a;
+  --color-pencil: #f5872a; /* orange: navy text only (6.5:1), never white */
+  --color-pencil-soft: #ffe3c7;
+  --color-red: #c2410c; /* dark orange for small text, ticks, stamps: 5.2:1 on white */
+  --color-rule: #bfd0ec;
+  --color-white: #ffffff;
+
+  /* Type families (variables are set by next/font in app/layout.tsx) */
+  --font-display: var(--font-young-serif), Georgia, serif;
+  --font-sans: var(--font-public-sans), system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, monospace;
+  --font-hand: var(--font-kalam), "Segoe Print", cursive;
+
+  /* Type scale - fluid between 360px and 1280px */
+  --text-display: clamp(2.5rem, 1.6rem + 4vw, 4.75rem);
+  --text-display--line-height: 1.04;
+  --text-display--letter-spacing: -0.015em;
+  --text-h1: clamp(2.125rem, 1.6rem + 2.4vw, 3.5rem);
+  --text-h1--line-height: 1.08;
+  --text-h1--letter-spacing: -0.01em;
+  --text-h2: clamp(1.75rem, 1.4rem + 1.5vw, 2.625rem);
+  --text-h2--line-height: 1.12;
+  --text-h3: clamp(1.25rem, 1.1rem + 0.6vw, 1.625rem);
+  --text-h3--line-height: 1.25;
+  --text-lead: clamp(1.0625rem, 1rem + 0.35vw, 1.3125rem);
+  --text-lead--line-height: 1.55;
+  --text-label: 0.75rem;
+  --text-label--line-height: 1.2;
+  --text-label--letter-spacing: 0.08em;
+
+  /* Spacing additions */
+  --spacing-gutter: clamp(1rem, 0.6rem + 2vw, 2.5rem);
+  --spacing-section: clamp(4rem, 2.8rem + 5vw, 8rem);
+  --spacing-rule: 2rem; /* ruled-line height */
+
+  /* Shape: soft, friendly corners */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+
+  /* Depth: cards sit on the page, buttons lift off it */
+  --shadow-card: 0 1px 2px rgb(14 31 61 / 0.06), 0 6px 18px -10px rgb(14 31 61 / 0.22);
+  --shadow-lift: 0 2px 4px rgb(14 31 61 / 0.06), 0 22px 40px -18px rgb(14 31 61 / 0.38);
+  --shadow-button: 0 1px 0 rgb(255 255 255 / 0.18) inset, 0 8px 18px -8px rgb(31 79 181 / 0.6);
+
+  /* Motion */
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-stamp: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ------------------------------------------------------------------
+   Base
+   ------------------------------------------------------------------ */
+@layer base {
+  :root {
+    --focus: var(--color-ink);
+    color-scheme: light;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: 6rem;
+  }
+
+  body {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background: var(--color-pencil-soft);
+    color: var(--color-ink);
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--focus);
+    outline-offset: 3px;
+    border-radius: var(--radius-sm);
+  }
+
+  /* Dark bands switch the focus ring to pencil yellow */
+  .on-dark {
+    --focus: var(--color-pencil);
+    color: var(--color-paper);
+  }
+}
+
+/* ------------------------------------------------------------------
+   Ruled notebook paper
+   ------------------------------------------------------------------ */
+@layer components {
+  .ruled {
+    position: relative;
+    background-color: var(--color-paper);
+    background-image: repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent calc(var(--spacing-rule) - 1px),
+      color-mix(in srgb, var(--color-rule) 45%, transparent) calc(var(--spacing-rule) - 1px),
+      color-mix(in srgb, var(--color-rule) 45%, transparent) var(--spacing-rule)
+    );
+  }
+
+  /* Red margin line, set in from the left like an exercise book */
+  .ruled-margin::before {
+    content: "";
+    position: absolute;
+    inset-block: 0;
+    left: var(--margin-left, clamp(0.75rem, 3vw, 4.5rem));
+    width: 1px;
+    background: color-mix(in srgb, var(--color-red) 55%, transparent);
+    box-shadow: 3px 0 0 color-mix(in srgb, var(--color-red) 30%, transparent);
+    pointer-events: none;
+  }
+
+  /* Ledger columns: faint vertical rules for tables and lists */
+  .ledger {
+    background-image: linear-gradient(
+      to right,
+      color-mix(in srgb, var(--color-rule) 50%, transparent) 1px,
+      transparent 1px
+    );
+    background-size: 25% 100%;
+  }
+
+  /* Ink-fill: a dark layer slides in from the left on hover (transform only) */
+  .ink-fill {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+  }
+  .ink-fill::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: var(--fill, var(--color-ink));
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 200ms var(--ease-out-quart);
+  }
+  .ink-fill:hover::before,
+  .ink-fill:focus-visible::before {
+    transform: scaleX(1);
+  }
+
+  /* Photo placeholders */
+  .photo-placeholder {
+    background-color: var(--color-paper-deep);
+    background-image: repeating-linear-gradient(
+      135deg,
+      transparent 0 14px,
+      color-mix(in srgb, var(--color-ink) 5%, transparent) 14px 15px
+    );
+  }
+}
+
+/* ------------------------------------------------------------------
+   Shared keyframes (transform and opacity only)
+   ------------------------------------------------------------------ */
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Draw-in wipe: clip slides right while the glyph counter-slides */
+@keyframes wipe-clip {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: none;
+  }
+}
+@keyframes wipe-glyph {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: none;
+  }
+}
+
+@keyframes bump {
+  0% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.35);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@layer utilities {
+  .animate-rise-in {
+    animation: rise-in 0.55s var(--ease-out-quart) both;
+  }
+  .animate-wipe-clip {
+    animation: wipe-clip 0.7s var(--ease-out-quart) both;
+  }
+  .animate-wipe-glyph {
+    animation: wipe-glyph 0.7s var(--ease-out-quart) both;
+  }
+  .animate-bump {
+    animation: bump 0.4s var(--ease-stamp);
+  }
+}
+
+/* Page transition: short fade and rise on each route */
+.page-enter {
+  animation: rise-in 0.28s var(--ease-out-quart) both;
+}
+
+/* ------------------------------------------------------------------
+   Scroll reveals: [data-reveal] blocks rise in as they enter the
+   viewport (components/motion/ScrollReveal.tsx). If the script never
+   loads, the fallback shows everything after a moment.
+   ------------------------------------------------------------------ */
+@media (prefers-reduced-motion: no-preference) {
+  .js [data-reveal] {
+    opacity: 0;
+  }
+  .js:not(.reveal-armed) [data-reveal] {
+    animation: l2q-fallback 0.3s 2.5s forwards;
+  }
+}
+
+/* ------------------------------------------------------------------
+   List to Quotation hero: hide animated parts before first paint.
+   Once GSAP has loaded (.is-armed) it waits for the hero to scroll into
+   view, then takes over (.is-ready). If the script never loads, the
+   fallback animation reveals everything after a few seconds.
+   ------------------------------------------------------------------ */
+@media (prefers-reduced-motion: no-preference) {
+  .js .l2q:not(.is-ready) [data-l2q-hide],
+  .js .l2q:not(.is-ready) [data-l2q-char] {
+    opacity: 0;
+  }
+  .js .l2q:not(.is-ready):not(.is-armed) [data-l2q-hide],
+  .js .l2q:not(.is-ready):not(.is-armed) [data-l2q-char] {
+    animation: l2q-fallback 0.3s 5s forwards;
+  }
+}
+
+@keyframes l2q-fallback {
+  to {
+    opacity: 1;
+  }
+}
+
+/* ------------------------------------------------------------------
+   Reduced motion: show final states, no transitions
+   ------------------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ------------------------------------------------------------------
+   Print (the /catalogue page is designed to be printed)
+   ------------------------------------------------------------------ */
+@media print {
+  @page {
+    margin: 14mm 12mm;
+  }
+  html,
+  body {
+    background: #fff !important;
+  }
+  .page-enter,
+  .animate-rise-in {
+    animation: none !important;
+  }
+  a {
+    text-decoration: none !important;
+  }
+}
+
+/* ------------------------------------------------------------------
+   Soft colour glow behind page headers: a blue wash top right and a
+   warm orange one bottom left, so headers never read as a flat block.
+   ------------------------------------------------------------------ */
+.hero-glow {
+  background-image:
+    radial-gradient(40rem 22rem at 100% 0%, color-mix(in srgb, var(--color-board) 14%, transparent), transparent 70%),
+    radial-gradient(30rem 18rem at 0% 100%, color-mix(in srgb, var(--color-pencil) 16%, transparent), transparent 70%);
+}
