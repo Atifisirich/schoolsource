@@ -104,11 +104,18 @@ Common rules for every page:
 - `/labs`: header with photo, lab types as a list with photos where available, how a lab project runs as plain steps, Pending for unconfirmed lines.
 
 ### About, Contact, Quote, legal, SEO
-- `/about`: who we are (SchoolSource, the school supplies division of Arkhan Group Pvt. Ltd., Hyderabad, led by Ejaz Khan), what we supply, how we work (the confirmed promises), who we serve (principals, trustees, administrators, purchase staff; single schools and school groups). No invented history, years or numbers. Photo `page-about.jpg`.
+- `/about`: who we are (SchoolSource, the school supplies division of Arkhan Group Pvt. Ltd., Hyderabad, founded and led by Aijaz Khan), what we supply, how we work (the confirmed promises), who we serve (principals, trustees, administrators, purchase staff; single schools and school groups). No invented history, years or numbers. Photo `page-about.jpg`.
 - `/contact`: phone, WhatsApp, email as large clear rows; address, hours via Pending; a short contact form (QuickQuoteForm) on the right; book a visit with samples.
 - `/quote`: the form, restyled: clear labels, 44px inputs, the quote list editor beside it, WhatsApp alternative. Keep Web3Forms logic intact.
 - `/privacy`, `/terms`: LegalPage restyle, readable measure.
-- SEO (Phase 8 items, now in scope): `app/sitemap.ts`, `app/robots.ts`, `app/opengraph-image.tsx` (next/og, on-brand, text-only: logo mark, tagline, schoolsource.in), Organization + LocalBusiness JSON-LD in the root layout (name, url, email, telephone, parentOrganization Arkhan Group Pvt. Ltd., founder Ejaz Khan, areaServed Hyderabad; no address until known), GA4 via `NEXT_PUBLIC_GA_ID` (only loads when set).
+- SEO (Phase 8 items, now in scope): `app/sitemap.ts`, `app/robots.ts`, `app/opengraph-image.tsx` (next/og, on-brand, text-only: logo mark, tagline, schoolsource.in), Organization + LocalBusiness JSON-LD in the root layout (name, url, email, telephone, parentOrganization Arkhan Group Pvt. Ltd., founder Aijaz Khan, areaServed Hyderabad, the confirmed address), GA4 via `NEXT_PUBLIC_GA_ID` (only loads when set).
+
+## 4a. Confirmed facts (owner, November 2026)
+
+- Company: Arkhan Group Pvt. Ltd. (spelled Arkhan). Founder: Aijaz Khan.
+- GSTIN: 36ABFCA8886K1ZX
+- Address: Plot No. 802 & 803, 5th Floor, Nexus Business Centre, Ayyappa Society, Madhapur, Hyderabad 500081
+- These live in `lib/site.ts` (`site.address`, `site.gstin`). Use them, never retype them. Replace every `[ADDRESS]` and `[GSTIN]` placeholder with them. The contact page can embed a Google Maps iframe for this address (`https://www.google.com/maps?q=<encoded address>&output=embed`, lazy-loaded, with a title). Hours stay pending.
 
 ## 5. Execution
 
