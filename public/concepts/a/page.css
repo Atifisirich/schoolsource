@@ -190,3 +190,45 @@ html[data-buttons="pill"] .btn--secondary:hover, .hero__box .btn--secondary:hove
   .close--word .btn-row .btn { flex: 1 1 100%; }
   .footer__col a, .footer__addr { overflow-wrap: anywhere; }
 }
+
+/* round 3 */
+.close__word { font-size: clamp(28px, 11.4vw, 166px); }
+@media (max-width: 639px) {
+  .hero__box h1 { font-size: 34px; font-stretch: 104%; line-height: 1.04; }
+  #catalogue .group .index__frame { display: none; }
+  #labs { --hm: 2; }
+}
+
+/* round 4 */
+:focus-visible { outline-color: #0f1b2d; }
+.ground-inverse :focus-visible, .hero__box :focus-visible { outline-color: #ffffff; }
+.hero__tag dd { font-size: 32px; }
+.index__n { display: inline-block; min-width: 0; height: auto; padding: 0; justify-self: start; }
+.index li.is-on .index__n { background: #f5872a; color: #0f1b2d; box-shadow: 0 0 0 4px #f5872a; border-radius: 1px; }
+.kit-lead__pic { display: block; position: relative; }
+.kit-lead__pic img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 400ms var(--ease, ease); }
+.kit-lead:hover .kit-lead__pic img { transform: scale(1.03); }
+.kitrows { align-self: start; }
+.service__band { position: relative; }
+.service__band img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 62%; }
+@media (max-width: 1023px) { .kit-lead { margin-top: var(--s-6); } .kitrows { margin-top: 0; } }
+@media (max-width: 639px) {
+  #catalogue .group .index__frame { display: block; height: 120px; }
+  .index__thumb { display: block; width: 48px; height: 36px; object-fit: cover; border-radius: 2px; }
+  .index a { grid-template-columns: 26px 48px minmax(0, 1fr) auto; }
+  #labs { --hm: 1; }
+  #labs .section-head p { font-size: 15px; }
+  #labs .labs__link { display: none; }
+  .labs__rows li { padding-block: 8px; }
+  #labs .develop { aspect-ratio: 5 / 2; margin-top: var(--s-4); }
+  #service { --hm: 1; }
+  .service__band { height: 200px; }
+  .terms { grid-template-columns: 1fr 1fr; column-gap: 12px; row-gap: var(--s-4); }
+  .terms li { grid-column: auto !important; padding-top: var(--s-3); }
+  .terms p { display: none; }
+  .terms h3 { font-size: 16px; line-height: 1.25; }
+}
+@media (max-width: 639px) {
+  #catalogue .group .index__frame { display: none; }
+  .service__band { height: 160px; }
+}

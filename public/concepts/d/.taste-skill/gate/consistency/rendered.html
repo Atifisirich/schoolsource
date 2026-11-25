@@ -1,0 +1,634 @@
+<!doctype html>
+<html lang="en-IN" data-type="product" data-radius="round" class="js"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SchoolSource | School supplies, Hyderabad</title>
+<meta name="description" content="SchoolSource supplies Indian schools with everything they buy: 15 categories, 343 items, 7 kits and lab setups. Send your list on WhatsApp and get one quote.">
+<meta name="page-type" content="product">
+<meta name="site-kind" content="other">
+<meta name="theme-color" content="#1f4fb5">
+<meta property="og:title" content="SchoolSource | Everything your school buys, on one quote">
+<meta property="og:description" content="15 categories, 343 items, 7 kits and lab setups. Send your list on WhatsApp and get one quote.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="img/pencils.webp">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%222%203.5%2028%2024%22%20width%3D%22112%22%20height%3D%2296%22%20role%3D%22img%22%20aria-label%3D%22SchoolSource%22%3E%3Ctitle%3ESchoolSource%3C%2Ftitle%3E%3Cpath%20d%3D%22M20%208H10a4%204%200%200%200%200%208h12a4%204%200%200%201%200%208H4%22%20fill%3D%22none%22%20stroke%3D%22%231f4fb5%22%20stroke-width%3D%224%22%2F%3E%3Ccircle%20cx%3D%2225%22%20cy%3D%228%22%20r%3D%223%22%20fill%3D%22%23f5872a%22%2F%3E%3C%2Fsvg%3E">
+<link rel="preload" href="fonts/dela-gothic-one-latin.woff2" as="font" type="font/woff2" crossorigin="">
+<link rel="preload" href="img/pencils.webp" as="image">
+<style>
+@font-face{font-family:"Dela Gothic One";src:url(fonts/dela-gothic-one-latin.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Schibsted Grotesk";src:url(fonts/schibsted-grotesk-latin.woff2) format("woff2");font-weight:400 800;font-display:swap}
+
+:root{
+  --blue:#1f4fb5; --blue-deep:#163b8a; --ink:#0e1f3d; --ink-logo:#0f1b2d; --ink-soft:#2f3b55;
+  --orange:#f5872a; --sky:#dbe7fb; --sky-2:#c7d9f7; --cream:#f4ead9; --paper:#fbf7f0; --sand:#ead9bf; --peach:#f8d9b5;
+  --wa:#1fa855;
+  --display:"Dela Gothic One", "Arial Black", sans-serif;
+  --text:"Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --gutter:clamp(16px, 3.9vw, 56px);
+  --max:1328px;
+  --r-s:14px; --r-m:22px; --r-l:32px;
+  --ease-out:cubic-bezier(.23,1,.32,1);
+  --nav-h:80px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:var(--nav-h)}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--text);font-size:18px;line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:clip}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+h1,h2,h3{font-family:var(--display);font-weight:400;margin:0;letter-spacing:-.01em}
+p{margin:0}
+.wrap{width:100%;max-width:calc(var(--max) + 2*var(--gutter));margin:0 auto;padding:0 var(--gutter)}
+.skip{position:absolute;left:12px;top:-60px;z-index:100;background:var(--ink);color:#fff;padding:12px 18px;border-radius:12px;text-decoration:none;font-weight:600}
+.skip:focus{top:12px}
+:focus-visible{outline:3px solid var(--blue);outline-offset:3px;border-radius:6px}
+.on-dark :focus-visible{outline-color:#fff}
+.hero__field :focus-visible,.close :focus-visible,.tile--o:focus-visible,.setup:focus-visible{outline-color:var(--ink)}
+
+/* ---------- buttons ---------- */
+.btn{--bg:var(--ink);--fg:#fff;display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:56px;padding:0 26px;border-radius:999px;background:var(--bg);color:var(--fg);font:600 17px/1 var(--text);text-decoration:none;border:2px solid var(--bg);white-space:nowrap;
+  transition:transform 160ms var(--ease-out),background-color 200ms ease,border-color 200ms ease,color 200ms ease,box-shadow 200ms ease}
+.btn svg{width:20px;height:20px;flex:none}
+.btn:active{transform:scale(.97)}
+.btn--wa{--bg:#fff;--fg:var(--ink);border-color:var(--ink)}
+.btn--wa svg{color:var(--wa)}
+.btn--ghost{--bg:transparent;--fg:var(--ink);border-color:var(--ink)}
+.btn--light{--bg:#fff;--fg:var(--ink)}
+.btn--sm{min-height:46px;padding:0 20px;font-size:15px}
+@media (hover:hover) and (pointer:fine){
+  .btn:hover{transform:translateY(-2px);box-shadow:0 6px 0 rgba(14,31,61,.18)}
+  .btn:active{transform:translateY(0) scale(.97);box-shadow:none}
+  .btn--primary:hover{--bg:var(--blue);border-color:var(--blue)}
+  .btn--wa:hover{--bg:var(--ink);--fg:#fff}
+  .btn--wa:hover svg{color:#5fe08f}
+  .btn--ghost:hover{--bg:var(--ink);--fg:#fff}
+  .btn--light:hover{--bg:var(--sky)}
+}
+
+/* ---------- nav ---------- */
+.nav{position:sticky;top:0;z-index:50;background:rgba(251,247,240,.92);backdrop-filter:saturate(1.4) blur(10px);-webkit-backdrop-filter:saturate(1.4) blur(10px)}
+.nav__in{height:var(--nav-h);display:flex;align-items:center;gap:32px}
+.nav__logo{display:block;flex:none;padding:6px 0}
+.nav__logo svg{width:190px;height:auto;display:block}
+.nav__links{display:flex;gap:4px;margin:0 auto 0 12px;padding:0;list-style:none}
+.nav__links a{display:block;padding:10px 14px;border-radius:999px;text-decoration:none;font-weight:600;font-size:16px;transition:background-color 180ms ease}
+.nav__links a:hover{background:var(--cream)}
+.nav__phone{font-weight:600;font-size:16px;text-decoration:none;white-space:nowrap;padding:10px 4px;background:linear-gradient(currentColor,currentColor) 0 100%/0 2px no-repeat;transition:background-size 240ms var(--ease-out)}
+.nav__phone:hover{background-size:100% 2px}
+.nav__menu{display:none;margin-left:auto;width:48px;height:48px;border-radius:999px;border:2px solid var(--ink);background:transparent;color:var(--ink);align-items:center;justify-content:center;cursor:pointer;transition:transform 160ms var(--ease-out)}
+.nav__menu:active{transform:scale(.95)}
+.nav__menu svg{width:20px;height:20px}
+.sheet{position:fixed;inset:0;z-index:60;background:var(--blue);color:#fff;padding:24px var(--gutter) 40px;display:flex;flex-direction:column;opacity:0;visibility:hidden;transform:translateY(-8px);transition:opacity 220ms var(--ease-out),transform 220ms var(--ease-out),visibility 0s linear 220ms}
+.sheet.open{opacity:1;visibility:visible;transform:none;transition:opacity 260ms var(--ease-out),transform 260ms var(--ease-out)}
+.sheet__top{display:flex;justify-content:space-between;align-items:center;height:48px;margin-bottom:24px}
+.sheet__top span{font-weight:600}
+.sheet__close{width:48px;height:48px;border-radius:999px;border:2px solid #fff;background:transparent;color:#fff;font-size:24px;cursor:pointer}
+.sheet ul{list-style:none;margin:0;padding:0}
+.sheet li a{display:block;font-family:var(--display);font-size:34px;line-height:1.15;padding:10px 0;text-decoration:none}
+.sheet__foot{margin-top:auto;display:grid;gap:12px}
+
+/* ---------- hero ---------- */
+.hero{padding:8px 0 var(--gutter)}
+.hero__grid{display:grid;grid-template-columns:minmax(0,1.22fr) minmax(0,1fr);gap:20px;min-height:calc(100svh - var(--nav-h) - var(--gutter) - 8px);max-height:900px}
+.hero__copy{display:flex;flex-direction:column;justify-content:space-between;padding:28px 0 4px;gap:32px}
+.tag{display:inline-flex;align-items:center;gap:10px;align-self:flex-start;padding:8px 16px 8px 10px;border-radius:999px;background:var(--cream);font-weight:600;font-size:15px}
+.tag i{width:10px;height:10px;border-radius:50%;background:var(--orange);display:block}
+.hero h1{font-size:clamp(42px, 5.2vw, 76px);line-height:1.06;margin-top:24px}
+.hero h1 em{font-style:normal;color:var(--blue)}
+.hero__lead{font-size:clamp(18px,1.45vw,21px);max-width:31em;margin-top:26px;color:var(--ink-soft)}
+.hero__actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.facts{display:flex;gap:0;list-style:none;margin:0;padding:0;border-top:2px solid var(--ink)}
+.facts li{flex:1;padding:16px 16px 0 0}
+.facts b{display:block;font-family:var(--display);font-weight:400;font-size:clamp(30px,3.2vw,46px);line-height:1}
+.facts span{display:block;font-size:15px;font-weight:600;margin-top:8px;color:var(--ink-soft)}
+.hero__field{position:relative;border-radius:var(--r-l);background:var(--orange);overflow:hidden;min-height:420px}
+.hero__field img{position:absolute;left:-42%;bottom:-2px;width:184%;max-width:none;height:auto}
+.hero__sticker{position:absolute;top:28px;left:28px;right:28px;display:flex;justify-content:space-between;align-items:flex-start;gap:16px;color:var(--ink)}
+.hero__sticker p{font-family:var(--display);font-size:clamp(24px,2.5vw,36px);line-height:1.06;max-width:8.5em}
+.hero__sticker a{flex:none;white-space:nowrap;display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:999px;background:var(--ink);color:#fff;font-weight:600;font-size:15px;text-decoration:none;transition:transform 160ms var(--ease-out),background-color 200ms ease}
+.hero__sticker a:active{transform:scale(.97)}
+@media (hover:hover) and (pointer:fine){.hero__sticker a:hover{background:var(--blue)}}
+
+/* entrance */
+@media (prefers-reduced-motion:no-preference){
+  [data-enter] .en{animation:rise 760ms var(--ease-out) both}
+  [data-enter] .en:nth-child(2){animation-delay:70ms}
+  [data-enter] .en:nth-child(3){animation-delay:130ms}
+  [data-enter] .en:nth-child(4){animation-delay:180ms}
+  [data-enter] .hero__field{animation:field 900ms var(--ease-out) both 60ms}
+  [data-enter] .hero__field img{animation:pencils 1100ms cubic-bezier(.2,.9,.25,1) both 220ms}
+}
+@keyframes rise{from{opacity:0;transform:translateY(18px)}}
+@keyframes field{from{opacity:0;transform:scale(.98)}}
+@keyframes pencils{from{transform:translateY(34%)}}
+
+/* ---------- section scaffolding ---------- */
+.sec{padding:clamp(72px,9vw,128px) 0}
+.sec__head{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;margin-bottom:clamp(32px,4vw,56px)}
+.sec h2{font-size:clamp(36px,4.6vw,68px);line-height:1.02;max-width:13em}
+.sec__note{max-width:22em;color:var(--ink-soft);font-size:18px;flex:none}
+.on-dark{color:#fff}
+.on-dark .sec__note{color:#c9d8f6}
+
+/* ---------- statement ---------- */
+.say{min-height:calc(100svh - var(--nav-h));display:flex;align-items:center;background:var(--paper)}
+.say__line{font-family:var(--display);font-size:clamp(36px,6.1vw,92px);line-height:1.12;letter-spacing:-.015em;max-width:15.5em}
+.say__line .ob{display:inline-flex;align-items:center;justify-content:center;vertical-align:-.12em;height:.92em;width:1.75em;border-radius:999px;margin:0 .06em;position:relative;overflow:hidden}
+.ob img{height:132%;width:auto;max-width:none;object-fit:contain;transition:transform 400ms var(--ease-out)}
+.ob--o{background:var(--orange)} .ob--s{background:var(--sky)} .ob--c{background:var(--sand)} .ob--b{background:var(--blue)}
+.ob--sc img{height:auto;width:82%}
+.say__line .nw{white-space:nowrap}
+.ob--tie img{height:150%;transform:translateY(4%)}
+.ob--medal img{height:150%;transform:translateY(-12%)}
+.say__line .muted{color:var(--blue)}
+.say__foot{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:24px;margin-top:clamp(40px,5vw,64px);padding-top:24px;border-top:2px solid var(--ink)}
+.say__foot p{font-size:20px;max-width:34em}
+.tlink{font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:10px;padding:10px 0;background:linear-gradient(currentColor,currentColor) 0 100%/100% 2px no-repeat;transition:background-size 260ms var(--ease-out)}
+.tlink svg{width:18px;height:18px;transition:transform 200ms var(--ease-out)}
+@media (hover:hover) and (pointer:fine){.tlink:hover svg{transform:translateX(4px)}}
+/* dealt moment: the inline objects arrive once, in order, when the line is first seen */
+@media (prefers-reduced-motion:no-preference){
+  .js .say__line .ob{transform:scale(.6);opacity:0;transition:transform 620ms cubic-bezier(.34,1.4,.5,1),opacity 300ms ease}
+  .js .say__line.in .ob{transform:none;opacity:1}
+  .js .say__line.in .ob:nth-of-type(2){transition-delay:120ms}
+  .js .say__line.in .ob:nth-of-type(3){transition-delay:240ms}
+}
+
+/* ---------- categories ---------- */
+.cats{background:var(--paper);padding-top:0}
+.grid15{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px;list-style:none;margin:0;padding:0}
+.tile{--tb:var(--sky);--tf:var(--ink);position:relative;display:flex;flex-direction:column;height:100%;min-height:320px;padding:22px 22px 0;border-radius:var(--r-m);background:var(--tb);color:var(--tf);text-decoration:none;overflow:hidden;isolation:isolate;
+  transition:transform 220ms var(--ease-out),box-shadow 220ms var(--ease-out)}
+.tile h3{font-size:clamp(20px,1.65vw,25px);line-height:1.08}
+.tile p{font-size:14.5px;line-height:1.4;margin-top:8px;opacity:.82;max-width:17em}
+.tile__ob{flex:1;display:flex;align-items:flex-end;justify-content:center;margin-top:12px;min-height:150px;position:relative}
+.tile__ob img{max-height:170px;width:auto;max-width:86%;object-fit:contain;transition:transform 380ms var(--ease-out);filter:drop-shadow(0 14px 14px rgba(14,31,61,.18))}
+.tile__ob.frame{align-items:stretch;margin:12px -8px 14px}
+.tile__ob.frame img{max-height:none;max-width:none;width:100%;height:100%;object-fit:cover;border-radius:12px;filter:none;position:absolute;inset:0}
+.tile__go{position:absolute;right:14px;bottom:14px;z-index:2;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:var(--ink);color:#fff;opacity:0;transform:scale(.85);transition:opacity 180ms ease,transform 220ms var(--ease-out)}
+.tile__go svg{width:16px;height:16px}
+.tile--o{--tb:var(--orange)} .tile--c{--tb:var(--cream)} .tile--s{--tb:var(--sky)} .tile--p{--tb:var(--peach)}
+.tile--b{--tb:var(--blue);--tf:#fff} .tile--n{--tb:var(--ink);--tf:#fff}
+.tile--b .tile__go,.tile--n .tile__go{background:#fff;color:var(--ink)}
+.tile:active{transform:scale(.985)}
+@media (hover:hover) and (pointer:fine){
+  .tile:hover{transform:translateY(-2px);box-shadow:0 14px 30px -18px rgba(14,31,61,.45)}
+  .tile:hover .tile__ob img{transform:translateY(-6px) scale(1.03)}
+  .tile:hover .tile__ob.frame img{transform:scale(1.03)}
+  .tile:hover .tile__go{opacity:1;transform:none}
+}
+.tile__ob.wide{margin-left:-22px;margin-right:-22px}
+.tile__ob.wide img{max-width:104%;max-height:none;width:104%;margin-bottom:6px}
+.tile__ob.bleed{margin-left:-22px;margin-right:-22px}
+.tile__ob.bleed img{max-width:100%}
+
+/* ---------- how ---------- */
+.how{background:var(--blue);color:#fff}
+.how .sec__head p{color:#d7e3fb}
+.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;list-style:none;margin:0;padding:0;counter-reset:s}
+.step{background:var(--blue-deep);border-radius:var(--r-m);padding:26px 26px 30px;display:flex;flex-direction:column;min-height:340px}
+.step__n{font-family:var(--display);font-size:clamp(64px,7vw,104px);line-height:.9;color:var(--sky-2)}
+.step h3{font-size:clamp(22px,1.9vw,28px);line-height:1.08;margin-top:auto;padding-top:28px;min-height:calc(2.16em + 28px);display:flex;align-items:flex-end}
+.step p{margin-top:12px;color:#d7e3fb;font-size:16.5px;min-height:4.5em}
+.step--hi{background:var(--sky);color:var(--ink)}
+.step--hi .step__n{color:var(--blue)}
+.step--hi p{color:var(--ink-soft)}
+.how__cta{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;margin-top:28px;padding:22px 26px;border-radius:var(--r-m);border:2px solid rgba(255,255,255,.35)}
+.how__cta p{font-size:19px;font-weight:600}
+
+/* ---------- kits ---------- */
+.kits__grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,4vw,64px);align-items:stretch}
+.bundle{position:relative;border-radius:var(--r-l);background:var(--sky);min-height:560px;overflow:hidden}
+.bundle img{position:absolute;filter:drop-shadow(0 22px 22px rgba(14,31,61,.2));transition:transform 500ms var(--ease-out)}
+.bundle .b-lunch{height:66%;width:auto;left:8%;bottom:7%}
+.bundle .b-bottle{height:64%;width:auto;right:12%;bottom:7%}
+.bundle__tag{position:absolute;z-index:2;left:26px;top:26px;right:26px;display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+.bundle__tag span{display:inline-block;padding:9px 16px;border-radius:999px;background:#fff;font-weight:700;font-size:15px}
+.bundle__tag b{font-family:var(--display);font-weight:400;font-size:clamp(24px,2.2vw,32px);line-height:1.05;max-width:8em;text-align:right}
+@media (hover:hover) and (pointer:fine){.bundle:hover .b-lunch{transform:translateY(-6px) rotate(-1.5deg)}.bundle:hover .b-bottle{transform:translateY(-10px)}}
+.kits__copy{display:flex;flex-direction:column}
+.kits__copy .sec__note{margin-top:20px}
+.kitlist{list-style:none;margin:32px 0 0;padding:0;border-top:2px solid var(--ink)}
+.kitlist a{display:grid;grid-template-columns:1fr auto 28px;gap:16px;align-items:center;padding:15px 2px;border-bottom:1px solid #d8ccb8;text-decoration:none;transition:padding-left 240ms var(--ease-out),background-color 200ms ease}
+.kitlist strong{font-weight:700;font-size:18px}
+.kitlist span{font-size:15px;color:var(--ink-soft);white-space:nowrap}
+.kitlist svg{width:18px;height:18px;justify-self:end;transition:transform 220ms var(--ease-out)}
+@media (hover:hover) and (pointer:fine){.kitlist a:hover{padding-left:12px;background:var(--cream)}.kitlist a:hover svg{transform:translateX(3px)}}
+.kitlist a:active{background:var(--sand)}
+
+/* ---------- labs ---------- */
+.labs{background:var(--ink-logo);color:#fff}
+.labs__grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:20px}
+.labs__hero{position:relative;border-radius:var(--r-l);background:var(--blue);min-height:540px;overflow:hidden;display:flex;align-items:flex-end;justify-content:center}
+.labs__hero img{position:absolute;right:0;bottom:-4%;width:94%;filter:drop-shadow(-20px 20px 30px rgba(0,0,0,.3));transform-origin:100% 100%;transition:transform 600ms var(--ease-out)}
+@media (hover:hover) and (pointer:fine){.labs__hero:hover img{transform:scale(1.03)}}
+.labs__side{display:flex;flex-direction:column;gap:20px}
+.labs__side h2{color:#fff}
+.chips{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:0;padding:0}
+.chips li{padding:9px 15px;border-radius:999px;border:1.5px solid rgba(255,255,255,.3);font-size:15px;font-weight:600}
+.setups{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:auto}
+.setup{display:flex;flex-direction:column;justify-content:space-between;gap:28px;min-height:190px;padding:22px;border-radius:var(--r-m);background:var(--orange);color:var(--ink);text-decoration:none;transition:transform 220ms var(--ease-out)}
+.setup:nth-child(2){background:var(--sky)}
+.setup h3{font-size:clamp(21px,1.8vw,26px);line-height:1.08}
+.setup span{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:15px}
+.setup span svg{width:16px;height:16px;transition:transform 200ms var(--ease-out)}
+.setup:active{transform:scale(.98)}
+@media (hover:hover) and (pointer:fine){.setup:hover{transform:translateY(-2px)}.setup:hover span svg{transform:translateX(4px)}}
+
+/* ---------- promise ---------- */
+.promise{background:var(--cream)}
+.bento{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:minmax(200px,auto);gap:14px}
+.bento__photo{grid-row:span 2;border-radius:var(--r-m);overflow:hidden;position:relative;min-height:300px}
+.bento__photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 600ms var(--ease-out)}
+@media (hover:hover) and (pointer:fine){.bento__photo:hover img{transform:scale(1.03)}}
+.pr{border-radius:var(--r-m);padding:24px;display:flex;flex-direction:column;justify-content:space-between;gap:20px;background:var(--paper)}
+.pr h3{font-size:clamp(21px,1.85vw,27px);line-height:1.1;margin-bottom:10px}
+.pr p{font-size:16px;color:var(--ink-soft)}
+.pr i{display:grid;place-items:center;width:46px;height:46px;border-radius:50%;background:var(--ink);color:#fff;font-style:normal}
+.pr i svg{width:22px;height:22px}
+.pr--o{background:var(--orange)} .pr--o p{color:var(--ink)}
+.pr--b{background:var(--blue);color:#fff} .pr--b p{color:#d7e3fb} .pr--b i{background:#fff;color:var(--blue)}
+.pr--s{background:var(--sky)}
+.pr--wide{grid-column:span 2}
+
+/* ---------- close ---------- */
+.close{background:var(--orange);color:var(--ink);padding:clamp(80px,10vw,140px) 0}
+.close h2{font-size:clamp(52px,10vw,160px);line-height:.92;letter-spacing:-.02em}
+.close__row{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:40px;align-items:end;margin-top:40px}
+.close__row p{font-size:clamp(19px,1.6vw,23px);max-width:26em}
+.close__acts{display:flex;flex-wrap:wrap;gap:12px;justify-content:flex-end}
+.close .btn--wa{--bg:var(--ink);--fg:#fff;border-color:var(--ink)}
+.close .btn--wa svg{color:#5fe08f}
+@media (hover:hover) and (pointer:fine){.close .btn--wa:hover{--bg:var(--blue);border-color:var(--blue)}}
+.close__mail{margin-top:18px;float:right;font-weight:700}
+
+/* ---------- footer ---------- */
+.foot{background:var(--ink-logo);color:#dfe6f3;padding:72px 0 40px;font-size:16px}
+.foot a{text-decoration:none}
+.foot a:hover{text-decoration:underline;text-underline-offset:4px}
+.foot__top{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.3fr;gap:40px}
+.foot__brand svg{width:210px;height:auto}
+.foot__brand p{margin-top:20px;max-width:24em;color:#b6c2d9}
+.foot h3{font-family:var(--text);font-weight:700;font-size:14px;letter-spacing:.02em;color:#fff;margin-bottom:14px}
+.foot ul{list-style:none;margin:0;padding:0;display:grid;gap:4px}
+.foot ul a{display:inline-block;padding:6px 0}
+.foot address{font-style:normal;line-height:1.6;color:#b6c2d9}
+.foot__legal{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;margin-top:56px;padding-top:24px;border-top:1px solid rgba(255,255,255,.14);font-size:14px;color:#95a3bd}
+.pending{display:inline-block;padding:0 6px;border-radius:6px;background:rgba(245,135,42,.2);color:#ffc999;font-weight:600}
+
+/* ---------- mobile bar ---------- */
+.mbar{display:none}
+
+/* ---------- responsive ---------- */
+@media (max-width:1180px){
+  .nav__links{display:none}
+  .nav__phone{margin-left:auto}
+  .grid15{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .steps{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .bento{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .foot__top{grid-template-columns:1fr 1fr}
+}
+@media (max-width:900px){
+  :root{--nav-h:68px}
+  .hero__grid{grid-template-columns:1fr;min-height:0;max-height:none}
+  .hero__field{min-height:min(78vw,520px)}
+  .kits__grid,.labs__grid{grid-template-columns:1fr}
+  .labs__hero{min-height:min(80vw,480px)}
+  .close__row{grid-template-columns:1fr}
+  .close__acts{justify-content:flex-start}
+  .close__mail{float:none}
+  .sec__head{flex-direction:column;align-items:flex-start;gap:16px}
+}
+@media (max-width:760px){
+  body{padding-bottom:84px}
+  .nav__phone,.nav__cta{display:none}
+  .nav__menu{display:inline-flex}
+  .nav__logo svg{width:160px}
+  .hero{padding-top:0}
+  .hero__copy{padding-top:16px;gap:24px}
+  .hero h1{margin-top:18px}
+  .hero__lead{margin-top:16px}
+  .hero__actions{display:none}
+  .facts b{font-size:30px}
+  .facts span{font-size:13.5px}
+  .hero__field{min-height:270px;order:0}
+  .hero__sticker{top:18px;left:18px;right:18px}
+  .hero__sticker a{display:none}
+  .say{min-height:0;padding:72px 0 80px}
+  .grid15 > li:last-child{grid-column:span 2}
+  .tile h3{font-size:19px}
+  .step h3{min-height:0}
+  .step p{min-height:0}
+  .bundle__tag{flex-direction:column;align-items:flex-start;gap:14px}
+  .bundle__tag b{text-align:left}
+  .grid15{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .tile{min-height:250px;padding:16px 16px 0}
+  .tile p{font-size:13.5px}
+  .tile__ob{min-height:110px}
+  .tile__ob img{max-height:120px}
+  .tile__ob.frame{margin:10px -6px 10px}
+  .steps{grid-template-columns:1fr}
+  .step{min-height:0}
+  .step h3{padding-top:18px}
+  .bundle{min-height:430px}
+  .bundle .b-lunch{height:50%}
+  .bundle .b-bottle{height:54%}
+  .tile__ob.wide{margin-left:-16px;margin-right:-16px}
+  .setups{grid-template-columns:1fr}
+  .setup{min-height:140px}
+  .bento{grid-template-columns:1fr}
+  .pr--wide{grid-column:auto}
+  .bento__photo{grid-row:auto;min-height:260px}
+  .kitlist a{grid-template-columns:1fr 20px}
+  .kitlist span{grid-column:1;white-space:normal;margin-top:-10px}
+  .kitlist svg{grid-row:1;grid-column:2}
+  .foot__top{grid-template-columns:1fr}
+  .btn{width:100%}
+  .how__cta .btn,.close__acts .btn{width:100%}
+  .mbar{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:fixed;left:0;right:0;bottom:0;z-index:40;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(251,247,240,.96);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid #e4d8c4}
+  .mbar .btn{min-height:52px;padding:0 12px;font-size:16px}
+}
+@media (max-width:380px){
+  .grid15{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .tile h3{font-size:17px}
+  .tile h3{font-size:18px}
+  .facts li{padding-right:8px}
+}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<!-- Concept D: "Bold product". Fonts: Dela Gothic One (display) + Schibsted Grotesk (text). Palette: brand blue #1f4fb5, orange #f5872a, pale blue, warm neutrals. -->
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav">
+  <div class="wrap nav__in">
+    <a class="nav__logo" href="/" aria-label="SchoolSource home"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 26.23 290.15 43.77" width="290" height="44" role="img" aria-hidden="true" focusable="false" aria-label="SchoolSource"><g transform="translate(-6.432 18.192) scale(1.6080)"><path d="M20 8H10a4 4 0 0 0 0 8h12a4 4 0 0 1 0 8H4" fill="none" stroke="#1f4fb5" stroke-width="4"></path><circle cx="25" cy="8" r="3" fill="#f5872a"></circle></g><g transform="translate(50.592 60)"><path fill="#0f1b2d" d="M9.59 0.66Q7.37 0.66 5.2 0.09Q3.04 -0.49 1.49 -1.44L1.74 -7.24H4.57L5.7 -0.85L2.96 -1.91L2.95 -3.69Q4.19 -2.92 5.19 -2.4Q6.19 -1.89 7.2 -1.64Q8.22 -1.38 9.52 -1.38Q11.18 -1.38 12.39 -1.92Q13.6 -2.46 14.25 -3.48Q14.9 -4.5 14.9 -5.87Q14.9 -7.07 14.43 -7.9Q13.96 -8.73 13.02 -9.36Q12.07 -9.99 10.61 -10.58L9.01 -11.28Q6.9 -12.2 5.31 -13.34Q3.73 -14.48 2.86 -16.03Q1.99 -17.58 1.99 -19.7Q1.99 -22.05 3.17 -23.73Q4.36 -25.4 6.46 -26.31Q8.57 -27.23 11.31 -27.23Q13.37 -27.23 15.14 -26.68Q16.91 -26.14 18.24 -25.19L17.98 -19.73H15.19L14.04 -25.84L16.83 -24.64L16.84 -22.74Q15.34 -24.03 14.07 -24.61Q12.81 -25.18 11.25 -25.18Q9.9 -25.18 8.81 -24.69Q7.71 -24.19 7.06 -23.26Q6.4 -22.32 6.4 -20.97Q6.4 -19.79 6.91 -18.91Q7.41 -18.04 8.34 -17.37Q9.27 -16.7 10.59 -16.14L12.27 -15.43Q14.77 -14.39 16.35 -13.22Q17.93 -12.05 18.67 -10.6Q19.42 -9.14 19.42 -7.14Q19.42 -4.79 18.23 -3.03Q17.05 -1.28 14.86 -0.31Q12.67 0.66 9.59 0.66ZM31.46 0.56Q28.55 0.56 26.42 -0.63Q24.29 -1.81 23.13 -4.03Q21.97 -6.25 21.97 -9.33Q21.97 -12.62 23.28 -14.91Q24.6 -17.2 26.82 -18.41Q29.04 -19.62 31.71 -19.62Q33.65 -19.62 35.23 -18.9Q36.8 -18.18 37.8 -16.95Q38.8 -15.72 38.99 -14.21Q38.76 -13.32 38.22 -12.88Q37.68 -12.44 36.79 -12.44Q35.74 -12.44 35.07 -13.11Q34.4 -13.78 34.23 -15.2L33.56 -18.38L35.86 -16.84Q34.93 -17.35 34.02 -17.56Q33.11 -17.77 32.24 -17.77Q30.8 -17.77 29.57 -16.92Q28.34 -16.07 27.61 -14.35Q26.88 -12.64 26.88 -10.02Q26.88 -7.48 27.68 -5.82Q28.49 -4.15 29.85 -3.34Q31.22 -2.54 32.94 -2.54Q33.9 -2.54 34.78 -2.76Q35.66 -2.98 36.48 -3.51Q37.31 -4.04 38.05 -4.93L39.11 -4.08Q38.35 -2.58 37.27 -1.55Q36.2 -0.52 34.78 0.02Q33.35 0.56 31.46 0.56ZM40.36 0V-1.55L44.38 -2.32H46.27L50.13 -1.55V0ZM42.92 0Q42.96 -0.93 42.98 -2.42Q43 -3.92 43.02 -5.54Q43.04 -7.16 43.04 -8.4V-25.69L40.14 -26.11V-27.58L47.19 -29.37L47.77 -29L47.61 -23.1V-15.08L47.72 -14.61V-8.4Q47.72 -7.16 47.74 -5.54Q47.76 -3.92 47.78 -2.42Q47.8 -0.93 47.84 0ZM52.56 0V-1.55L56.53 -2.32H58.41L62.34 -1.55V0ZM55.02 0Q55.06 -0.93 55.08 -2.41Q55.11 -3.89 55.12 -5.5Q55.14 -7.12 55.14 -8.4V-12.19Q55.14 -14.57 54.52 -15.47Q53.89 -16.36 52.38 -16.36Q51.53 -16.36 50.66 -16.03Q49.79 -15.7 48.9 -15.05Q48 -14.4 47.02 -13.39L46.46 -15.3H46.98Q48.07 -16.71 49.28 -17.67Q50.49 -18.63 51.79 -19.12Q53.09 -19.62 54.45 -19.62Q57.04 -19.62 58.44 -17.92Q59.85 -16.22 59.85 -12.55V-8.4Q59.85 -7.12 59.87 -5.5Q59.89 -3.89 59.91 -2.41Q59.93 -0.93 59.97 0ZM74 0.56Q71.32 0.56 69.16 -0.63Q66.99 -1.82 65.73 -4.08Q64.46 -6.35 64.46 -9.51Q64.46 -12.7 65.78 -14.96Q67.1 -17.23 69.27 -18.42Q71.44 -19.62 74 -19.62Q76.56 -19.62 78.73 -18.43Q80.9 -17.24 82.23 -14.99Q83.55 -12.73 83.55 -9.52Q83.55 -6.34 82.26 -4.07Q80.97 -1.81 78.82 -0.63Q76.66 0.56 74 0.56ZM74 -1.28Q75.43 -1.28 76.42 -2.17Q77.41 -3.07 77.94 -4.88Q78.46 -6.69 78.46 -9.48Q78.46 -12.29 77.94 -14.12Q77.41 -15.95 76.42 -16.86Q75.43 -17.76 74 -17.76Q72.56 -17.76 71.57 -16.85Q70.58 -15.95 70.06 -14.11Q69.55 -12.28 69.55 -9.47Q69.55 -6.69 70.06 -4.88Q70.58 -3.06 71.57 -2.17Q72.56 -1.28 74 -1.28ZM95.84 0.56Q93.16 0.56 91 -0.63Q88.83 -1.82 87.57 -4.08Q86.3 -6.35 86.3 -9.51Q86.3 -12.7 87.62 -14.96Q88.94 -17.23 91.11 -18.42Q93.28 -19.62 95.84 -19.62Q98.4 -19.62 100.57 -18.43Q102.74 -17.24 104.07 -14.99Q105.39 -12.73 105.39 -9.52Q105.39 -6.34 104.1 -4.07Q102.81 -1.81 100.66 -0.63Q98.5 0.56 95.84 0.56ZM95.84 -1.28Q97.27 -1.28 98.26 -2.17Q99.25 -3.07 99.78 -4.88Q100.3 -6.69 100.3 -9.48Q100.3 -12.29 99.78 -14.12Q99.25 -15.95 98.26 -16.86Q97.27 -17.76 95.84 -17.76Q94.4 -17.76 93.41 -16.85Q92.42 -15.95 91.9 -14.11Q91.39 -12.28 91.39 -9.47Q91.39 -6.69 91.9 -4.88Q92.42 -3.06 93.41 -2.17Q94.4 -1.28 95.84 -1.28ZM107.24 0V-1.55L111.37 -2.32H113.25L117.5 -1.55V0ZM109.92 0Q109.96 -1.36 109.98 -2.77Q110 -4.17 110.02 -5.59Q110.04 -7.01 110.04 -8.4V-25.69L107.14 -26.11V-27.58L114.29 -29.37L114.88 -29L114.72 -23.16V-8.4Q114.72 -7.01 114.74 -5.59Q114.76 -4.17 114.78 -2.77Q114.8 -1.36 114.84 0ZM127.71 0.66Q125.49 0.66 123.32 0.09Q121.16 -0.49 119.61 -1.44L119.86 -7.24H122.69L123.82 -0.85L121.08 -1.91L121.07 -3.69Q122.31 -2.92 123.31 -2.4Q124.31 -1.89 125.32 -1.64Q126.34 -1.38 127.64 -1.38Q129.3 -1.38 130.51 -1.92Q131.72 -2.46 132.37 -3.48Q133.02 -4.5 133.02 -5.87Q133.02 -7.07 132.55 -7.9Q132.08 -8.73 131.14 -9.36Q130.19 -9.99 128.73 -10.58L127.13 -11.28Q125.02 -12.2 123.43 -13.34Q121.85 -14.48 120.98 -16.03Q120.11 -17.58 120.11 -19.7Q120.11 -22.05 121.29 -23.73Q122.48 -25.4 124.58 -26.31Q126.69 -27.23 129.43 -27.23Q131.49 -27.23 133.26 -26.68Q135.03 -26.14 136.36 -25.19L136.1 -19.73H133.31L132.16 -25.84L134.95 -24.64L134.96 -22.74Q133.46 -24.03 132.19 -24.61Q130.93 -25.18 129.37 -25.18Q128.02 -25.18 126.93 -24.69Q125.83 -24.19 125.18 -23.26Q124.52 -22.32 124.52 -20.97Q124.52 -19.79 125.03 -18.91Q125.53 -18.04 126.46 -17.37Q127.39 -16.7 128.71 -16.14L130.39 -15.43Q132.89 -14.39 134.47 -13.22Q136.05 -12.05 136.79 -10.6Q137.54 -9.14 137.54 -7.14Q137.54 -4.79 136.35 -3.03Q135.17 -1.28 132.98 -0.31Q130.79 0.66 127.71 0.66ZM149.64 0.56Q146.96 0.56 144.8 -0.63Q142.63 -1.82 141.37 -4.08Q140.1 -6.35 140.1 -9.51Q140.1 -12.7 141.42 -14.96Q142.74 -17.23 144.91 -18.42Q147.08 -19.62 149.64 -19.62Q152.2 -19.62 154.37 -18.43Q156.54 -17.24 157.87 -14.99Q159.19 -12.73 159.19 -9.52Q159.19 -6.34 157.9 -4.07Q156.61 -1.81 154.46 -0.63Q152.3 0.56 149.64 0.56ZM149.64 -1.28Q151.07 -1.28 152.06 -2.17Q153.05 -3.07 153.58 -4.88Q154.1 -6.69 154.1 -9.48Q154.1 -12.29 153.58 -14.12Q153.05 -15.95 152.06 -16.86Q151.07 -17.76 149.64 -17.76Q148.2 -17.76 147.21 -16.85Q146.22 -15.95 145.7 -14.11Q145.19 -12.28 145.19 -9.47Q145.19 -6.69 145.7 -4.88Q146.22 -3.06 147.21 -2.17Q148.2 -1.28 149.64 -1.28ZM168.74 0.56Q166.26 0.56 164.8 -1.04Q163.34 -2.64 163.38 -6.53L163.51 -17.27L164.54 -16.23L160.93 -17.02V-18.49L167.78 -19.39L168.28 -18.98L168.08 -13.64V-6.7Q168.08 -4.45 168.78 -3.56Q169.48 -2.67 170.82 -2.67Q171.72 -2.67 172.65 -3.06Q173.58 -3.45 174.49 -4.16Q175.41 -4.87 176.2 -5.79L176.9 -4.19H176.25Q175.27 -2.66 174.06 -1.6Q172.86 -0.54 171.53 0.01Q170.2 0.56 168.74 0.56ZM175.8 0.38 175.42 -4.23V-4.3L175.54 -16.5L172.99 -17.02V-18.43L179.74 -19.39L180.24 -18.98L180.11 -13.64V-2.03L182.54 -1.54V0.01ZM184.62 0V-1.55L188.68 -2.32H191.1L195.21 -1.55V0ZM187.12 0Q187.17 -0.93 187.19 -2.42Q187.21 -3.92 187.23 -5.54Q187.25 -7.16 187.25 -8.4V-10.46Q187.25 -11.59 187.23 -12.38Q187.21 -13.17 187.19 -13.86Q187.17 -14.55 187.13 -15.35L184.32 -15.74V-17.14L190.95 -19.62L191.57 -19.21L191.95 -14.18V-14.09V-8.4Q191.95 -7.16 191.97 -5.54Q191.99 -3.92 192.01 -2.42Q192.03 -0.93 192.08 0ZM191.88 -11 190.94 -13.67H191.68Q192.26 -15.61 193.19 -16.93Q194.13 -18.24 195.26 -18.93Q196.39 -19.62 197.51 -19.62Q198.61 -19.62 199.47 -19.07Q200.33 -18.53 200.63 -17.46Q200.6 -16.02 199.91 -15.24Q199.23 -14.45 198.06 -14.45Q197.27 -14.45 196.62 -14.8Q195.96 -15.16 195.33 -15.86L194.24 -17.07L195.99 -17.01Q194.55 -16.16 193.48 -14.62Q192.42 -13.09 191.88 -11ZM210.86 0.56Q207.95 0.56 205.82 -0.63Q203.69 -1.81 202.53 -4.03Q201.37 -6.25 201.37 -9.33Q201.37 -12.62 202.68 -14.91Q204 -17.2 206.22 -18.41Q208.44 -19.62 211.11 -19.62Q213.05 -19.62 214.63 -18.9Q216.2 -18.18 217.2 -16.95Q218.2 -15.72 218.39 -14.21Q218.16 -13.32 217.62 -12.88Q217.08 -12.44 216.19 -12.44Q215.14 -12.44 214.47 -13.11Q213.8 -13.78 213.63 -15.2L212.96 -18.38L215.26 -16.84Q214.33 -17.35 213.42 -17.56Q212.51 -17.77 211.64 -17.77Q210.2 -17.77 208.97 -16.92Q207.74 -16.07 207.01 -14.35Q206.28 -12.64 206.28 -10.02Q206.28 -7.48 207.08 -5.82Q207.89 -4.15 209.25 -3.34Q210.62 -2.54 212.34 -2.54Q213.3 -2.54 214.18 -2.76Q215.06 -2.98 215.88 -3.51Q216.71 -4.04 217.45 -4.93L218.51 -4.08Q217.75 -2.58 216.67 -1.55Q215.6 -0.52 214.18 0.02Q212.75 0.56 210.86 0.56ZM230.26 0.56Q227.42 0.56 225.25 -0.6Q223.08 -1.75 221.87 -3.96Q220.66 -6.16 220.66 -9.3Q220.66 -12.48 221.92 -14.79Q223.18 -17.1 225.34 -18.36Q227.49 -19.62 230.08 -19.62Q232.43 -19.62 234.2 -18.63Q235.97 -17.63 236.97 -15.86Q237.97 -14.1 237.97 -11.69Q237.97 -11.03 237.91 -10.5Q237.84 -9.97 237.72 -9.52H222.69V-11.3H230.99Q232.55 -11.3 233.04 -11.89Q233.53 -12.48 233.53 -13.59Q233.53 -15 233.1 -15.92Q232.66 -16.85 231.89 -17.31Q231.11 -17.77 230.08 -17.77Q228.96 -17.77 227.92 -17.03Q226.88 -16.28 226.22 -14.58Q225.57 -12.88 225.57 -9.95Q225.57 -7.5 226.36 -5.85Q227.15 -4.19 228.56 -3.37Q229.97 -2.54 231.79 -2.54Q233.5 -2.54 234.79 -3.12Q236.07 -3.7 237.12 -4.91L238.16 -4.08Q237.35 -2.61 236.26 -1.57Q235.18 -0.53 233.72 0.01Q232.27 0.56 230.26 0.56Z"></path></g></svg></a>
+    <ul class="nav__links">
+      <li><a href="/products">Products</a></li>
+      <li><a href="/kits">Kits</a></li>
+      <li><a href="/labs">Labs</a></li>
+      <li><a href="/how-it-works">How it works</a></li>
+      <li><a href="/about">About</a></li>
+    </ul>
+    <a class="nav__phone" href="tel:+919676038523">+91 96760 38523</a>
+    <a class="btn btn--primary btn--sm nav__cta" href="/quote">Request a quote</a>
+    <button class="nav__menu" type="button" aria-expanded="false" aria-controls="menu" aria-label="Open menu">
+      <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M2 6h16M2 14h16" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"></path></svg>
+    </button>
+  </div>
+</header>
+
+<div class="sheet on-dark" id="menu" role="dialog" aria-modal="true" aria-label="Menu">
+  <div class="sheet__top"><span>Menu</span><button class="sheet__close" type="button" aria-label="Close menu">×</button></div>
+  <ul>
+    <li><a href="/products">Products</a></li>
+    <li><a href="/kits">Kits</a></li>
+    <li><a href="/labs">Labs</a></li>
+    <li><a href="/how-it-works">How it works</a></li>
+    <li><a href="/about">About</a></li>
+    <li><a href="/contact">Contact</a></li>
+  </ul>
+  <div class="sheet__foot">
+    <a class="btn btn--light" href="/quote">Request a quote</a>
+    <a class="btn btn--light" href="tel:+919676038523">Call +91 96760 38523</a>
+  </div>
+</div>
+
+<main id="main">
+
+<!-- 1. HERO -->
+<section class="hero" data-enter="" aria-labelledby="h-hero">
+  <div class="wrap hero__grid">
+    <div class="hero__copy">
+      <div>
+        <span class="tag en"><i></i>School supplies, Hyderabad</span>
+        <h1 id="h-hero" class="en">Everything your school buys. <em>One&nbsp;quote.</em></h1>
+        <p class="hero__lead en">Notebooks to lab benches, uniforms to trophies. Send us your list and we price every line on a single quote.</p>
+        <div class="hero__actions en">
+          <a class="btn btn--primary" href="/quote">Request a quote</a>
+          <a class="btn btn--wa" href="https://wa.me/919676038523?text=Hello%20SchoolSource%2C%20I%20would%20like%20a%20quote%20for%20our%20school.%20Here%20is%20our%20list%3A"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"></path></svg>WhatsApp your list</a>
+        </div>
+      </div>
+      <ul class="facts en" aria-label="The catalogue">
+        <li><b>15</b><span>categories</span></li>
+        <li><b>343</b><span>items</span></li>
+        <li><b>7</b><span>ready kits</span></li>
+      </ul>
+    </div>
+    <div class="hero__field">
+      <div class="hero__sticker">
+        <p>Pencils by the carton. Labs by the room.</p>
+        <a href="/products">See the range<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+      </div>
+      <img src="img/pencils.webp" width="1800" height="752" alt="A row of colour pencils standing on end" fetchpriority="high">
+    </div>
+  </div>
+</section>
+
+<!-- 2. STATEMENT: the range in one line -->
+<section class="say" aria-labelledby="h-say">
+  <div class="wrap">
+    <h2 id="h-say" class="say__line in"><span class="nw">Scissors <span class="ob ob--o ob--sc"><img src="img/scissors.webp" width="900" height="480" alt=""></span>,</span> <span class="nw">ties <span class="ob ob--s ob--tie"><img src="img/tie.webp" width="534" height="727" alt=""></span>,</span> <span class="nw">medals <span class="ob ob--c ob--medal"><img src="img/medal.webp" width="317" height="580" alt=""></span></span> <span class="muted">and 340 more things a school buys.</span></h2>
+    <div class="say__foot">
+      <p>Order from one supplier instead of ten. One list goes in, one quote comes back, and one number answers your calls.</p>
+      <a class="tlink" href="#categories">See all 15 categories<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- 3. CATEGORIES -->
+<section class="sec cats" id="categories" aria-labelledby="h-cats">
+  <div class="wrap">
+    <div class="sec__head">
+      <h2 id="h-cats">15 categories, all on one quote.</h2>
+      <p class="sec__note">Every item is quoted for your school and your quantities. Pick a category to see what is in it.</p>
+    </div>
+    <ul class="grid15">
+      <li><a class="tile tile--c" href="/products/stationery"><h3>Stationery</h3><p>Pens, notebooks, paper, files, art and craft</p><div class="tile__ob frame"><img src="img/f-stationery.webp" width="900" height="600" alt="" loading="lazy"></div><span class="tile__go" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a></li>
+      <li><a class="tile tile--o" href="/products/textbooks"><h3>Textbooks</h3><p>Class-wise textbooks, workbooks and book sets</p><div class="tile__ob wide"><img src="img/book.webp" width="1000" height="533" alt="" loading="lazy"></div><span class="tile__go" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a></li>
+      <li><a class="tile tile--s" href="/products/printing-id-cards"><h3>Printing &amp; ID Cards</h3><p>Diaries, ID cards, badges, certificates, report cards</p><div class="tile__ob frame"><img src="img/f-exam.webp" width="900" height="600" alt="" loading="lazy"></div><span class="tile__go" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a></li>
+      <li><a class="tile tile--b" href="/products/teaching-aids"><h3>Teaching Aids</h3><p>Boards, charts, maps, models, display boards</p><div class="tile__ob frame"><img src="img/f-globe.webp" width="900" height="1080" alt="" loading="lazy"></div><span class="tile__go" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a></li>
+      <li><a class="tile tile--o" href="/products/uniforms-bags"><h3>Uniforms &amp; Bags</h3><p>Uniforms, shoes, bags, student kits</p><div class="tile__ob"><img src="img/skirt.webp" width="529" height="580" alt="" loading="lazy"></div><span class="tile__go" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a></li>
+      <li><a class="tile tile--s" href="/products/housekeeping"><h3>House­keeping</h3><p>Cleaning, hygiene and washroom supplies</p><div class="tile__ob"><img src="img/firstaid.webp" width="581" height="716" alt="" loading="lazy"></div><span class="tile__go" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a></li>
+      <li><a class="tile tile--b" href="/products/sports"><h3>Sports</h3><p>Sports equipment and playground items</p><div class="tile__ob"><img src="img/football.webp" width="334" height="335" alt="" loading="lazy"></div><span class="tile__go" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a></li>
+      <li><a class="tile tile--c" href="/products/gifts-awards"><h3>Gifts &amp; Awards</h3><p>Trophies, medals, mementos, gifts</p><div class="tile__ob"><img src="img/trophy.webp" width="580" height="811" alt="" loading="lazy"></div><span class="tile__go" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a></li>
+      <li><a class="tile tile--s" href="/products/music"><h3>Music</h3><p>Keyboards, tabla, harmonium, band sets</p><div class="tile__ob"><img src="img/xylophone.webp" width="651" height="541" alt="" loading="lazy"></div><span class="tile__go" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a></li>
+      <li><a class="tile tile--n" href="/products/library"><h3>Library</h3><p>Books and library supplies</p><div class="tile__ob frame"><img src="img/f-library.webp" width="900" height="600" alt="" loading="lazy"></div><span class="tile__go" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a></li>
+      <li><a class="tile tile--p" href="/products/labs"><h3>Labs</h3><p>Science, maths and STEM lab equipment</p><div class="tile__ob frame"><img src="img/f-microscope.webp" width="700" height="750" alt="" loading="lazy"></div><span class="tile__go" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a></li>
+      <li><a class="tile tile--s" href="/products/computers-tech"><h3>Computers &amp; Tech</h3><p>Computers, projectors, smart boards, CCTV</p><div class="tile__ob frame"><img src="img/f-computers.webp" width="900" height="600" alt="" loading="lazy"></div><span class="tile__go" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a></li>
+      <li><a class="tile tile--o" href="/products/furniture"><h3>Furniture</h3><p>Desks, chairs, cupboards, racks</p><div class="tile__ob frame"><img src="img/f-desks.webp" width="900" height="563" alt="" loading="lazy"></div><span class="tile__go" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a></li>
+      <li><a class="tile tile--c" href="/products/electricals"><h3>Electricals</h3><p>Water coolers, RO, AC, fans, lights, UPS</p><div class="tile__ob frame"><img src="img/f-fan.webp" width="900" height="600" alt="" loading="lazy"></div><span class="tile__go" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a></li>
+      <li><a class="tile tile--b" href="/products/canteen-kitchen"><h3>Canteen &amp; Kitchen</h3><p>Kitchen equipment, serving counters, serveware</p><div class="tile__ob wide"><img src="img/utensils.webp" width="768" height="243" alt="" loading="lazy"></div><span class="tile__go" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a></li>
+    </ul>
+  </div>
+</section>
+
+<!-- 4. HOW ORDERING WORKS -->
+<section class="sec how on-dark" id="how" aria-labelledby="h-how">
+  <div class="wrap">
+    <div class="sec__head">
+      <h2 id="h-how">Send a list and we handle the rest.</h2>
+      <p class="sec__note">A photo of a handwritten list is enough to start.</p>
+    </div>
+    <ol class="steps">
+      <li class="step step--hi"><span class="step__n">1</span><h3>Send your list</h3><p>WhatsApp a photo, email a spreadsheet or fill in the quote form.</p></li>
+      <li class="step"><span class="step__n">2</span><h3>Get one quote</h3><p>Every line on a single quote. Ask about anything that is not on it.</p></li>
+      <li class="step"><span class="step__n">3</span><h3>Approve the proofs</h3><p>Diaries, ID cards and anything printed come to you as a proof first.</p></li>
+      <li class="step"><span class="step__n">4</span><h3>Checked, then delivered</h3><p>Every order is checked before dispatch. In-stock items arrive within a week of confirmation.</p></li>
+    </ol>
+    <div class="how__cta">
+      <p>Already ordered with us? Send last year's order and we re-quote it.</p>
+      <a class="btn btn--light" href="https://wa.me/919676038523?text=Hello%20SchoolSource%2C%20please%20re-quote%20last%20year's%20order%20for%20our%20school."><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"></path></svg>Re-quote last year's order</a>
+    </div>
+  </div>
+</section>
+
+<!-- 5. KITS -->
+<section class="sec kits" id="kits" aria-labelledby="h-kits">
+  <div class="wrap kits__grid">
+    <div class="bundle">
+      <div class="bundle__tag"><span>New Admission Student Kit</span><b>One bag per student.</b></div>
+      <img class="b-lunch" src="img/lunchbox.webp" width="520" height="690" alt="A lunch box with its lid off">
+      <img class="b-bottle" src="img/bottle.webp" width="170" height="514" alt="A steel water bottle">
+    </div>
+    <div class="kits__copy">
+      <h2 id="h-kits">Kits, packed and sorted by class.</h2>
+      <p class="sec__note">For student kits, each child gets one labelled bag, sorted by class, ready to hand out. The other kits are built for a classroom, an office or an event.</p>
+      <ul class="kitlist">
+        <li><a href="/kits#new-admission-student"><strong>New Admission Student Kit</strong><span>Per student</span><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a></li>
+        <li><a href="/kits#term-start-classroom"><strong>Term Start Classroom Kit</strong><span>Per classroom</span><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a></li>
+        <li><a href="/kits#exam-season"><strong>Exam Season Kit</strong><span>Per examination</span><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a></li>
+        <li><a href="/kits#annual-day"><strong>Annual Day Kit</strong><span>Per event</span><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a></li>
+        <li><a href="/kits#office-admin"><strong>Office &amp; Admin Kit</strong><span>Per office</span><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a></li>
+        <li><a href="/kits#monthly-housekeeping"><strong>Monthly Housekeeping Kit</strong><span>Per month</span><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a></li>
+        <li><a href="/kits#teachers-day-gift"><strong>Teachers' Day Gift Kit</strong><span>Per staff member</span><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 6. LABS -->
+<section class="sec labs on-dark" id="labs" aria-labelledby="h-labs">
+  <div class="wrap labs__grid">
+    <div class="labs__hero">
+      <img src="img/robot.webp" width="1100" height="803" alt="A small robot car kit with wheels, sensors and a circuit board">
+    </div>
+    <div class="labs__side">
+      <h2 id="h-labs">Labs, planned as one project.</h2>
+      <p class="sec__note">Apparatus, models, kits and safety gear for every lab in the school, or a complete room planned and supplied together.</p>
+      <ul class="chips" aria-label="Labs we supply">
+        <li>Physics</li><li>Chemistry</li><li>Biology</li><li>Maths</li><li>STEM &amp; robotics</li><li>Tinkering &amp; maker</li><li>Lab safety</li>
+      </ul>
+      <div class="setups">
+        <a class="setup" href="/labs"><h3>CBSE Composite Skill Lab setup</h3><span>See the setup<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a>
+        <a class="setup" href="/labs"><h3>Tinkering lab setup</h3><span>See the setup<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. WHY US -->
+<section class="sec promise" id="why" aria-labelledby="h-why">
+  <div class="wrap">
+    <div class="sec__head">
+      <h2 id="h-why">What every order gets.</h2>
+      <p class="sec__note">Large order or small, these come as standard. Stock is held in a warehouse.</p>
+    </div>
+    <div class="bento">
+      <div class="bento__photo"><img src="img/f-warehouse.webp" width="900" height="600" alt="Warehouse racks stacked with cartons"></div>
+      <div class="pr pr--o"><i><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"></path></svg></i><div><h3>Checked before dispatch</h3><p>Every order, every time.</p></div></div>
+      <div class="pr pr--s"><i><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h13l-3-3M20 16H7l3 3"></path></svg></i><div><h3>Damaged, short or wrong? Replaced.</h3><p>Tell us what arrived and we put it right.</p></div></div>
+      <div class="pr pr--b"><i><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 0 1-11.6 7.1L4 20l1-4.2A8 8 0 1 1 20 12z"></path></svg></i><div><h3>Updates on WhatsApp</h3><p>Where your order is, in the chat you already use.</p></div></div>
+      <div class="pr"><i><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6h11v10H2zM13 10h4l4 4v2h-8"></path><circle cx="6" cy="18" r="2"></circle><circle cx="17" cy="18" r="2"></circle></svg></i><div><h3>Delivered across Hyderabad and to other states</h3><p>By our own team or a transporter.</p></div></div>
+      <div class="pr pr--s"><i><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z"></path><circle cx="12" cy="9.5" r="2.5"></circle></svg></i><div><h3>School visits with samples</h3><p>See and handle products before you order.</p></div></div>
+      <div class="pr pr--o"><i><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="5" r="2.5"></circle><circle cx="6" cy="19" r="2.5"></circle><circle cx="18" cy="12" r="2.5"></circle><path d="M6 7.5v9M6 12h9.5"></path></svg></i><div><h3>Built for school groups</h3><p>Multi-branch groups order through one supplier.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 8. CLOSE -->
+<section class="close" id="quote" aria-labelledby="h-close">
+  <div class="wrap">
+    <h2 id="h-close">Send us your&nbsp;list.</h2>
+    <div class="close__row">
+      <p>Typed, printed or handwritten. WhatsApp it to <strong>+91 96760 38523</strong> or use the quote form, and we reply with one quote for everything on it.</p>
+      <div>
+        <div class="close__acts">
+          <a class="btn btn--wa" href="https://wa.me/919676038523?text=Hello%20SchoolSource%2C%20I%20would%20like%20a%20quote%20for%20our%20school.%20Here%20is%20our%20list%3A"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"></path></svg>WhatsApp your list</a>
+          <a class="btn btn--ghost" href="/quote">Request a quote</a>
+        </div>
+        <a class="close__mail tlink" href="mailto:info@schoolsource.in">info@schoolsource.in</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot on-dark">
+  <div class="wrap">
+    <div class="foot__top">
+      <div class="foot__brand">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 26.23 290.15 43.77" width="290" height="44" role="img" aria-label="SchoolSource"><g transform="translate(-6.432 18.192) scale(1.6080)"><path d="M20 8H10a4 4 0 0 0 0 8h12a4 4 0 0 1 0 8H4" fill="none" stroke="#ffffff" stroke-width="4"></path><circle cx="25" cy="8" r="3" fill="#f5872a"></circle></g><g transform="translate(50.592 60)"><path fill="#ffffff" d="M9.59 0.66Q7.37 0.66 5.2 0.09Q3.04 -0.49 1.49 -1.44L1.74 -7.24H4.57L5.7 -0.85L2.96 -1.91L2.95 -3.69Q4.19 -2.92 5.19 -2.4Q6.19 -1.89 7.2 -1.64Q8.22 -1.38 9.52 -1.38Q11.18 -1.38 12.39 -1.92Q13.6 -2.46 14.25 -3.48Q14.9 -4.5 14.9 -5.87Q14.9 -7.07 14.43 -7.9Q13.96 -8.73 13.02 -9.36Q12.07 -9.99 10.61 -10.58L9.01 -11.28Q6.9 -12.2 5.31 -13.34Q3.73 -14.48 2.86 -16.03Q1.99 -17.58 1.99 -19.7Q1.99 -22.05 3.17 -23.73Q4.36 -25.4 6.46 -26.31Q8.57 -27.23 11.31 -27.23Q13.37 -27.23 15.14 -26.68Q16.91 -26.14 18.24 -25.19L17.98 -19.73H15.19L14.04 -25.84L16.83 -24.64L16.84 -22.74Q15.34 -24.03 14.07 -24.61Q12.81 -25.18 11.25 -25.18Q9.9 -25.18 8.81 -24.69Q7.71 -24.19 7.06 -23.26Q6.4 -22.32 6.4 -20.97Q6.4 -19.79 6.91 -18.91Q7.41 -18.04 8.34 -17.37Q9.27 -16.7 10.59 -16.14L12.27 -15.43Q14.77 -14.39 16.35 -13.22Q17.93 -12.05 18.67 -10.6Q19.42 -9.14 19.42 -7.14Q19.42 -4.79 18.23 -3.03Q17.05 -1.28 14.86 -0.31Q12.67 0.66 9.59 0.66ZM31.46 0.56Q28.55 0.56 26.42 -0.63Q24.29 -1.81 23.13 -4.03Q21.97 -6.25 21.97 -9.33Q21.97 -12.62 23.28 -14.91Q24.6 -17.2 26.82 -18.41Q29.04 -19.62 31.71 -19.62Q33.65 -19.62 35.23 -18.9Q36.8 -18.18 37.8 -16.95Q38.8 -15.72 38.99 -14.21Q38.76 -13.32 38.22 -12.88Q37.68 -12.44 36.79 -12.44Q35.74 -12.44 35.07 -13.11Q34.4 -13.78 34.23 -15.2L33.56 -18.38L35.86 -16.84Q34.93 -17.35 34.02 -17.56Q33.11 -17.77 32.24 -17.77Q30.8 -17.77 29.57 -16.92Q28.34 -16.07 27.61 -14.35Q26.88 -12.64 26.88 -10.02Q26.88 -7.48 27.68 -5.82Q28.49 -4.15 29.85 -3.34Q31.22 -2.54 32.94 -2.54Q33.9 -2.54 34.78 -2.76Q35.66 -2.98 36.48 -3.51Q37.31 -4.04 38.05 -4.93L39.11 -4.08Q38.35 -2.58 37.27 -1.55Q36.2 -0.52 34.78 0.02Q33.35 0.56 31.46 0.56ZM40.36 0V-1.55L44.38 -2.32H46.27L50.13 -1.55V0ZM42.92 0Q42.96 -0.93 42.98 -2.42Q43 -3.92 43.02 -5.54Q43.04 -7.16 43.04 -8.4V-25.69L40.14 -26.11V-27.58L47.19 -29.37L47.77 -29L47.61 -23.1V-15.08L47.72 -14.61V-8.4Q47.72 -7.16 47.74 -5.54Q47.76 -3.92 47.78 -2.42Q47.8 -0.93 47.84 0ZM52.56 0V-1.55L56.53 -2.32H58.41L62.34 -1.55V0ZM55.02 0Q55.06 -0.93 55.08 -2.41Q55.11 -3.89 55.12 -5.5Q55.14 -7.12 55.14 -8.4V-12.19Q55.14 -14.57 54.52 -15.47Q53.89 -16.36 52.38 -16.36Q51.53 -16.36 50.66 -16.03Q49.79 -15.7 48.9 -15.05Q48 -14.4 47.02 -13.39L46.46 -15.3H46.98Q48.07 -16.71 49.28 -17.67Q50.49 -18.63 51.79 -19.12Q53.09 -19.62 54.45 -19.62Q57.04 -19.62 58.44 -17.92Q59.85 -16.22 59.85 -12.55V-8.4Q59.85 -7.12 59.87 -5.5Q59.89 -3.89 59.91 -2.41Q59.93 -0.93 59.97 0ZM74 0.56Q71.32 0.56 69.16 -0.63Q66.99 -1.82 65.73 -4.08Q64.46 -6.35 64.46 -9.51Q64.46 -12.7 65.78 -14.96Q67.1 -17.23 69.27 -18.42Q71.44 -19.62 74 -19.62Q76.56 -19.62 78.73 -18.43Q80.9 -17.24 82.23 -14.99Q83.55 -12.73 83.55 -9.52Q83.55 -6.34 82.26 -4.07Q80.97 -1.81 78.82 -0.63Q76.66 0.56 74 0.56ZM74 -1.28Q75.43 -1.28 76.42 -2.17Q77.41 -3.07 77.94 -4.88Q78.46 -6.69 78.46 -9.48Q78.46 -12.29 77.94 -14.12Q77.41 -15.95 76.42 -16.86Q75.43 -17.76 74 -17.76Q72.56 -17.76 71.57 -16.85Q70.58 -15.95 70.06 -14.11Q69.55 -12.28 69.55 -9.47Q69.55 -6.69 70.06 -4.88Q70.58 -3.06 71.57 -2.17Q72.56 -1.28 74 -1.28ZM95.84 0.56Q93.16 0.56 91 -0.63Q88.83 -1.82 87.57 -4.08Q86.3 -6.35 86.3 -9.51Q86.3 -12.7 87.62 -14.96Q88.94 -17.23 91.11 -18.42Q93.28 -19.62 95.84 -19.62Q98.4 -19.62 100.57 -18.43Q102.74 -17.24 104.07 -14.99Q105.39 -12.73 105.39 -9.52Q105.39 -6.34 104.1 -4.07Q102.81 -1.81 100.66 -0.63Q98.5 0.56 95.84 0.56ZM95.84 -1.28Q97.27 -1.28 98.26 -2.17Q99.25 -3.07 99.78 -4.88Q100.3 -6.69 100.3 -9.48Q100.3 -12.29 99.78 -14.12Q99.25 -15.95 98.26 -16.86Q97.27 -17.76 95.84 -17.76Q94.4 -17.76 93.41 -16.85Q92.42 -15.95 91.9 -14.11Q91.39 -12.28 91.39 -9.47Q91.39 -6.69 91.9 -4.88Q92.42 -3.06 93.41 -2.17Q94.4 -1.28 95.84 -1.28ZM107.24 0V-1.55L111.37 -2.32H113.25L117.5 -1.55V0ZM109.92 0Q109.96 -1.36 109.98 -2.77Q110 -4.17 110.02 -5.59Q110.04 -7.01 110.04 -8.4V-25.69L107.14 -26.11V-27.58L114.29 -29.37L114.88 -29L114.72 -23.16V-8.4Q114.72 -7.01 114.74 -5.59Q114.76 -4.17 114.78 -2.77Q114.8 -1.36 114.84 0ZM127.71 0.66Q125.49 0.66 123.32 0.09Q121.16 -0.49 119.61 -1.44L119.86 -7.24H122.69L123.82 -0.85L121.08 -1.91L121.07 -3.69Q122.31 -2.92 123.31 -2.4Q124.31 -1.89 125.32 -1.64Q126.34 -1.38 127.64 -1.38Q129.3 -1.38 130.51 -1.92Q131.72 -2.46 132.37 -3.48Q133.02 -4.5 133.02 -5.87Q133.02 -7.07 132.55 -7.9Q132.08 -8.73 131.14 -9.36Q130.19 -9.99 128.73 -10.58L127.13 -11.28Q125.02 -12.2 123.43 -13.34Q121.85 -14.48 120.98 -16.03Q120.11 -17.58 120.11 -19.7Q120.11 -22.05 121.29 -23.73Q122.48 -25.4 124.58 -26.31Q126.69 -27.23 129.43 -27.23Q131.49 -27.23 133.26 -26.68Q135.03 -26.14 136.36 -25.19L136.1 -19.73H133.31L132.16 -25.84L134.95 -24.64L134.96 -22.74Q133.46 -24.03 132.19 -24.61Q130.93 -25.18 129.37 -25.18Q128.02 -25.18 126.93 -24.69Q125.83 -24.19 125.18 -23.26Q124.52 -22.32 124.52 -20.97Q124.52 -19.79 125.03 -18.91Q125.53 -18.04 126.46 -17.37Q127.39 -16.7 128.71 -16.14L130.39 -15.43Q132.89 -14.39 134.47 -13.22Q136.05 -12.05 136.79 -10.6Q137.54 -9.14 137.54 -7.14Q137.54 -4.79 136.35 -3.03Q135.17 -1.28 132.98 -0.31Q130.79 0.66 127.71 0.66ZM149.64 0.56Q146.96 0.56 144.8 -0.63Q142.63 -1.82 141.37 -4.08Q140.1 -6.35 140.1 -9.51Q140.1 -12.7 141.42 -14.96Q142.74 -17.23 144.91 -18.42Q147.08 -19.62 149.64 -19.62Q152.2 -19.62 154.37 -18.43Q156.54 -17.24 157.87 -14.99Q159.19 -12.73 159.19 -9.52Q159.19 -6.34 157.9 -4.07Q156.61 -1.81 154.46 -0.63Q152.3 0.56 149.64 0.56ZM149.64 -1.28Q151.07 -1.28 152.06 -2.17Q153.05 -3.07 153.58 -4.88Q154.1 -6.69 154.1 -9.48Q154.1 -12.29 153.58 -14.12Q153.05 -15.95 152.06 -16.86Q151.07 -17.76 149.64 -17.76Q148.2 -17.76 147.21 -16.85Q146.22 -15.95 145.7 -14.11Q145.19 -12.28 145.19 -9.47Q145.19 -6.69 145.7 -4.88Q146.22 -3.06 147.21 -2.17Q148.2 -1.28 149.64 -1.28ZM168.74 0.56Q166.26 0.56 164.8 -1.04Q163.34 -2.64 163.38 -6.53L163.51 -17.27L164.54 -16.23L160.93 -17.02V-18.49L167.78 -19.39L168.28 -18.98L168.08 -13.64V-6.7Q168.08 -4.45 168.78 -3.56Q169.48 -2.67 170.82 -2.67Q171.72 -2.67 172.65 -3.06Q173.58 -3.45 174.49 -4.16Q175.41 -4.87 176.2 -5.79L176.9 -4.19H176.25Q175.27 -2.66 174.06 -1.6Q172.86 -0.54 171.53 0.01Q170.2 0.56 168.74 0.56ZM175.8 0.38 175.42 -4.23V-4.3L175.54 -16.5L172.99 -17.02V-18.43L179.74 -19.39L180.24 -18.98L180.11 -13.64V-2.03L182.54 -1.54V0.01ZM184.62 0V-1.55L188.68 -2.32H191.1L195.21 -1.55V0ZM187.12 0Q187.17 -0.93 187.19 -2.42Q187.21 -3.92 187.23 -5.54Q187.25 -7.16 187.25 -8.4V-10.46Q187.25 -11.59 187.23 -12.38Q187.21 -13.17 187.19 -13.86Q187.17 -14.55 187.13 -15.35L184.32 -15.74V-17.14L190.95 -19.62L191.57 -19.21L191.95 -14.18V-14.09V-8.4Q191.95 -7.16 191.97 -5.54Q191.99 -3.92 192.01 -2.42Q192.03 -0.93 192.08 0ZM191.88 -11 190.94 -13.67H191.68Q192.26 -15.61 193.19 -16.93Q194.13 -18.24 195.26 -18.93Q196.39 -19.62 197.51 -19.62Q198.61 -19.62 199.47 -19.07Q200.33 -18.53 200.63 -17.46Q200.6 -16.02 199.91 -15.24Q199.23 -14.45 198.06 -14.45Q197.27 -14.45 196.62 -14.8Q195.96 -15.16 195.33 -15.86L194.24 -17.07L195.99 -17.01Q194.55 -16.16 193.48 -14.62Q192.42 -13.09 191.88 -11ZM210.86 0.56Q207.95 0.56 205.82 -0.63Q203.69 -1.81 202.53 -4.03Q201.37 -6.25 201.37 -9.33Q201.37 -12.62 202.68 -14.91Q204 -17.2 206.22 -18.41Q208.44 -19.62 211.11 -19.62Q213.05 -19.62 214.63 -18.9Q216.2 -18.18 217.2 -16.95Q218.2 -15.72 218.39 -14.21Q218.16 -13.32 217.62 -12.88Q217.08 -12.44 216.19 -12.44Q215.14 -12.44 214.47 -13.11Q213.8 -13.78 213.63 -15.2L212.96 -18.38L215.26 -16.84Q214.33 -17.35 213.42 -17.56Q212.51 -17.77 211.64 -17.77Q210.2 -17.77 208.97 -16.92Q207.74 -16.07 207.01 -14.35Q206.28 -12.64 206.28 -10.02Q206.28 -7.48 207.08 -5.82Q207.89 -4.15 209.25 -3.34Q210.62 -2.54 212.34 -2.54Q213.3 -2.54 214.18 -2.76Q215.06 -2.98 215.88 -3.51Q216.71 -4.04 217.45 -4.93L218.51 -4.08Q217.75 -2.58 216.67 -1.55Q215.6 -0.52 214.18 0.02Q212.75 0.56 210.86 0.56ZM230.26 0.56Q227.42 0.56 225.25 -0.6Q223.08 -1.75 221.87 -3.96Q220.66 -6.16 220.66 -9.3Q220.66 -12.48 221.92 -14.79Q223.18 -17.1 225.34 -18.36Q227.49 -19.62 230.08 -19.62Q232.43 -19.62 234.2 -18.63Q235.97 -17.63 236.97 -15.86Q237.97 -14.1 237.97 -11.69Q237.97 -11.03 237.91 -10.5Q237.84 -9.97 237.72 -9.52H222.69V-11.3H230.99Q232.55 -11.3 233.04 -11.89Q233.53 -12.48 233.53 -13.59Q233.53 -15 233.1 -15.92Q232.66 -16.85 231.89 -17.31Q231.11 -17.77 230.08 -17.77Q228.96 -17.77 227.92 -17.03Q226.88 -16.28 226.22 -14.58Q225.57 -12.88 225.57 -9.95Q225.57 -7.5 226.36 -5.85Q227.15 -4.19 228.56 -3.37Q229.97 -2.54 231.79 -2.54Q233.5 -2.54 234.79 -3.12Q236.07 -3.7 237.12 -4.91L238.16 -4.08Q237.35 -2.61 236.26 -1.57Q235.18 -0.53 233.72 0.01Q232.27 0.56 230.26 0.56Z"></path></g></svg>
+        <p>Everything your school needs, from one source. SchoolSource is a division of Arkhan Group Pvt. Ltd., founded by Aijaz Khan.</p>
+      </div>
+      <nav aria-label="Products">
+        <h3>Products</h3>
+        <ul>
+          <li><a href="/products">All 15 categories</a></li>
+          <li><a href="/kits">Kits</a></li>
+          <li><a href="/labs">Lab setups</a></li>
+          <li><a href="/catalogue">Printable catalogue</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Company">
+        <h3>Company</h3>
+        <ul>
+          <li><a href="/how-it-works">How it works</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/contact">Contact</a></li>
+          <li><a href="/quote">Request a quote</a></li>
+        </ul>
+      </nav>
+      <div>
+        <h3>Talk to us</h3>
+        <ul>
+          <li><a href="tel:+919676038523">+91 96760 38523</a></li>
+          <li><a href="https://wa.me/919676038523?text=Hello%20SchoolSource%2C%20I%20would%20like%20a%20quote%20for%20our%20school.%20Here%20is%20our%20list%3A">WhatsApp</a></li>
+          <li><a href="mailto:info@schoolsource.in">info@schoolsource.in</a></li>
+        </ul>
+        <address style="margin-top:14px">Plot No. 802 &amp; 803, 5th Floor, Nexus Business Centre, Ayyappa Society, Madhapur, Hyderabad 500081</address>
+        <p style="margin-top:10px;color:#b6c2d9">Hours: <span class="pending">[HOURS]</span></p>
+      </div>
+    </div>
+    <div class="foot__legal">
+      <span>© 2026 Arkhan Group Pvt. Ltd. · GSTIN 36ABFCA8886K1ZX</span>
+      <span><a href="/privacy">Privacy</a> · <a href="/terms">Terms</a> · Photos: Unsplash and Pexels contributors, credited in PHOTOS.md</span>
+    </div>
+  </div>
+</footer>
+
+<nav class="mbar" aria-label="Quick actions">
+  <a class="btn btn--wa" href="https://wa.me/919676038523?text=Hello%20SchoolSource%2C%20I%20would%20like%20a%20quote%20for%20our%20school.%20Here%20is%20our%20list%3A"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"></path></svg>WhatsApp us</a>
+  <a class="btn btn--primary" href="/quote">Request a quote</a>
+</nav>
+
+<script>
+document.documentElement.classList.add('js');
+(function(){
+  var line=document.querySelector('.say__line');
+  if(line&&'IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){line.classList.add('in');io.disconnect();}})},{threshold:.45});
+    io.observe(line);
+  } else if(line){line.classList.add('in');}
+  var btn=document.querySelector('.nav__menu'),sheet=document.getElementById('menu'),close=sheet.querySelector('.sheet__close');
+  function set(o){sheet.classList.toggle('open',o);btn.setAttribute('aria-expanded',o);btn.setAttribute('aria-label',o?'Close menu':'Open menu');document.body.style.overflow=o?'hidden':'';if(o)close.focus();else btn.focus();}
+  btn.addEventListener('click',function(){set(true)});
+  close.addEventListener('click',function(){set(false)});
+  sheet.addEventListener('click',function(e){if(e.target.tagName==='A')set(false)});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&sheet.classList.contains('open'))set(false)});
+})();
+</script>
+
+
+</body></html>

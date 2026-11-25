@@ -1,6 +1,27 @@
 [
-  {"check": "card-layout", "target": "section#categories > div.wrap > div.group > div.grid.cats", "reason": "The category index is meant to be uniform: one photo tile per catalogue category, so buyers can scan all 15 at once (brief: category browsing with photos)."},
-  {"check": "card-layout", "target": "section#categories > div.wrap > div.grid.cats", "reason": "Second half of the same uniform category index (categories 9 to 15 plus lab setups)."},
-  {"check": "product-shown", "target": "section#search", "reason": "The brief asks for a search-first hero with a live quote list; the 343 products appear there as photo thumbnails inside the client's own search UI."},
-  {"check": "phone-number", "target": "+91 96760 38523", "reason": "This is the client's own WhatsApp and phone number from lib/site.ts, and the brief asks for a footer with the real details and a working wa.me link."}
+ {
+  "check": "card-layout",
+  "target": "section#categories > div.wrap > div.group > div.grid.cats",
+  "reason": "The category index is meant to be uniform: one photo tile per catalogue category, so buyers can scan all 15 at once (brief: category browsing with photos)."
+ },
+ {
+  "check": "card-layout",
+  "target": "section#categories > div.wrap > div.grid.cats",
+  "reason": "Second half of the same uniform category index (categories 9 to 15 plus lab setups)."
+ },
+ {
+  "check": "product-shown",
+  "target": "section#search",
+  "reason": "The brief asks for a search-first hero with a live quote list; the 343 products appear there as photo thumbnails inside the client's own search UI."
+ },
+ {
+  "check": "phone-number",
+  "target": "+91 96760 38523",
+  "reason": "This is the client's own WhatsApp and phone number from lib/site.ts, and the brief asks for a footer with the real details and a working wa.me link."
+ },
+ {
+  "check": "no-visual",
+  "target": "section#categories",
+  "reason": "On a phone the category index becomes a list with a photo thumbnail on every row, so all 16 entries fit in two screens; each row still shows its photograph."
+ }
 ]

@@ -1,7 +1,7 @@
 {
  "page": "/home/user/schoolsource/public/concepts/c/index.html",
  "url": "http://127.0.0.1:5201/concepts/c/index.html",
- "at": "2026-11-25T11:08:59.428Z",
+ "at": "2026-11-25T11:14:48.865Z",
  "out": "/home/user/schoolsource/public/concepts/c/.taste-skill/gate/consistency",
  "widths": [
   {
@@ -32,16 +32,6 @@
      "fix": "a card layout at most twice on a page: build the other sections another way"
     },
     {
-     "check": "copy-headings",
-     "sev": "FAIL",
-     "sel": "div.wrap > ol.grid.steps > li.step.span-3:nth-of-type(1) > h3",
-     "text": "Your list, in any format",
-     "msg": "\"Your list, in any format\" names no product, part, place or section (5 headings like it; at most one brand line per page) (and 4 more like it: \"An itemised quotation\", \"Your approval\", \"In-stock items within a \", \"Kits packed per student\")",
-     "stop": 3,
-     "crop": "1440-10-copy-headings.jpg",
-     "fix": "name the thing in every heading: the product, a part, the place or a section noun"
-    },
-    {
      "check": "product-shown",
      "sev": "FAIL",
      "sel": "section#search",
@@ -58,7 +48,7 @@
      "text": "+91 96760 38523",
      "stop": 8,
      "msg": "a phone number in international format: \"+91 96760 38523\"; a visitor can dial it and reach a stranger (and 5 more like it: div.hero-text.grid > div.desk__find.span-7 > div.desk__foot > a.btn.btn--secondary, aside#list > div.slip__foot > a.btn.btn--primary in a product mock, div.span-2.footer__col:nth-of-type(4) > ul > li:nth-of-type(1) > a, ...)",
-     "crop": "1440-15-phone-number.jpg",
+     "crop": "1440-14-phone-number.jpg",
      "fix": "drop the number and its tel: link (a \"Request a call\" form may stand in), unless the brief gives the number"
     },
     {
@@ -68,7 +58,7 @@
      "text": "Every order is checked before it leaves our ware",
      "msg": "starts \"color\" (0.2 s) the moment it is scrolled into view (an IntersectionObserver) on span.mo-w:nth-of-type(1) (inside a dealt moment's section, [data-moment]: an enter moment is expected on every kind; its still is judged under reduced motion)",
      "stop": 6,
-     "crop": "1440-14-scroll-reveal.jpg",
+     "crop": "1440-13-scroll-reveal.jpg",
      "fix": "show it at rest: no fade, rise or unmask when it is scrolled into view"
     },
     {
@@ -84,12 +74,12 @@
     {
      "check": "text-contrast",
      "sev": "WARN",
-     "sel": "ol.grid.steps > li.step.span-3:nth-of-type(4) > div.step__ui > p.invoice__gst",
-     "text": "Arkhan Group Pvt. Ltd. GSTIN 36ABFCA8886K1ZX",
+     "sel": "li.step.span-3:nth-of-type(1) > div.step__ui.chat > div.bubble > small",
+     "text": "10:42",
      "stop": 4,
-     "msg": "2 lines of text in drawn mocks read under 4.5:1 (2 colour pairs), the worst \"Arkhan Group Pvt. Ltd. G\" in #ffffff on #ffffff at 1:1",
+     "msg": "1 line of text in drawn mocks read under 4.5:1 (1 colour pair), the worst \"10:42\" in #667781 on #d9fdd3 at 4.19:1",
      "fix": "lift the mocks' muted text (labels, meta, initials) to 4.5:1 on their own panel, or set it larger",
-     "crop": "1440-12-text-contrast.jpg"
+     "crop": "1440-11-text-contrast.jpg"
     },
     {
      "check": "section-gaps",
@@ -98,7 +88,7 @@
      "text": "",
      "stop": 3,
      "msg": "uneven space at the edge of a band: 72px outside its edge, 117px inside it (the space on either side of a change of ground reads as one gap only when the two match)",
-     "crop": "1440-11-section-gaps.jpg",
+     "crop": "1440-10-section-gaps.jpg",
      "fix": "use one gap between sections (all within 25% of each other)"
     },
     {
@@ -147,7 +137,7 @@
      "text": "1 Your list, in any format Typed, in a spreadshe",
      "msg": "its last line holds only \"10:42\"",
      "stop": 4,
-     "crop": "1440-13-orphan.jpg",
+     "crop": "1440-12-orphan.jpg",
      "fix": "rebalance the text (text-wrap: pretty, or a shorter line) so the last line holds more than one short word"
     },
     {
@@ -169,16 +159,6 @@
      "msg": "the button \"Send a photo of your list\" (#e9ebee) stands only 1.19:1 off the ground around it: it reads as part of the ground, or as switched off",
      "crop": "1440-05-button-contrast.jpg",
      "fix": "give the button a fill that stands at least 1.5:1 off what is around it, or an outline in the ink"
-    },
-    {
-     "check": "row-lines",
-     "sev": "FAIL",
-     "sel": "section#kits > div.wrap > div.grid.grid--top",
-     "text": "Term Start Classroom Kit Per classroomCh",
-     "msg": "a row of 2 items: its items are 505/554px tall, not one height (2px either way) (SR-7)",
-     "fix": "start the row's first item on the container's left line and end its last on the right line, every item one height",
-     "rule": "SR-7 T-rows",
-     "crop": "1440-rhythm-01-row-lines.jpg"
     }
    ],
    "glAsked": 0
@@ -186,49 +166,19 @@
   {
    "width": 390,
    "height": 844,
-   "screens": 19,
+   "screens": 14,
    "held": 0,
    "errors": [],
    "findings": [
     {
-     "check": "card-layout",
+     "check": "no-visual",
      "sev": "FAIL",
-     "sel": "section#categories > div.wrap > div.group > div.grid.cats",
-     "text": "Stationery 45 items",
-     "msg": "8 of 8 cards drawn one way (one panel, ground, placement and fragment): copies of one card",
+     "sel": "section#categories",
+     "text": "School supplies in 15 categories. Pick one to se",
+     "msg": "no picture, effect or mock in this section; a feature section needs a visual",
      "stop": 2,
-     "crop": "390-04-card-layout.jpg",
-     "fix": "a card layout at most twice on a page: build the other sections another way"
-    },
-    {
-     "check": "card-layout",
-     "sev": "FAIL",
-     "sel": "section#categories > div.wrap > div.grid.cats",
-     "text": "Music 18 items",
-     "msg": "7 of 8 cards drawn one way (one panel, ground, placement and fragment): copies of one card",
-     "stop": 5,
-     "crop": "390-07-card-layout.jpg",
-     "fix": "a card layout at most twice on a page: build the other sections another way"
-    },
-    {
-     "check": "section-gaps",
-     "sev": "FAIL",
-     "sel": "section#delivery / footer#contact",
-     "text": "",
-     "stop": 19,
-     "msg": "414px between these sections, +192% against the median 142px of gaps at a change of ground",
-     "crop": "390-16-section-gaps.jpg",
-     "fix": "use one gap between sections (all within 25% of each other)"
-    },
-    {
-     "check": "hole",
-     "sev": "FAIL",
-     "sel": "section#delivery",
-     "text": "Delivery, invoices and support. What schools ask",
-     "msg": "an empty hole 168x304px inside the section (36% of the screen's height), with content above and below it",
-     "stop": 16,
-     "crop": "390-15-hole.jpg",
-     "fix": "close the empty space: move the content together, or give the space the visual it lacks"
+     "crop": "390-05-no-visual.jpg",
+     "fix": "give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits"
     },
     {
      "check": "nav",
@@ -256,8 +206,8 @@
      "sel": "section#checked > div.wrap > p.mo-wh__text",
      "text": "Every order is checked before it leaves our ware",
      "msg": "starts \"color\" (0.2 s) the moment it is scrolled into view (an IntersectionObserver) on span.mo-w:nth-of-type(1) (inside a dealt moment's section, [data-moment]: an enter moment is expected on every kind; its still is judged under reduced motion)",
-     "stop": 13,
-     "crop": "390-13-scroll-reveal.jpg",
+     "stop": 8,
+     "crop": "390-12-scroll-reveal.jpg",
      "fix": "show it at rest: no fade, rise or unmask when it is scrolled into view"
     },
     {
@@ -266,38 +216,28 @@
      "sel": "section#kits",
      "text": "Seven kits for regular school orders. Add a whol",
      "msg": "pictures, effects and mocks cover 20% of this section; a feature section needs a visual (about 25% or more)",
-     "stop": 12,
-     "crop": "390-12-no-visual.jpg",
-     "fix": "give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits"
-    },
-    {
-     "check": "no-visual",
-     "sev": "WARN",
-     "sel": "section#delivery",
-     "text": "Delivery, invoices and support. What schools ask",
-     "msg": "pictures, effects and mocks cover 19% of this section; a feature section needs a visual (about 25% or more)",
-     "stop": 15,
-     "crop": "390-14-no-visual.jpg",
+     "stop": 7,
+     "crop": "390-11-no-visual.jpg",
      "fix": "give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits"
     },
     {
      "check": "text-contrast",
      "sev": "WARN",
-     "sel": "ol.grid.steps > li.step.span-3:nth-of-type(4) > div.step__ui > p.invoice__gst",
-     "text": "Arkhan Group Pvt. Ltd. GSTIN 36ABFCA8886K1ZX",
-     "stop": 10,
-     "msg": "2 lines of text in drawn mocks read under 4.5:1 (2 colour pairs), the worst \"Arkhan Group Pvt. Ltd. G\" in #ffffff on #ffffff at 1:1",
+     "sel": "li.step.span-3:nth-of-type(1) > div.step__ui.chat > div.bubble > small",
+     "text": "10:42",
+     "stop": 4,
+     "msg": "1 line of text in drawn mocks read under 4.5:1 (1 colour pair), the worst \"10:42\" in #667781 on #d9fdd3 at 4.19:1",
      "fix": "lift the mocks' muted text (labels, meta, initials) to 4.5:1 on their own panel, or set it larger",
-     "crop": "390-10-text-contrast.jpg"
+     "crop": "390-07-text-contrast.jpg"
     },
     {
      "check": "section-gaps",
      "sev": "WARN",
-     "sel": "section#categories / section#how",
+     "sel": "section#search / section#categories",
      "text": "",
-     "stop": 8,
-     "msg": "uneven space at the edge of a band: 48px outside its edge, 94px inside it (the space on either side of a change of ground reads as one gap only when the two match)",
-     "crop": "390-08-section-gaps.jpg",
+     "stop": 1,
+     "msg": "118px between these sections, -56% against the median 268px",
+     "crop": "390-04-section-gaps.jpg",
      "fix": "use one gap between sections (all within 25% of each other)"
     },
     {
@@ -305,20 +245,30 @@
      "sev": "WARN",
      "sel": "section#how / section#kits",
      "text": "",
-     "stop": 11,
-     "msg": "uneven space at the edge of a band: 94px outside its edge, 48px inside it (the space on either side of a change of ground reads as one gap only when the two match)",
-     "crop": "390-11-section-gaps.jpg",
+     "stop": 5,
+     "msg": "385px between these sections, +42% against the median 272px of gaps at a change of ground",
+     "crop": "390-09-section-gaps.jpg",
      "fix": "use one gap between sections (all within 25% of each other)"
     },
     {
-     "check": "photo-set",
+     "check": "section-gaps",
      "sev": "WARN",
-     "sel": "div.grid.cats > a.card.cat:nth-of-type(3) > div.frame.frame--photo > img.frame__img",
-     "text": "cat-printing-id-cards.jpg",
-     "stop": 2,
-     "msg": "15 photographs in more than one look: lightness from 0.28 to 0.88; saturation from 0.08 to 0.52; the odd one out is cat-printing-id-cards.jpg",
-     "crop": "390-05-photo-set.jpg",
-     "fix": "grade the photographs to one look (light, colour, warmth), or replace the odd one out"
+     "sel": "section#categories / section#how",
+     "text": "",
+     "stop": 3,
+     "msg": "uneven space at the edge of a band: 178px outside its edge, 94px inside it (the space on either side of a change of ground reads as one gap only when the two match)",
+     "crop": "390-06-section-gaps.jpg",
+     "fix": "use one gap between sections (all within 25% of each other)"
+    },
+    {
+     "check": "section-gaps",
+     "sev": "WARN",
+     "sel": "section#how / section#kits",
+     "text": "",
+     "stop": 5,
+     "msg": "uneven space at the edge of a band: 94px outside its edge, 291px inside it (the space on either side of a change of ground reads as one gap only when the two match)",
+     "crop": "390-10-section-gaps.jpg",
+     "fix": "use one gap between sections (all within 25% of each other)"
     },
     {
      "check": "orphan",
@@ -326,19 +276,19 @@
      "sel": "section#how > div.wrap > ol.grid.steps > li.step.span-3:nth-of-type(1)",
      "text": "1 Your list, in any format Typed, in a spreadshe",
      "msg": "its last line holds only \"10:42\"",
-     "stop": 8,
-     "crop": "390-09-orphan.jpg",
+     "stop": 4,
+     "crop": "390-08-orphan.jpg",
      "fix": "rebalance the text (text-wrap: pretty, or a shorter line) so the last line holds more than one short word"
     },
     {
      "check": "photo-weight",
      "sev": "WARN",
-     "sel": "div.grid.cats > a.card.cat:nth-of-type(5) > div.frame.frame--photo > img.frame__img",
-     "text": "cat-uniforms-bags.jpg",
-     "msg": "15 photographs are 3x or more wider than drawn on the phone, with no srcset: cat-uniforms-bags.jpg is 1600px (349 KB) for a 340px frame; on a phone it arrives late and its frame shows only its ground until then",
+     "sel": "div.wrap > div.grid.grid--top > div.detailpic.span-12 > img",
+     "text": "page-about.jpg",
+     "msg": "2 photographs are 3x or more wider than drawn on the phone, with no srcset: page-about.jpg is 1600px (310 KB) for a 342px frame; on a phone it arrives late and its frame shows only its ground until then",
      "fix": "give each photograph srcset and sizes (a 800px and a 1600px file), or a smaller file: the frame never shows empty",
-     "stop": 3,
-     "crop": "390-06-photo-weight.jpg"
+     "stop": 11,
+     "crop": "390-13-photo-weight.jpg"
     },
     {
      "check": "button-contrast",
@@ -389,17 +339,27 @@
    {
     "check": "collide",
     "sev": "WARN",
-    "sel": "div.grid.grid--top > ul.kits.span-7 > li.kit:nth-of-type(7) > span.kit__contents",
+    "sel": "div.grid.fill > ul.kits.span-7 > li.kit:nth-of-type(7) > span.kit__contents",
     "text": "Staff gifts, Hampers",
     "msg": "the words \"Staff gifts, Hampers\" run out of their section into the next one (section#checked): the section is shorter than what it holds",
     "crop": "narrow-320-01-collide.jpg",
+    "width": 320,
+    "fix": "on a phone nothing lies on anything else: let the section grow with its content (min-height for its screens, never a fixed height; --hm: 2 when it needs two) or cut what it holds; keep pictures and cards off the buttons; pad the page under a fixed bar by the bar's height (top: the first section; end: the footer)"
+   },
+   {
+    "check": "collide",
+    "sev": "FAIL",
+    "sel": "div.wrap > div.grid.grid--top > div.detailpic.span-12 > img",
+    "text": "img: Cartons stacked on tall warehouse racks",
+    "msg": "the words \"Send your list for a quotation\" and the picture div.detailpic.span-12 > img of another section lie in one place: the picture runs out of its section, which is shorter than what it holds",
+    "crop": "narrow-320-02-collide.jpg",
     "width": 320,
     "fix": "on a phone nothing lies on anything else: let the section grow with its content (min-height for its screens, never a fixed height; --hm: 2 when it needs two) or cut what it holds; keep pictures and cards off the buttons; pad the page under a fixed bar by the bar's height (top: the first section; end: the footer)"
    }
   ]
  },
  "counts": {
-  "FAIL": 10,
+  "FAIL": 6,
   "WARN": 24
  },
  "checks": {
@@ -420,7 +380,7 @@
   "fold-card": "PASS",
   "hover-spill": "not checked",
   "overlap-text": "PASS",
-  "collide": "WARN",
+  "collide": "FAIL",
   "tap-size": "PASS",
   "row-gap": "PASS",
   "cut-text": "WARN",
@@ -433,7 +393,7 @@
   "reduced-motion": "not checked",
   "hidden-content": "PASS",
   "webgl": "PASS",
-  "no-visual": "WARN",
+  "no-visual": "FAIL",
   "text-only": "PASS",
   "card-visual": "PASS",
   "hidden-visual": "not checked",
@@ -452,7 +412,7 @@
   "pricing-tiers": "PASS",
   "copy-headline": "PASS",
   "copy-fact": "PASS",
-  "copy-headings": "FAIL",
+  "copy-headings": "PASS",
   "copy-buttons": "WARN",
   "copy-actions": "PASS",
   "heading-scale": "PASS",
@@ -467,9 +427,9 @@
   "text-contrast": "WARN",
   "body-size": "PASS",
   "busy-ground": "PASS",
-  "section-gaps": "FAIL",
+  "section-gaps": "WARN",
   "proximity": "PASS",
-  "hole": "FAIL",
+  "hole": "PASS",
   "links": "PASS",
   "forms": "not checked",
   "photo-upscale": "PASS",
@@ -521,7 +481,7 @@
   "one-section": "PASS",
   "one-heading": "PASS",
   "container-edges": "PASS",
-  "row-lines": "FAIL",
+  "row-lines": "PASS",
   "split-pair": "PASS",
   "motion-layer": "PASS",
   "count-text": "PASS",

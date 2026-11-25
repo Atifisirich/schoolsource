@@ -98,7 +98,11 @@ footer .logo { min-height: 44px; }
 .pager button[disabled] { opacity: .35; cursor: default; }
 .pager svg { width: 14px; height: 14px; }
 .qres__head-r { display: flex; align-items: center; gap: 10px; }
-.photo-btn { display: none; }
+.desk__foot { display: flex; align-items: center; gap: 16px; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--rule); }
+.desk__foot p { font: 400 16px/1.4 var(--font-text); color: var(--ink); }
+.photo-btn { gap: 10px; }
+.photo-btn img { width: 20px; height: 20px; }
+.qres__hint { display: none; }
 .qrow { display: grid; grid-template-columns: 44px minmax(0, 1fr) auto; align-items: center; gap: 14px; padding: 8px 0; border-bottom: 1px solid var(--rule); height: 61px; }
 .qrow__img { width: 44px; height: 44px; border-radius: 10px; object-fit: cover; background: var(--p-surface); display: block; }
 .qrow__tile { width: 44px; height: 44px; border-radius: 10px; background: var(--p-surface); display: grid; place-items: center; color: var(--action); font: 500 13px/1 var(--font-text); }
@@ -215,9 +219,9 @@ footer .logo { min-height: 44px; }
 .steps { align-items: stretch; }
 .step { display: flex; flex-direction: column; gap: 10px; }
 .step__n { display: inline-grid; place-items: center; width: 32px; height: 32px; border-radius: 999px; background: var(--orange); color: var(--p-inv-accent-ink); font: 600 15px/1 var(--font-text); }
-.step h3 { font: 500 20px/1.3 var(--font-text); margin-top: 6px; }
+.step h3 { font: 500 20px/1.3 var(--font-text); display: flex; flex-direction: column; align-items: flex-start; gap: 16px; }
 .step p { font-size: 16px; line-height: 1.55; color: var(--ink); opacity: .86; }
-.step__ui { margin-top: auto; height: 250px; border-radius: 16px; background: #fff; color: #0e1f3d; padding: 16px; overflow: hidden; position: relative; }
+.step__ui { margin-top: auto; height: 330px; border-radius: 16px; background: #fff; color: #0e1f3d; padding: 16px; overflow: hidden; position: relative; }
 .chat { background: #efe7dc; display: flex; flex-direction: column; justify-content: flex-end; gap: 8px; }
 .bubble { align-self: flex-end; max-width: 92%; background: #d9fdd3; border-radius: 12px 4px 12px 12px; padding: 10px 12px 6px; font: 400 15px/1.45 var(--font-text); color: #111b21; box-shadow: 0 1px 0 rgba(0,0,0,.08); }
 .bubble small { display: block; text-align: right; font-size: 12px; color: #667781; margin-top: 2px; }
@@ -244,19 +248,22 @@ footer .logo { min-height: 44px; }
 .kit .add { grid-column: 2; grid-row: 1 / span 2; min-width: 112px; height: 44px; }
 .kit.is-peek .kit__name { color: var(--action); }
 .kitpic { position: relative; height: 100%; min-height: 0; }
-.kitpic { border-radius: var(--r-lg); overflow: hidden; align-self: stretch; min-height: 520px; }
+.kitpic { border-radius: var(--r-lg); overflow: hidden; align-self: stretch; min-height: 0; height: auto; }
 .kitpic { min-width: 0; }
+.kitgrid { align-items: stretch; }
+.kitgrid > .kitpic { aspect-ratio: auto; height: auto; }
 .grid > .kitpic > img { position: absolute; inset: 0; max-width: none; width: 100%; height: 100%; object-fit: cover; animation: kitfade .3s var(--ease); }
 @keyframes kitfade { from { opacity: .4; } to { opacity: 1; } }
 @media (prefers-reduced-motion: reduce) { .kitpic img { animation: none; } }
 @media (max-width: 1023px) { .kitpic { min-height: 0; height: auto; aspect-ratio: 4 / 3; width: 100%; } }
 
 /* ---------------------------------------------------------------- details */
-.facts { display: grid; grid-template-columns: 1fr 1fr; gap: 28px 32px; align-content: start; }
+.facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px 24px; align-content: start; }
 .fact h3 { font: 500 18px/1.3 var(--font-text); display: flex; gap: 10px; align-items: center; }
 .fact h3 svg { width: 20px; height: 20px; color: var(--action); flex: none; }
 .fact p { margin-top: 6px; font-size: 16px; line-height: 1.55; }
-.detailpic { border-radius: var(--r-lg); overflow: hidden; height: 100%; min-height: 0; }
+.detailpic { border-radius: var(--r-lg); overflow: hidden; height: 260px; margin-top: 24px; }
+@media (max-width: 1023px) { .facts { grid-template-columns: 1fr 1fr; } }
 .detailpic img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
 /* footer */
@@ -277,13 +284,25 @@ footer .logo { min-height: 44px; }
   header.nav:not(.is-open) .nav__actions + .nav__toggle { margin-left: auto; }
   .qsearch kbd { display: none; }
   .qres__list { flex: none; height: max(183px, calc(100svh - 640px)); }
-  .qres__hint { display: none; }
-  .photo-btn { display: flex; width: 100%; margin-top: 12px; gap: 10px; }
-  .photo-btn img { width: 20px; height: 20px; }
+  .desk__foot { border-top: 0; padding-top: 0; margin-top: 12px; }
+  .desk__foot p { display: none; }
+  .photo-btn { display: flex; width: 100%; }
   .pager button { width: 44px; height: 44px; }
   .logo svg, .nav__logo.logo svg { height: 22px; width: 146px; }
   .notice-long { display: none; } .notice-short { display: inline; }
   .desk__find .hero__lead { font-size: 17px; }
+}
+@media (max-width: 639px) {
+  .cats { grid-row-gap: 0; }
+  .grid > .cat.card { grid-column: 1 / -1; display: grid; grid-template-columns: 72px minmax(0, 1fr); align-items: center; border: 0; border-bottom: 1px solid var(--line); border-radius: 0; background: none; padding: 8px 0; min-height: 68px; }
+  .cats > .cat:first-child { border-top: 1px solid var(--line); }
+  .cat .frame { aspect-ratio: 4 / 3; width: 72px; border-radius: 8px; }
+  .cat__text { flex-direction: row; align-items: baseline; padding: 0 0 0 14px; }
+  .step__ui { height: 190px; }
+  .step:nth-child(3) .step__ui { display: none; }
+  .facts { grid-template-columns: 1fr; gap: 20px; }
+  .detailpic { height: 280px; }
+  .grid > .kitpic { aspect-ratio: 4 / 3; }
 }
 </style>
 <link rel="stylesheet" href="http://127.0.0.1:5201/concepts/c/assets/moments/word-highlight/moment.css"></head>
@@ -317,7 +336,7 @@ footer .logo { min-height: 44px; }
     <div class="wrap">
       <div class="hero-text grid desk">
         <div class="desk__find span-7">
-          <p class="hero-notice"><span class="dot" aria-hidden="true"></span><span class="notice-long"><b>343 school supplies</b> in 15 categories, delivered from Hyderabad</span><span class="notice-short"><b>343 school supplies</b>, delivered from Hyderabad</span></p>
+          <p class="hero-notice"><span class="notice-long"><b>343 school supplies</b> in 15 categories, delivered from Hyderabad</span><span class="notice-short"><b>343 school supplies</b>, delivered from Hyderabad</span></p>
           <h1 id="hero-h">What does your school need?</h1>
           <p class="hero__lead">Search the catalogue and add items to your list. Send the list on WhatsApp and we reply with an itemised quotation.</p>
           <div class="qsearch" role="search">
@@ -325,7 +344,6 @@ footer .logo { min-height: 44px; }
             <div class="qsearch__box">
               <svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.5" cy="8.5" r="6" fill="none" stroke="currentColor" stroke-width="1.8"></circle><path d="m13 13 4.5 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
               <input id="q" type="search" autocomplete="off" spellcheck="false" placeholder="Try notebooks, dual desks or microscopes" aria-describedby="q-hint" aria-controls="results">
-              <kbd aria-hidden="true">/</kbd>
               <button class="qsearch__clear" type="button" aria-label="Clear the search"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M3 3l8 8M11 3l-8 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg></button>
             </div>
           </div>
@@ -336,6 +354,9 @@ footer .logo { min-height: 44px; }
             </div>
             <ul class="qres__list" id="results" aria-labelledby="results-status"><li class="qrow" data-key="i8"><img class="qrow__img" src="/images/products/stationery/ruled-notebooks-1.jpg" alt="" loading="eager" width="44" height="44"><span><span class="qrow__name">Ruled notebooks</span><span class="qrow__path">Stationery · Notebooks &amp; Registers</span></span><button class="add" type="button" data-add="i8" aria-pressed="false" aria-label="Add Ruled notebooks to your list"><svg class="i-plus" viewBox="0 0 14 14" aria-hidden="true"><path d="M7 2v10M2 7h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg><svg class="i-check" viewBox="0 0 14 14" aria-hidden="true"><path d="M2.5 7.5l3 3 6-6.5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Add</span></button></li><li class="qrow" data-key="i0"><img class="qrow__img" src="/images/products/stationery/ball-pens-1.jpg" alt="" loading="eager" width="44" height="44"><span><span class="qrow__name">Ball pens</span><span class="qrow__path">Stationery · Writing</span></span><button class="add" type="button" data-add="i0" aria-pressed="false" aria-label="Add Ball pens to your list"><svg class="i-plus" viewBox="0 0 14 14" aria-hidden="true"><path d="M7 2v10M2 7h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg><svg class="i-check" viewBox="0 0 14 14" aria-hidden="true"><path d="M2.5 7.5l3 3 6-6.5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Add</span></button></li><li class="qrow" data-key="i94"><img class="qrow__img" src="/images/photos/cat-teaching-aids.jpg" alt="" loading="eager" width="44" height="44"><span><span class="qrow__name">Chalk</span><span class="qrow__path">Teaching Aids · Chalk &amp; Dusters</span></span><button class="add" type="button" data-add="i94" aria-pressed="false" aria-label="Add Chalk to your list"><svg class="i-plus" viewBox="0 0 14 14" aria-hidden="true"><path d="M7 2v10M2 7h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg><svg class="i-check" viewBox="0 0 14 14" aria-hidden="true"><path d="M2.5 7.5l3 3 6-6.5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Add</span></button></li><li class="qrow" data-key="i281"><img class="qrow__img" src="/images/products/furniture/dual-desks-1.jpg" alt="" loading="eager" width="44" height="44"><span><span class="qrow__name">Dual desks</span><span class="qrow__path">Furniture · Classroom</span></span><button class="add" type="button" data-add="i281" aria-pressed="false" aria-label="Add Dual desks to your list"><svg class="i-plus" viewBox="0 0 14 14" aria-hidden="true"><path d="M7 2v10M2 7h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg><svg class="i-check" viewBox="0 0 14 14" aria-hidden="true"><path d="M2.5 7.5l3 3 6-6.5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Add</span></button></li></ul>
             <p class="qres__hint" id="q-hint">Not in the catalogue? Type it and add it as written. We quote that too.</p>
+          </div>
+          <div class="desk__foot">
+            <p>Have the list on paper already?</p>
             <a class="btn btn--secondary photo-btn" href="https://wa.me/919676038523?text=Hello%20SchoolSource%2C%20here%20is%20a%20photo%20of%20our%20school%27s%20list." target="_blank" rel="noopener"><img src="assets/icons/whatsapp.svg" alt="" width="20" height="20">Send a photo of your list</a>
           </div>
         </div>
@@ -383,23 +404,21 @@ footer .logo { min-height: 44px; }
     </div>
   </section>
 
-  <section class="section ground-inverse" id="how" aria-labelledby="how-h">
+  <section class="section ground-inverse" id="how" style="--hm: 2" aria-labelledby="how-h">
     <div class="wrap">
       <div class="section-head">
         <h2 id="how-h">The order process in four steps. <span class="muted">From your list to a GST invoice.</span></h2>
       </div>
       <ol class="grid steps" style="list-style:none;margin:0;padding:0">
         <li class="step span-3">
-          <span class="step__n">1</span>
-          <h3>Send us your list</h3>
+          <h3><span class="step__n">1</span>Your list, in any format</h3>
           <p>Typed, in a spreadsheet, or a photo of a handwritten page on WhatsApp.</p>
           <div class="step__ui chat" role="img" aria-label="A WhatsApp message listing notebooks, chalk, dusters and chart paper">
             <div class="bubble">Class 6 notebooks, 240<br>White chalk, 20 boxes<br>Board dusters, 30<br>Chart paper, 100 sheets<small>10:42</small></div>
           </div>
         </li>
         <li class="step span-3">
-          <span class="step__n">2</span>
-          <h3>Get an itemised quotation</h3>
+          <h3><span class="step__n">2</span>An itemised quotation</h3>
           <p>Every line of your list, with the size, brand and quantity we can supply.</p>
           <div class="step__ui" role="img" aria-label="A quotation with four lines, three in stock and one to order">
             <div class="doc__head">Quotation <span>4 lines</span></div>
@@ -410,8 +429,7 @@ footer .logo { min-height: 44px; }
           </div>
         </li>
         <li class="step span-3">
-          <span class="step__n">3</span>
-          <h3>Approve the quotation</h3>
+          <h3><span class="step__n">3</span>Your approval</h3>
           <p>Change quantities or remove lines first. Printed items wait for your proof approval.</p>
           <div class="step__ui" role="img" aria-label="The quotation with an approve button">
             <div class="doc__head">Quotation <span>Revised</span></div>
@@ -422,8 +440,7 @@ footer .logo { min-height: 44px; }
           </div>
         </li>
         <li class="step span-3">
-          <span class="step__n">4</span>
-          <h3>Receive a checked delivery</h3>
+          <h3><span class="step__n">4</span>A checked delivery</h3>
           <p>Each order is checked before dispatch. In-stock items arrive within a week.</p>
           <div class="step__ui" role="img" aria-label="A tax invoice with the order checked line by line">
             <div class="doc__head">Tax invoice <span>GST</span></div>
@@ -444,7 +461,7 @@ footer .logo { min-height: 44px; }
       <div class="section-head">
         <h2 id="kits-h">Seven kits for regular school orders. <span class="muted">Add a whole kit to your list in one go.</span></h2>
       </div>
-      <div class="grid grid--top fill">
+      <div class="grid fill kitgrid">
         <ul class="kits span-7" data-kits=""><li class="kit is-peek" data-peek="0" data-name="Term Start Classroom Kit"><span class="kit__name">Term Start Classroom Kit <span class="kit__basis">Per classroom</span></span><span class="kit__contents">Chalk or whiteboard markers, Board dusters, Registers, Charts, Stationery for one classroom</span><button class="add" type="button" data-kit-add="kit:term-start-classroom" aria-pressed="false" aria-label="Add Term Start Classroom Kit to your list"><svg class="i-plus" viewBox="0 0 14 14" aria-hidden="true"><path d="M7 2v10M2 7h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg><svg class="i-check" viewBox="0 0 14 14" aria-hidden="true"><path d="M2.5 7.5l3 3 6-6.5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Add kit</span></button></li><li class="kit" data-peek="1" data-name="Office &amp; Admin Kit"><span class="kit__name">Office &amp; Admin Kit <span class="kit__basis">Per office</span></span><span class="kit__contents">Files, Registers, Stamp pads, Copier paper, Desk essentials</span><button class="add" type="button" data-kit-add="kit:office-admin" aria-pressed="false" aria-label="Add Office &amp; Admin Kit to your list"><svg class="i-plus" viewBox="0 0 14 14" aria-hidden="true"><path d="M7 2v10M2 7h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg><svg class="i-check" viewBox="0 0 14 14" aria-hidden="true"><path d="M2.5 7.5l3 3 6-6.5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Add kit</span></button></li><li class="kit" data-peek="2" data-name="Exam Season Kit"><span class="kit__name">Exam Season Kit <span class="kit__basis">Per examination</span></span><span class="kit__contents">Answer booklets, Supplementary sheets, Exam pads, Pens</span><button class="add" type="button" data-kit-add="kit:exam-season" aria-pressed="false" aria-label="Add Exam Season Kit to your list"><svg class="i-plus" viewBox="0 0 14 14" aria-hidden="true"><path d="M7 2v10M2 7h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg><svg class="i-check" viewBox="0 0 14 14" aria-hidden="true"><path d="M2.5 7.5l3 3 6-6.5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Add kit</span></button></li><li class="kit" data-peek="3" data-name="New Admission Student Kit"><span class="kit__name">New Admission Student Kit <span class="kit__basis">Per student</span></span><span class="kit__contents">Notebooks, Stationery set, School bag, Water bottle, Lunch box</span><button class="add" type="button" data-kit-add="kit:new-admission-student" aria-pressed="false" aria-label="Add New Admission Student Kit to your list"><svg class="i-plus" viewBox="0 0 14 14" aria-hidden="true"><path d="M7 2v10M2 7h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg><svg class="i-check" viewBox="0 0 14 14" aria-hidden="true"><path d="M2.5 7.5l3 3 6-6.5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Add kit</span></button></li><li class="kit" data-peek="4" data-name="Annual Day Kit"><span class="kit__name">Annual Day Kit <span class="kit__basis">Per event</span></span><span class="kit__contents">Trophies, Medals, Mementos, Invitations, Banners</span><button class="add" type="button" data-kit-add="kit:annual-day" aria-pressed="false" aria-label="Add Annual Day Kit to your list"><svg class="i-plus" viewBox="0 0 14 14" aria-hidden="true"><path d="M7 2v10M2 7h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg><svg class="i-check" viewBox="0 0 14 14" aria-hidden="true"><path d="M2.5 7.5l3 3 6-6.5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Add kit</span></button></li><li class="kit" data-peek="5" data-name="Monthly Housekeeping Kit"><span class="kit__name">Monthly Housekeeping Kit <span class="kit__basis">Per month</span></span><span class="kit__contents">Cleaning chemicals, Cleaning tools, Washroom supplies</span><button class="add" type="button" data-kit-add="kit:monthly-housekeeping" aria-pressed="false" aria-label="Add Monthly Housekeeping Kit to your list"><svg class="i-plus" viewBox="0 0 14 14" aria-hidden="true"><path d="M7 2v10M2 7h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg><svg class="i-check" viewBox="0 0 14 14" aria-hidden="true"><path d="M2.5 7.5l3 3 6-6.5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Add kit</span></button></li><li class="kit" data-peek="6" data-name="Teachers' Day Gift Kit"><span class="kit__name">Teachers' Day Gift Kit <span class="kit__basis">Per staff member</span></span><span class="kit__contents">Staff gifts, Hampers</span><button class="add" type="button" data-kit-add="kit:teachers-day-gift" aria-pressed="false" aria-label="Add Teachers' Day Gift Kit to your list"><svg class="i-plus" viewBox="0 0 14 14" aria-hidden="true"><path d="M7 2v10M2 7h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg><svg class="i-check" viewBox="0 0 14 14" aria-hidden="true"><path d="M2.5 7.5l3 3 6-6.5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Add kit</span></button></li></ul>
         <div class="kitpic frame frame--photo span-5 start-8" data-kitpics=""><img src="/images/photos/kit-term-start-classroom.jpg" alt="Notebooks and coloured paper" loading="eager" data-source="library" data-subject="Term Start Classroom Kit"><img src="/images/photos/kit-office-admin.jpg" alt="Ring binders on office shelves" hidden="" loading="eager" data-source="library" data-subject="Office &amp; Admin Kit"><img src="/images/photos/kit-exam-season.jpg" alt="An answer sheet and a pencil" hidden="" loading="eager" data-source="library" data-subject="Exam Season Kit"><img src="/images/photos/kit-new-admission-student.jpg" alt="Notebook, scissors and a set square" hidden="" loading="eager" data-source="library" data-subject="New Admission Student Kit"><img src="/images/photos/kit-annual-day.jpg" alt="Gold medals with red ribbons" hidden="" loading="eager" data-source="library" data-subject="Annual Day Kit"><img src="/images/photos/kit-monthly-housekeeping.jpg" alt="A mop and a bucket" hidden="" loading="eager" data-source="library" data-subject="Monthly Housekeeping Kit"><img src="/images/photos/kit-teachers-day-gift.jpg" alt="A gift basket" hidden="" loading="eager" data-source="library" data-subject="Teachers' Day Gift Kit"></div>
       </div>
@@ -464,15 +481,15 @@ footer .logo { min-height: 44px; }
         <h2 id="del-h">Delivery, invoices and support. <span class="muted">What schools ask before a first order.</span></h2>
       </div>
       <div class="grid grid--top fill">
-        <div class="facts span-7">
+        <div class="facts span-12">
           <div class="fact"><h3><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="4" y="2.5" width="12" height="15" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"></rect><path d="M7 7h6M7 10h6M7 13h3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>A GST invoice with every order</h3><p>Billed by Arkhan Group Pvt. Ltd., GSTIN 36ABFCA8886K1ZX.</p></div>
-          <div class="fact"><h3><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M2 5h10v8H2zM12 8h3.5l2.5 3v2h-6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path><circle cx="5.5" cy="14.5" r="1.8" fill="#fff" stroke="currentColor" stroke-width="1.6"></circle><circle cx="14.5" cy="14.5" r="1.8" fill="#fff" stroke="currentColor" stroke-width="1.6"></circle></svg>In-stock items within a week</h3><p>Counted from your confirmation. Stock is held in our own warehouse.</p></div>
+          <div class="fact"><h3><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M2 5h10v8H2zM12 8h3.5l2.5 3v2h-6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path><circle cx="5.5" cy="14.5" r="1.8" fill="#fff" stroke="currentColor" stroke-width="1.6"></circle><circle cx="14.5" cy="14.5" r="1.8" fill="#fff" stroke="currentColor" stroke-width="1.6"></circle></svg>In-stock supplies within a week</h3><p>Counted from your confirmation. Stock is held in our own warehouse.</p></div>
           <div class="fact"><h3><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 18s6-5.2 6-10A6 6 0 0 0 4 8c0 4.8 6 10 6 10z" fill="none" stroke="currentColor" stroke-width="1.6"></path><circle cx="10" cy="8" r="2" fill="currentColor"></circle></svg>Hyderabad and other states</h3><p>Our own team delivers, or a transporter for schools further away.</p></div>
-          <div class="fact"><h3><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 7h12l-1 10H5zM7 7V5a3 3 0 0 1 6 0v2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>Kits packed per student</h3><p>One labelled bag for each student, sorted by class, when you ask.</p></div>
+          <div class="fact"><h3><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 7h12l-1 10H5zM7 7V5a3 3 0 0 1 6 0v2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>School kits packed per student</h3><p>One labelled bag for each student, sorted by class, when you ask.</p></div>
           <div class="fact"><h3><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 4h12v9H8l-4 3z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>Order updates on WhatsApp</h3><p>You hear from us when the order is confirmed, packed and on its way.</p></div>
-          <div class="fact"><h3><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M16 10a6 6 0 1 1-2-4.5M16 3v3.5h-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>Last year's order, quoted again</h3><p>Send last year's list and we quote it for this year. Branches can order together.</p></div>
+          <div class="fact"><h3><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M16 10a6 6 0 1 1-2-4.5M16 3v3.5h-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>Last year's school order, quoted again</h3><p>Send last year's list and we quote it for this year. Branches can order together.</p></div>
         </div>
-        <div class="detailpic span-5 start-8"><img src="/images/photos/page-about.jpg" alt="Cartons stacked on tall warehouse racks" loading="eager" data-source="stand-in" data-subject="warehouse racks"></div>
+        <div class="detailpic span-12"><img src="/images/photos/page-about.jpg" alt="Cartons stacked on tall warehouse racks" loading="eager" data-source="stand-in" data-subject="warehouse racks"></div>
       </div>
     </div>
   </section>

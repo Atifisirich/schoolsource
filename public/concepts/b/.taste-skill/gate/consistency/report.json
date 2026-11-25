@@ -1,7 +1,7 @@
 {
  "page": "/home/user/schoolsource/public/concepts/b/index.html",
- "url": "http://127.0.0.1:5202/concepts/b/index.html",
- "at": "2026-11-25T11:06:20.142Z",
+ "url": "http://127.0.0.1:5200/concepts/b/index.html",
+ "at": "2026-11-25T11:10:50.002Z",
  "out": "/home/user/schoolsource/public/concepts/b/.taste-skill/gate/consistency",
  "widths": [
   {
@@ -44,21 +44,21 @@
     {
      "check": "scroll-reveal",
      "sev": "WARN",
-     "sel": "div.wrap > div.grid.packing > div.span-7 > p.mo-wh__text",
-     "text": "For new admissions or a whole school, we pack ea",
-     "msg": "starts \"color\" (0.2 s) the moment it is scrolled into view (an IntersectionObserver) on span.mo-w:nth-of-type(1) (inside a dealt moment's section, [data-moment]: an enter moment is expected on every kind; its still is judged under reduced motion)",
-     "stop": 8,
-     "crop": "1440-17-scroll-reveal.jpg",
-     "fix": "show it at rest: no fade, rise or unmask when it is scrolled into view"
-    },
-    {
-     "check": "scroll-reveal",
-     "sev": "WARN",
      "sel": "section#calendar",
      "text": "The school year, term by term What schools usual",
      "msg": "starts \"opacity\" (0.4 s) the moment it is scrolled into view (an IntersectionObserver) on div.mo-ph__words (inside a dealt moment's section, [data-moment]: an enter moment is expected on every kind; its still is judged under reduced motion)",
      "stop": 4,
      "crop": "1440-15-scroll-reveal.jpg",
+     "fix": "show it at rest: no fade, rise or unmask when it is scrolled into view"
+    },
+    {
+     "check": "scroll-reveal",
+     "sev": "WARN",
+     "sel": "div.wrap > div.grid.packing > div.span-7 > p.mo-wh__text",
+     "text": "For new admissions or a whole school, we pack ea",
+     "msg": "starts \"color\" (0.2 s) the moment it is scrolled into view (an IntersectionObserver) on span.mo-w:nth-of-type(1) (inside a dealt moment's section, [data-moment]: an enter moment is expected on every kind; its still is judged under reduced motion)",
+     "stop": 8,
+     "crop": "1440-17-scroll-reveal.jpg",
      "fix": "show it at rest: no fade, rise or unmask when it is scrolled into view"
     },
     {
@@ -330,22 +330,12 @@
     {
      "check": "contrast",
      "sev": "FAIL",
-     "sel": "div.span-3.footer__col > ul > li:nth-of-type(2) > a",
-     "text": "info@schoolsource.in",
+     "sel": "div.span-2.footer__col:nth-of-type(4) > ul > li:nth-of-type(2) > a",
+     "text": "About",
      "stop": 19,
      "msg": "body text over a effect reads at 1.0:1 at its worst tenth (needs 4.5:1), on a busy ground",
      "crop": "390-18-contrast.jpg",
      "fix": "put the text on a calm part of the picture, or on a solid panel"
-    },
-    {
-     "check": "section-gaps",
-     "sev": "FAIL",
-     "sel": "section#ordering / section#about",
-     "text": "",
-     "stop": 23,
-     "msg": "385px between these sections, +91% against the median 202px",
-     "crop": "390-21-section-gaps.jpg",
-     "fix": "use one gap between sections (all within 25% of each other)"
     },
     {
      "check": "nav",
@@ -360,21 +350,21 @@
     {
      "check": "scroll-reveal",
      "sev": "WARN",
-     "sel": "section#calendar",
-     "text": "The school year, term by term What schools usual",
-     "msg": "starts \"opacity\" (0.4 s) the moment it is scrolled into view (an IntersectionObserver) on div.mo-ph__words (inside a dealt moment's section, [data-moment]: an enter moment is expected on every kind; its still is judged under reduced motion)",
-     "stop": 4,
-     "crop": "390-05-scroll-reveal.jpg",
-     "fix": "show it at rest: no fade, rise or unmask when it is scrolled into view"
-    },
-    {
-     "check": "scroll-reveal",
-     "sev": "WARN",
      "sel": "div.wrap > div.grid.packing > div.span-7 > p.mo-wh__text",
      "text": "For new admissions or a whole school, we pack ea",
      "msg": "starts \"color\" (0.2 s) the moment it is scrolled into view (an IntersectionObserver) on span.mo-w:nth-of-type(1) (inside a dealt moment's section, [data-moment]: an enter moment is expected on every kind; its still is judged under reduced motion)",
      "stop": 8,
      "crop": "390-08-scroll-reveal.jpg",
+     "fix": "show it at rest: no fade, rise or unmask when it is scrolled into view"
+    },
+    {
+     "check": "scroll-reveal",
+     "sev": "WARN",
+     "sel": "section#calendar",
+     "text": "The school year, term by term What schools usual",
+     "msg": "starts \"opacity\" (0.4 s) the moment it is scrolled into view (an IntersectionObserver) on div.mo-ph__words (inside a dealt moment's section, [data-moment]: an enter moment is expected on every kind; its still is judged under reduced motion)",
+     "stop": 4,
+     "crop": "390-05-scroll-reveal.jpg",
      "fix": "show it at rest: no fade, rise or unmask when it is scrolled into view"
     },
     {
@@ -493,7 +483,7 @@
      "sel": "div.grid.kits > a.tile.span-3:nth-of-type(4) > div.tile__media > img",
      "text": "trophies-1.jpg",
      "stop": 10,
-     "msg": "15 photographs in more than one look: lightness from 0.34 to 0.80; saturation from 0.09 to 0.48; warm and cool photographs mixed (b* -18 to +17); the odd one out is trophies-1.jpg",
+     "msg": "15 photographs in more than one look: lightness from 0.34 to 0.80; saturation from 0.09 to 0.50; warm and cool photographs mixed (b* -18 to +17); the odd one out is trophies-1.jpg",
      "crop": "390-13-photo-set.jpg",
      "fix": "grade the photographs to one look (light, colour, warmth), or replace the odd one out"
     },
@@ -565,7 +555,7 @@
   "findings": []
  },
  "counts": {
-  "FAIL": 8,
+  "FAIL": 7,
   "WARN": 43
  },
  "checks": {
@@ -633,7 +623,7 @@
   "text-contrast": "PASS",
   "body-size": "PASS",
   "busy-ground": "PASS",
-  "section-gaps": "FAIL",
+  "section-gaps": "WARN",
   "proximity": "WARN",
   "hole": "PASS",
   "links": "WARN",

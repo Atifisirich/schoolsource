@@ -1,9 +1,9 @@
 {
  "start": "2026-11-25T10:49:51.915Z",
- "round": 2,
+ "round": 3,
  "idle": 0,
  "errors": 0,
- "status": "fail",
+ "status": "open",
  "history": [
   {
    "at": "2026-11-25T11:05:35.413Z",
@@ -22,6 +22,15 @@
    "round": 2,
    "reused": false,
    "stopHookActive": false
+  },
+  {
+   "at": "2026-11-25T11:13:17.404Z",
+   "mode": "manual",
+   "status": "open",
+   "fails": 3,
+   "round": 3,
+   "reused": false,
+   "stopHookActive": false
   }
  ],
  "max": 3,
@@ -37,11 +46,11 @@
   "by": "gate.mjs --start"
  },
  "manual": true,
- "roundKey": "e7a5daf8829d3708:79319bf4",
+ "roundKey": "d39cb681e788ecfd:79319bf4",
  "roundFree": false,
  "idleFree": false,
  "blockKey": null,
- "fp": "e7a5daf8829d3708",
+ "fp": "d39cb681e788ecfd",
  "page": "index.html",
  "found": {
   "fails": [
@@ -128,7 +137,7 @@
    },
    {
     "check": "contrast",
-    "where": "div.span-3.footer__col > ul > li:nth-of-type(2) > a \"info@schoolsource.in\"",
+    "where": "div.span-2.footer__col:nth-of-type(4) > ul > li:nth-of-type(2) > a \"About\"",
     "msg": "body text over a effect reads at 1.0:1 at its worst tenth (needs 4.5:1), on a busy ground",
     "fix": "put the text on a calm part of the picture, or on a solid panel",
     "widths": [
@@ -139,31 +148,15 @@
      "contrast"
     ],
     "wheres": [
-     "div.span-3.footer__col > ul > li:nth-of-type(2) > a \"info@schoolsource.in\""
-    ]
-   },
-   {
-    "check": "section-gaps",
-    "where": "section#ordering / section#about",
-    "msg": "385px between these sections, +91% against the median 202px",
-    "fix": "use one gap between sections (all within 25% of each other)",
-    "widths": [
-     390
-    ],
-    "from": "consistency",
-    "ids": [
-     "section-gaps"
-    ],
-    "wheres": [
-     "section#ordering / section#about"
+     "div.span-2.footer__col:nth-of-type(4) > ul > li:nth-of-type(2) > a \"About\""
     ]
    }
   ],
   "warns": [
    {
     "check": "scroll-reveal",
-    "where": "div.wrap > div.grid.packing > div.span-7 > p.mo-wh__text \"For new admissions or a whole school, we\"",
-    "msg": "starts \"color\" (0.2 s) the moment it is scrolled into view (an IntersectionObserver) on span.mo-w:nth-of-type(1) (inside a dealt moment's section, [data-moment]: an enter moment is expected on every kind; its still is judged under reduced motion)",
+    "where": "section#calendar \"The school year, term by term What schoo\"",
+    "msg": "starts \"opacity\" (0.4 s) the moment it is scrolled into view (an IntersectionObserver) on div.mo-ph__words (inside a dealt moment's section, [data-moment]: an enter moment is expected on every kind; its still is judged under reduced motion)",
     "fix": "show it at rest: no fade, rise or unmask when it is scrolled into view",
     "widths": [
      1440,
@@ -173,8 +166,8 @@
    },
    {
     "check": "scroll-reveal",
-    "where": "section#calendar \"The school year, term by term What schoo\"",
-    "msg": "starts \"opacity\" (0.4 s) the moment it is scrolled into view (an IntersectionObserver) on div.mo-ph__words (inside a dealt moment's section, [data-moment]: an enter moment is expected on every kind; its still is judged under reduced motion)",
+    "where": "div.wrap > div.grid.packing > div.span-7 > p.mo-wh__text \"For new admissions or a whole school, we\"",
+    "msg": "starts \"color\" (0.2 s) the moment it is scrolled into view (an IntersectionObserver) on span.mo-w:nth-of-type(1) (inside a dealt moment's section, [data-moment]: an enter moment is expected on every kind; its still is judged under reduced motion)",
     "fix": "show it at rest: no fade, rise or unmask when it is scrolled into view",
     "widths": [
      1440,
@@ -530,7 +523,7 @@
   "crashed": [],
   "seconds": {
    "consistency": 144,
-   "layout": 4
+   "layout": 3
   }
  },
  "open": [
@@ -568,7 +561,7 @@
   },
   {
    "check": "contrast",
-   "where": "div.span-3.footer__col > ul > li:nth-of-type(2) > a \"info@schoolsource.in\"",
+   "where": "div.span-2.footer__col:nth-of-type(4) > ul > li:nth-of-type(2) > a \"About\"",
    "msg": "body text over a effect reads at 1.0:1 at its worst tenth (needs 4.5:1), on a busy ground",
    "fix": "put the text on a calm part of the picture, or on a solid panel",
    "widths": [
@@ -579,23 +572,7 @@
     "contrast"
    ],
    "wheres": [
-    "div.span-3.footer__col > ul > li:nth-of-type(2) > a \"info@schoolsource.in\""
-   ]
-  },
-  {
-   "check": "section-gaps",
-   "where": "section#ordering / section#about",
-   "msg": "385px between these sections, +91% against the median 202px",
-   "fix": "use one gap between sections (all within 25% of each other)",
-   "widths": [
-    390
-   ],
-   "from": "consistency",
-   "ids": [
-    "section-gaps"
-   ],
-   "wheres": [
-    "section#ordering / section#about"
+    "div.span-2.footer__col:nth-of-type(4) > ul > li:nth-of-type(2) > a \"About\""
    ]
   }
  ],
@@ -654,5 +631,6 @@
   }
  ],
  "warnCount": 36,
- "at": "2026-11-25T11:08:48.010Z"
+ "at": "2026-11-25T11:13:17.404Z",
+ "openTold": true
 }

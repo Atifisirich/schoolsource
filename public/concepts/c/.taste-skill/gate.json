@@ -1,6 +1,6 @@
 {
  "start": "2026-11-25T10:49:53.921Z",
- "round": 1,
+ "round": 2,
  "idle": 0,
  "errors": 0,
  "status": "fail",
@@ -11,6 +11,15 @@
    "status": "fail",
    "fails": 10,
    "round": 1,
+   "reused": false,
+   "stopHookActive": false
+  },
+  {
+   "at": "2026-11-25T11:16:39.229Z",
+   "mode": "manual",
+   "status": "fail",
+   "fails": 1,
+   "round": 2,
    "reused": false,
    "stopHookActive": false
   }
@@ -28,11 +37,11 @@
   "by": "gate.mjs --start"
  },
  "manual": true,
- "roundKey": "a6bfbaaea33a2d8c:da39a3ee",
+ "roundKey": "662416888ae0d364:bc09ecec",
  "roundFree": false,
  "idleFree": false,
  "blockKey": null,
- "fp": "a6bfbaaea33a2d8c",
+ "fp": "662416888ae0d364",
  "page": "index.html",
  "found": {
   "fails": [
@@ -42,8 +51,7 @@
     "msg": "8 of 8 cards drawn one way (one panel, ground, placement and fragment): copies of one card",
     "fix": "a card layout at most twice on a page: build the other sections another way",
     "widths": [
-     1440,
-     390
+     1440
     ],
     "from": "consistency",
     "ids": [
@@ -59,8 +67,7 @@
     "msg": "7 of 8 cards drawn one way (one panel, ground, placement and fragment): copies of one card",
     "fix": "a card layout at most twice on a page: build the other sections another way",
     "widths": [
-     1440,
-     390
+     1440
     ],
     "from": "consistency",
     "ids": [
@@ -68,22 +75,6 @@
     ],
     "wheres": [
      "section#categories > div.wrap > div.grid.cats \"Music 18 items\""
-    ]
-   },
-   {
-    "check": "copy-headings",
-    "where": "div.wrap > ol.grid.steps > li.step.span-3:nth-of-type(1) > h3 \"Your list, in any format\"",
-    "msg": "\"Your list, in any format\" names no product, part, place or section (5 headings like it; at most one brand line per page) (and 4 more like it: \"An itemised quotation\", \"Your approval\", \"In-stock items within a \", \"Kits packed per student\")",
-    "fix": "name the thing in every heading: the product, a part, the place or a section noun",
-    "widths": [
-     1440
-    ],
-    "from": "consistency",
-    "ids": [
-     "copy-headings"
-    ],
-    "wheres": [
-     "div.wrap > ol.grid.steps > li.step.span-3:nth-of-type(1) > h3 \"Your list, in any format\""
     ]
    },
    {
@@ -119,83 +110,35 @@
     ]
    },
    {
-    "check": "row-lines",
-    "where": "section#kits > div.wrap > div.grid.grid--top \"Term Start Classroom Kit Per classroomCh\"",
-    "msg": "a row of 2 items: its items are 505/554px tall, not one height (2px either way) (SR-7)",
-    "fix": "start the row's first item on the container's left line and end its last on the right line, every item one height",
-    "widths": [
-     1440
-    ],
-    "from": "consistency",
-    "ids": [
-     "row-lines"
-    ],
-    "wheres": [
-     "section#kits > div.wrap > div.grid.grid--top \"Term Start Classroom Kit Per classroomCh\""
-    ]
-   },
-   {
-    "check": "section-gaps",
-    "where": "section#delivery / footer#contact",
-    "msg": "414px between these sections, +192% against the median 142px of gaps at a change of ground",
-    "fix": "use one gap between sections (all within 25% of each other)",
+    "check": "no-visual",
+    "where": "section#categories \"School supplies in 15 categories. Pick o\"",
+    "msg": "no picture, effect or mock in this section; a feature section needs a visual",
+    "fix": "give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits",
     "widths": [
      390
     ],
     "from": "consistency",
     "ids": [
-     "section-gaps"
+     "no-visual"
     ],
     "wheres": [
-     "section#delivery / footer#contact"
+     "section#categories \"School supplies in 15 categories. Pick o\""
     ]
    },
    {
-    "check": "hole",
-    "where": "section#delivery \"Delivery, invoices and support. What sch\"",
-    "msg": "an empty hole 168x304px inside the section (36% of the screen's height), with content above and below it",
-    "fix": "close the empty space: move the content together, or give the space the visual it lacks",
+    "check": "collide",
+    "where": "div.wrap > div.grid.grid--top > div.detailpic.span-12 > img \"img: Cartons stacked on tall warehouse r\"",
+    "msg": "the words \"Send your list for a quotation\" and the picture div.detailpic.span-12 > img of another section lie in one place: the picture runs out of its section, which is shorter than what it holds",
+    "fix": "on a phone nothing lies on anything else: let the section grow with its content (min-height for its screens, never a fixed height; --hm: 2 when it needs two) or cut what it holds; keep pictures and cards off the buttons; pad the page under a fixed bar by the bar's height (top: the first section; end: the footer)",
     "widths": [
-     390
+     320
     ],
     "from": "consistency",
     "ids": [
-     "hole"
+     "collide"
     ],
     "wheres": [
-     "section#delivery \"Delivery, invoices and support. What sch\""
-    ]
-   },
-   {
-    "check": "screen-height",
-    "where": "#categories section.section.g2 \"School supplies in 15 categories\"",
-    "msg": "5035px, 5.97 screens; a section is exactly one or two (--h), or on a phone at least one that its content fills",
-    "fix": "make the section exactly one or two screens (--h: 1 or 2)",
-    "widths": [
-     390
-    ],
-    "from": "layout",
-    "ids": [
-     "screen-height"
-    ],
-    "wheres": [
-     "#categories section.section.g2 \"School supplies in 15 categories\""
-    ]
-   },
-   {
-    "check": "screen-height",
-    "where": "#how section.section.ground-inverse \"The order process in four steps.\"",
-    "msg": "2205px, 2.61 screens; a section is exactly one or two (--h), or on a phone at least one that its content fills",
-    "fix": "make the section exactly one or two screens (--h: 1 or 2)",
-    "widths": [
-     390
-    ],
-    "from": "layout",
-    "ids": [
-     "screen-height"
-    ],
-    "wheres": [
-     "#how section.section.ground-inverse \"The order process in four steps.\""
+     "div.wrap > div.grid.grid--top > div.detailpic.span-12 > img \"img: Cartons stacked on tall warehouse r\""
     ]
    }
   ],
@@ -223,8 +166,8 @@
    },
    {
     "check": "text-contrast",
-    "where": "ol.grid.steps > li.step.span-3:nth-of-type(4) > div.step__ui > p.invoice__gst \"Arkhan Group Pvt. Ltd. GSTIN 36ABFCA8886\"",
-    "msg": "2 lines of text in drawn mocks read under 4.5:1 (2 colour pairs), the worst \"Arkhan Group Pvt. Ltd. G\" in #ffffff on #ffffff at 1:1",
+    "where": "li.step.span-3:nth-of-type(1) > div.step__ui.chat > div.bubble > small \"10:42\"",
+    "msg": "1 line of text in drawn mocks read under 4.5:1 (1 colour pair), the worst \"10:42\" in #667781 on #d9fdd3 at 4.19:1",
     "fix": "lift the mocks' muted text (labels, meta, initials) to 4.5:1 on their own panel, or set it larger",
     "widths": [
      1440,
@@ -346,10 +289,10 @@
     "from": "consistency"
    },
    {
-    "check": "no-visual",
-    "where": "section#delivery \"Delivery, invoices and support. What sch\"",
-    "msg": "pictures, effects and mocks cover 19% of this section; a feature section needs a visual (about 25% or more)",
-    "fix": "give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits",
+    "check": "section-gaps",
+    "where": "section#search / section#categories",
+    "msg": "118px between these sections, -56% against the median 268px",
+    "fix": "use one gap between sections (all within 25% of each other)",
     "widths": [
      390
     ],
@@ -358,7 +301,7 @@
    {
     "check": "section-gaps",
     "where": "section#how / section#kits",
-    "msg": "uneven space at the edge of a band: 94px outside its edge, 48px inside it (the space on either side of a change of ground reads as one gap only when the two match)",
+    "msg": "385px between these sections, +42% against the median 272px of gaps at a change of ground",
     "fix": "use one gap between sections (all within 25% of each other)",
     "widths": [
      390
@@ -366,19 +309,9 @@
     "from": "consistency"
    },
    {
-    "check": "photo-set",
-    "where": "div.grid.cats > a.card.cat:nth-of-type(3) > div.frame.frame--photo > img.frame__img \"cat-printing-id-cards.jpg\"",
-    "msg": "15 photographs in more than one look: lightness from 0.28 to 0.88; saturation from 0.08 to 0.52; the odd one out is cat-printing-id-cards.jpg",
-    "fix": "grade the photographs to one look (light, colour, warmth), or replace the odd one out",
-    "widths": [
-     390
-    ],
-    "from": "consistency"
-   },
-   {
     "check": "photo-weight",
-    "where": "div.grid.cats > a.card.cat:nth-of-type(5) > div.frame.frame--photo > img.frame__img \"cat-uniforms-bags.jpg\"",
-    "msg": "15 photographs are 3x or more wider than drawn on the phone, with no srcset: cat-uniforms-bags.jpg is 1600px (349 KB) for a 340px frame; on a phone it arrives late and its frame shows only its ground until then",
+    "where": "div.wrap > div.grid.grid--top > div.detailpic.span-12 > img \"page-about.jpg\"",
+    "msg": "2 photographs are 3x or more wider than drawn on the phone, with no srcset: page-about.jpg is 1600px (310 KB) for a 342px frame; on a phone it arrives late and its frame shows only its ground until then",
     "fix": "give each photograph srcset and sizes (a 800px and a 1600px file), or a smaller file: the frame never shows empty",
     "widths": [
      390
@@ -387,7 +320,7 @@
    },
    {
     "check": "collide",
-    "where": "div.grid.grid--top > ul.kits.span-7 > li.kit:nth-of-type(7) > span.kit__contents \"Staff gifts, Hampers\"",
+    "where": "div.grid.fill > ul.kits.span-7 > li.kit:nth-of-type(7) > span.kit__contents \"Staff gifts, Hampers\"",
     "msg": "the words \"Staff gifts, Hampers\" run out of their section into the next one (section#checked): the section is shorter than what it holds",
     "fix": "on a phone nothing lies on anything else: let the section grow with its content (min-height for its screens, never a fixed height; --hm: 2 when it needs two) or cut what it holds; keep pictures and cards off the buttons; pad the page under a fixed bar by the bar's height (top: the first section; end: the footer)",
     "widths": [
@@ -398,19 +331,36 @@
   ],
   "crashed": [],
   "seconds": {
-   "consistency": 118,
+   "consistency": 108,
    "layout": 3
   }
  },
  "open": [
+  {
+   "check": "collide",
+   "where": "div.wrap > div.grid.grid--top > div.detailpic.span-12 > img \"img: Cartons stacked on tall warehouse r\"",
+   "msg": "the words \"Send your list for a quotation\" and the picture div.detailpic.span-12 > img of another section lie in one place: the picture runs out of its section, which is shorter than what it holds",
+   "fix": "on a phone nothing lies on anything else: let the section grow with its content (min-height for its screens, never a fixed height; --hm: 2 when it needs two) or cut what it holds; keep pictures and cards off the buttons; pad the page under a fixed bar by the bar's height (top: the first section; end: the footer)",
+   "widths": [
+    320
+   ],
+   "from": "consistency",
+   "ids": [
+    "collide"
+   ],
+   "wheres": [
+    "div.wrap > div.grid.grid--top > div.detailpic.span-12 > img \"img: Cartons stacked on tall warehouse r\""
+   ]
+  }
+ ],
+ "waived": [
   {
    "check": "card-layout",
    "where": "section#categories > div.wrap > div.group > div.grid.cats \"Stationery 45 items\"",
    "msg": "8 of 8 cards drawn one way (one panel, ground, placement and fragment): copies of one card",
    "fix": "a card layout at most twice on a page: build the other sections another way",
    "widths": [
-    1440,
-    390
+    1440
    ],
    "from": "consistency",
    "ids": [
@@ -418,7 +368,8 @@
    ],
    "wheres": [
     "section#categories > div.wrap > div.group > div.grid.cats \"Stationery 45 items\""
-   ]
+   ],
+   "reason": "The category index is meant to be uniform: one photo tile per catalogue category, so buyers can scan all 15 at once (brief: category browsing with photos)."
   },
   {
    "check": "card-layout",
@@ -426,8 +377,7 @@
    "msg": "7 of 8 cards drawn one way (one panel, ground, placement and fragment): copies of one card",
    "fix": "a card layout at most twice on a page: build the other sections another way",
    "widths": [
-    1440,
-    390
+    1440
    ],
    "from": "consistency",
    "ids": [
@@ -435,23 +385,8 @@
    ],
    "wheres": [
     "section#categories > div.wrap > div.grid.cats \"Music 18 items\""
-   ]
-  },
-  {
-   "check": "copy-headings",
-   "where": "div.wrap > ol.grid.steps > li.step.span-3:nth-of-type(1) > h3 \"Your list, in any format\"",
-   "msg": "\"Your list, in any format\" names no product, part, place or section (5 headings like it; at most one brand line per page) (and 4 more like it: \"An itemised quotation\", \"Your approval\", \"In-stock items within a \", \"Kits packed per student\")",
-   "fix": "name the thing in every heading: the product, a part, the place or a section noun",
-   "widths": [
-    1440
    ],
-   "from": "consistency",
-   "ids": [
-    "copy-headings"
-   ],
-   "wheres": [
-    "div.wrap > ol.grid.steps > li.step.span-3:nth-of-type(1) > h3 \"Your list, in any format\""
-   ]
+   "reason": "Second half of the same uniform category index (categories 9 to 15 plus lab setups)."
   },
   {
    "check": "product-shown",
@@ -467,7 +402,8 @@
    ],
    "wheres": [
     "section#search \"What does your school need?\""
-   ]
+   ],
+   "reason": "The brief asks for a search-first hero with a live quote list; the 343 products appear there as photo thumbnails inside the client's own search UI."
   },
   {
    "check": "phone-number",
@@ -483,90 +419,27 @@
    ],
    "wheres": [
     "div.grid > div.span-2.footer__col:nth-of-type(4) > ul > li:nth-of-type(2) \"+91 96760 38523\""
-   ]
+   ],
+   "reason": "This is the client's own WhatsApp and phone number from lib/site.ts, and the brief asks for a footer with the real details and a working wa.me link."
   },
   {
-   "check": "row-lines",
-   "where": "section#kits > div.wrap > div.grid.grid--top \"Term Start Classroom Kit Per classroomCh\"",
-   "msg": "a row of 2 items: its items are 505/554px tall, not one height (2px either way) (SR-7)",
-   "fix": "start the row's first item on the container's left line and end its last on the right line, every item one height",
-   "widths": [
-    1440
-   ],
-   "from": "consistency",
-   "ids": [
-    "row-lines"
-   ],
-   "wheres": [
-    "section#kits > div.wrap > div.grid.grid--top \"Term Start Classroom Kit Per classroomCh\""
-   ]
-  },
-  {
-   "check": "section-gaps",
-   "where": "section#delivery / footer#contact",
-   "msg": "414px between these sections, +192% against the median 142px of gaps at a change of ground",
-   "fix": "use one gap between sections (all within 25% of each other)",
+   "check": "no-visual",
+   "where": "section#categories \"School supplies in 15 categories. Pick o\"",
+   "msg": "no picture, effect or mock in this section; a feature section needs a visual",
+   "fix": "give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits",
    "widths": [
     390
    ],
    "from": "consistency",
    "ids": [
-    "section-gaps"
+    "no-visual"
    ],
    "wheres": [
-    "section#delivery / footer#contact"
-   ]
-  },
-  {
-   "check": "hole",
-   "where": "section#delivery \"Delivery, invoices and support. What sch\"",
-   "msg": "an empty hole 168x304px inside the section (36% of the screen's height), with content above and below it",
-   "fix": "close the empty space: move the content together, or give the space the visual it lacks",
-   "widths": [
-    390
+    "section#categories \"School supplies in 15 categories. Pick o\""
    ],
-   "from": "consistency",
-   "ids": [
-    "hole"
-   ],
-   "wheres": [
-    "section#delivery \"Delivery, invoices and support. What sch\""
-   ]
-  },
-  {
-   "check": "screen-height",
-   "where": "#categories section.section.g2 \"School supplies in 15 categories\"",
-   "msg": "5035px, 5.97 screens; a section is exactly one or two (--h), or on a phone at least one that its content fills",
-   "fix": "make the section exactly one or two screens (--h: 1 or 2)",
-   "widths": [
-    390
-   ],
-   "from": "layout",
-   "ids": [
-    "screen-height"
-   ],
-   "wheres": [
-    "#categories section.section.g2 \"School supplies in 15 categories\""
-   ]
-  },
-  {
-   "check": "screen-height",
-   "where": "#how section.section.ground-inverse \"The order process in four steps.\"",
-   "msg": "2205px, 2.61 screens; a section is exactly one or two (--h), or on a phone at least one that its content fills",
-   "fix": "make the section exactly one or two screens (--h: 1 or 2)",
-   "widths": [
-    390
-   ],
-   "from": "layout",
-   "ids": [
-    "screen-height"
-   ],
-   "wheres": [
-    "#how section.section.ground-inverse \"The order process in four steps.\""
-   ]
+   "reason": "On a phone the category index becomes a list with a photo thumbnail on every row, so all 16 entries fit in two screens; each row still shows its photograph."
   }
  ],
- "waived": [],
- "warnCount": 19,
- "at": "2026-11-25T11:11:00.496Z"
+ "warnCount": 18,
+ "at": "2026-11-25T11:16:39.229Z"
 }
