@@ -29,7 +29,73 @@ file name** in this folder. Landscape photos around 1600 px wide work best.
 | kit-term-start-classroom.jpg | Notebooks and coloured paper | https://images.unsplash.com/photo-1566869112473-77c4fb94359c |
 | kit-office-admin.jpg | Ring binders on shelves | https://images.unsplash.com/photo-1544396821-4dd40b938ad3 |
 | kit-exam-season.jpg | Answer sheet and pencil | https://images.unsplash.com/photo-1606326608690-4e0281b1e588 |
-| kit-new-admission-student.jpg | Backpack with books | https://images.unsplash.com/photo-1535982330050-f1c2fb79ff78 |
+| kit-new-admission-student.jpg | Notebook, pencils and geometry set (replaced Nov 2026: the old photo showed brand logos) | https://www.pexels.com/photo/5088008/ (Pexels License) |
 | kit-annual-day.jpg | Gold medals | https://images.unsplash.com/photo-1706374503312-7a4a4c030d2d |
 | kit-monthly-housekeeping.jpg | Mop and bucket | https://images.unsplash.com/photo-1749214317455-efbdd57df844 |
 | kit-teachers-day-gift.jpg | Gift basket | https://images.unsplash.com/photo-1508899203029-1c9eb493c9bd |
+
+## Product photos
+
+Free stock photos used on the item cards (`images` in `data/catalogue.ts`).
+They are framed to 1200x750 in `public/images/products/<category>/`.
+Pexels License: https://www.pexels.com/license/ (free for commercial use, no attribution required).
+Unsplash License: https://unsplash.com/license. The Skirts photos in `products/uniforms/` were supplied by the owner.
+"See source page" means the photographer's name could not be read when the photo was added. It is shown on the linked page.
+
+| Item | File | Source | Author | Licence |
+| --- | --- | --- | --- | --- |
+| Utensils | canteen-kitchen/utensils-1.jpg | https://www.pexels.com/photo/12292644/ | See source page | Pexels License |
+| Utensils | canteen-kitchen/utensils-2.jpg | https://www.pexels.com/photo/30981355/ | See source page | Pexels License |
+| Laptops | computers-tech/laptops-1.jpg | https://www.pexels.com/photo/5474290/ | See source page | Pexels License |
+| Benches | furniture/benches-1.jpg | https://www.pexels.com/photo/19199263/ | mitbg000 | Pexels License |
+| Dual desks | furniture/dual-desks-1.jpg | https://www.pexels.com/photo/36650154/ | Valentin Ivantsov | Pexels License |
+| Student chairs | furniture/student-chairs-1.jpg | https://www.pexels.com/photo/4606703/ | See source page | Pexels License |
+| Medals | gifts-awards/medals-1.jpg | https://www.pexels.com/photo/7267548/ | Iaroslav Danylchenko | Pexels License |
+| Medals | gifts-awards/medals-2.jpg | https://www.pexels.com/photo/7267547/ | Iaroslav Danylchenko | Pexels License |
+| Trophies | gifts-awards/trophies-1.jpg | https://www.pexels.com/photo/6532362/ | See source page | Pexels License |
+| Dustbins | housekeeping/dustbins-1.jpg | https://www.pexels.com/photo/10840656/ | Simão Moreira | Pexels License |
+| First aid kits | housekeeping/first-aid-kits-1.jpg | https://www.pexels.com/photo/5149757/ | Roger Brown | Pexels License |
+| First aid kits | housekeeping/first-aid-kits-2.jpg | https://www.pexels.com/photo/5673523/ | Roger Brown | Pexels License |
+| First aid kits | housekeeping/first-aid-kits-3.jpg | https://www.pexels.com/photo/5149759/ | Roger Brown | Pexels License |
+| Segregation bins | housekeeping/segregation-bins-1.jpg | https://www.pexels.com/photo/12079408/ | Shin Agus | Pexels License |
+| Glassware | labs/glassware-1.jpg | https://www.pexels.com/photo/1366944/ | See source page | Pexels License |
+| Microscopes | labs/microscopes-1.jpg | https://www.pexels.com/photo/15290006/ | Vladimir Srajber | Pexels License |
+| Guitars | music/guitars-1.jpg | https://www.pexels.com/photo/15486142/ | See source page | Pexels License |
+| Xylophones | music/xylophones-1.jpg | https://www.pexels.com/photo/6743155/ | Polina Tankilevitch | Pexels License |
+| Badminton equipment | sports/badminton-equipment-1.jpg | https://www.pexels.com/photo/3660204/ | See source page | Pexels License |
+| Chess sets | sports/chess-sets-1.jpg | https://www.pexels.com/photo/8438872/ | Pavel Danilyuk | Pexels License |
+| Chess sets | sports/chess-sets-2.jpg | https://www.pexels.com/photo/4576322/ | Nothing Ahead | Pexels License |
+| Cricket equipment | sports/cricket-equipment-1.jpg | https://www.pexels.com/photo/9420724/ | Mahafuzur Rahman | Pexels License |
+| Footballs | sports/footballs-1.jpg | https://www.pexels.com/photo/15589132/ | See source page | Pexels License |
+| Yoga mats | sports/yoga-mats-1.jpg | https://www.pexels.com/photo/4793328/ | Anete Lusina | Pexels License |
+| Ball pens | stationery/ball-pens-1.jpg | https://www.pexels.com/photo/983826/ | Jess Bailey Designs | Pexels License |
+| Colour pencils | stationery/colour-pencils-1.jpg | https://www.pexels.com/photo/5748814/ | Skyler Ewing | Pexels License |
+| Colour pencils | stationery/colour-pencils-2.jpg | https://www.pexels.com/photo/459799/ | See source page | Pexels License |
+| Colour pencils | stationery/colour-pencils-3.jpg | https://www.pexels.com/photo/8850038/ | See source page | Pexels License |
+| Pencils | stationery/pencils-1.jpg | https://www.pexels.com/photo/3444630/ | See source page | Pexels License |
+| Ruled notebooks | stationery/ruled-notebooks-1.jpg | https://www.pexels.com/photo/7054755/ | See source page | Pexels License |
+| Ruled notebooks | stationery/ruled-notebooks-2.jpg | https://www.pexels.com/photo/272980/ | See source page | Pexels License |
+| Ruled notebooks | stationery/ruled-notebooks-3.jpg | https://www.pexels.com/photo/7718812/ | See source page | Pexels License |
+| Scissors | stationery/scissors-1.jpg | https://www.pexels.com/photo/211710/ | See source page | Pexels License |
+| Water colours | stationery/water-colours-1.jpg | https://www.pexels.com/photo/1576210/ | See source page | Pexels License |
+| Water colours | stationery/water-colours-2.jpg | https://www.pexels.com/photo/5800235/ | See source page | Pexels License |
+| Globes | teaching-aids/globes-1.jpg | https://www.pexels.com/photo/2682318/ | Andrew Neel | Pexels License |
+| Belts | uniforms-bags/belts-1.jpg | https://www.pexels.com/photo/31323080/ | See source page | Pexels License |
+| Belts | uniforms-bags/belts-2.jpg | https://images.unsplash.com/photo-1664286074176-5206ee5dc878 | See source page | Unsplash License |
+| Black shoes | uniforms-bags/black-shoes-1.jpg | https://images.unsplash.com/photo-1552422554-0d5af0c79fc6 | Branden Beachy | Unsplash License |
+| Black shoes | uniforms-bags/black-shoes-2.jpg | https://www.pexels.com/photo/10485371/ | cottonbro studio | Pexels License |
+| Blazers | uniforms-bags/blazers-1.jpg | https://www.pexels.com/photo/18951524/ | See source page | Pexels License |
+| House T-shirts | uniforms-bags/house-t-shirts-1.jpg | https://images.unsplash.com/photo-1671438118097-479e63198629 | See source page | Unsplash License |
+| Lunch boxes | uniforms-bags/lunch-boxes-1.jpg | https://www.pexels.com/photo/12861383/ | See source page | Pexels License |
+| Lunch boxes | uniforms-bags/lunch-boxes-2.jpg | https://images.unsplash.com/photo-1729154031163-1c5484fac8dd | See source page | Unsplash License |
+| Lunch boxes | uniforms-bags/lunch-boxes-3.jpg | https://images.unsplash.com/photo-1784979472083-dd3c4c109345 | See source page | Unsplash License |
+| Lunch boxes | uniforms-bags/lunch-boxes-4.jpg | https://www.pexels.com/photo/5852324/ | See source page | Pexels License |
+| School bags | uniforms-bags/school-bags-1.jpg | https://www.pexels.com/photo/3731256/ | Luis Quintero | Pexels License |
+| Shirts | uniforms-bags/shirts-1.jpg | https://www.pexels.com/photo/8926541/ | Alex Saharchuk | Pexels License |
+| Socks | uniforms-bags/socks-1.jpg | https://images.unsplash.com/photo-1640026199235-c24aa417b552 | See source page | Unsplash License |
+| Socks | uniforms-bags/socks-2.jpg | https://www.pexels.com/photo/9594142/ | Nadezhda Diskant | Pexels License |
+| Stationery kits | uniforms-bags/stationery-kits-1.jpg | https://www.pexels.com/photo/5088008/ | See source page | Pexels License |
+| Stationery kits | uniforms-bags/stationery-kits-2.jpg | https://www.pexels.com/photo/5088017/ | See source page | Pexels License |
+| Ties | uniforms-bags/ties-1.jpg | https://www.pexels.com/photo/45055/ | Dom J | Pexels License |
+| Water bottles | uniforms-bags/water-bottles-1.jpg | https://images.unsplash.com/photo-1602143407151-7111542de6e8 | See source page | Unsplash License |
+| Water bottles | uniforms-bags/water-bottles-2.jpg | https://www.pexels.com/photo/1188649/ | See source page | Pexels License |

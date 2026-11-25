@@ -2,6 +2,44 @@
 
 This is everything the next person, or the next Claude session, needs to pick this project up and finish it. Read it all before changing code. The original brief is kept in [docs/ORIGINAL-SPEC.md](docs/ORIGINAL-SPEC.md); where the two differ, this file is current.
 
+## 0. Latest: redesign v2 (November 2026)
+
+The whole site was redesigned. The plan, with the reasons, is in [docs/REDESIGN.md](docs/REDESIGN.md). Where this file disagrees with that plan, the plan and this section are current.
+
+**Confirmed by the owner in November 2026** (all live in `lib/site.ts`):
+- Company: Arkhan Group Pvt. Ltd. Founder: Aijaz Khan.
+- GSTIN: 36ABFCA8886K1ZX.
+- Address: Plot No. 802 & 803, 5th Floor, Nexus Business Centre, Ayyappa Society, Madhapur, Hyderabad 500081.
+- The owner asked us to design the logo and find product photos ourselves, so the "ask before downloading photos" rule is lifted. The other photo rules still apply: free licence, credited in PHOTOS.md, no brands, no fashion models.
+
+**What changed**
+- **Design system:** white pages, Source Serif 4 headings with Public Sans body text, hairline borders instead of shadows, and flat buttons. The palette is blue `#1f4fb5` with small orange touches. Section tones are `paper`, `muted` and `ink`.
+  - Removed: the 3D hero (Three.js is uninstalled), scroll fade-ins, glows, ruled paper, stamps (except the hero quotation), mono uppercase eyebrows, decorative numbering, the utility bar, and the v1 component gallery.
+- **Header:** one sticky row with the products mega menu, the phone number, the quote counter and "Request a quote". Phones get a fixed bottom bar with "WhatsApp us" and "Request a quote".
+- **Logo:** new. A single blue S line from an orange source point. Files and usage rules are in `public/brand/`, including the rejected routes in `explorations.png`. The favicon and apple icon were replaced.
+- **Pages:** every page was rebuilt. The home hero animates the handwritten list turning into a quotation, using CSS only and showing the finished state under reduced motion.
+- **Product photos:** 55 photos now cover 36 items across Uniforms & Bags, Stationery, Sports, Gifts, Music, Labs, Housekeeping, Furniture, Canteen and Tech. Credits are in `public/images/photos/PHOTOS.md`. Items without a photo show a plain grey name plate.
+- **SEO:**
+  - `sitemap.xml` and `robots.txt`.
+  - A generated Open Graph image.
+  - Organization and LocalBusiness JSON-LD with the address, GSTIN and founder.
+  - GA4, which loads only when `NEXT_PUBLIC_GA_ID` is set.
+- **Placeholders:** use `<Pending label="PAYMENT TERMS" />` (`components/ui/Pending.tsx`). They stay visible by default, as rule 3 asks. At launch, set `NEXT_PUBLIC_SHOW_PENDING=false` to hide every placeholder and the sentences that depend on one.
+
+**Still needed from the owner**
+- **Business facts:** hours, payment terms, minimum order, return policy, delivery area wording, client schools, and each `[CONFIRM]` item.
+- **Lab installation:** confirm whether labs are installed or only supplied. The Labs page says "planned, supplied and installed", from the catalogue note.
+- **Branch deliveries:** confirm whether each branch gets its own delivery. It is marked `[CONFIRM]`.
+- **Uniforms & Bags photos:** the owner's own photos are needed for trousers, pinafores, sweaters, track suits, hair accessories, canvas shoes, sports shoes, trolley bags and new admission kits.
+- **Other photos:** geometry boxes, whiteboard markers, tabla and the Indian instruments, projectors, ceiling fans and steel plates. No clean free photos were found for these.
+- **Photo credits:** 31 rows in PHOTOS.md read "See source page". The photo sites blocked automated access, so the author names could not be read.
+- **Map embed:** it could not be checked here because Google is blocked in this sandbox. Check it in a real browser.
+
+**Checks at handoff**
+- `npx tsc --noEmit`, `npx eslint .`, `npm run check:catalogue` and `npm run build` all pass.
+- Every route loads with no console errors.
+- No sideways scroll at 360px.
+
 ## 1. What this is
 
 **The business**
@@ -88,8 +126,7 @@ Deployment target: Vercel. It has not been deployed yet.
 - Next.js 15.5 (App Router), React 19, TypeScript.
 - Tailwind CSS v4: tokens are in `app/globals.css` under `@theme`. There is no tailwind.config.
 - GSAP + ScrollTrigger for scroll reveals.
-- Three.js via React Three Fiber + drei, for the hero only.
-- next/image, and next/font (Young Serif, Public Sans, IBM Plex Mono, Kalam).
+- next/image, and next/font (Source Serif 4, Public Sans, Kalam for the hero list only).
 
 **Folders**
 

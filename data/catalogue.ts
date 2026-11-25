@@ -86,11 +86,11 @@ const categoryData: CategoryInput[] = [
     description: "Pens, notebooks, paper, files, art and craft",
     band: "everyday",
     subcategories: [
-      { name: "Writing", items: ["Ball pens", "Gel pens", "Pencils", "Erasers", "Sharpeners"] },
+      { name: "Writing", items: [{ name: "Ball pens", images: ["/images/products/stationery/ball-pens-1.jpg"] }, "Gel pens", { name: "Pencils", images: ["/images/products/stationery/pencils-1.jpg"] }, "Erasers", "Sharpeners"] },
       { name: "Markers & Highlighters", items: ["Whiteboard markers", "Permanent markers", "Highlighters"] },
       {
         name: "Notebooks & Registers",
-        items: ["Ruled notebooks", "Unruled notebooks", "Graph notebooks", "Practical notebooks", "Long books", "Registers"],
+        items: [{ name: "Ruled notebooks", images: ["/images/products/stationery/ruled-notebooks-1.jpg", "/images/products/stationery/ruled-notebooks-2.jpg", "/images/products/stationery/ruled-notebooks-3.jpg"] }, "Unruled notebooks", "Graph notebooks", "Practical notebooks", "Long books", "Registers"],
       },
       { name: "Paper", items: ["A4 copier paper", "A3 copier paper", "Chart paper", "Drawing sheets", "Coloured paper"] },
       { name: "Files & Folders", items: ["Box files", "Clip files", "Display files", "L-folders", "Envelopes"] },
@@ -99,9 +99,9 @@ const categoryData: CategoryInput[] = [
         name: "Art & Craft",
         items: [
           "Crayons",
-          "Colour pencils",
+          { name: "Colour pencils", images: ["/images/products/stationery/colour-pencils-1.jpg", "/images/products/stationery/colour-pencils-2.jpg", "/images/products/stationery/colour-pencils-3.jpg"] },
           "Sketch pens",
-          "Water colours",
+          { name: "Water colours", images: ["/images/products/stationery/water-colours-1.jpg", "/images/products/stationery/water-colours-2.jpg"] },
           "Poster colours",
           "Brushes",
           "Craft paper",
@@ -110,7 +110,7 @@ const categoryData: CategoryInput[] = [
           "Glitter",
         ],
       },
-      { name: "Desk Essentials", items: ["Staplers", "Punches", "Clips", "Glue", "Tapes", "Scissors", "Cutters"] },
+      { name: "Desk Essentials", items: ["Staplers", "Punches", "Clips", "Glue", "Tapes", { name: "Scissors", images: ["/images/products/stationery/scissors-1.jpg"] }, "Cutters"] },
     ],
   },
   {
@@ -173,7 +173,7 @@ const categoryData: CategoryInput[] = [
       { name: "Boards", items: ["Green boards", "Whiteboards", "Glass boards", "Notice boards", "Pin boards"] },
       { name: "Chalk & Dusters", items: ["Chalk", "Board dusters"] },
       { name: "Charts & Posters", items: ["Charts", "Posters"] },
-      { name: "Maps & Globes", items: ["Maps", "Globes"] },
+      { name: "Maps & Globes", items: ["Maps", { name: "Globes", images: ["/images/products/teaching-aids/globes-1.jpg"] }] },
       { name: "Teaching Models", items: ["Science models", "Anatomy models", "Geography models", "Maths models"] },
       {
         name: "Early Years & Montessori",
@@ -193,7 +193,7 @@ const categoryData: CategoryInput[] = [
       {
         name: "Uniforms",
         items: [
-          "Shirts",
+          { name: "Shirts", images: ["/images/products/uniforms-bags/shirts-1.jpg"] },
           "Trousers",
           {
             name: "Skirts",
@@ -205,15 +205,15 @@ const categoryData: CategoryInput[] = [
             ],
           },
           "Pinafores",
-          "Blazers",
+          { name: "Blazers", images: ["/images/products/uniforms-bags/blazers-1.jpg"] },
           "Sweaters",
         ],
       },
-      { name: "Sports Uniforms", items: ["House T-shirts", "Track suits"] },
-      { name: "Uniform Accessories", items: ["Ties", "Belts", "Socks", "Hair accessories"] },
-      { name: "Footwear", items: ["Black shoes", "White canvas shoes", "Sports shoes"] },
-      { name: "Bags", items: ["School bags", "Trolley bags"] },
-      { name: "Student Kits", items: ["New admission kits", "Stationery kits", "Water bottles", "Lunch boxes"] },
+      { name: "Sports Uniforms", items: [{ name: "House T-shirts", images: ["/images/products/uniforms-bags/house-t-shirts-1.jpg"] }, "Track suits"] },
+      { name: "Uniform Accessories", items: [{ name: "Ties", images: ["/images/products/uniforms-bags/ties-1.jpg"] }, { name: "Belts", images: ["/images/products/uniforms-bags/belts-1.jpg", "/images/products/uniforms-bags/belts-2.jpg"] }, { name: "Socks", images: ["/images/products/uniforms-bags/socks-1.jpg", "/images/products/uniforms-bags/socks-2.jpg"] }, "Hair accessories"] },
+      { name: "Footwear", items: [{ name: "Black shoes", images: ["/images/products/uniforms-bags/black-shoes-1.jpg", "/images/products/uniforms-bags/black-shoes-2.jpg"] }, "White canvas shoes", "Sports shoes"] },
+      { name: "Bags", items: [{ name: "School bags", images: ["/images/products/uniforms-bags/school-bags-1.jpg"] }, "Trolley bags"] },
+      { name: "Student Kits", items: ["New admission kits", { name: "Stationery kits", images: ["/images/products/uniforms-bags/stationery-kits-1.jpg", "/images/products/uniforms-bags/stationery-kits-2.jpg"] }, { name: "Water bottles", images: ["/images/products/uniforms-bags/water-bottles-1.jpg", "/images/products/uniforms-bags/water-bottles-2.jpg"] }, { name: "Lunch boxes", images: ["/images/products/uniforms-bags/lunch-boxes-1.jpg", "/images/products/uniforms-bags/lunch-boxes-2.jpg", "/images/products/uniforms-bags/lunch-boxes-3.jpg", "/images/products/uniforms-bags/lunch-boxes-4.jpg"] }] },
     ],
   },
   {
@@ -232,8 +232,8 @@ const categoryData: CategoryInput[] = [
         name: "Washroom Hygiene",
         items: ["Hand wash", "Soap", "Tissue rolls", "Sanitary napkin dispensers", "Sanitary napkin disposal units"],
       },
-      { name: "Waste Management", items: ["Dustbins", "Garbage bags", "Segregation bins"] },
-      { name: "First Aid & Safety", items: ["First aid kits", "Fire extinguishers", "Safety signage"] },
+      { name: "Waste Management", items: [{ name: "Dustbins", images: ["/images/products/housekeeping/dustbins-1.jpg"] }, "Garbage bags", { name: "Segregation bins", images: ["/images/products/housekeeping/segregation-bins-1.jpg"] }] },
+      { name: "First Aid & Safety", items: [{ name: "First aid kits", images: ["/images/products/housekeeping/first-aid-kits-1.jpg", "/images/products/housekeeping/first-aid-kits-2.jpg", "/images/products/housekeeping/first-aid-kits-3.jpg"] }, "Fire extinguishers", "Safety signage"] },
     ],
     seeAlso: [{ label: "Plates, glasses and utensils are under Canteen & Kitchen", slug: "canteen-kitchen", subcategory: "Serveware & Utensils" }],
   },
@@ -248,15 +248,15 @@ const categoryData: CategoryInput[] = [
     subcategories: [
       {
         name: "Ball Games",
-        items: ["Cricket equipment", "Footballs", "Volleyballs", "Basketballs", "Throwballs"],
+        items: [{ name: "Cricket equipment", images: ["/images/products/sports/cricket-equipment-1.jpg"] }, { name: "Footballs", images: ["/images/products/sports/footballs-1.jpg"] }, "Volleyballs", "Basketballs", "Throwballs"],
       },
       {
         name: "Racquet Sports",
-        items: ["Badminton equipment", "Table tennis equipment", "Tennis equipment"],
+        items: [{ name: "Badminton equipment", images: ["/images/products/sports/badminton-equipment-1.jpg"] }, "Table tennis equipment", "Tennis equipment"],
       },
       { name: "Athletics", items: ["Relay batons", "Hurdles", "Shot puts", "Discus", "Measuring tapes"] },
-      { name: "Indoor Games", items: ["Chess sets", "Carrom boards", "Board games"] },
-      { name: "Fitness & Yoga", items: ["Yoga mats", "Skipping ropes", "Training cones", "Agility ladders"] },
+      { name: "Indoor Games", items: [{ name: "Chess sets", images: ["/images/products/sports/chess-sets-1.jpg", "/images/products/sports/chess-sets-2.jpg"] }, "Carrom boards", "Board games"] },
+      { name: "Fitness & Yoga", items: [{ name: "Yoga mats", images: ["/images/products/sports/yoga-mats-1.jpg"] }, "Skipping ropes", "Training cones", "Agility ladders"] },
       {
         name: "Playground Equipment",
         items: ["Swings", "Playground slides", "See-saws", "Climbers", "Merry-go-rounds"],
@@ -271,8 +271,8 @@ const categoryData: CategoryInput[] = [
     description: "Trophies, medals, mementos, gifts",
     band: "activities",
     subcategories: [
-      { name: "Trophies & Cups", items: ["Trophies", "Cups"] },
-      { name: "Medals & Ribbons", items: ["Medals", "Ribbons"] },
+      { name: "Trophies & Cups", items: [{ name: "Trophies", images: ["/images/products/gifts-awards/trophies-1.jpg"] }, "Cups"] },
+      { name: "Medals & Ribbons", items: [{ name: "Medals", images: ["/images/products/gifts-awards/medals-1.jpg", "/images/products/gifts-awards/medals-2.jpg"] }, "Ribbons"] },
       { name: "Shields & Plaques", items: ["Shields", "Plaques"] },
       { name: "Mementos", items: ["Chief guest mementos", "Shawls", "Framed citations"] },
       { name: "Staff Gifts", items: ["Teachers' Day gifts", "Festival hampers", "Farewell gifts"] },
@@ -294,8 +294,8 @@ const categoryData: CategoryInput[] = [
       { name: "Keyboards & Harmoniums", items: ["Keyboards", "Harmoniums"] },
       { name: "Indian Percussion", items: ["Tabla", "Dholak", "Mridangam"] },
       { name: "School Band", items: ["Side drums", "Bass drums", "Bugles", "Trumpets"] },
-      { name: "Classroom Percussion", items: ["Tambourines", "Triangles", "Xylophones", "Castanets"] },
-      { name: "String Instruments", items: ["Guitars", "Violins"] },
+      { name: "Classroom Percussion", items: ["Tambourines", "Triangles", { name: "Xylophones", images: ["/images/products/music/xylophones-1.jpg"] }, "Castanets"] },
+      { name: "String Instruments", items: [{ name: "Guitars", images: ["/images/products/music/guitars-1.jpg"] }, "Violins"] },
       { name: "Accessories", items: ["Music stands", "Instrument cases", "Drum sticks"] },
     ],
   },
@@ -329,9 +329,9 @@ const categoryData: CategoryInput[] = [
       { name: "Physics Lab", items: ["Physics lab equipment"] },
       {
         name: "Chemistry Lab",
-        items: ["Chemistry lab apparatus", "Glassware", { name: "Lab chemicals", note: "On request, where permitted" }],
+        items: ["Chemistry lab apparatus", { name: "Glassware", images: ["/images/products/labs/glassware-1.jpg"] }, { name: "Lab chemicals", note: "On request, where permitted" }],
       },
-      { name: "Biology Lab", items: ["Microscopes", "Microscope slides", "Specimens", "Biology models"] },
+      { name: "Biology Lab", items: [{ name: "Microscopes", images: ["/images/products/labs/microscopes-1.jpg"] }, "Microscope slides", "Specimens", "Biology models"] },
       { name: "Maths Lab", items: ["Maths lab equipment"] },
       {
         name: "STEM & Robotics",
@@ -356,7 +356,7 @@ const categoryData: CategoryInput[] = [
     description: "Computers, projectors, smart boards, CCTV",
     band: "setup",
     subcategories: [
-      { name: "Computers & Laptops", items: ["Desktop computers", "Laptops"] },
+      { name: "Computers & Laptops", items: ["Desktop computers", { name: "Laptops", images: ["/images/products/computers-tech/laptops-1.jpg"] }] },
       { name: "Printers & Photocopiers", items: ["Printers", "Photocopiers"] },
       { name: "Printer Consumables", items: ["Toner", "Ink cartridges", "Drum units"] },
       {
@@ -375,7 +375,7 @@ const categoryData: CategoryInput[] = [
     description: "Desks, chairs, cupboards, racks",
     band: "setup",
     subcategories: [
-      { name: "Classroom", items: ["Dual desks", "Benches", "Student chairs", "Teacher tables"] },
+      { name: "Classroom", items: [{ name: "Dual desks", images: ["/images/products/furniture/dual-desks-1.jpg"] }, { name: "Benches", images: ["/images/products/furniture/benches-1.jpg"] }, { name: "Student chairs", images: ["/images/products/furniture/student-chairs-1.jpg"] }, "Teacher tables"] },
       { name: "Early Years", items: ["Children's tables", "Children's chairs"] },
       { name: "Lab Furniture", items: ["Lab tables", "Lab stools"] },
       { name: "Library Furniture", items: ["Book racks", "Reading tables", "Display stands"] },
@@ -418,7 +418,7 @@ const categoryData: CategoryInput[] = [
       { name: "Food Preparation", items: ["Vegetable cutters", "Wet grinders", "Commercial mixers", "Stainless steel work tables"] },
       { name: "Storage & Refrigeration", items: ["Commercial refrigerators", "Deep freezers", "Stainless steel racks", "Grain storage bins"] },
       { name: "Serving", items: ["Food service counters", "Bain-maries", "Hot cases"] },
-      { name: "Serveware & Utensils", items: ["Plates", "Glasses", "Food containers", "Utensils"] },
+      { name: "Serveware & Utensils", items: ["Plates", "Glasses", "Food containers", { name: "Utensils", images: ["/images/products/canteen-kitchen/utensils-1.jpg", "/images/products/canteen-kitchen/utensils-2.jpg"] }] },
       { name: "Kitchen Hygiene & Safety", items: ["Hand wash stations", "Kitchen aprons and caps", "Gas leak detectors"] },
       {
         name: "Complete Setups",
