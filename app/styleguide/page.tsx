@@ -186,7 +186,7 @@ export default function StyleguidePage() {
         note="Every missing fact goes through <Pending>. NEXT_PUBLIC_SHOW_PENDING=false hides them all at launch."
       >
         <p className="leading-loose">
-          Payment terms: <Pending label="PAYMENT TERMS" />. Address: <Pending label="ADDRESS" />. Minimum order:{" "}
+          Payment terms: <Pending label="PAYMENT TERMS" />. Office hours: <Pending label="HOURS" />. Minimum order:{" "}
           <Pending label="MIN ORDER" />.
         </p>
         <p className="mt-3 text-sm text-ink-soft">

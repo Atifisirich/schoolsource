@@ -5,7 +5,7 @@ import { footerPages, site } from "@/lib/site";
 import { Logo } from "./Logo";
 
 const linkClass = "link-draw text-paper/75 transition-colors duration-150 hover:text-white";
-const headingClass = "text-sm font-semibold text-paper";
+const headingClass = "font-sans text-sm font-semibold tracking-normal text-paper";
 
 const companyPages = footerPages.filter((p) => !["/products", "/privacy", "/terms"].includes(p.href));
 
