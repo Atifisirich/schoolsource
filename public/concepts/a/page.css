@@ -85,7 +85,7 @@ h2 { letter-spacing: -0.03em; }
 /* SERVICE: a spec sheet in three columns, each term under a heavy rule */
 .terms { list-style: none; margin: 0; padding: 0; row-gap: var(--s-8); counter-reset: t; }
 .terms li { border-top: 2px solid var(--p-ink); padding-top: var(--s-5); counter-increment: t; }
-.terms li::before { content: counter(t, decimal-leading-zero); display: block; margin-bottom: var(--s-5); font: 500 14px/1 var(--font-text); color: var(--muted); font-variant-numeric: tabular-nums; }
+.terms li::before { content: ""; display: none; display: block; margin-bottom: var(--s-5); font: 500 14px/1 var(--font-text); color: var(--muted); font-variant-numeric: tabular-nums; }
 .terms h3 { font: 500 26px/1.15 var(--font-display); letter-spacing: -0.025em; margin: 0 0 var(--s-3); max-width: 16ch; }
 .terms p { margin: 0; max-width: 34ch; }
 @media (max-width: 639px) { .terms { row-gap: var(--s-6); } .terms h3 { font-size: 20px; } .terms li::before { margin-bottom: var(--s-3); } #service { --hm: 2; } }

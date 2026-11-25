@@ -50,7 +50,20 @@
 
 /* the logo */
 .logo { display: inline-flex; align-items: center; color: #0f1b2d; }
-.logo svg { height: 28px; width: auto; display: block; }
+.logo svg, .nav__logo.logo svg { height: 26px; width: 172px; max-width: none; display: block; }
+.qsearch__clear, .slip__close, .line__rm, .slip__clear, .qbar__open, .chip { border: 0; background: none; box-shadow: none; }
+.chip { background: var(--blue-soft); }
+.qbar__open { border: 1px solid #cdd5e3; }
+.notice-short { display: none; }
+@media (max-width: 639px) {
+  header.nav:not(.is-open) .nav__actions { display: none; }
+  header.nav:not(.is-open) .nav__actions + .nav__toggle { margin-left: auto; }
+  .qsearch kbd { display: none; }
+  .qres__list { flex: none; height: max(250px, calc(100svh - 580px)); }
+  .logo svg, .nav__logo.logo svg { height: 22px; width: 146px; }
+  .notice-long { display: none; } .notice-short { display: inline; }
+  .desk__find .hero__lead { font-size: 17px; }
+}
 .footer--dark .logo, .ground-inverse .logo { color: #fff; --logo-s: #ffffff; }
 
 /* ---------------------------------------------------------------- hero: the desk */
@@ -117,7 +130,7 @@
 .slip__meta { font: 400 14px/1.3 var(--font-text); color: var(--muted); }
 .slip__body { flex: 1; min-height: 0; overflow-y: auto; padding: 4px 24px; scrollbar-width: thin; overscroll-behavior: contain; }
 .slip__lines { list-style: none; margin: 0; padding: 0; counter-reset: line; }
-.line { display: grid; grid-template-columns: 28px minmax(0, 1fr) 76px 36px; align-items: center; gap: 10px; padding: 12px 0; border-bottom: 1px dashed #d3dbe8; }
+.line { display: grid; grid-template-columns: 28px minmax(0, 1fr) 96px 36px; align-items: center; gap: 10px; padding: 12px 0; border-bottom: 1px dashed #d3dbe8; }
 .line::before { counter-increment: line; content: counter(line, decimal-leading-zero); font: 500 13px/1 var(--font-text); color: var(--muted); font-variant-numeric: tabular-nums; }
 .line__name { font: 500 16px/1.25 var(--font-text); color: var(--ink); overflow-wrap: anywhere; }
 .line__sub { display: block; font: 400 13px/1.35 var(--font-text); color: var(--muted); margin-top: 2px; }
@@ -139,6 +152,7 @@
 .ghost li span:first-child { font: 500 13px/1 var(--font-text); color: #a3acbf; }
 .ghost i { display: block; height: 10px; border-radius: 5px; background: #eef1f6; }
 .ghost li i:last-child { height: 30px; border-radius: 8px; border: 1px dashed #d6ddea; background: none; }
+.slip__more { padding: 14px 0 4px 38px; font: 400 14px/1.45 var(--font-text); color: var(--muted); max-width: 40ch; }
 .slip__foot { padding: 16px 24px 20px; background: var(--p-surface); border-top: 1px solid var(--rule); display: grid; gap: 12px; }
 .field-s label { display: block; font: 500 14px/1.2 var(--font-text); color: var(--ink); margin-bottom: 6px; }
 .field-s input { width: 100%; height: 44px; border: 1px solid #cdd5e3; border-radius: 10px; padding: 0 12px; font: 400 16px/1 var(--font-text); color: var(--ink); background: #fff; }
@@ -167,13 +181,14 @@
     transform: translateY(105%); visibility: hidden; transition: transform .32s cubic-bezier(.32,.72,0,1), visibility 0s linear .32s; }
   .slip.is-open { transform: none; visibility: visible; transition: transform .32s cubic-bezier(.32,.72,0,1), visibility 0s; }
   .slip__close { display: grid; }
-  .slip__foot { padding-bottom: calc(20px + env(safe-area-inset-bottom)); }
+  .slip__more { padding: 14px 0 4px 38px; font: 400 14px/1.45 var(--font-text); color: var(--muted); max-width: 40ch; }
+.slip__foot { padding-bottom: calc(20px + env(safe-area-inset-bottom)); }
   .scrim { display: block; position: fixed; inset: 0; z-index: 49; background: rgba(14,31,61,.42); opacity: 0; pointer-events: none; transition: opacity .25s; }
   .scrim.is-open { opacity: 1; pointer-events: auto; }
   .qbar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 40; display: flex; align-items: center; gap: 10px; padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
     background: #fff; border-top: 1px solid var(--rule); box-shadow: 0 -10px 30px -20px rgba(14,31,61,.35); transform: translateY(110%); transition: transform .3s cubic-bezier(.32,.72,0,1); }
   .qbar.is-on { transform: none; }
-  .qbar__open { flex: 1; min-width: 0; display: flex; align-items: center; gap: 10px; height: 48px; padding: 0 12px; border-radius: 12px; border: 1px solid #cdd5e3; font: 500 16px/1 var(--font-text); color: var(--ink); }
+  .qbar__open { flex: 1; min-width: 0; white-space: nowrap; display: flex; align-items: center; gap: 10px; height: 48px; padding: 0 12px; border-radius: 12px; border: 1px solid #cdd5e3; font: 500 16px/1 var(--font-text); color: var(--ink); }
   .qbar__open svg { margin-left: auto; width: 16px; height: 16px; }
   .qbar .btn { height: 48px; padding: 0 16px; gap: 8px; white-space: nowrap; }
   .qbar .btn img { width: 20px; height: 20px; }
@@ -269,7 +284,7 @@
       <div class="nav__item"><a class="nav__link" href="#kits">Kits</a></div>
       <div class="nav__item"><a class="nav__link" href="#delivery">Delivery</a></div>
     </nav>
-    <a class="nav__logo logo" href="#top" aria-label="SchoolSource, home"><svg viewBox="0 26.23 290.15 43.77" aria-hidden="true"><use href="#ss-logo"/></svg></a>
+    <a class="nav__logo logo" href="#top" aria-label="SchoolSource, home"><svg viewBox="0 0 290.15 43.77" aria-hidden="true"><use href="#ss-logo"/></svg></a>
     <div class="nav__actions">
       <a class="btn btn--primary" href="#list" data-open-list>Send your list</a>
     </div>
@@ -284,7 +299,7 @@
     <div class="wrap">
       <div class="hero-text grid desk">
         <div class="desk__find span-7">
-          <p class="hero-notice"><span class="dot" aria-hidden="true"></span><span><b>343 school supplies</b> in 15 categories, delivered from Hyderabad</span></p>
+          <p class="hero-notice"><span class="dot" aria-hidden="true"></span><span class="notice-long"><b>343 school supplies</b> in 15 categories, delivered from Hyderabad</span><span class="notice-short"><b>343 school supplies</b>, delivered from Hyderabad</span></p>
           <h1 id="hero-h">What does your school need?</h1>
           <p class="hero__lead">Search the catalogue and add items to your list. Send the list on WhatsApp and we reply with an itemised quotation.</p>
           <div class="qsearch" role="search">
@@ -323,6 +338,7 @@
                 </ol>
               </div>
               <ol class="slip__lines" data-lines></ol>
+              <p class="slip__more" data-more hidden>Keep adding from the search. Rough quantities are fine; we confirm them in the quotation.</p>
             </div>
             <div class="slip__foot">
               <div class="field-s"><label for="school">School name and area <span class="muted">(optional)</span></label><input id="school" type="text" autocomplete="organization"></div>
@@ -455,7 +471,7 @@
     <div class="closing__links">
       <div class="grid">
         <div class="span-4 stack-4">
-          <a class="logo" href="#top" aria-label="SchoolSource, back to the top"><svg viewBox="0 26.23 290.15 43.77" aria-hidden="true"><use href="#ss-logo"/></svg></a>
+          <a class="logo" href="#top" aria-label="SchoolSource, back to the top"><svg viewBox="0 0 290.15 43.77" aria-hidden="true"><use href="#ss-logo"/></svg></a>
           <p class="footer__lede">The school-supplies division of Arkhan Group Pvt. Ltd., Hyderabad. Founded by Aijaz Khan.</p>
         </div>
         <div class="span-2 footer__col"><h3>Catalogue</h3><ul><li><a href="#categories">Categories</a></li><li><a href="#kits">Kits</a></li><li><a href="#search">Search</a></li></ul></div>
@@ -575,9 +591,10 @@
     lines.innerHTML = list.map(lineHTML).join('');
     empty.hidden = list.length > 0;
     $('[data-clear]').hidden = list.length === 0;
+    $('[data-more]').hidden = list.length === 0;
     const n = list.length;
     $$('[data-count]').forEach(c => { c.textContent = n; c.classList.toggle('is-zero', n === 0); });
-    $('[data-meta]').textContent = n ? (n === 1 ? '1 item' : n + ' items') : 'No items yet';
+    $('[data-meta]').textContent = n ? 'Draft, not sent yet' : 'No items yet';
     $('[data-bar-label]').textContent = n + (n === 1 ? ' item' : ' items');
     $('[data-qbar]').classList.toggle('is-on', n > 0);
     $$('[data-send]').forEach(a => { a.href = waLink(); });
@@ -686,6 +703,10 @@
   // the sheet (phone and tablet)
   let lastFocus = null;
   const sheetMode = () => !matchMedia('(min-width: 1024px)').matches;
+  // on a phone or tablet the list leaves the hero for the body, so it sits above the scrim as a sheet
+  const home = $('.desk__list'), mq = matchMedia('(min-width: 1024px)');
+  const place = () => { if (mq.matches) { if (slip.parentNode !== home) { closeList(true); home.appendChild(slip); } } else if (slip.parentNode !== document.body) document.body.insertBefore(slip, $('.scrim')); };
+  mq.addEventListener('change', place); place();
   function openList(e) {
     if (!sheetMode()) { if (e) { e.preventDefault(); } slip.focus({ preventScroll: true }); slip.scrollIntoView({ block: 'nearest' }); if (scrollY > 200) scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' }); return; }
     if (e) e.preventDefault();
@@ -695,10 +716,10 @@
     slip.setAttribute('role', 'dialog'); slip.setAttribute('aria-modal', 'true');
     setTimeout(() => slip.querySelector('[data-close-list]').focus(), 30);
   }
-  function closeList() {
+  function closeList(silent) {
     slip.classList.remove('is-open'); $('.scrim').classList.remove('is-open');
     slip.removeAttribute('role'); slip.removeAttribute('aria-modal');
-    lastFocus?.focus();
+    if (silent !== true) lastFocus?.focus();
   }
   $$('[data-open-list]').forEach(b => b.addEventListener('click', openList));
   $$('[data-close-list]').forEach(b => b.addEventListener('click', closeList));
@@ -740,6 +761,8 @@
     toggle({ key: 'kit:' + k.slug, name: k.name, sub: k.basis + ': ' + k.contents.join(', '), kit: true, img: k.img }, b, b);
   });
 
+  const ph = () => q.placeholder = matchMedia('(max-width: 639px)').matches ? 'Try notebooks or desks' : 'Try notebooks, dual desks or microscopes';
+  matchMedia('(max-width: 639px)').addEventListener('change', ph); ph();
   render(); renderList();
 })();
 </script>
